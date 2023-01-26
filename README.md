@@ -47,7 +47,7 @@ pip install mkdocs-material
 
 ### Step 5
 
-If everything looks good locally, you can build the site calling `mkdocs build`. A new folder called `site` will be built that has everything you need for hosting the live website. You can copy the `site` folder to wherever you are hosting, eg., `osmond-lab.github.io/teaching/`.
+If everything looks good locally, you can build the site calling `mkdocs build`. A new folder called `site` will be built that has everything you need for hosting the live website. You can now push to publish via GitHub Pages (see https://squidfunk.github.io/mkdocs-material/publishing-your-site/#with-github-actions for more info).
 
 ### Useful information
 
