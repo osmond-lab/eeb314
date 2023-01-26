@@ -54,7 +54,7 @@ To make them accessible to users, simply right click on the jupyter notebook in 
 
 Take the copied/shareable link, and add it to the markdown table in `docs/labs/schedule.md`.
 
-### Building the site
+## Building the site
 
 ### Step 1
 
