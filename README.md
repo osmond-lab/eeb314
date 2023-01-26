@@ -10,20 +10,6 @@ Write your lecture content into a jupyter notebook and save it into the `noteboo
 
 ### Step 2
 
-Open the `mkdocs.yml` file and go down to the line that says `nav`. The structure of the `nav` section determines the layout of the website. If this is a new lecture named `lecture-25.ipynb` then add it do the `nav` section as denoted below:
-
-```yaml
-nav:
-  - Overview: index.md
-  - Lectures:
-    - Lecture 01: lectures/lecture-1.md
-    - Lecture 25: lectures/lecture-25.md
-```
-
-Note that `.ipynb` is replaced with `.md` in the `nav` section.
-
-### Step 3
-
 To build your interactive book, now enter the `bin/` folder (i.e. `cd bin` from the root), and call the `nb2imd.sh` script as follows:
 
 ```bash
@@ -35,6 +21,20 @@ cp -r ../notebooks/lectures/lecture-X-img/ ../docs/lectures/lecture-X-img/
 ```
 
 where `lecture-X` is the name of the lecture.
+
+### Step 3
+
+Open the `mkdocs.yml` file and go down to the line that says `nav`. The structure of the `nav` section determines the layout of the website. If this is a new lecture named `lecture-25.ipynb` then add it do the `nav` section as denoted below:
+
+```yaml
+nav:
+  - Overview: index.md
+  - Lectures:
+    - Lecture 01: lectures/lecture-1.md
+    - Lecture 25: lectures/lecture-25.md
+```
+
+Note that `.ipynb` is replaced with `.md` in the `nav` section.
 
 ## Building labs
 
@@ -69,11 +69,11 @@ pip install mkdocs-material
 
 If everything looks good locally, you can build the site calling `mkdocs build`. A new folder called `site` will be built that has everything you need for hosting the live website. You can now push to publish via GitHub Pages (see https://squidfunk.github.io/mkdocs-material/publishing-your-site/#with-github-actions for more info).
 
-### Useful information
+## More info
 
 The website was built using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). Therefore, all the functionalitites described there can be added here if desired. Second, the executable cells were integrated using [Thebe](https://github.com/executablebooks/thebe). If any changes to the code blocks are desired, please look at their documentation for more information. Alternatively, you can directly modify the style of the code blocks by editing the `.css` stylesheets stored in `docs/stylesheets`.
 
-## Site structure
+### Site structure
 
 The `nav` section controls the site structure. Adding or removing tags will add or remove the corresponding page. For example, if you wanted to only hide a section of the website you could go to the `nav` in `mkdocs.yml` and do:
 
