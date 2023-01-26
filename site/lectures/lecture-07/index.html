@@ -1,0 +1,1563 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Lecture 7 - EEB430/1430 Mathematical modelling in ecology and evolution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+  
+  
+    
+    
+    
+  
+  
+  <style>.md-tag-icon{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.5 7A1.5 1.5 0 0 1 4 5.5 1.5 1.5 0 0 1 5.5 4 1.5 1.5 0 0 1 7 5.5 1.5 1.5 0 0 1 5.5 7m15.91 4.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.11 0-2 .89-2 2v7c0 .55.22 1.05.59 1.41l8.99 9c.37.36.87.59 1.42.59.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.56-.23-1.06-.59-1.42Z"/></svg>');}</style>
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-7-equilibria" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-header__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EEB430/1430 Mathematical modelling in ecology and evolution
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 7
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../syllabus/general_info/" class="md-tabs__link">
+        Syllabus
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../schedule/" class="md-tabs__link md-tabs__link--active">
+        Lectures
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/schedule/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../acknowledgements/" class="md-tabs__link">
+      Acknowledgements
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-nav__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    EEB430/1430 Mathematical modelling in ecology and evolution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Syllabus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syllabus" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Syllabus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        General info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        Course structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        When and where
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/assignments/" class="md-nav__link">
+        Assignments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        Final Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/exams/" class="md-nav__link">
+        Exams
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        Instructors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/other_resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Lectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        Lecture 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        Lecture 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        Lecture 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        Lecture 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        Lecture 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        Lecture 6
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 7
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lecture 7
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-equilibria" class="md-nav__link">
+    1. Equilibria
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-exponential-growth" class="md-nav__link">
+    2. Exponential growth
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Exponential growth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-time" class="md-nav__link">
+    Discrete time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-time" class="md-nav__link">
+    Continuous time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-logistic-growth" class="md-nav__link">
+    3. Logistic growth
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Logistic growth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-time_1" class="md-nav__link">
+    Discrete time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-time_1" class="md-nav__link">
+    Continuous time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-haploid-selection" class="md-nav__link">
+    4. Haploid selection
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Haploid selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-time_2" class="md-nav__link">
+    Discrete time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-time_2" class="md-nav__link">
+    Continuous time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-diploid-selection" class="md-nav__link">
+    5. Diploid selection
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Diploid selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-time_3" class="md-nav__link">
+    Discrete time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-summary" class="md-nav__link">
+    6. Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        Lecture 8
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        Lecture 9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        Lecture 10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        Lecture 11
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        Lecture 12
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        Lecture 13
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-14/" class="md-nav__link">
+        Lecture 14
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        Lecture 15
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        Lecture 16
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        Lecture 17
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        Lecture 18
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        Lecture 19
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        Lecture 20
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-equilibria" class="md-nav__link">
+    1. Equilibria
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-exponential-growth" class="md-nav__link">
+    2. Exponential growth
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Exponential growth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-time" class="md-nav__link">
+    Discrete time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-time" class="md-nav__link">
+    Continuous time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-logistic-growth" class="md-nav__link">
+    3. Logistic growth
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Logistic growth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-time_1" class="md-nav__link">
+    Discrete time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-time_1" class="md-nav__link">
+    Continuous time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-haploid-selection" class="md-nav__link">
+    4. Haploid selection
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Haploid selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-time_2" class="md-nav__link">
+    Discrete time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-time_2" class="md-nav__link">
+    Continuous time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-diploid-selection" class="md-nav__link">
+    5. Diploid selection
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Diploid selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-time_3" class="md-nav__link">
+    Discrete time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-summary" class="md-nav__link">
+    6. Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      binderUrl: "https://gke.mybinder.org",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+<h1 id="lecture-7-equilibria">Lecture 7: Equilibria</h1>
+<hr style="margin-bottom: 0em;">
+<p><center></p>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+<p></center></p>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Equilibria</a></li>
+<li><a href="#section2">Exponential growth</a></li>
+<li><a href="#section3">Logistic growth</a></li>
+<li><a href="#section4">Haploid selection</a></li>
+<li><a href="#section5">Diploid selection</a></li>
+<li><a href="#section6">Summary</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-equilibria">1. Equilibria</h2>
+<hr>
+
+<p>An <strong>equilibrium</strong> is any state of a system which tends to persist unchanged over time.</p>
+<p>For <em>discrete-time</em> models, the equilibria are defined as those values of the variables where no changes occur from one time step to the next. </p>
+<p>For example, those values of allele frequency <span class="arithmatex">\(p_t\)</span> where</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\Delta p &amp;= 0\\
+p_{t+1} - p_t &amp;= 0\\
+p_{t+1} &amp;= p_t
+\end{aligned}
+\]</div>
+<p>Similarly, for <em>continuous-time</em> models, the equilibria are defined as those values of the variables for which the rate of change in the variables equals zero. </p>
+<p>For example, those values of allele frequency <span class="arithmatex">\(p\)</span> where</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}p}{\mathrm{d}t} = 0
+\]</div>
+<p>What are the equilibria for the following models?</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Discrete time</th>
+<th>Continous time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exponential growth</td>
+<td><span class="arithmatex">\(n_{t+1} = R n_t\)</span></td>
+<td><span class="arithmatex">\(\frac{\mathrm{d}n}{\mathrm{d}t} = r n\)</span></td>
+</tr>
+<tr>
+<td>Logistic growth</td>
+<td><span class="arithmatex">\(n_{t+1} = (1 + r(1 - \frac{n_t}{K}))n_t\)</span></td>
+<td><span class="arithmatex">\(\frac{\mathrm{d}n}{\mathrm{d}t} = r(1 - \frac{n}{K})n\)</span></td>
+</tr>
+<tr>
+<td>Haploid selection</td>
+<td><span class="arithmatex">\(p_{t+1} = \frac{W_A p_t}{W_A p_t + W_a q_t}\)</span></td>
+<td><span class="arithmatex">\(\frac{\mathrm{d}p}{\mathrm{d}t} = s p(1-p)\)</span></td>
+</tr>
+<tr>
+<td>Diploid selection</td>
+<td><span class="arithmatex">\(p_{t+1} = \frac{p_t^2W_{AA} + p_t q_tW_{Aa}}{p_t^2W_{AA} + 2 p_t q_tW_{Aa} +  q_t^2W_{aa}}\)</span></td>
+<td>Not derived</td>
+</tr>
+</tbody>
+</table>
+<p><span id='section2'></span></p>
+<h2 id="2-exponential-growth">2. Exponential growth</h2>
+<hr>
+
+<p>Here, we will solve for the equilibria in both the discrete- and continuous-time exponential-growth models.</p>
+<h3 id="discrete-time">Discrete time</h3>
+<div class="arithmatex">\[
+n_{t+1} = Rn_t
+\]</div>
+<p>Set <span class="arithmatex">\(n_{t+1} = n_t = \hat n\)</span> and solve for <span class="arithmatex">\(\hat{n}\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\hat n &amp;= R\hat n\\
+\hat n &amp;= 0
+\end{aligned}
+\]</div>
+<h3 id="continuous-time">Continuous time</h3>
+<div class="arithmatex">\[
+\frac{\mathrm{d}n}{\mathrm{d}t} = r n
+\]</div>
+<p>Set <span class="arithmatex">\(\mathrm{d}n/\mathrm{d}t = 0\)</span> and <span class="arithmatex">\(n = \hat n\)</span> and solve for <span class="arithmatex">\(\hat n\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+0 &amp;= r \hat{n}\\
+\hat n &amp;= 0
+\end{aligned}
+\]</div>
+<p>So the only equilibrium in both discrete- and continuous-time exponential growth is extinction, <span class="arithmatex">\(\hat{n}=0\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Special case of parameters</p>
+<p>Notice above that <span class="arithmatex">\(R=1\)</span> and <span class="arithmatex">\(r=0\)</span> also satisfy the conditions for an equilibrium. These are called <strong>special cases of parameters</strong>. Here this refers to the case where individuals perfectly replace themselves so that the population remains constant from <em>any</em> starting value of <span class="arithmatex">\(n\)</span>.</p>
+</div>
+<p><span id='section3'></span></p>
+<h2 id="3-logistic-growth">3. Logistic growth</h2>
+<hr>
+
+<p>Here, we will solve for the equilibria in both the discrete- and continuous-time logistic-growth models.</p>
+<h3 id="discrete-time_1">Discrete time</h3>
+<div class="arithmatex">\[
+n_{t+1} = \left(1 + r\left(1 - \frac{n_t}{K}\right)\right)n_t
+\]</div>
+<p>As above, we substitute <span class="arithmatex">\(n_{t+1} = n_t = \hat n\)</span> and want to solve for <span class="arithmatex">\(\hat{n}\)</span>.</p>
+<div class="arithmatex">\[
+\hat n = \left(1 + r\left(1 - \frac{\hat n}{K}\right)\right)\hat{n} 
+\]</div>
+<p>Notice that one equilibrium is <span class="arithmatex">\(\hat n = 0\)</span>. However, this isn't the only equilibrium because dividing both sides by <span class="arithmatex">\(\hat n\)</span> results in</p>
+<div class="arithmatex">\[
+\begin{aligned}
+1 &amp;= 1 + r\left(1 - \frac{\hat n}{K}\right)\\
+0 &amp;= r\left(1 - \frac{\hat n}{K}\right)
+\end{aligned}
+\]</div>
+<p>Here we have a special case of parameters, <span class="arithmatex">\(r=0\)</span>, or</p>
+<div class="arithmatex">\[
+\begin{aligned}
+0 &amp;= 1 - \frac{\hat n}{K}\\
+\hat n &amp;= K
+\end{aligned}
+\]</div>
+<p>There are therefore two equilibria: extinction, <span class="arithmatex">\(\hat{n}=0\)</span>, or carrying capacity, <span class="arithmatex">\(\hat{n}=K\)</span>.</p>
+<h3 id="continuous-time_1">Continuous time</h3>
+<div class="arithmatex">\[
+\frac{\mathrm{d}n}{\mathrm{d}t} = r \left(1 - \frac{n}{K}\right)n
+\]</div>
+<p>We set <span class="arithmatex">\(\mathrm{d}n/\mathrm{d}t=0\)</span> and <span class="arithmatex">\(n=\hat{n}\)</span></p>
+<div class="arithmatex">\[
+0 =  r \left(1 - \frac{\hat n}{K}\right)\hat{n}
+\]</div>
+<p>which is the same equation we had above in discrete-time, so the equilibria (<span class="arithmatex">\(\hat n = 0,K\)</span>) and the special case of parameters (<span class="arithmatex">\(r = 0\)</span>) are also the same.</p>
+<p><span id='section4'></span></p>
+<h2 id="4-haploid-selection">4. Haploid selection</h2>
+<hr>
+
+<p>Here, we will solve for the equilibria in both the discrete- and continuous-time haploid-selection models.</p>
+<h3 id="discrete-time_2">Discrete time</h3>
+<div class="arithmatex">\[
+p_{t+1} = \frac{p_tW_A}{p_tW_A + q_tW_a}
+\]</div>
+<p>Replace <span class="arithmatex">\(p_{t+1}\)</span> and <span class="arithmatex">\(p_t\)</span> with <span class="arithmatex">\(\hat p\)</span> and replace <span class="arithmatex">\(q_t\)</span> with <span class="arithmatex">\(\hat q\)</span> and solve for <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(\hat q\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\hat{p} &amp;= \frac{\hat p W_A}{\hat p W_A + \hat q W_a}\\
+\end{aligned}
+\]</div>
+<p>We first see that <span class="arithmatex">\(\hat{p}=0\)</span> is an equilibrium. But there is more, since dividing by <span class="arithmatex">\(\hat p\)</span> gives</p>
+<div class="arithmatex">\[
+\begin{aligned}
+1 &amp;= \frac{W_A}{\hat p W_A + \hat q W_a}\\
+\hat p W_A + \hat q W_a &amp;= W_A\\
+\hat q W_a &amp;= (1-\hat p) W_A
+\end{aligned}
+\]</div>
+<p>At this point we use <span class="arithmatex">\(q=1-p\)</span> to write this in terms of <span class="arithmatex">\(p\)</span> only</p>
+<div class="arithmatex">\[
+(1-\hat p) W_a = (1-\hat p) W_A
+\]</div>
+<p>So <span class="arithmatex">\(\hat p =1\)</span> is another equilibrium. </p>
+<p>And finally, dividing by <span class="arithmatex">\((1-\hat p)\)</span> gives a special case of parameters, <span class="arithmatex">\(W_A=W_a\)</span>.</p>
+<p>To summarize, the allele frequency will not change from one generation to the next in our discrete-time haploid-selection model when</p>
+<ul>
+<li><span class="arithmatex">\(\hat p = 0 \Longrightarrow\)</span> the population is "fixed" for the <span class="arithmatex">\(a\)</span> allele</li>
+<li><span class="arithmatex">\(\hat p = 1 \Longrightarrow\)</span> the population is fixed for the <span class="arithmatex">\(A\)</span> allele</li>
+<li><span class="arithmatex">\(W_A = W_a \Longrightarrow\)</span> the two alleles have equal fitness ("neutrality")</li>
+</ul>
+<h3 id="continuous-time_2">Continuous time</h3>
+<div class="arithmatex">\[
+\frac{\mathrm{d}p}{\mathrm{d}t} = sp(1-p)
+\]</div>
+<p>In the continuous-time model, we set the derivative equal to zero and <span class="arithmatex">\(p=\hat{p}\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+0 &amp;= s\hat p(1 -\hat p)
+\end{aligned}
+\]</div>
+<p>And we again find the same equilibria (<span class="arithmatex">\(\hat p=0,1\)</span>) and special case of parameters (<span class="arithmatex">\(s=0\)</span>, i.e., neutrality).</p>
+<p><span id='section5'></span></p>
+<h2 id="5-diploid-selection">5. Diploid selection</h2>
+<hr>
+
+<h3 id="discrete-time_3">Discrete time</h3>
+<p>Here, we will solve for the equilibria in the discrete-time diploid-selection model</p>
+<div class="arithmatex">\[
+p_{t+1} = \frac{p_t^2 W_{AA} + p_t  q_t W_{Aa}}{p_t^2 W_{AA} + 2 p_t q_t W_{Aa} + q_t^2 W_{aa}}
+\]</div>
+<p>We replace <span class="arithmatex">\(p_{t+1}\)</span> and <span class="arithmatex">\(p_t\)</span> with <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(q_t\)</span> with <span class="arithmatex">\(\hat{q}\)</span> and solve for <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(\hat q\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\hat{p} &amp;= \frac{\hat{p}^2 W_{AA} + \hat{p} \hat{q} W_{Aa}}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}\\
+\hat{p} &amp;= \frac{\hat{p}(\hat p W_{AA} + \hat{q} W_{Aa})}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}
+\end{aligned}
+\]</div>
+<p>We see that <span class="arithmatex">\(\hat{p}=0\)</span> is one equilibrium. Moving on, dividing by <span class="arithmatex">\(\hat p\)</span> gives</p>
+<div class="arithmatex">\[
+\begin{aligned}
+1 &amp;= \frac{\hat p W_{AA} + \hat{q} W_{Aa}}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}\\
+\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa} &amp;= \hat p W_{AA} + \hat{q} W_{Aa}\\
+0 &amp;= (\hat{p} - \hat{p}^2) W_{AA} + (\hat{q} - 2 \hat{p} \hat{q}) W_{Aa} - \hat{q}^2 W_{aa}\\
+0 &amp;= \hat{p}(1 - \hat{p}) W_{AA} + \hat{q}(1 - 2 \hat{p}) W_{Aa} - \hat{q}^2 W_{aa}\\
+0 &amp;= \hat{q}(\hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - \hat{q} W_{aa})
+\end{aligned}
+\]</div>
+<p>And so <span class="arithmatex">\(\hat{q}=0\implies\hat{p}=1\)</span> is another equilibrium. Dividing by <span class="arithmatex">\(\hat{q}\)</span> and putting everything in terms of <span class="arithmatex">\(p\)</span> we have</p>
+<div class="arithmatex">\[
+\begin{aligned}
+0 &amp;= \hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - \hat{q} W_{aa}\\
+0 &amp;= \hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - (1 - \hat{p}) W_{aa}\\
+0 &amp;= \hat{p}(W_{AA} -2W_{Aa} + W_{aa}) + W_{Aa} - W_{aa}\\
+W_{aa} - W_{Aa} &amp;= \hat p(W_{AA} -2W_{Aa} + W_{aa})\\
+\frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}} &amp;= \hat p\\
+\end{aligned}
+\]</div>
+<p>We therefore have <em>three</em> equilibria under diploid selection: <span class="arithmatex">\(\hat{p}=0,\frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}},1\)</span>.</p>
+<p>Since a frequency is bounded between 0 and 1, we must have <span class="arithmatex">\(0 \leq p \leq 1\)</span>. We therefore call <span class="arithmatex">\(\hat{p}=0\)</span> and <span class="arithmatex">\(\hat{p}=1\)</span> <strong>boundary equilibria</strong>.</p>
+<p>These bounds also imply the third equilibrium is only <strong>biologically valid</strong> when </p>
+<div class="arithmatex">\[
+0 \leq \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} \leq 1
+\]</div>
+<p>When <span class="arithmatex">\(W_{Aa} = W_{aa}\)</span> this equilibrium reduces to <span class="arithmatex">\(\hat{p}=0\)</span> and when <span class="arithmatex">\(W_{Aa} = W_{AA}\)</span> this reduces to <span class="arithmatex">\(\hat{p}=1\)</span> (check this for yourself).</p>
+<p>The third equilibrium will be an <strong>internal equilibrium</strong>, representing a population with both <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(a\)</span> alleles, when</p>
+<div class="arithmatex">\[
+0 &lt; \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &lt; 1
+\]</div>
+<p>The equilibrium is positive when the numerator and denominator have the same sign (i.e., are both positive or both negative).</p>
+<p>Let's split this into two "cases". Case A will have a positive numerator, <span class="arithmatex">\(W_{Aa} &gt; W_{aa}\)</span>, and Case B will have a negative numerator, <span class="arithmatex">\(W_{Aa} &lt; W_{aa}\)</span>.</p>
+<p>So, in Case A, the equilibrium is positive when the denominator is positive, <span class="arithmatex">\(2 W_{Aa} - W_{AA} - W_{aa} &gt; 0\)</span>.</p>
+<p>While in case B the equilibrium is positive when the denominator is negative, <span class="arithmatex">\(2 W_{Aa} - W_{AA} - W_{aa} &lt; 0\)</span>.</p>
+<p>Now we can rearrange the equilibrium to show that it is less than 1 when</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&lt; 1\\
+\frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} - 1 &amp;&lt; 0\\
+\frac{W_{Aa} - W_{aa} - (2 W_{Aa} -W_{AA} - W_{aa})}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&lt; 0\\
+\frac{W_{AA} - W_{Aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&lt; 0\\
+\frac{W_{Aa} - W_{AA}}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&gt; 0\\
+\end{aligned}
+\]</div>
+<p>Again we need the numerator and denominator to have the same sign for this inequality to hold.</p>
+<p>In case A, where we've said that denominator is positive, this means we also need the numerator to be positive, <span class="arithmatex">\(W_{Aa} &gt; W_{AA}\)</span>.</p>
+<p>While in case B we said that the denominator is negative, so we also need the numerator to be negative, <span class="arithmatex">\(W_{Aa} &lt; W_{AA}\)</span>.</p>
+<p>Putting this all together, there is a biologically-relevant internal equilibrium when either</p>
+<ul>
+<li>Case A: <span class="arithmatex">\(W_{Aa} &gt; W_{aa}\)</span> and <span class="arithmatex">\(W_{Aa} &gt; W_{AA}\)</span> (which ensures <span class="arithmatex">\(2 W_{Aa} - W_{AA} - W_{aa} &gt; 0\)</span>; go ahead and check!)</li>
+<li>Case B: <span class="arithmatex">\(W_{Aa} &lt; W_{aa}\)</span> and <span class="arithmatex">\(W_{Aa} &lt; W_{AA}\)</span>  (which ensures <span class="arithmatex">\(2 W_{Aa} - W_{AA} - W_{aa} &lt; 0\)</span>)</li>
+</ul>
+<p>Case A therefore represents "heterozygote advantage", <span class="arithmatex">\(W_{AA} &lt; W_{Aa} &gt; W_{aa}\)</span>, while Case B represents "heterozygote disadvantage", <span class="arithmatex">\(W_{AA} &gt; W_{Aa} &lt; W_{aa}\)</span>. </p>
+<p><span id='section6'></span></p>
+<h2 id="6-summary">6. Summary</h2>
+<hr>
+
+<p>In summary, the equilibria for the models we have looked at are:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Discrete-time equilibria</th>
+<th>Continuous-time equilibria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exponential growth</td>
+<td><span class="arithmatex">\(\hat n = 0\)</span></td>
+<td><span class="arithmatex">\(\hat n = 0\)</span></td>
+</tr>
+<tr>
+<td>Logistic growth</td>
+<td><span class="arithmatex">\(\hat n = 0, \hat n = K\)</span></td>
+<td><span class="arithmatex">\(\hat n = 0, \hat n = K\)</span></td>
+</tr>
+<tr>
+<td>Haploid selection</td>
+<td><span class="arithmatex">\(\hat p = 0, \hat p = 1\)</span></td>
+<td><span class="arithmatex">\(\hat p = 0, \hat p = 1\)</span></td>
+</tr>
+<tr>
+<td>Diploid selection</td>
+<td><span class="arithmatex">\(\hat p = 0, \hat p = 1, \hat p = \frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{AA}}\)</span></td>
+<td>Not derived</td>
+</tr>
+</tbody>
+</table>
+<p>Make sure that you understand how to determine equilibria in discrete- and continuous-time and can derive the equilibria of the models above on your own.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../lecture-06/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lecture 6" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lecture 6
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lecture-08/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture 8" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lecture 8
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

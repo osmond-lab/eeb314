@@ -1,0 +1,1502 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Lecture 8 - EEB430/1430 Mathematical modelling in ecology and evolution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+  
+  
+    
+    
+    
+  
+  
+  <style>.md-tag-icon{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.5 7A1.5 1.5 0 0 1 4 5.5 1.5 1.5 0 0 1 5.5 4 1.5 1.5 0 0 1 7 5.5 1.5 1.5 0 0 1 5.5 7m15.91 4.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.11 0-2 .89-2 2v7c0 .55.22 1.05.59 1.41l8.99 9c.37.36.87.59 1.42.59.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.56-.23-1.06-.59-1.42Z"/></svg>');}</style>
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-8-local-stability-univariate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-header__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EEB430/1430 Mathematical modelling in ecology and evolution
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 8
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../syllabus/general_info/" class="md-tabs__link">
+        Syllabus
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../schedule/" class="md-tabs__link md-tabs__link--active">
+        Lectures
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/schedule/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../acknowledgements/" class="md-tabs__link">
+      Acknowledgements
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-nav__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    EEB430/1430 Mathematical modelling in ecology and evolution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Syllabus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syllabus" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Syllabus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        General info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        Course structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        When and where
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/assignments/" class="md-nav__link">
+        Assignments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        Final Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/exams/" class="md-nav__link">
+        Exams
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        Instructors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/other_resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Lectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        Lecture 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        Lecture 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        Lecture 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        Lecture 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        Lecture 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        Lecture 6
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        Lecture 7
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 8
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lecture 8
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-stability" class="md-nav__link">
+    1. Stability
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Stability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motivating-example" class="md-nav__link">
+    Motivating example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-local-stability-analysis-in-continuous-time-one-variable-models" class="md-nav__link">
+    2. Local stability analysis in continuous-time one-variable models
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Local stability analysis in continuous-time one-variable models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eg-logistic-growth" class="md-nav__link">
+    E.g., logistic growth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-local-stability-analysis-in-discrete-time-one-variable-models" class="md-nav__link">
+    3. Local stability analysis in discrete-time one-variable models
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Local stability analysis in discrete-time one-variable models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eg-logistic-growth_1" class="md-nav__link">
+    E.g., logistic growth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-summary" class="md-nav__link">
+    4. Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        Lecture 9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        Lecture 10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        Lecture 11
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        Lecture 12
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        Lecture 13
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-14/" class="md-nav__link">
+        Lecture 14
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        Lecture 15
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        Lecture 16
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        Lecture 17
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        Lecture 18
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        Lecture 19
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        Lecture 20
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-stability" class="md-nav__link">
+    1. Stability
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Stability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motivating-example" class="md-nav__link">
+    Motivating example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-local-stability-analysis-in-continuous-time-one-variable-models" class="md-nav__link">
+    2. Local stability analysis in continuous-time one-variable models
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Local stability analysis in continuous-time one-variable models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eg-logistic-growth" class="md-nav__link">
+    E.g., logistic growth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-local-stability-analysis-in-discrete-time-one-variable-models" class="md-nav__link">
+    3. Local stability analysis in discrete-time one-variable models
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Local stability analysis in discrete-time one-variable models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eg-logistic-growth_1" class="md-nav__link">
+    E.g., logistic growth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-summary" class="md-nav__link">
+    4. Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      binderUrl: "https://gke.mybinder.org",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+<h1 id="lecture-8-local-stability-univariate">Lecture 8: Local stability (univariate)</h1>
+<hr style="margin-bottom: 0em;">
+<p><center></p>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+<p></center></p>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Stability</a></li>
+<li><a href="#section2">Local stability analysis in continuous-time one-variable models</a></li>
+<li><a href="#section3">Local stability analysis in discrete-time one-variable models</a></li>
+<li><a href="#section4">Summary</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-stability">1. Stability</h2>
+<hr>
+
+<p>When a variable is exactly at an equilibrium its value will never change. But what happens when we are not exactly at, but just near an equilibrium?</p>
+<p>Starting near an equilibrium, if the system moves towards the equilibrium over time the equilibrium is said to be <strong>locally stable</strong>.</p>
+<p>In contrast, if the system moves away from the equilibrium over time the equilibrium is said to be <strong>unstable</strong>.</p>
+<p>An equilibrium point is said to be <strong>globally stable</strong> if any starting point leads to it.</p>
+<p>We've seen these possibilities already graphically, eg., in phase-line plots for discrete-time diploid selection: when the heterozygote has the lowest fitness the fixation equilibria are locally (but not globally) stable and the polymorphic equilibrium is unstable.</p>
+<pre data-executable="true" data-language="python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+def phase_line_diploid(p0, WAA, WAa, Waa, max=np.inf):
+    'generator for p_t'
+    t, pnow, pnext = 0, p0, 0 #initial conditions
+    while t < max:
+        yield pnow #current value of p(t) and p(t+1)
+        pnext = (WAA * pnow**2 + WAa * pnow * (1 - pnow)) / (WAA * pnow**2 + WAa * 2 * pnow * (1 - pnow) + Waa * (1 - pnow)**2) #update p(t+1)
+        pnow = pnext #update p(t)
+        t += 1 #update t
+
+def plot_phase_line_diploid(WAA, WAa, Waa, p0, max=20, ax=None):
+    'plot phase line'
+
+    # set up figure
+    if ax==None:
+        fig, ax = plt.subplots()
+        fig.set_size_inches(8,0.25)
+
+    # Plot phase-line
+    ax.axhline(0, color='black', linewidth=0.5)
+
+    # Plot vector field
+    pts = [pt for pt in phase_line_diploid(p0, WAA, WAa, Waa, max=max)]
+    marker = '>' if pts[2] > pts[1] else '<'
+    ax.scatter(
+        pts,
+        np.zeros(max),
+        marker=marker, s=50, c='black'
+    )
+
+    ax.set_xlabel(f"$WAA$ = {WAA}, $WAa$ = {WAa}, $Waa$ = {Waa}")
+
+    return ax
+
+# Plot figure
+fig, ax = plt.subplots()
+fig.set_size_inches(8,0.25)
+
+# phase line and vector field
+plot_phase_line_diploid(WAA=2, WAa=1, Waa=2, p0=0.45, max=12, ax=ax) #higher starting allele frequency
+plot_phase_line_diploid(WAA=2, WAa=1, Waa=2, p0=0.55, max=12, ax=ax) #low starting allele frequency
+
+# equilibria
+plt.scatter([0,1],[0,0],s=200,c='black')
+plt.scatter([0.5],[0],s=200,c='white',edgecolors='black')
+
+# Remove background axes
+ax.set_ylabel('$p$', rotation=0)
+ax.get_yaxis().set_ticks([])
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['bottom'].set_visible(False)
+ax.spines['left'].set_visible(False)
+ax.set_xlim(-0.05,1.05)
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-08_files/lecture-08_2_0.png" /></p>
+<p>Our goal in this lecture is to mathematically determine whether a small perturbation away from an equilibrium point will grow or shrink in magnitude over time <span class="arithmatex">\(\Longrightarrow\)</span> <strong>local stability analysis</strong>.</p>
+<h3 id="motivating-example">Motivating example</h3>
+<p>Consider logistic growth in continuous time, with <span class="arithmatex">\(K = 1000\)</span> and <span class="arithmatex">\(r = 0.5\)</span>.</p>
+<p>For populations started near carrying capacity, a plot of <span class="arithmatex">\(\mathrm{d}n/\mathrm{d}t\)</span> vs. <span class="arithmatex">\(n\)</span> shows that they move closer to the carrying capacity over time, since the rate of change in <span class="arithmatex">\(n\)</span> is positive when <span class="arithmatex">\(n&lt;K\)</span> and negative when <span class="arithmatex">\(K&lt;n\)</span>.</p>
+<p><pre data-executable="true" data-language="python">
+r,k = 0.5,1000
+xs = np.linspace(0,1.5<em>k,100)
+ys = [r</em>n*(1-n/k) for n in xs]
+plt.plot(xs,ys)
+plt.plot(xs,[0 for _ in xs], color='black')
+plt.xlabel('population size, <span class="arithmatex">\(n\)</span>')
+plt.ylabel('rate of change in population size, <span class="arithmatex">\(dn/dt\)</span>')
+plt.show()
+</pre></p>
+<p><img alt="png" src="../lecture-08_files/lecture-08_4_0.png" /></p>
+<p>If we drew the same plot for <span class="arithmatex">\(r=-0.5\)</span> we see that the population size then moves away from <span class="arithmatex">\(n=K\)</span>, as the rate of change in <span class="arithmatex">\(n\)</span> is negative when <span class="arithmatex">\(n&lt;K\)</span> and positive when <span class="arithmatex">\(K&lt;n\)</span>. </p>
+<p><pre data-executable="true" data-language="python">
+r,k=-0.5,1000
+xs = np.linspace(0,1.5<em>k,100)
+ys = [r</em>n*(1-n/k) for n in xs]
+plt.plot(xs,ys)
+plt.plot(xs,[0 for _ in xs], color='black')
+plt.xlabel('population size, <span class="arithmatex">\(n\)</span>')
+plt.ylabel('rate of change in population size, <span class="arithmatex">\(dn/dt\)</span>')
+plt.show()
+</pre></p>
+<p><img alt="png" src="../lecture-08_files/lecture-08_6_0.png" /></p>
+<p>The key difference between these plots near the equilibrium of interest, <span class="arithmatex">\(\hat n=K\)</span>, is that </p>
+<div class="highlight"><pre><span></span><code>1. in the first case ($r=0.5$), where the equilibrium is stable, $\mathrm{d}n/\mathrm{d}t$ goes from positive to negative, meaning its slope is negative 
+2. in the second case ($r = -0.5$), where the equilibrium is unstable, $\mathrm{d}n/\mathrm{d}t$, goes from negative to positive, meaning its slope is positive
+</code></pre></div>
+<p>This suggests that we can determine the local stability of an equilibrium by looking at the slope of the differential equation at that equilibrium.</p>
+<p><span id='section2'></span></p>
+<h2 id="2-local-stability-analysis-in-continuous-time-one-variable-models">2. Local stability analysis in continuous-time one-variable models</h2>
+<hr>
+
+<p>To determine local stability mathematically, we focus on a small perturbation (<span class="arithmatex">\(\epsilon\)</span>) away from an equilibrium (<span class="arithmatex">\(\hat{x}\)</span>) and determine whether this perturbation will grow or shrink.</p>
+<p>If, at time <span class="arithmatex">\(t\)</span>, the population is a small distance from equilibrium, <span class="arithmatex">\(x = \hat{x} + \epsilon\)</span>, the rate of change in <span class="arithmatex">\(x\)</span> will be <span class="arithmatex">\(\mathrm{d}x/\mathrm{d}t = \mathrm{d}(\hat{x} + \epsilon)/\mathrm{d}t\)</span>.</p>
+<p>Let us call this derivative <span class="arithmatex">\(f(x)=\mathrm{d}x/\mathrm{d}t\)</span>, which we can write as <span class="arithmatex">\(f(\hat{x} + \epsilon) =  \mathrm{d}(\hat{x} + \epsilon)/\mathrm{d}t\)</span>.</p>
+<p>To work with this arbitrary function, <span class="arithmatex">\(f\)</span>, let's introduce a pretty remarkable mathematical fact, the Taylor Series.</p>
+<div class="admonition note">
+<p class="admonition-title">Taylor Series</p>
+<p>Any function <span class="arithmatex">\(f(x)\)</span> can be written as an infinite series of derivatives evaluated at <span class="arithmatex">\(x=a\)</span></p>
+<div class="arithmatex">\[
+f(x) = \sum_{k = 0}^{\infty}\frac{f^{(k)}(a)}{k!}(x-a)^k
+\]</div>
+<p>where <span class="arithmatex">\(f^{(k)}(a)\)</span> is the <span class="arithmatex">\(k^{\mathrm{th}}\)</span> derivative of the function with respect to <span class="arithmatex">\(x\)</span>, evaluated at point <span class="arithmatex">\(a\)</span>. (See section P1.3 in the text for more information).</p>
+</div>
+<p>In this case we want to write <span class="arithmatex">\(f(\hat{x} + \epsilon)\)</span> as a Taylor Series evaluated at the equilibrium, <span class="arithmatex">\(\hat{x} + \epsilon = \hat{x}\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}(\hat{x} + \epsilon)}{\mathrm{d}t} &amp;= f(\hat{x} + \epsilon)\\
+&amp;= f(\hat{x}) + f^{(1)}(\hat{x})(\hat{x} + \epsilon - \hat{x}) + \frac{f^{(2)}(\hat{x})}{2}(\hat{x} + \epsilon - \hat{x})^2 + \cdots\\
+&amp;= f(\hat{x}) + f^{(1)}(\hat{x})\epsilon + \frac{f^{(2)}(\hat{x})}{2}\epsilon^2 + \cdots\\
+\end{aligned}
+\]</div>
+<p>Now, to work with this infinite series we will make an assumption, that we are very the equilibrium, meaning the deviation is small, <span class="arithmatex">\(\epsilon&lt;&lt;1\)</span>. This means that <span class="arithmatex">\(\epsilon^2\)</span> is even smaller, and <span class="arithmatex">\(\epsilon^3\)</span> even smaller than that, and so on. By considering small <span class="arithmatex">\(\epsilon\)</span> we can therefore cut-off our infinite series by ignoring any term with <span class="arithmatex">\(\epsilon\)</span> to a power greater than 1. This is called a "first order" Taylor series approximation of <span class="arithmatex">\(f\)</span> around <span class="arithmatex">\(\epsilon=0\)</span>. This assumption is what limits us to determining only <em>local</em> stability. Global stability would require us to consider large deviations from the equilibrium as well, which is not possible for even mildly complicated functions, <span class="arithmatex">\(f\)</span>.</p>
+<p>OK, so making this assumption of small <span class="arithmatex">\(\epsilon\)</span> we have</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}(\hat{x} + \epsilon)}{\mathrm{d}t} &amp;= f(\hat{x}) + f^{(1)}(\hat{x})\epsilon\\
+\end{aligned}
+\]</div>
+<p>Since <span class="arithmatex">\(\hat{x}\)</span> is an equilibrium, <span class="arithmatex">\(f(\hat{x})\)</span> equals zero, leaving just <span class="arithmatex">\(f^{(1)}(\hat{x})\epsilon\)</span> on the right-hand side.</p>
+<p>Furthermore, the left-hand side can be expanded and simplified (<span class="arithmatex">\(\hat{x}\)</span> is a constant that does not change in time)</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}(\hat{x}+\epsilon)}{\mathrm{d}t} &amp;= \frac{\mathrm{d}\hat{x}}{\mathrm{d}t} + \frac{\mathrm{d}\epsilon}{\mathrm{d}t}\\
+&amp;= \frac{\mathrm{d}\epsilon} {\mathrm{d}t}
+\end{aligned}
+\]</div>
+<p>Combining the above, the deviation from the equilibrium will change over time at a rate</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d} \epsilon}{\mathrm{d}t} = f^{(1)}(\hat{x}) \epsilon
+\]</div>
+<p>This is the same as exponential growth with growth rate <span class="arithmatex">\(r=f^{(1)}(\hat{x})\)</span>.</p>
+<p>The deviation will therefore</p>
+<ul>
+<li>grow if <span class="arithmatex">\(f^{(1)}(\hat{x})&gt;0\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> unstable</li>
+<li>shrink if <span class="arithmatex">\(f^{(1)}(\hat{x})&lt;0\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> locally stable</li>
+</ul>
+<p>Stability in continuous time therefore requires the slope of the differential equation to be negative at the equilibrium, <span class="arithmatex">\(f^{(1)}(\hat{x}) = \left.\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\mathrm{d}x}{\mathrm{d}t}\right)\right|_{x=\hat{x}} &lt; 0\)</span>.</p>
+<h3 id="eg-logistic-growth">E.g., logistic growth</h3>
+<p>Let's again look at the model of logistic growth in continuous time, where</p>
+<div class="arithmatex">\[
+f(n) = \frac{\mathrm{d}n}{\mathrm{d}t} = rn \left(1 - \frac{n}{K}\right)
+\]</div>
+<p>The derivative of <span class="arithmatex">\(f\)</span> with respect to <span class="arithmatex">\(n\)</span> is</p>
+<div class="arithmatex">\[
+f'(n) = r - 2 r\frac{n}{K}
+\]</div>
+<p>Plugging in <span class="arithmatex">\(n=K\)</span> gives</p>
+<div class="arithmatex">\[
+f'(K) = r - 2 r = -r
+\]</div>
+<p>This implies that <span class="arithmatex">\(r&gt;0\)</span> causes local stability of <span class="arithmatex">\(\hat{n}=K\)</span>. We can check this is consistent with a graphical analysis, below.</p>
+<pre data-executable="true" data-language="python">
+def f(n,r,k):
+    'differential equation for logistic growth'
+    return n*r*(1-n/k)
+
+def plot_logistic_de(r,k,ax=None):
+    'plot differential equation for logistic growth as function of n'
+    xs = np.linspace(0,k*1.5,100) #n values
+    if ax == None:
+        fig, ax = plt.subplots() 
+    # 0 line
+    ax.plot(xs, [0 for _ in xs], color='black', linestyle='--')
+    # differential equation
+    ax.plot(xs, [f(x,r,k) for x in xs], color='black')
+    #aesthetics
+    ax.set_xlabel('$n$')
+    ax.set_ylabel('$dn/dt$')
+    ax.set_title('$r=$%.1f'%r)
+    return ax
+</pre>
+
+<pre data-executable="true" data-language="python">
+plot_logistic_de(r=0.5, k=1000)
+plt.show()
+plot_logistic_de(r=-0.5, k=1000)
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-08_files/lecture-08_11_0.png" /></p>
+<p><img alt="png" src="../lecture-08_files/lecture-08_11_1.png" /></p>
+<p><span id='section3'></span></p>
+<h2 id="3-local-stability-analysis-in-discrete-time-one-variable-models">3. Local stability analysis in discrete-time one-variable models</h2>
+<hr>
+
+<p>In discrete time we instead work with a recursion equation, <span class="arithmatex">\(x(t+1) = f(x(t))\)</span>.</p>
+<p>Again, consider a system that is a small distance from the equilibrium at time <span class="arithmatex">\(t\)</span>: <span class="arithmatex">\(x(t) = \hat{x} + \epsilon(t)\)</span>.</p>
+<p>At time <span class="arithmatex">\(t+1\)</span>, the population will be at <span class="arithmatex">\(x(t+1) = \hat{x} + \epsilon(t+1) = f(\hat{x} + \epsilon(t))\)</span>.</p>
+<p>Taking the Taylor Series of <span class="arithmatex">\(f(\hat{x} + \epsilon(t))\)</span> around <span class="arithmatex">\(\epsilon(t)=0\)</span> and truncating to first order (under our assumption of small <span class="arithmatex">\(\epsilon\)</span>) we have</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\hat{x} + \epsilon(t+1) &amp;= f(\hat{x} + \epsilon(t))\\
+&amp;= f(\hat{x}) + f^{(1)}(\hat{x})(\hat{x} + \epsilon(t) - \hat{x})\\
+&amp;= f(\hat{x}) + f^{(1)}(\hat{x})\epsilon(t)
+\end{aligned}
+\]</div>
+<p>We know that <span class="arithmatex">\(f(\hat{x}) = \hat{x}\)</span> because <span class="arithmatex">\(\hat{x}\)</span> is an equilibrium, which implies</p>
+<div class="arithmatex">\[
+\epsilon(t+1) = f^{(1)}(\hat{x})\epsilon(t)
+\]</div>
+<p>This is the recursion for exponential growth, with reproductive factor <span class="arithmatex">\(\lambda = f^{(1)}(\hat{x})\)</span>. </p>
+<p>Based on our knowledge of discrete-time exponential growth, we therefore know that the deviation from equilibrium will:</p>
+<ul>
+<li>
+<p>move from one side of the equilibrium to the other (i.e., oscillate) if <span class="arithmatex">\(\lambda\)</span> is negative</p>
+<ul>
+<li>grow if <span class="arithmatex">\(\lambda&lt;-1\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> unstable</li>
+<li>shrink if <span class="arithmatex">\(-1&lt;\lambda&lt;0\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> locally stable</li>
+</ul>
+</li>
+<li>
+<p>stay on the same side of the equilibrium (i.e., not oscillate) if <span class="arithmatex">\(\lambda\)</span> is positive</p>
+<ul>
+<li>shrink if <span class="arithmatex">\(0&lt;\lambda&lt;1\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> locally stable</li>
+<li>grow if <span class="arithmatex">\(1&lt;\lambda\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> unstable</li>
+</ul>
+</li>
+</ul>
+<p>Local stability in discrete time therefore requires the slope of the recursion to be between -1 and 1 at the equilibrium, <span class="arithmatex">\(-1&lt;f^{(1)}(\hat{x})=\left.\frac{\mathrm{d}x_{t+1}}{\mathrm{d}x_t}\right|_{x_t=\hat x}&lt;1\)</span>.</p>
+<h3 id="eg-logistic-growth_1">E.g., logistic growth</h3>
+<p>To see how this works, let's look at the logistic growth model in discrete time. Here the recursion is</p>
+<div class="arithmatex">\[
+f(n) = n \left(1 + r\left(1 - \frac{n}{K}\right)\right)
+\]</div>
+<p>We first take the derivative of <span class="arithmatex">\(f\)</span> with respect to <span class="arithmatex">\(n\)</span></p>
+<div class="arithmatex">\[
+f'(n) = 1 + r - 2 r \frac{n}{K}
+\]</div>
+<p>Then we plug in the equilirbium value of interest, <span class="arithmatex">\(n=K\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+f'(K) &amp;= 1 + r - 2 r \\
+&amp;= 1 - r
+\end{aligned}
+\]</div>
+<p>This will be negative when <span class="arithmatex">\(r &gt; 1\)</span>, creating oscillations.</p>
+<p>The equilibrium will be stable when <span class="arithmatex">\(-1 &lt; 1 - r &lt; 1 \implies 0 &lt; r &lt; 2\)</span>.</p>
+<p>This is consistent with what we've seen in cob-web plots, as below.</p>
+<pre data-executable="true" data-language="python">
+# logistic growth recursion
+def f(nt,r,k):
+    return nt * (1 + r * (1 - nt / k))
+
+# Build cobweb plotting function
+def cobweb_logistic(n0, r, k, max=np.inf):
+    t, nnow, nnext = 0, n0, 0 #initial conditions
+    while t < max:
+        yield nnow, nnext #current value of n(t) and n(t+1)
+        nnext = f(nnow,r,k)
+        yield nnow, nnext #current value of n(t) and n(t+1)
+        nnow = nnext #update n(t)
+        t += 1 #update t
+
+# Plot
+def plot_logistic_with_cobweb(r, k, n0, ncobs=10, ax=None):
+    # Plot the curves (add an additional curve past equilibrium to show stability)
+    xs = np.linspace(0,k*1.5,100) #x values
+    if ax == None:
+        fig, ax = plt.subplots() 
+    #1:1 line
+    ax.plot(xs, xs, color='black', linestyle='dashed')
+    # recursion
+    ax.plot(xs, [f(x,r,k) for x in xs], color='black')
+    # cobweb
+    cobweb = np.array([i for i in cobweb_logistic(n0, r, k, ncobs)])
+    plt.plot(cobweb[:,0], cobweb[:,1], color='blue')
+    #aesthetics
+    ax.set_ylim(0,None)
+    ax.set_xlim(0,None)
+    ax.set_xlabel('$n_t$')
+    ax.set_ylabel('$n_{t+1}$')
+    ax.set_title('$r=$%.1f'%r)
+    return ax
+</pre>
+
+<pre data-executable="true" data-language="python">
+plot_logistic_with_cobweb(r=0.5, k=1000, n0=900)
+plot_logistic_with_cobweb(r=1.5, k=1000, n0=900)
+plot_logistic_with_cobweb(r=2.5, k=1000, n0=900)
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-08_files/lecture-08_15_0.png" /></p>
+<p><img alt="png" src="../lecture-08_files/lecture-08_15_1.png" /></p>
+<p><img alt="png" src="../lecture-08_files/lecture-08_15_2.png" /></p>
+<p><span id='section4'></span></p>
+<h2 id="4-summary">4. Summary</h2>
+<hr>
+
+<p>Local stability analysis for continuous- and discrete-time models with one variable:</p>
+<ol>
+<li>take the derivative of the differential equation or recursion with respect to the variable, <span class="arithmatex">\(f^{(1)}(x)\)</span></li>
+<li>plug in the equilibrium value of the variable, <span class="arithmatex">\(f^{(1)}(\hat x)\)</span></li>
+<li>determine the sign (and magnitude in discrete-time)</li>
+</ol>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../lecture-07/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lecture 7" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lecture 7
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lecture-09/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture 9" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lecture 9
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

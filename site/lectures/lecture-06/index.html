@@ -1,0 +1,1477 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Lecture 6 - EEB430/1430 Mathematical modelling in ecology and evolution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+  
+  
+    
+    
+    
+  
+  
+  <style>.md-tag-icon{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.5 7A1.5 1.5 0 0 1 4 5.5 1.5 1.5 0 0 1 5.5 4 1.5 1.5 0 0 1 7 5.5 1.5 1.5 0 0 1 5.5 7m15.91 4.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.11 0-2 .89-2 2v7c0 .55.22 1.05.59 1.41l8.99 9c.37.36.87.59 1.42.59.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.56-.23-1.06-.59-1.42Z"/></svg>');}</style>
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-6-numerical-and-graphical-techniques-ii-multivariate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-header__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EEB430/1430 Mathematical modelling in ecology and evolution
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 6
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../syllabus/general_info/" class="md-tabs__link">
+        Syllabus
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../schedule/" class="md-tabs__link md-tabs__link--active">
+        Lectures
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/schedule/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../acknowledgements/" class="md-tabs__link">
+      Acknowledgements
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-nav__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    EEB430/1430 Mathematical modelling in ecology and evolution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Syllabus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syllabus" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Syllabus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        General info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        Course structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        When and where
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/assignments/" class="md-nav__link">
+        Assignments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        Final Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/exams/" class="md-nav__link">
+        Exams
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        Instructors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/other_resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Lectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        Lecture 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        Lecture 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        Lecture 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        Lecture 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        Lecture 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 6
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lecture 6
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-numerical-and-graphical-techniques" class="md-nav__link">
+    1. Numerical and graphical techniques
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-phase-line-diagrams" class="md-nav__link">
+    2. Phase-line diagrams
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-phase-plane-diagrams" class="md-nav__link">
+    3. Phase-plane diagrams
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Phase-plane diagrams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lotka-volterra-model" class="md-nav__link">
+    Lotka-Volterra model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-planes-and-vector-fields" class="md-nav__link">
+    Phase-planes and vector fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-clines" class="md-nav__link">
+    Null clines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        Lecture 7
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        Lecture 8
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        Lecture 9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        Lecture 10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        Lecture 11
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        Lecture 12
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        Lecture 13
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-14/" class="md-nav__link">
+        Lecture 14
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        Lecture 15
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        Lecture 16
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        Lecture 17
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        Lecture 18
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        Lecture 19
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        Lecture 20
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-numerical-and-graphical-techniques" class="md-nav__link">
+    1. Numerical and graphical techniques
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-phase-line-diagrams" class="md-nav__link">
+    2. Phase-line diagrams
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-phase-plane-diagrams" class="md-nav__link">
+    3. Phase-plane diagrams
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Phase-plane diagrams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lotka-volterra-model" class="md-nav__link">
+    Lotka-Volterra model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-planes-and-vector-fields" class="md-nav__link">
+    Phase-planes and vector fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#null-clines" class="md-nav__link">
+    Null clines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      binderUrl: "https://gke.mybinder.org",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+<h1 id="lecture-6-numerical-and-graphical-techniques-ii-multivariate">Lecture 6: Numerical and graphical techniques II (multivariate)</h1>
+<hr style="margin-bottom: 0em;">
+<p><center></p>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+<p></center></p>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Numerical and graphical techniques</a></li>
+<li><a href="#section2">Phase-line diagrams</a></li>
+<li><a href="#section3">Phase-plane diagrams</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-numerical-and-graphical-techniques">1. Numerical and graphical techniques</h2>
+<hr>
+
+<p>Last time we talked about two numerical/graphical approaches to get a better understanding of our models:</p>
+<ul>
+<li>Plotting a variable as a function of time (eg, <span class="arithmatex">\(p_t\)</span> as a function of <span class="arithmatex">\(t\)</span>)</li>
+<li>Plotting a variable as a function of itself (eg, <span class="arithmatex">\(p_{t+1}\)</span> as a function of <span class="arithmatex">\(p_t\)</span>). </li>
+</ul>
+<p>The latter works well for models with one variable.</p>
+<p>Today we’re going to talk about a third numerical technique, a <strong>phase-plane diagram</strong>, which is especially useful for models that have two variables.</p>
+<p><span id='section2'></span></p>
+<h2 id="2-phase-line-diagrams">2. Phase-line diagrams</h2>
+<hr>
+
+<p>Before looking at models with two variables, let’s first consider some with only one.</p>
+<p>Consider again haploid selection where</p>
+<div class="arithmatex">\[
+p_{t+1} = \frac{W_Ap_t}{W_Ap_t + W_a(1-p_t)}
+\]</div>
+<p>Last time we plotted <span class="arithmatex">\(p_{t + 1}\)</span> as a function of <span class="arithmatex">\(p_t\)</span> and used this to examine the dynamics starting from any initial value. We called this plot a <strong>cob-web</strong> plot.</p>
+<pre data-executable="true" data-language="python">
+import sympy
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Build cobweb plotting function
+def cobweb_haploid(p0, WA, Wa, max=np.inf):
+    t, pnow, pnext = 0, p0, 0 #initial conditions
+    while t <= max:
+        yield pnow, pnext #current value of p_t and p_(t+1)
+        pnext = (WA * pnow) / (WA * pnow + Wa * (1 - pnow)) #update p_(t+1)
+        yield pnow, pnext #current value of p_t and p_(t+1)
+        pnow = pnext #update p_t
+        t += 1 #update t
+
+# Build function for generating figure
+def plot_haploid_selection(WA, Wa, p0=0.5, ax=None):
+    pt = sympy.symbols('pt') #define our variable p_t
+
+    # Write out sympy equation
+    f = (WA * pt) / (WA * pt + Wa * (1 - pt)) #the recursion equation
+
+    # Compute function over a set of points in [0,1] by 'lambdifying' sympy equation (turn it into a function)
+    t = np.linspace(0,1,100)
+    fy = sympy.lambdify(pt, f)(t)
+
+    # Build plot
+    if ax == None:
+        fig, ax = plt.subplots()
+    ax.plot(t, fy, color='black', label=f"$W_A$ = {WA}, $W_a$ = {Wa}") #plot p_(t+1) as function of p_t
+    ax.plot(t, t, color='black', linestyle='--') #draw 1:1 line for reference
+
+    # Add cobweb
+    cobweb = np.array([p for p in cobweb_haploid(p0, WA, Wa, max=100)])
+    ax.plot(cobweb[:,0], cobweb[:,1])
+
+    # Annotate and label plot
+    ax.set_xlim(0,1)
+    ax.set_ylim(0,1)
+    ax.set_xlabel("allele frequency at $t$, $p_t$")
+    ax.set_ylabel("allele frequency at $t+1$, $p_{t+1}$")
+    ax.legend(frameon=False)
+    return ax
+
+# Plot figure
+fig, ax = plt.subplots(1,2)
+fig.set_size_inches(12,4)
+
+# First cobweb with WA > Wa
+plot_haploid_selection(WA = 1, Wa = 0.5, ax=ax[0])
+
+# Second cobweb with WA < Wa
+plot_haploid_selection(WA = 0.5, Wa = 1, ax=ax[1])
+
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-06_files/lecture-06_3_0.png" /></p>
+<p>Now let's simplify the cob-web plot and just indicate the direction (and magnitude) of change in <span class="arithmatex">\(p_t\)</span> with time. This is known as a <strong>phase-line diagram</strong> with a <strong>vector field</strong> (the arrows).</p>
+<pre data-executable="true" data-language="python">
+def phase_line_haploid(p0, WA, Wa, max=np.inf):
+    'generator for p_t'
+    t, pnow, pnext = 0, p0, 0 #initial conditions
+    while t < max:
+        yield pnow #current value of p_t and p_(t+1)
+        pnext = (WA * pnow) / (WA * pnow + Wa * (1 - pnow))
+        pnow = pnext #update p(t)
+        t += 1 #update t
+
+def plot_phase_line_haploid(WA, Wa, p0, max=20, ax=None):
+    'plot phase line'
+
+    # Set up figure
+    if ax==None:
+        fig, ax = plt.subplots()
+        fig.set_size_inches(8,0.25)
+    ax.axhline(0, color='black', linewidth=0.5)
+
+    # Plot phase-line
+    pts = [pt for pt in phase_line_haploid(p0, WA, Wa, max=max)] #pt values
+    ax.plot(
+        pts,
+        np.zeros(max) #dummy y values (0 for all x values) because we want to plot a 1d line
+    )
+
+    # Plot vector field
+    marker = '>' if pts[2] > pts[1] else '<' #determine which direction to point based on first 2 time points
+    ax.scatter(
+        pts,
+        np.zeros(max),#dummy y again
+        marker=marker, s=150
+    )
+
+    # Remove background axes
+    ax.set_ylabel('$p$', rotation=0)
+    ax.set_xlabel(f"$W_A$ = {WA}, $W_a$ = {Wa}, $p_0$ = {p0}")
+    ax.get_yaxis().set_ticks([])
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+    ax.set_xlim(0,1)
+    plt.show()
+
+plot_phase_line_haploid(WA=1, Wa=0.5, p0=0.01)
+
+plot_phase_line_haploid(WA=0.5, Wa=1, p0=0.99)
+</pre>
+
+<p><img alt="png" src="../lecture-06_files/lecture-06_5_0.png" /></p>
+<p><img alt="png" src="../lecture-06_files/lecture-06_5_1.png" /></p>
+<p>As in the cob-web plots, we see the allele frequency approaches <span class="arithmatex">\(p=1\)</span> when <span class="arithmatex">\(W_A&gt;W_a\)</span> and <span class="arithmatex">\(p=0\)</span> when <span class="arithmatex">\(W_a&gt;W_A\)</span>. We also notice, as above, the changes are fastest (fewer, longer arrows) at intermediate frequencies.</p>
+<p>Similarly, with the more complex model of diploid selection</p>
+<div class="arithmatex">\[
+p_{t+1} = \frac{W_{AA}p_t^2 + W_{Aa}p_tq_t}{W_{AA}p_t^2 + W_{Aa}p_tq_t + W_{aa}q_t^2}
+\]</div>
+<p>we can draw a phase-line diagram and vector field for a set of parameter values.</p>
+<pre data-executable="true" data-language="python">
+def phase_line_diploid(p0, WAA, WAa, Waa, max=np.inf):
+    'generator for p_t'
+    t, pnow, pnext = 0, p0, 0 #initial conditions
+    while t < max:
+        yield pnow #current value of p(t) and p(t+1)
+        pnext = (WAA * pnow**2 + WAa * pnow * (1 - pnow)) / (WAA * pnow**2 + WAa * 2 * pnow * (1 - pnow) + Waa * (1 - pnow)**2) #update p(t+1)
+        pnow = pnext #update p(t)
+        t += 1 #update t
+
+def plot_phase_line_diploid(WAA, WAa, Waa, p0, max=20, ax=None):
+    'plot phase line'
+
+    # set up figure
+    if ax==None:
+        fig, ax = plt.subplots()
+        fig.set_size_inches(8,0.25)
+    ax.axhline(0, color='black', linewidth=0.5)
+
+    # Plot phase-line
+    pts = [pt for pt in phase_line_diploid(p0, WAA, WAa, Waa, max=max)]
+    ax.plot(
+        pts,
+        np.zeros(max),
+        alpha=1
+    )
+
+    # Plot phase-line markers
+    marker = '>' if pts[2] > pts[1] else '<'
+    ax.scatter(
+        pts,
+        np.zeros(max),
+        marker=marker, s=150
+    )
+
+    ax.set_xlabel(f"$WAA$ = {WAA}, $WAa$ = {WAa}, $Waa$ = {Waa}, $p_0$ = {p0}")
+
+    return ax
+
+# Plot figure
+fig, ax = plt.subplots()
+fig.set_size_inches(8,0.25)
+
+plot_phase_line_diploid(WAA=1, WAa=2, Waa=1, p0=0.99, max=100, ax=ax) #higher starting allele frequency
+plot_phase_line_diploid(WAA=1, WAa=2, Waa=1, p0=0.01, max=100, ax=ax) #low starting allele frequency
+
+# Remove background axes
+ax.set_ylabel('$p$', rotation=0)
+ax.get_yaxis().set_ticks([])
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['bottom'].set_visible(False)
+ax.spines['left'].set_visible(False)
+ax.set_xlim(0,1)
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-06_files/lecture-06_7_0.png" /></p>
+<p>Notice that this time we chose two initial frequencies for the same plot, to show that under <strong>heterozygote advantage</strong> (<span class="arithmatex">\(W_{AA}&lt;W_{Aa}&gt;W_{aa}\)</span>) the allele frequency approaches an intermediate value from either direction. </p>
+<p><span id='section3'></span></p>
+<h2 id="3-phase-plane-diagrams">3. Phase-plane diagrams</h2>
+<hr>
+
+<p>Now let’s extend this technique from one to two variables.</p>
+<h3 id="lotka-volterra-model">Lotka-Volterra model</h3>
+<p>And let’s introduce a new model for this purpose, the <strong>Lotka-Volterra</strong> model of
+competition (see section 3.4.1 in the text).</p>
+<p>This is an extension of the logistic growth model to include competition between
+multiple species (in our case two).</p>
+<p>Let the population size of each species be <span class="arithmatex">\(n_1(t)\)</span> and <span class="arithmatex">\(n_2(t)\)</span>. These are our two
+variables.</p>
+<p>And let them have different intrinsic growth rates, <span class="arithmatex">\(r_1\)</span> and <span class="arithmatex">\(r_2\)</span>, and carrying capacities,
+<span class="arithmatex">\(K_1\)</span> and <span class="arithmatex">\(K_2\)</span>.</p>
+<p>To model competition, we’ll assume that, for an individual of species <span class="arithmatex">\(i\)</span>, an individual
+of species <span class="arithmatex">\(j\)</span> is the competitive equivalent of <span class="arithmatex">\(\alpha_{ij}\)</span> individuals of species <span class="arithmatex">\(i\)</span>. We then have</p>
+<div class="arithmatex">\[
+n_1(t+1) = n_1(t)\left( 1 + r_1 \left(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1}\right)\right)
+\]</div>
+<div class="arithmatex">\[
+n_2(t+1) = n_2(t) \left(1 + r_2 \left(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2}\right)\right)
+\]</div>
+<p>Often individuals of the same species will use more similar resources and therefore competition will be less severe with individuals of the other species, <span class="arithmatex">\(0 &lt; \alpha_{ij} &lt; 1\)</span>, but not always. And, in fact, we could model other types of interactions (eg, mutualism) by making some of the interactions beneficial, <span class="arithmatex">\(\alpha_{ij} &lt; 0\)</span>.</p>
+<h3 id="phase-planes-and-vector-fields">Phase-planes and vector fields</h3>
+<p>So why did we introduce the Lotka-Volterra model? Well, <strong>phase-plane diagrams</strong> are plots of one variable against another (<span class="arithmatex">\(n_1\)</span> vs. <span class="arithmatex">\(n_2\)</span>), on which we can plot <strong>vector fields</strong>, vectors originating from many different starting conditions that indicate the direction and magnitude of change in the two variables. With this we can graphically investigate the dynamics of the Lotka-Volterra model by first defining the rates of change <span class="arithmatex">\(\Delta\)</span> in both <span class="arithmatex">\(n_1\)</span> and <span class="arithmatex">\(n_2\)</span> and then choosing some parameter values to explore.</p>
+<div class="arithmatex">\[
+\Delta n_1 \equiv n_1(t+1) - n_1(t) = n_1(t)r_1\left(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1}\right)
+\]</div>
+<div class="arithmatex">\[
+\Delta n_2 \equiv n_2(t+1) - n_2(t) = n_2(t)r_2\left(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2}\right)
+\]</div>
+<p>Let's explore the Lotka-Volterra with the following parameter values: <span class="arithmatex">\(r_1 = 0.5, r_2 = 0.5, K_1 = 1000, K_2 = 1000, \alpha_{12} = 0.0, \alpha_{21} = 0.5\)</span>.</p>
+<pre data-executable="true" data-language="python">
+# Define a function to plot the phase plane and vector field for n1 and n2
+def plot_vector_field(dn1, dn2, xlim=(0,1200), ylim=(0,1200), n_steps=25, width=8, height=6, show=False, axes_labels=[None, None]):
+    # Set x and y ranges 
+    xrange, yrange = np.linspace(xlim[0], xlim[1], n_steps), np.linspace(ylim[0], ylim[1], n_steps)
+
+    # Initialize 2D grid with x,y values and additional grids to track derivatives
+    X, Y = np.meshgrid(xrange, yrange)
+    U, V = np.zeros(X.shape), np.zeros(Y.shape)
+
+    # Compute the gradient at each x,y position
+    for i in range(len(xrange)):
+        for j in range(len(xrange)):
+            U[i,j] = sympy.lambdify((n1, n2), dn1)(X[i,j], Y[i,j]) #change in n1
+            V[i,j] = sympy.lambdify((n1, n2), dn2)(X[i,j], Y[i,j]) #change in n2
+
+    # Plot figure
+    fig, ax = plt.subplots()
+    fig.set_size_inches(width, height)
+    ax.set_xlabel(axes_labels[0])
+    ax.set_ylabel(axes_labels[1])
+    ax.quiver(X,Y,U,V, linewidth=1) #from point X,Y draw arrow moving U in x-axis and V in y-axis
+
+    if show == True:
+        plt.show()
+    else:
+        return ax
+</pre>
+
+<pre data-executable="true" data-language="python">
+# Initialize the sympy variables
+n1, n2 = sympy.symbols('n1, n2')
+
+# Choose the parameter values
+r1, r2 = 0.5, 0.5
+k1, k2 = 1000, 1000
+a12, a21 = 0, 0.5
+
+# Specify the difference equations
+dn1 = r1 * n1 * (1 - (n1 + a12 * n2) / k1)
+dn2 = r2 * n2 * (1 - (n2 + a21 * n1) / k2)
+
+# Plot the vector field
+plot_vector_field(dn1, dn2, axes_labels=["number of species 1, $n_1$", "number of species 2, $n_2$"])
+
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-06_files/lecture-06_11_0.png" /></p>
+<p>With this approach we see that the dynamics appear to be approaching a value near <span class="arithmatex">\(n_1 = 1000, n_2 = 500\)</span> from nearly any initial condition.</p>
+<h3 id="null-clines">Null clines</h3>
+<p>To better understand the dynamics, we can ask for what values of our variables (<span class="arithmatex">\(n_1, n_2\)</span>) is the change inour variables zero (<span class="arithmatex">\(\Delta n_1 = 0\)</span>, <span class="arithmatex">\(\Delta n_2 = 0\)</span>). These values are known as <strong>null clines</strong>.</p>
+<p>Concretely, going back to our previous formula for the change in <span class="arithmatex">\(n_1\)</span> and <span class="arithmatex">\(n_2\)</span> in the Lotka-Volterra model</p>
+<div class="arithmatex">\[
+\Delta n_1 = n_1(t)r_1(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1})
+\]</div>
+<div class="arithmatex">\[
+\Delta n_2 = n_2(t)r_2(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2})
+\]</div>
+<p>We want to know when <span class="arithmatex">\(\Delta n_1\)</span> and <span class="arithmatex">\(\Delta n_2\)</span> are 0. Solving for these inequalities shows that</p>
+<div class="arithmatex">\[
+\Delta n_1 = 0 \Longrightarrow n_1(t) = 0, 1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1} = 0
+\]</div>
+<div class="arithmatex">\[
+\Delta n_2 = 0 \Longrightarrow n_2(t) = 0, 1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2} = 0
+\]</div>
+<p>Plotting these null clines on the phase-plane diagram, we get</p>
+<pre data-executable="true" data-language="python">
+# Initialize plot and ranges
+ax = plot_vector_field(dn1, dn2, axes_labels=["number of species 1, $n_1$", "number of species 2, $n_2$"])
+xrange, yrange = np.linspace(0, 1200, 100), np.linspace(0, 1200, 100)
+
+#plot the null clines for species 1 (blue)
+def plot_nullclines(ax):
+    nullcline_1 = list(sympy.solve(sympy.Eq(dn1, 0)))
+    ax.plot([nullcline_1[0] for i in range(len(xrange))], yrange, color='b')
+    ax.plot([nullcline_1[1] for i in range(len(xrange))], yrange, color='b')
+
+    # #plot the null clines for species 2 (red)
+    nullcline_2 = [list(i.values())[0] for i in sympy.solve(sympy.Eq(dn2, 0))]
+    ax.plot(sympy.lambdify(n2, nullcline_2[0])(yrange), yrange, color='r') # A this null cline is a function of n2 (i.e. y)
+    ax.plot(xrange, [nullcline_2[1] for i in range(len(yrange))], color='r')
+
+    ax.set_ylim(-10, 1210)
+    ax.set_xlim(-10, 1210)
+    return ax
+
+plot_nullclines(ax)
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-06_files/lecture-06_13_0.png" /></p>
+<p>The null clines help us understand the dynamics. In each area bounded by null clines the arrows point in the same general direction (eg, in the top right area they point down and to the left). This helps us see where the dynamics are heading -- in this case most initial conditions head to the intersection of the null clines for <span class="arithmatex">\(n_1\)</span> and <span class="arithmatex">\(n_2\)</span> (red and blue), i.e., where the change in both our variables is zero, near <span class="arithmatex">\(n_1=1000\)</span> and <span class="arithmatex">\(n_2=500\)</span>.</p>
+<p>We can also make phase diagrams for continuous-time models, just using differential equations in place of difference equations.</p>
+<p>We’ll see an example of that for another model, of predator and prey, in this week’s lab.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../lecture-05/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lecture 5" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lecture 5
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lecture-07/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture 7" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lecture 7
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

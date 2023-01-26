@@ -1,0 +1,1341 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Lecture 12 - EEB430/1430 Mathematical modelling in ecology and evolution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+  
+  
+    
+    
+    
+  
+  
+  <style>.md-tag-icon{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.5 7A1.5 1.5 0 0 1 4 5.5 1.5 1.5 0 0 1 5.5 4 1.5 1.5 0 0 1 7 5.5 1.5 1.5 0 0 1 5.5 7m15.91 4.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.11 0-2 .89-2 2v7c0 .55.22 1.05.59 1.41l8.99 9c.37.36.87.59 1.42.59.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.56-.23-1.06-.59-1.42Z"/></svg>');}</style>
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-12-linear-algebra-iii" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-header__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EEB430/1430 Mathematical modelling in ecology and evolution
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 12
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../syllabus/general_info/" class="md-tabs__link">
+        Syllabus
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../schedule/" class="md-tabs__link md-tabs__link--active">
+        Lectures
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/schedule/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../acknowledgements/" class="md-tabs__link">
+      Acknowledgements
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-nav__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    EEB430/1430 Mathematical modelling in ecology and evolution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Syllabus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syllabus" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Syllabus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        General info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        Course structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        When and where
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/assignments/" class="md-nav__link">
+        Assignments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        Final Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/exams/" class="md-nav__link">
+        Exams
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        Instructors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/other_resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Lectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        Lecture 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        Lecture 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        Lecture 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        Lecture 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        Lecture 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        Lecture 6
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        Lecture 7
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        Lecture 8
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        Lecture 9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        Lecture 10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        Lecture 11
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 12
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lecture 12
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-are-eigenvalues-and-eigenvectors" class="md-nav__link">
+    1. What are eigenvalues and eigenvectors?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-should-we-care-about-eigenvalues-and-eigenvectors" class="md-nav__link">
+    2. Why should we care about eigenvalues and eigenvectors?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-finding-eigenvalues" class="md-nav__link">
+    3. Finding eigenvalues
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-finding-eigenvectors" class="md-nav__link">
+    4. Finding eigenvectors
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        Lecture 13
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-14/" class="md-nav__link">
+        Lecture 14
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        Lecture 15
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        Lecture 16
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        Lecture 17
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        Lecture 18
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        Lecture 19
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        Lecture 20
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-are-eigenvalues-and-eigenvectors" class="md-nav__link">
+    1. What are eigenvalues and eigenvectors?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-should-we-care-about-eigenvalues-and-eigenvectors" class="md-nav__link">
+    2. Why should we care about eigenvalues and eigenvectors?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-finding-eigenvalues" class="md-nav__link">
+    3. Finding eigenvalues
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-finding-eigenvectors" class="md-nav__link">
+    4. Finding eigenvectors
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      binderUrl: "https://gke.mybinder.org",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+<h1 id="lecture-12-linear-algebra-iii">Lecture 12: Linear algebra III</h1>
+<hr style="margin-bottom: 0em;">
+<p><center></p>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+<p></center></p>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">What are eigenvalues and eigenvectors?</a></li>
+<li><a href="#section2">Why should be care about eigenvalues and eigenvectors?</a></li>
+<li><a href="#section3">Finding eigenvalues</a></li>
+<li><a href="#section4">Finding eigenvectors</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-what-are-eigenvalues-and-eigenvectors">1. What are eigenvalues and eigenvectors?</h2>
+<hr>
+
+<p>A number <span class="arithmatex">\(\lambda\)</span> is an <strong>eigenvalue</strong> of matrix <span class="arithmatex">\(\textbf{M}\)</span> if there exists a non-zero vector, <span class="arithmatex">\(\vec{v}\)</span>, that satisfies</p>
+<div class="arithmatex">\[
+\mathbf{M} \vec{v} = \lambda \vec{v}
+\]</div>
+<p>Every non-zero vector <span class="arithmatex">\(\vec{v}\)</span> satisfying this equation is a <strong>right eigenvector</strong> of <span class="arithmatex">\(\mathbf{M}\)</span> associated with eigenvalue <span class="arithmatex">\(\lambda\)</span>.</p>
+<p>Every non-zero vector <span class="arithmatex">\(\vec{u}\)</span> satisfying</p>
+<div class="arithmatex">\[
+\vec{u}\mathbf{M} = \lambda \vec{u}
+\]</div>
+<p>is a <strong>left eigenvector</strong> of <span class="arithmatex">\(\mathbf{M}\)</span> associated with eigenvalue <span class="arithmatex">\(\lambda\)</span>.</p>
+<p><span id='section2'></span></p>
+<h2 id="2-why-should-we-care-about-eigenvalues-and-eigenvectors">2. Why should we care about eigenvalues and eigenvectors?</h2>
+<hr>
+
+<p>Let's say <span class="arithmatex">\(\mathbf{M}\)</span> describes the dynamics of our biological variables, <span class="arithmatex">\(\vec{n}\)</span>, which might be the numbers of different types of individuals or the frequency of alleles at different loci, and for concreteness let's just say we are working in discrete time, <span class="arithmatex">\(\vec{n}(t+1) = \mathbf{M} \vec{n}(t)\)</span> (but similar arguments hold for continuous time). </p>
+<p>Now notice that if our system, <span class="arithmatex">\(\vec{n}(t)\)</span>, ever approaches a right eigenvalue, <span class="arithmatex">\(\vec{v}\)</span>, the dynamics reduce to simple exponential growth <span class="arithmatex">\(\vec{n}(t+1) = \mathbf{M} \vec{n}(t) = \mathbf{M} \vec{v} = \lambda \vec{v}\)</span> at rate <span class="arithmatex">\(\lambda\)</span> in direction <span class="arithmatex">\(\vec{v}\)</span>. In other words, the eigenvalues describe the rate at which our system grows or shrinks along their associated eigenvectors.</p>
+<p>More generally, even when <span class="arithmatex">\(\vec{n}\)</span> is not near a right eigenvector, the right eigenvectors provide a new coordinate system in which the dynamics of our system are easier to understand. </p>
+<p>To see this, let's take <span class="arithmatex">\(\mathbf{M} = \begin{pmatrix} 1 &amp; 1 \\ 1/2 &amp; 3/2 \end{pmatrix}\)</span>. The eigenvalues of <span class="arithmatex">\(\mathbf{M}\)</span> are <span class="arithmatex">\(\lambda_1 = 2\)</span> and <span class="arithmatex">\(\lambda_2 = 1/2\)</span>. The right eigenvectors associated with these two eigenvalues are <span class="arithmatex">\(\vec{v}_1 = \begin{pmatrix} 1 \\ -1/2 \end{pmatrix}\)</span> and <span class="arithmatex">\(\vec{v}_2 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}\)</span>, respectively. </p>
+<p>The right eigenvectors are plotted as red vectors in the plot below. The initial state of the sytem, <span class="arithmatex">\(\vec{n}(0)\)</span>, is given by the blue vector. Thinking of the eigenvectors as a new coordinate system for our dynamics, we draw dashed gray lines that are parallel to the two eigenvectors, connecting <span class="arithmatex">\(\vec{n}(0)\)</span> to the two eigenvectors. Where these dashed gray lines intersect the eigenvalues indicates the value of <span class="arithmatex">\(\vec{n}(0)\)</span> in the new coordinate system. </p>
+<p>To calculate the state of the system in the next time step, <span class="arithmatex">\(\vec{n}(1) = \mathbf{M}\vec{n}(0)\)</span>, we can then simply multiply the values of <span class="arithmatex">\(\vec{n}(0)\)</span> in the new coordinate system by the eigenvalues. In this example, we multiply the distance of <span class="arithmatex">\(\vec{n}(0)\)</span> along the first eigenvector by <span class="arithmatex">\(\lambda_1\)</span> and the distance of <span class="arithmatex">\(\vec{n}(0)\)</span> along the second eigenvector by <span class="arithmatex">\(\lambda_2\)</span>, which gives <span class="arithmatex">\(\vec{n}(1)\)</span> in orange. We can continue doing this to calculate <span class="arithmatex">\(\vec{n}(2)\)</span> (plotted in green), and so on...</p>
+<p>Not only do the right eigenvectors define a more convenient coordinate system for our dynamics, you may also notice in the plot below that the system approaches one of the eigenvectors, suggesting that the long-term dynamics of the system can be predicted based on only one of the eigenvalues and it's associated right eigenvector (a fact we will later prove). </p>
+<pre data-executable="true" data-language="python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+# define objects
+M = np.array([[1,1],[1/2,3/2]]) #matrix
+e1, e2 = np.linalg.eigvals(M) #eigenvalues
+vs = np.linalg.eig(M)[1] #eigenvectors
+v1 = vs[:,0]; v1 = v1/v1[0] #first eigenvector normalized by first entry
+v2 = vs[:,1]; v2 = v2/v2[0] #second eigenvector normalized by first entry
+
+n0 = np.array([2/3,1/4]) #initial values of our variables
+n1 = M @ n0 #n1 = M*n0
+n2 = M @ n1 #n2 = M*n1
+
+# plot
+xmin,xmax = -0.1,1.5 #x limits
+ymin,ymax = -1,1.5 #y limits
+fig, ax = plt.subplots()
+
+# plot the eigenvectors
+for i,v in enumerate([v1,v2]):
+    ax.plot([0,v[0]], # x values
+            [0,v[1]], # y values
+            c='r',
+            label='eigenvector $v_{%d}$'%(i+1)) #aesthetics
+
+# plot the state of the system
+for i,n in enumerate([n0,n1,n2]):
+    ax.plot([0,n[0]],
+            [0,n[1]],
+           label='$n(%d)$'%i)
+    # parallel lines
+    for a,b in [[v1,v2],[v2,v1]]:
+        yshift = n[1] - a[1]/a[0] * n[0]
+        xshift = yshift/(b[1]/b[0]-a[1]/a[0])
+        yshift = xshift * b[1]/b[0]
+        ax.plot([0 + xshift, n[0]],
+                [0 + yshift, n[1]],
+                c='gray', ls='--', alpha=0.5)
+
+# aesthetics
+ax.axis('off') #remove frame
+ax.plot([0,0],[ymin,ymax], c='k') #x axis
+ax.plot([xmin,xmax],[0,0], c='k') # yaxis
+ax.legend()
+
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-12_files/lecture-12_3_0.png" /></p>
+<p><span id='section3'></span></p>
+<h2 id="3-finding-eigenvalues">3. Finding eigenvalues</h2>
+<hr>
+
+<p>To find the eigenvalues, first notice that if we try to use linear algebra to solve for the right eigenvector, <span class="arithmatex">\(\vec{v}\)</span>, we find</p>
+<div class="arithmatex">\[
+\begin{aligned} 
+\mathbf{M}\vec{v} &amp;= \lambda\vec{v}\\
+\mathbf{M}\vec{v} - \lambda\vec{v} &amp;= \vec{0}\\
+\mathbf{M}\vec{v} - \lambda\mathbf{I}\vec{v} &amp;= \vec{0} \\
+(\mathbf{M} - \lambda\mathbf{I})\vec{v} &amp;= \vec{0}\\
+\vec{v} &amp;= (\mathbf{M} - \lambda\mathbf{I})^{-1}\vec{0} \\
+\vec{v} &amp;= \vec{0}
+\end{aligned}
+\]</div>
+<p>where <span class="arithmatex">\(\mathbf{I}\)</span> is the identity matrix and <span class="arithmatex">\(\vec{0}\)</span> is a vector of zeros.</p>
+<p>But above we've said that <span class="arithmatex">\(\vec{v}\)</span> is a <em>non-zero</em> vector! This is a contradiction.</p>
+<p>This contradiction implies that we did something wrong in our calculations. The only place we made any assumptions was in our last step, where we assumed <span class="arithmatex">\((\mathbf{M} - \lambda\mathbf{I})\)</span> was invertible.</p>
+<p>We then conclude that <span class="arithmatex">\((\mathbf{M} - \lambda\mathbf{I})\)</span> is non-invertible and therefore must have a determinant of zero, <span class="arithmatex">\(|\mathbf{M} - \lambda\mathbf{I}|=0\)</span>. Interestingly, this last equation, <span class="arithmatex">\(|\mathbf{M} - \lambda\mathbf{I}|=0\)</span>, gives us a way to solve for the eigenvalues, <span class="arithmatex">\(\lambda\)</span>, without knowing the eigenvectors, <span class="arithmatex">\(\vec{v}\)</span>!</p>
+<p>The determinant of the <span class="arithmatex">\(n\times n\)</span> matrix <span class="arithmatex">\((\mathbf{M} - \lambda\mathbf{I})\)</span> is an <span class="arithmatex">\(n^{th}\)</span> degree polynomial in <span class="arithmatex">\(\lambda\)</span>, which is called the <strong>characteristic polynomial</strong> of <span class="arithmatex">\(\mathbf{M}\)</span>. Setting this polynomial equal to zero and solving for <span class="arithmatex">\(\lambda\)</span> gives the <span class="arithmatex">\(n\)</span> eigenvalues of <span class="arithmatex">\(\mathbf{M}\)</span>: <span class="arithmatex">\(\lambda_1,\lambda_2,...,\lambda_n\)</span>.</p>
+<p>For example, in the <span class="arithmatex">\(n=2\)</span> case we have</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbf{M} - \lambda \mathbf{I} &amp;= \begin{pmatrix} m_{11} &amp; m_{12} \\ m_{21} &amp; m_{22} \end{pmatrix} - \lambda \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\\
+&amp;= \begin{pmatrix} m_{11} &amp; m_{12} \\ m_{21} &amp; m_{22} \end{pmatrix} -  \begin{pmatrix} \lambda &amp; 0 \\ 0 &amp; \lambda \end{pmatrix}\\
+&amp;= \begin{pmatrix} m_{11} - \lambda &amp; m_{12} \\ m_{21} &amp; m_{22} - \lambda \end{pmatrix}
+\end{aligned}
+\]</div>
+<p>so that the characteristic polynomial is</p>
+<div class="arithmatex">\[
+\begin{aligned}
+|\mathbf{M} - \lambda \mathbf{I} | =&amp; (m_{11}-\lambda)(m_{22}-\lambda)-m_{21} m_{12}\\
+=&amp;\lambda^2 - (m_{11}+m_{22})\lambda + (m_{11}m_{22}-m_{21}m_{12})\\
+=&amp;\lambda^2 - \mathrm{Tr}(\mathbf{M})\lambda + \mathrm{Det}(\mathbf{M})
+\end{aligned}
+\]</div>
+<p>Setting this polynomial equal to zero, the two solutions can be found using the quadratic formula</p>
+<div class="arithmatex">\[
+\lambda = \frac{\mathrm{Tr}(\mathbf{M}) \pm \sqrt{\mathrm{Tr}(\mathbf{M})^2 - 4\mathrm{Det}(\mathbf{M})}}{2}
+\]</div>
+<p>Note that this shows that even a 2x2 matrix composed of all real numbers can have <strong>complex</strong> eigenvalues if the value within the square root is negative, <span class="arithmatex">\(\mathrm{Tr}(\mathbf{M})^2 - 4\mathrm{Det}(\mathbf{M}) &lt; 0\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A complex number has the form <span class="arithmatex">\(A + B i\)</span>, where <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are real numbers and <span class="arithmatex">\(i=\sqrt{-1}\)</span>. We call <span class="arithmatex">\(A\)</span> the "real part" and <span class="arithmatex">\(B\)</span> the "imaginary part". See Box 7.3 in the text for more fun facts.</p>
+</div>
+<p>For example, <span class="arithmatex">\(\mathbf{M} = \begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 1 \end{pmatrix}\)</span> has <span class="arithmatex">\(\mathrm{Tr}(\mathbf{M}) = 2\)</span> and <span class="arithmatex">\(\mathrm{Det}(\mathbf{M}) = 2\)</span>, so that the eigenvalues are <span class="arithmatex">\(\lambda = 1 \pm \sqrt{-1} = 1 \pm i\)</span>.</p>
+<p>We will see in future lectures that complex eigenvalues indicate some cycling in the dynamics of our system.</p>
+<p>The <span class="arithmatex">\(n=2\)</span> example shows another interesting fact. When <span class="arithmatex">\(\mathrm{Det}(\mathbf{M})=0\)</span> one of the eigenvalues is 0 (and this holds for larger <span class="arithmatex">\(n\)</span> too). As we discussed in Lecture 11, if <span class="arithmatex">\(\mathrm{Det}(\mathbf{M})=0\)</span> then multiplying a vector by <span class="arithmatex">\(\mathbf{M}\)</span> causes a loss of information (like multiplying by 0 in normal algebra). This can now be understood based on the geometric argument presented above: if one of the eigenvalues is zero then the state of the system immediately goes to zero in new coordinate system defined by the right eigenvectors.  </p>
+<p>Finding the determinant of <span class="arithmatex">\((\mathbf{M} - \lambda\mathbf{I})\)</span> becomes trickier for larger matrices, but there are some helpful properties of determinants that come in handy (see Lecture 11).</p>
+<p>For instance, the eigenvalues of a diagonal or triangular matrix are simply the diagonal elements</p>
+<div class="arithmatex">\[
+\begin{aligned}
+|\mathbf{M} - \lambda \mathbf{I}|
+&amp;= \begin{vmatrix} m_{11} - \lambda &amp; 0 &amp; 0 \\ m_{21} &amp; m_{22} - \lambda &amp; 0 \\ m_{31} &amp; m_{32} &amp; m_{33} - \lambda \end{vmatrix}\\
+&amp;= (m_{11} - \lambda) (m_{22} - \lambda) (m_{33} - \lambda)
+\end{aligned}
+\]</div>
+<p>Similarly, the eigenvalues of a block-diagonal or block-triangular matrix are the eigenvalues of the submatrices along the diagonal</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbf{M} - \lambda \mathbf{I} &amp;= \begin{pmatrix} \begin{pmatrix} m_{11} - \lambda &amp; 0 \\ m_{21} &amp; m_{22} - \lambda \end{pmatrix} &amp; \begin{pmatrix} 0 \\ 0 \end{pmatrix} \\ \begin{pmatrix} m_{31} &amp; m_{32} \end{pmatrix} &amp; \begin{pmatrix} m_{33} - \lambda \end{pmatrix} \end{pmatrix}\\
+|\mathbf{M} - \lambda \mathbf{I}| &amp;= \begin{vmatrix} m_{11} - \lambda &amp; 0 \\ m_{21} &amp; m_{22} - \lambda \end{vmatrix} \begin{vmatrix} m_{33} - \lambda \end{vmatrix}\\
+&amp;= (m_{11} - \lambda) (m_{22} - \lambda) (m_{33} - \lambda)
+\end{aligned}
+\]</div>
+<p><span id='section4'></span></p>
+<h2 id="4-finding-eigenvectors">4. Finding eigenvectors</h2>
+<hr>
+
+<p>Now that we can find an eigenvalue, how do we find its eigenvectors?</p>
+<p>As we said above, if <span class="arithmatex">\(\vec{v}\)</span> is a right eigenvector of the matrix <span class="arithmatex">\(\mathbf{M}\)</span> corresponding to the eigenvalue <span class="arithmatex">\(\lambda\)</span>, it satisfies</p>
+<div class="arithmatex">\[
+\mathbf{M}\vec{v} = \lambda \vec{v}
+\]</div>
+<p>We would like to use linear algebra to solve for <span class="arithmatex">\(\vec{v}\)</span> from <span class="arithmatex">\(\mathbf{M}\vec{v} = \lambda \vec{v}\)</span>, as we attempted above, but we can't since <span class="arithmatex">\((\mathbf{M} - \lambda\mathbf{I})\)</span> is non-invertible.</p>
+<p>Instead we need to write out the system of equations represented by <span class="arithmatex">\(\mathbf{M}\vec{v} = \lambda \vec{v}\)</span> and solve for one variable after another.</p>
+<p>For example, for a <span class="arithmatex">\(2 \times 2\)</span> matrix <span class="arithmatex">\(\mathbf{M}\)</span> with eigenvalues <span class="arithmatex">\(\lambda_1\)</span> and <span class="arithmatex">\(\lambda_2\)</span> we know that a right eigenvector <span class="arithmatex">\(\vec{v}_1\)</span> associated with <span class="arithmatex">\(\lambda_1\)</span> must solve</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbf{M}\vec{v}_1 &amp;= \lambda_1 \vec{v}_1\\
+\begin{pmatrix}
+  m_{11} &amp; m_{12} \\
+  m_{21} &amp; m_{22}
+\end{pmatrix}
+\begin{pmatrix}
+  v_1 \\
+  v_2
+\end{pmatrix} &amp;= \lambda_1
+\begin{pmatrix}
+  v_1 \\
+  v_2
+\end{pmatrix}
+\end{aligned}
+\]</div>
+<p>Carrying out the matrix multiplication, we can write down a system of equations corresponding the the rows</p>
+<div class="arithmatex">\[
+\begin{aligned}
+m_{11} v_1 + m_{12} v_2 &amp;= \lambda_1 v_1 \\
+m_{21} v_1 + m_{22} v_2 &amp;= \lambda_1 v_2
+\end{aligned}
+\]</div>
+<p>This system of equations determines the elements of the right eigenvector, <span class="arithmatex">\(\vec{v}_1\)</span>, associated with <span class="arithmatex">\(\lambda_1\)</span>.</p>
+<p>Note from the matrix form above that we can multiply <span class="arithmatex">\(\vec{v}_1 = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}\)</span> by any constant and that will also be a solution. This means there are an infinite number of eigenvectors associated with an eigenvalue and we can set one of the elements to an arbitrary value. A typical choice is to set the first entry equal to one, <span class="arithmatex">\(v_1 = 1\)</span>.</p>
+<p>Now we have just one unknown, <span class="arithmatex">\(v_2\)</span>, so we can choose either of the equations above to solve for <span class="arithmatex">\(v_2\)</span>. We pick the first, giving</p>
+<div class="arithmatex">\[
+\begin{aligned}
+m_{11} v_1 + m_{12} v_2 &amp;= \lambda_1 v_1 \\
+m_{11} 1 + m_{12} v_2 &amp;= \lambda_1 1 \\
+v_2 &amp;= (\lambda_1 - m_{11}) / m_{12}
+\end{aligned}
+\]</div>
+<p>We therefore have right eigenvector <span class="arithmatex">\(\vec{v}_1 =  \begin{pmatrix} 1 \\ (\lambda_1 - m_{11})/m_{12} \end{pmatrix}\)</span> associated with the eigenvalue <span class="arithmatex">\(\lambda_1\)</span>. </p>
+<p>Because we've done this quite generally, we also now know that the right eigenvector associated with the second eigenvalue, <span class="arithmatex">\(\lambda_2\)</span>, is <span class="arithmatex">\(\vec{v}_2 = \begin{pmatrix} 1 \\ (\lambda_2 - m_{11})/m_{12} \end{pmatrix}\)</span>.</p>
+<p>Solving for the left eigenvectors is done following the same method. For eigenvalue <span class="arithmatex">\(\lambda_1\)</span> we want to find the vector <span class="arithmatex">\(\vec{u}_1\)</span> that solves</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\vec{u}_1\mathbf{M} &amp;= \lambda_1 \vec{u}_1\\
+\begin{pmatrix}
+  u_1 &amp; u_2
+\end{pmatrix}
+\begin{pmatrix}
+  m_{11} &amp; m_{12} \\
+  m_{21} &amp; m_{22}
+\end{pmatrix}
+ &amp;= \lambda_1
+\begin{pmatrix}
+  u_1 &amp; u_2
+\end{pmatrix}
+\end{aligned}
+\]</div>
+<p>The system of equations is</p>
+<div class="arithmatex">\[
+\begin{aligned}
+u_1 m_{11} + u_2 m_{21} &amp;= \lambda_1 u_1 \\
+u_1 m_{12} + u_2 m_{22} &amp;= \lambda_1 u_2
+\end{aligned}
+\]</div>
+<p>Once again we can set the first element to any value, say <span class="arithmatex">\(u_1 = 1\)</span>, and use one of the equations to solve for the second element</p>
+<div class="arithmatex">\[
+\begin{aligned}
+1 m_{11} + u_2 m_{21} &amp;= \lambda_1 1 \\
+u_2 m_{21} &amp;= \lambda_1 - m_{11} \\
+u_2 &amp;= (\lambda_1 - m_{11})/m_{21} \\
+\end{aligned}
+\]</div>
+<p>So the left eigenvector associated with eigenvalue <span class="arithmatex">\(\lambda_1\)</span> is <span class="arithmatex">\(\vec{u}_1 = \begin{pmatrix} 1 &amp; (\lambda_1 - m_{11})/m_{21} \end{pmatrix}\)</span>.</p>
+<p>Again, because we've done this quite generally, we know that the left eigenvector associated with <span class="arithmatex">\(\lambda_2\)</span> is <span class="arithmatex">\(\vec{u}_2 = \begin{pmatrix} 1 &amp; (\lambda_2 - m_{11})/m_{21} \end{pmatrix}\)</span>.</p>
+<p>If you'd like practice finding eigenvalues and eigenvectors, try finding the eigenvalues and eigenvectors of the matrix given in section 2, <span class="arithmatex">\(\mathbf{M} = \begin{pmatrix} 1 &amp; 1 \\ 1/2 &amp; 3/2 \end{pmatrix}\)</span>.</p>
+<pre data-executable="true" data-language="python">
+
+</pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../lecture-11/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lecture 11" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lecture 11
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lecture-13/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture 13" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lecture 13
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

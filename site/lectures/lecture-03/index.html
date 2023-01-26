@@ -1,0 +1,1423 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Lecture 3 - EEB430/1430 Mathematical modelling in ecology and evolution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+  
+  
+    
+    
+    
+  
+  
+  <style>.md-tag-icon{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.5 7A1.5 1.5 0 0 1 4 5.5 1.5 1.5 0 0 1 5.5 4 1.5 1.5 0 0 1 7 5.5 1.5 1.5 0 0 1 5.5 7m15.91 4.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.11 0-2 .89-2 2v7c0 .55.22 1.05.59 1.41l8.99 9c.37.36.87.59 1.42.59.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.56-.23-1.06-.59-1.42Z"/></svg>');}</style>
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-3-exponential-logistic-growth" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-header__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EEB430/1430 Mathematical modelling in ecology and evolution
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../syllabus/general_info/" class="md-tabs__link">
+        Syllabus
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../schedule/" class="md-tabs__link md-tabs__link--active">
+        Lectures
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/schedule/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../acknowledgements/" class="md-tabs__link">
+      Acknowledgements
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-nav__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    EEB430/1430 Mathematical modelling in ecology and evolution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Syllabus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syllabus" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Syllabus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        General info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        Course structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        When and where
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/assignments/" class="md-nav__link">
+        Assignments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        Final Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/exams/" class="md-nav__link">
+        Exams
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        Instructors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/other_resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Lectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        Lecture 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        Lecture 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lecture 3
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    1. Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-exponential-growth" class="md-nav__link">
+    2. Exponential growth
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Exponential growth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exponential-growth-in-discrete-time" class="md-nav__link">
+    Exponential growth in discrete time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exponential-growth-in-continuous-time" class="md-nav__link">
+    Exponential growth in continuous time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-trouble-with-exponential-growth" class="md-nav__link">
+    The trouble with exponential growth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-logistic-growth" class="md-nav__link">
+    3. Logistic growth
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Logistic growth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logistic-growth-in-discrete-time" class="md-nav__link">
+    Logistic growth in discrete time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logistic-growth-in-continuous-time" class="md-nav__link">
+    Logistic growth in continuous time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        Lecture 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        Lecture 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        Lecture 6
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        Lecture 7
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        Lecture 8
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        Lecture 9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        Lecture 10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        Lecture 11
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        Lecture 12
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        Lecture 13
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-14/" class="md-nav__link">
+        Lecture 14
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        Lecture 15
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        Lecture 16
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        Lecture 17
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        Lecture 18
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        Lecture 19
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        Lecture 20
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    1. Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-exponential-growth" class="md-nav__link">
+    2. Exponential growth
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Exponential growth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exponential-growth-in-discrete-time" class="md-nav__link">
+    Exponential growth in discrete time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exponential-growth-in-continuous-time" class="md-nav__link">
+    Exponential growth in continuous time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-trouble-with-exponential-growth" class="md-nav__link">
+    The trouble with exponential growth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-logistic-growth" class="md-nav__link">
+    3. Logistic growth
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Logistic growth">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logistic-growth-in-discrete-time" class="md-nav__link">
+    Logistic growth in discrete time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logistic-growth-in-continuous-time" class="md-nav__link">
+    Logistic growth in continuous time
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      binderUrl: "https://gke.mybinder.org",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+<h1 id="lecture-3-exponential-logistic-growth">Lecture 3: Exponential &amp; logistic growth</h1>
+<hr style="margin-bottom: 0em;">
+<p><center></p>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+<p></center></p>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Introduction</a></li>
+<li><a href="#section2">Exponential growth</a></li>
+<li><a href="#section3">Logistic growth</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-introduction">1. Introduction</h2>
+<hr>
+
+<p>In nature, population sizes change over time in response to a myriad of factors, such as</p>
+<ul>
+<li>weather</li>
+<li>competition, predation, disease, ...</li>
+<li>resource availability</li>
+</ul>
+<p>The simplest models describing changes in population size are <strong>exponential growth</strong> and <strong>logistic growth</strong> which assume</p>
+<ul>
+<li>a constant environment</li>
+<li>no interactions with other species </li>
+</ul>
+<p>The exponential model also assumes no competition among the members of a species for the available resources (<strong>density-independent growth</strong>), while the logistic model includes competition within a species (<strong>density-dependent growth</strong>).</p>
+<p>Both of these models can be described in discrete and continuous time.</p>
+<p>We’ll start with the simpler exponential model.</p>
+<p><span id='section2'></span></p>
+<h2 id="2-exponential-growth">2. Exponential growth</h2>
+<hr>
+
+<h3 id="exponential-growth-in-discrete-time">Exponential growth in discrete time</h3>
+<p>Imagine we start with <span class="arithmatex">\(n_t\)</span> individuals at some time <span class="arithmatex">\(t\)</span>. If we assume that each of these individuals produces <span class="arithmatex">\(b\)</span> offspring, the number of individuals after reproduction is <span class="arithmatex">\(n_t + n_t b = n_t(1 + b)\)</span>.</p>
+<p>If we then assume a fraction <span class="arithmatex">\(d\)</span> die, the number of individuals remaining after death is <span class="arithmatex">\(n_t(1+b) - n_t(1+b)d = n_t(1+b)(1-d)\)</span>.</p>
+<p>With no further events in the life-cycle, this is the expected number of individuals in the next generation, <span class="arithmatex">\(n_{t+1}\)</span>, which we can write as</p>
+<div class="arithmatex">\[
+\begin{aligned}
+n_{t+1}
+&amp;= n_t(1+b)(1-d) \\
+&amp;= n_t R \\
+\end{aligned}
+\]</div>
+<p>where <span class="arithmatex">\(R=(1+b)(1-d)\)</span> is a constant referred to as the <strong>reproductive factor</strong>.</p>
+<p>This equation, <span class="arithmatex">\(n_{t+1}=n_t R\)</span>, is the <strong>recursion equation</strong> for exponential growth.</p>
+<div class="admonition note">
+<p class="admonition-title">Exponential vs geometric growth</p>
+<p>Technically this recursion equation describes "geometric" growth, since <span class="arithmatex">\(n_t\)</span> will grow with <span class="arithmatex">\(t\)</span> as a geometric series, but here we simply call it "exponential growth in discrete time" to make a clear connection with exponential growth in continuous time.</p>
+</div>
+<p>We can also describe the <em>change</em> in the number of individuals by subtracting off the current number,</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\Delta n 
+&amp;= n_{t+1} - n_t\\ 
+&amp;= n_t(R-1)
+\end{aligned}
+\]</div>
+<p>This is the <strong>difference equation</strong> for exponential growth, with discrete-time growth rate <span class="arithmatex">\(r_d = R-1 = (1+b)(1-d)-1 = b - d - bd\)</span>.</p>
+<p>Let's plot the dynamics described by these equations for a particular set of parameter values.</p>
+<pre data-executable="true" data-language="python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+def exponential_discrete(nt, b, d):
+    '''recursion equation giving population size in next time step as a function
+    of the population size at this time, nt, and the birth and death rates, b and d.'''
+    return nt * (1 + b) * (1 - d)
+
+# Grow population
+nd, nt, b, d = [], 1, 0.2, 0.1 #define empty list nd to store population sizes and choose parameter values
+for t in np.arange(0,100): #for time from 0 to 99
+    nt = exponential_discrete(nt, b, d) #get the next population size from the recursion equation
+    nd.append(nt) #and append it to the list
+
+# Plot growth
+fig, ax = plt.subplots()
+ax.scatter(np.arange(0, 100), nd) #plot population size at each time
+ax.set_xlabel('Time, $t$')
+ax.set_ylabel('Population size, $n_t$')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-03_files/lecture-03_5_0.png" /></p>
+<h3 id="exponential-growth-in-continuous-time">Exponential growth in continuous time</h3>
+<p>Now assume that each individual continuously gives birth at rate <span class="arithmatex">\(b\)</span> and dies at rate <span class="arithmatex">\(d\)</span>.</p>
+<p>If there are <span class="arithmatex">\(n_t\)</span> individuals in the population at time <span class="arithmatex">\(t\)</span>, then the rate of change in the number of individuals is</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d} n_t}{\mathrm{d} t} 
+&amp;= n_t b - n_t d\\
+&amp;= n_t (b - d)\\
+&amp;= n_t r_c
+\end{aligned}
+\]</div>
+<p>This is the <strong>differential equation</strong> for exponential growth with continuous-time growth rate <span class="arithmatex">\(r_c = b - d\)</span>.</p>
+<p>Note that the growth rate in the discrete-time model was <span class="arithmatex">\(r_d = b - d - b d\)</span>. The difference between the two growth rates reflects the fact that birth and death cannot happen at the exact same time in the continuous-time model (so there is no <span class="arithmatex">\(b d\)</span> term), while offspring that are born can die before the next generation in the discrete-time model (causing the <span class="arithmatex">\(b d\)</span> term).</p>
+<p>Let's also plot these dynamics.</p>
+<div class="admonition note">
+<p class="admonition-title">Approximating a differential equation</p>
+<p>The differential equation describes the change in the population size in an "infinitesimally" small amount of time, <span class="arithmatex">\(\mathrm{d}t\)</span>. To plot these dynamics we therefore make an approximation, taking <span class="arithmatex">\(\mathrm{d}t\)</span> to be small, but not infinitely so. Rearranging the differential equation gives <span class="arithmatex">\(\mathrm{d}n_t = n_t(b-d)\mathrm{d}t\)</span> and the population size after <span class="arithmatex">\(\mathrm{d}t\)</span> is therefore <span class="arithmatex">\(n_{t+\mathrm{d}t} = n_t + \mathrm{d}n_t\)</span>. This is a recursion equation that approximates our differential equation.</p>
+</div>
+<pre data-executable="true" data-language="python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+def exponential_continuous(nt, b, d, dt):
+    '''approximation of the differential equation giving population size after a small time interval, dt,
+    as a function of the population size at this time, nt, and the birth and death rates, b and d.'''
+    return nt + nt * (b - d) * dt
+
+# Grow population
+nc, nt, dt = [], 1, 0.1 #define empty list nc to store population sizes and choose parameter values (keep b and d as above)
+for t in np.arange(0,100,dt): #for time from 0 to 99 by increments of dt
+    nt = exponential_continuous(nt, b, d, dt) #get the next population size from the recursion equation
+    nc.append(nt) #and append it to the list
+
+# Plot growth
+fig, ax = plt.subplots()
+ax.scatter(np.arange(0, 100, dt), nc) #plot population size at each time
+ax.set_xlabel('Time, $t$')
+ax.set_ylabel('Population size, $n_t$')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-03_files/lecture-03_7_0.png" /></p>
+<p>We can now combine our two plots to compare these two predictions, exponential growth in discrete vs. continuous time.</p>
+<pre data-executable="true" data-language="python">
+# Plot growth
+fig, ax = plt.subplots()
+ax.scatter(np.arange(0, 100), nd, label='discrete time') #plot population size at each time
+ax.scatter(np.arange(0, 100, dt), nc, label='continuous time') #plot population size at each time
+ax.set_xlabel('Time, $t$')
+ax.set_ylabel('Population size, $n_t$')
+plt.legend()
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-03_files/lecture-03_9_0.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Why the difference?</p>
+<p>The predictions are very similar at first but then noticeably diverge.  </p>
+<p>The time of this divergence depends on the values of parameters <span class="arithmatex">\(b\)</span> and <span class="arithmatex">\(d\)</span>. Try increasing or decreasing both <span class="arithmatex">\(b\)</span> and <span class="arithmatex">\(d\)</span> and think about why it has that effect.</p>
+<p>Also think about why the continuous time model predicts a larger population size than the discrete time model. </p>
+<p>Hint: remember the difference in the growth rates between the two models is <span class="arithmatex">\(bd\)</span>. </p>
+</div>
+<h3 id="the-trouble-with-exponential-growth">The trouble with exponential growth</h3>
+<p>Exponential growth cannot continue indefinitely.</p>
+<p>Take for example a population of pheasants on an island off the coast of Washington State. Just 8 pheasants were introduced in 1937, but the population then grew exponentially, tripling in size every year (<span class="arithmatex">\(R=3\)</span>) for the first 5 years.  Had this population continued to grow exponentially there would have been 7 million of them by the year 1950 and <span class="arithmatex">\(10^{28}\)</span> by now – which at 2 kg per pheasant is 3000 times the mass of the earth!! In fact, Lack observed that “the figures suggest that the increase was slowing down and was about to cease, but at this point the island was occupied by the military and many of the birds shot.”</p>
+<p>Although populations may initially experience exponential growth, resources eventually become depleted and competition becomes more severe. This suggests that we should change our model assumptions.</p>
+<p><span id='section3'></span></p>
+<h2 id="3-logistic-growth">3. Logistic growth</h2>
+<hr>
+
+<p>Exponential growth assumes the growth rate (<span class="arithmatex">\(r_d\)</span>, <span class="arithmatex">\(r_c\)</span>) is constant. <strong>Logistic growth</strong> relaxes this assumption, and instead assumes that the growth rate decreases linearly with population size, due to competition for resources within the population. </p>
+<h3 id="logistic-growth-in-discrete-time">Logistic growth in discrete time</h3>
+<p>In discrete-time, the reproductive factor under logistic growth can be written as</p>
+<div class="arithmatex">\[R(n_t) = 1 + r\left(1 - \frac{n_t}{K}\right)\]</div>
+<p>Notice that each individual is expected to have one offspring (<span class="arithmatex">\(R=1\)</span>) if the <strong>intrinsic growth rate</strong> (ie, growth rate when rare) is zero, <span class="arithmatex">\(r = 0\)</span>, or if the population size is at <strong>carrying capacity</strong>, <span class="arithmatex">\(n_t=K\)</span>. </p>
+<p>Try plotting the reproductive factor as a function of <span class="arithmatex">\(n_t\)</span> for a few different values of <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(K\)</span>.</p>
+<pre data-executable="true" data-language="python">
+# Reproductive factor for logistic growth
+def logistic_discrete(nt, r, K):
+    '''reproductive factor in discrete logistic model with growth rate r and carrying capacity k'''
+    return 1 + r * (1 - nt/K) 
+
+# Compare a few different growth rates and carrying capacities
+fig, ax = plt.subplots()
+for r, K in zip([1, 2, 1], [100, 100, 50]): #for each pair of r and K values
+    nt = np.linspace(0, 200) #for a range of population sizes from 0 to 200
+    R = logistic_discrete(nt, r, K) #calculate the reproductive factor
+    ax.plot(nt, R, label=f"r = {r}, K = {K}") #and plot
+
+ax.plot(nt, [1 for i in nt], '--', color='gray') #1 line for reference
+ax.set_xlabel('Population size, $n_t$')
+ax.set_ylabel('Reproductive factor, $R$')
+ax.legend(frameon=False)
+plt.ylim(0,None)
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-03_files/lecture-03_16_0.png" /></p>
+<p>The population size in the next generation is the expected number of offspring per parent times the the total number of parents</p>
+<div class="arithmatex">\[n_{t+1} = \left(1 + r\left(1-\frac{n_t}{K}\right)\right)n_t\]</div>
+<p>This is the recursion equation for logistic growth.</p>
+<p>This recursion is a <strong>non-linear</strong> function of <span class="arithmatex">\(n_t\)</span> (<em>non-linear means that there is a term in the equation where the term is taken to some power other than 1; here if we expand out the recursion we get a <span class="arithmatex">\(n_t^2\)</span> term</em>). This reflects the fact that logistic growth models an interaction between individuals (competition).</p>
+<p>The change in population size from one generation to the next, <span class="arithmatex">\(\Delta n\)</span>, is therefore</p>
+<div class="arithmatex">\[\Delta n = n_{t+1} - n_t = r\left(1 - \frac{n_t}{K}\right)n_t\]</div>
+<p>Based on this difference equation, when will the population grow in size?</p>
+<p>Test out your answer by plotting population size over time in the discrete-time logistic model. Try changing the initial population size or carrying capacity so that <span class="arithmatex">\(n_t &gt; K\)</span>.</p>
+<pre data-executable="true" data-language="python">
+# Initialize parameters
+n, nt, r, K = [], 1, 0.1, 100 #list, initial population size, intrinsic growth rate, carrying capacity
+
+# Grow population under logistic growth
+for t in np.arange(0, 100):
+    nt = nt * logistic_discrete(nt, r, K)
+    n.append(nt)
+
+# Plot growth
+fig, ax = plt.subplots()
+ax.scatter(np.arange(0, 100), n)
+ax.axhline(100, label=f"K = {K}", linestyle='dashed', color='gray') #carrying capacity as dashed line
+
+# Add annotations
+ax.set_xlabel('Time, $t$')
+ax.set_ylabel('Population size, $n_t$')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-03_files/lecture-03_19_0.png" /></p>
+<h3 id="logistic-growth-in-continuous-time">Logistic growth in continuous time</h3>
+<p>The model of logistic growth in continuous time, as with discrete time, follows from the assumption that each individual has a <strong>growth rate</strong> that decreases as a linear function of the population size <span class="arithmatex">\(r(1 - n_t/K)\)</span>.</p>
+<p>If there are <span class="arithmatex">\(n_t\)</span> individuals in the population at time <span class="arithmatex">\(t\)</span>, then the rate of change of the population size will be</p>
+<div class="arithmatex">\[\frac{\mathrm{d}n_t}{\mathrm{d}t} = r\left(1 - \frac{n_t}{K}\right)n_t\]</div>
+<p>This is a <strong>differential equation</strong> of logistic growth.</p>
+<p>Note that in both discrete and continuous time the logistic growth model reduces to the exponential growth model as <span class="arithmatex">\(n_t/K\)</span> approaches 0, i.e., when the population size is much smaller than the carrying capacity <span class="arithmatex">\(n_t &lt;&lt; K\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">An example of logistic growth</p>
+<p>Dr. Sarah Otto cultured haploid (one copy of each chromosome) and diploid (two copies of each chromosome) populations of <em>Saccharomyces cereviseae</em>. She observed the following population sizes for the two types of cells:</p>
+<p><center></p>
+<p><img alt="" src="../lecture-03-img/yeast_otto_1.png" /></p>
+<p></center></p>
+<p><center><sup>Figure. The size of haploid and diploid yeast populations in a controlled laboratory experiment.</sup></center></p>
+<p>Although the populations grow nearly exponentially at first, growth decreased as population size increased (i.e., density-dependent growth was observed).</p>
+<p>The carrying capacity (<span class="arithmatex">\(K\)</span>) is clearly larger for the haploid cells, but do haploid and diploid cells have different intrinsic growth rates (<span class="arithmatex">\(r\)</span>)?</p>
+<p>By fitting the logistic growth model described above to the data, Dr. Otto estimated the parameter values to be</p>
+<ul>
+<li>Haploid: r = 0.55, K = 3.7 x 10^8</li>
+<li>Diploid: r = 0.55, K = 2.3 x 10^8</li>
+</ul>
+<p>The growth rates therefore do not differ (visibly or statistically). With these parameter estimates, the logistic model nicely fits the data:</p>
+<p><center></p>
+<p><img alt="" src="../lecture-03-img/yeast_otto_2.png" /></p>
+<p></center></p>
+<p><center><sup>Figure. Population size of haploid and diploid yeast fit with logistic growth models.</sup></center></p>
+<p><em>Note: This may be a bit misleading, as such excellent model fits are rarely observed, especially outside the lab!</em></p>
+</div>
+<div class="admonition todo">
+<p class="admonition-title">To do: make the above plots in Python</p>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../lecture-02/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lecture 2" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lecture 2
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lecture-04/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture 4" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lecture 4
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1704 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Lecture 13 - EEB430/1430 Mathematical modelling in ecology and evolution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+  
+  
+    
+    
+    
+  
+  
+  <style>.md-tag-icon{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.5 7A1.5 1.5 0 0 1 4 5.5 1.5 1.5 0 0 1 5.5 4 1.5 1.5 0 0 1 7 5.5 1.5 1.5 0 0 1 5.5 7m15.91 4.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.11 0-2 .89-2 2v7c0 .55.22 1.05.59 1.41l8.99 9c.37.36.87.59 1.42.59.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.56-.23-1.06-.59-1.42Z"/></svg>');}</style>
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-13-general-solutions-linear-multivariate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-header__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EEB430/1430 Mathematical modelling in ecology and evolution
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 13
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../syllabus/general_info/" class="md-tabs__link">
+        Syllabus
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../schedule/" class="md-tabs__link md-tabs__link--active">
+        Lectures
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/schedule/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../acknowledgements/" class="md-tabs__link">
+      Acknowledgements
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-nav__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    EEB430/1430 Mathematical modelling in ecology and evolution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Syllabus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syllabus" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Syllabus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        General info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        Course structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        When and where
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/assignments/" class="md-nav__link">
+        Assignments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        Final Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/exams/" class="md-nav__link">
+        Exams
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        Instructors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/other_resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Lectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        Lecture 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        Lecture 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        Lecture 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        Lecture 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        Lecture 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        Lecture 6
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        Lecture 7
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        Lecture 8
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        Lecture 9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        Lecture 10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        Lecture 11
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        Lecture 12
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 13
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lecture 13
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-discrete-time" class="md-nav__link">
+    1. Discrete time
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Discrete time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motivating-example" class="md-nav__link">
+    Motivating example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-formulation" class="md-nav__link">
+    General formulation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-solution" class="md-nav__link">
+    General solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-term-dynamics" class="md-nav__link">
+    Long-term dynamics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complex-eigenvalues" class="md-nav__link">
+    Complex eigenvalues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motivating-example-revisited" class="md-nav__link">
+    Motivating example revisited
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-continuous-time" class="md-nav__link">
+    2. Continuous time
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Continuous time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-solution_1" class="md-nav__link">
+    General solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-term-dynamics_1" class="md-nav__link">
+    Long-term dynamics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complex-eigenvalues_1" class="md-nav__link">
+    Complex eigenvalues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-14/" class="md-nav__link">
+        Lecture 14
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        Lecture 15
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        Lecture 16
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        Lecture 17
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        Lecture 18
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        Lecture 19
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        Lecture 20
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-discrete-time" class="md-nav__link">
+    1. Discrete time
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Discrete time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motivating-example" class="md-nav__link">
+    Motivating example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-formulation" class="md-nav__link">
+    General formulation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-solution" class="md-nav__link">
+    General solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-term-dynamics" class="md-nav__link">
+    Long-term dynamics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complex-eigenvalues" class="md-nav__link">
+    Complex eigenvalues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motivating-example-revisited" class="md-nav__link">
+    Motivating example revisited
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-continuous-time" class="md-nav__link">
+    2. Continuous time
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Continuous time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-solution_1" class="md-nav__link">
+    General solution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-term-dynamics_1" class="md-nav__link">
+    Long-term dynamics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complex-eigenvalues_1" class="md-nav__link">
+    Complex eigenvalues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      binderUrl: "https://gke.mybinder.org",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+<h1 id="lecture-13-general-solutions-linear-multivariate">Lecture 13: General solutions (linear multivariate)</h1>
+<hr style="margin-bottom: 0em;">
+<p><center></p>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+<p></center></p>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Discrete time</a></li>
+<li><a href="#section2">Continuous time</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-discrete-time">1. Discrete time</h2>
+<hr>
+
+<h3 id="motivating-example">Motivating example</h3>
+<p>Let's return to our model of the number of birds on two islands from Lecture 10, which was the motivation for learning linear algebra in the first place. Let's adjust the model slightly, removing foreign immigration and switching to discrete time (assuming migration, then birth, then death). </p>
+<p><center>
+<pre class="mermaid"><code>graph LR;
+    A1((n1)) --b1 n1--&gt; A1;
+    A1 --d1 n1--&gt; C1[ ];
+
+    A2((n2)) --b2 n2--&gt; A2;
+    A2 --d2 n2--&gt; C2[ ];
+
+    A1 --m12 n1--&gt; A2;
+    A2 --m21 n2--&gt; A1;
+
+    style C1 height:0px;
+    style C2 height:0px;</code></pre>
+</center></p>
+<p>The number of birds on the two islands in the next time step are then</p>
+<div class="arithmatex">\[
+\begin{aligned}
+n_1(t+1) &amp;= (n_1(t)(1-m_{12}) + n_2(t)m_{21})(1+b_1)(1-d_1) \\
+n_2(t+1) &amp;= (n_1(t)m_{12} + n_2(t)(1-m_{21}))(1+b_2)(1-d_2) \\
+\end{aligned}
+\]</div>
+<p>As we noted in Lecture 10, we can write a system of linear equations (in this case recursion equations) in matrix form</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\vec{n}(t+1) &amp;= \mathbf{M}\vec{n}(t)
+\end{aligned}
+\]</div>
+<p>where in this example</p>
+<div class="arithmatex">\[
+\mathbf{M} = 
+\begin{pmatrix} 
+(1-m_{12})(1+b_1)(1-d_1) &amp; m_{21}(1+b_1)(1-d_1) \\ 
+m_{12}(1+b_2)(1-d_2) &amp; (1-m_{21})(1+b_2)(1-d_2)
+\end{pmatrix}
+\]</div>
+<p>The question we now want to answer is, how do the numbers of birds on the two islands change over time?</p>
+<h3 id="general-formulation">General formulation</h3>
+<p>Instead of analyzing this specific model, let's investigate the dynamics of any system of linear equations in discrete time. We will then return to our motivating example.</p>
+<p>If there are <span class="arithmatex">\(n\)</span> variables to keep track of, <span class="arithmatex">\(x_1\)</span>, <span class="arithmatex">\(x_2\)</span>, ..., <span class="arithmatex">\(x_n\)</span>, then there will be <span class="arithmatex">\(n\)</span> recursion equations</p>
+<div class="arithmatex">\[
+\begin{aligned}
+x_1(t+1) &amp;= m_{11} x_1(t) + m_{12} x_2(t) + \cdots + m_{1n} x_n(t) \\
+x_2(t+1) &amp;= m_{21} x_1(t) + m_{22} x_2(t) + \cdots + m_{2n} x_n(t) \\
+   &amp;\vdots \\
+x_n(t+1) &amp;= m_{n1} x_1(t) + m_{n2} x_2(t) + \cdots + m_{nn} x_n(t)
+\end{aligned}
+\]</div>
+<p>e.g., in the motivating example above we have <span class="arithmatex">\(n=2\)</span>.</p>
+<p>These equations can be written in matrix form</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\begin{pmatrix} x_1(t+1) \\ x_2(t+1) \\ \vdots \\ x_n(t+1) \end{pmatrix}
+&amp;= 
+\begin{pmatrix}
+         m_{11} &amp; m_{12} &amp; \cdots &amp; m_{1n} \\ 
+         m_{21} &amp; m_{22} &amp; \cdots &amp; m_{2n}\\
+         \vdots &amp; \vdots &amp; &amp; \vdots\\
+         m_{n1} &amp; m_{n2} &amp; \cdots &amp; m_{nn} 
+\end{pmatrix}
+\begin{pmatrix} 
+         x_1(t) \\ x_2(t) \\ \vdots \\ x_n(t) 
+\end{pmatrix}\\
+\vec{x}(t+1) &amp;= \mathbf{M} \vec{x}(t)
+\end{aligned}
+\]</div>
+<p>How does <span class="arithmatex">\(\vec{x}\)</span> change over time?</p>
+<h3 id="general-solution">General solution</h3>
+<p>Since this is just a multivariate version of exponential growth, we can derive the general solution by brute force iteration</p>
+<div class="arithmatex">\[
+\begin{aligned} 
+\vec{x}(t) &amp;= \mathbf{M}\vec{x}(t-1)\\ 
+&amp;= \mathbf{M}^2\vec{x}(t-2)\\
+&amp; \vdots \\
+&amp;= \mathbf{M}^t\vec{x}(0) 
+\end{aligned}
+\]</div>
+<p>However, in most cases it will be hard to compute <span class="arithmatex">\(\mathbf{M}^t\)</span> (if you don't believe me, try calculating even just <span class="arithmatex">\(\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}^3\)</span>). Fortunately there is a trick involving eigenvalues and eigenvectors.</p>
+<p>Recall the equation for the eigenvalues, <span class="arithmatex">\(\lambda\)</span>, and right eigenvectors, <span class="arithmatex">\(\vec{v}\)</span>,</p>
+<div class="arithmatex">\[
+\mathbf{M} \vec{v} = \lambda \vec{v}
+\]</div>
+<p>For our <span class="arithmatex">\(n\)</span>-dimensional model, there will often be <span class="arithmatex">\(n\)</span> eigenvalues and eigenvectors that satisfy this equation (sometimes the <span class="arithmatex">\(n\)</span> eigenvalues are not all distinct).</p>
+<p>We can actually write all <span class="arithmatex">\(n\)</span> of these equations in matrix form</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbf{M} \begin{pmatrix} \vec{v}_1 &amp; \vec{v}_2 &amp; \cdots &amp; \vec{v}_n \end{pmatrix} 
+&amp;= \begin{pmatrix} \lambda_1 \vec{v}_1 &amp; \lambda_2 \vec{v}_2 &amp; \cdots &amp; \lambda_n \vec{v}_n \end{pmatrix}\\
+\mathbf{M} \mathbf{A} &amp;= \mathbf{A} \mathbf{D}
+\end{aligned}
+\]</div>
+<p>where the columns of <span class="arithmatex">\(\mathbf{A}\)</span> are the right eigenvectors and <span class="arithmatex">\(\mathbf{D}\)</span> is a diagonal matrix of the eigenvalues</p>
+<div class="arithmatex">\[
+\mathbf{D} = 
+\begin{pmatrix} 
+\lambda_1 &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; \lambda_2 &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\ 
+0 &amp; 0 &amp; \cdots &amp; \lambda_n\\  
+\end{pmatrix}
+\]</div>
+<p>Now here is the trick: multiply both sides of <span class="arithmatex">\(\mathbf{M} \mathbf{A} = \mathbf{A} \mathbf{D}\)</span> by <span class="arithmatex">\(\mathbf{A}^{-1}\)</span> on the right</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbf{M} \mathbf{A} &amp;= \mathbf{A} \mathbf{D}\\
+\mathbf{M} \mathbf{A}\mathbf{A}^{-1} &amp;= \mathbf{A} \mathbf{D}\mathbf{A}^{-1}\\  
+\mathbf{M} &amp;= \mathbf{A} \mathbf{D} \mathbf{A}^{-1}
+\end{aligned}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can only take the inverse of our <span class="arithmatex">\(n\times n\)</span> matrix of right eigenvectors, <span class="arithmatex">\(\mathbf{A}\)</span>, when <span class="arithmatex">\(\mathbf{A}\)</span> is invertible, which requires the determinant be non-zero or, equivalently, the rows (or columns) of <span class="arithmatex">\(\mathbf{A}\)</span> to be linearly independent. Fortunately, in many cases the columns (the right eigenvectors) will be linearly independent. However, sometimes the right eigenvectors will not be linearly independent, which only occurs when there are less than <span class="arithmatex">\(n\)</span> distinct eigenvalues. When the right eigenvectors of <span class="arithmatex">\(\mathbf{M}\)</span> are not linearly independent we call <span class="arithmatex">\(\mathbf{M}\)</span> <strong>defective</strong>. In that case we need to derive the general solution in another way, but we won't deal with that in this class.</p>
+</div>
+<p>Subbing this alternate version of <span class="arithmatex">\(\mathbf{M}\)</span> into our general solution above, we see that most of the <span class="arithmatex">\(\mathbf{A}\)</span> and <span class="arithmatex">\(\mathbf{A}^{-1}\)</span> matrices cancel, leaving us with</p>
+<div class="arithmatex">\[
+\begin{aligned} 
+\vec{x}(t) &amp;= \mathbf{M}^t\vec{x}(0)\\
+&amp;= (\mathbf{A}\mathbf{D}\mathbf{A}^{-1})^t\vec{x}(0)\\
+&amp;= (\mathbf{A}\mathbf{D}\mathbf{A}^{-1})
+(\mathbf{A}\mathbf{D}\mathbf{A}^{-1}) \cdots
+(\mathbf{A}\mathbf{D}\mathbf{A}^{-1})
+\vec{x}(0)\\
+&amp;= \mathbf{A}\mathbf{D}(\mathbf{A}^{-1}
+\mathbf{A})\mathbf{D}(\mathbf{A}^{-1}\mathbf{A}) \cdots
+(\mathbf{A}^{-1}\mathbf{A})\mathbf{D}\mathbf{A}^{-1}
+\vec{x}(0)\\ 
+&amp;= \mathbf{A}\mathbf{D}^t\mathbf{A}^{-1}
+\vec{x}(0) 
+\end{aligned}
+\]</div>
+<p>And this is great because <span class="arithmatex">\(\mathbf{D}\)</span> is a diagonal matrix, meaning <span class="arithmatex">\(\mathbf{D}^t\)</span> is easy to calculate</p>
+<div class="arithmatex">\[
+\mathbf{D}^t = 
+ \begin{pmatrix}
+    \lambda_1^t &amp; 0 &amp; \cdots &amp; 0 \\ 
+    0 &amp; \lambda_2^t &amp; \cdots &amp; 0\\
+    \vdots &amp; \vdots &amp; &amp; \vdots\\
+    0 &amp; 0 &amp; \cdots &amp; \lambda_n^t
+\end{pmatrix}
+\]</div>
+<p>It would not have been so easy to find <span class="arithmatex">\(\mathbf{M}^t\)</span>!</p>
+<p>Note that <span class="arithmatex">\(\mathbf{A}^{-1}\)</span> is a matrix whose rows are the left eigenvectors of <span class="arithmatex">\(\textbf{M}\)</span>, 
+which can be seen by deriving <span class="arithmatex">\(\mathbf{M} = \mathbf{A} \mathbf{D}\mathbf{A}^{-1}\)</span> starting 
+with the equation for the left eigenvectors <span class="arithmatex">\(\vec{u}\mathbf{M}=\lambda\vec{u}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Another way to arrive at this general solition, <span class="arithmatex">\(\vec{x}(t) = \mathbf{A}\mathbf{D}^t\mathbf{A}^{-1}\vec{x}(0)\)</span>, is to consider a transformation from our current coordinate system, <span class="arithmatex">\(\vec{x}\)</span>, to another defined by <span class="arithmatex">\(\vec{y} = \mathbf{A}^{-1}\vec{x}\)</span>. </p>
+<p>If we then attempt to derive a recursion in our new coordinate system we find</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\vec{y}(t+1) &amp;= \mathbf{A}^{-1}\vec{x}(t+1)\\
+&amp;= \mathbf{A}^{-1}\mathbf{M}\vec{x}(t)\\
+&amp;= \mathbf{A}^{-1}\mathbf{M}\mathbf{A}\vec{y}(t)\\
+&amp;= \mathbf{A}^{-1}(\mathbf{A} \mathbf{D} \mathbf{A}^{-1})\mathbf{A}\vec{y}(t)\\
+&amp;= \mathbf{D}\vec{y}(t)
+\end{aligned}
+\]</div>
+<p>Voila! In the new coordinate system we just move along each axis by a factor <span class="arithmatex">\(\lambda_i\)</span>, just as we saw in Lecture 12. In this way the eigenvectors form a new, more convenient, coordinate system.</p>
+<p>To convert back to our original coordinate system we multiply both sides of the equation by <span class="arithmatex">\(\mathbf{A}\)</span> on the left and then use <span class="arithmatex">\(\vec{y} = \mathbf{A}^{-1}\vec{x}\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbf{A}\vec{y}(t+1) &amp;= \mathbf{A}\mathbf{D}\vec{y}(t)\\
+\vec{x}(t+1) &amp;= \mathbf{A}\mathbf{D}\mathbf{A}^{-1}\vec{x}(t)\\
+\end{aligned}
+\]</div>
+</div>
+<h3 id="long-term-dynamics">Long-term dynamics</h3>
+<p>A major implication from the general solution is that only if all the eigenvalues have an absolute value less than one, <span class="arithmatex">\(|\lambda_i|&lt;1\)</span>, will all entries of <span class="arithmatex">\(\mathbf{D}^t\)</span> decay to zero and hence <span class="arithmatex">\(\vec{x}(t)\)</span> decay to <span class="arithmatex">\(\vec{0}\)</span> (the equilibrium) as time increases.</p>
+<p>Further, as time increases <span class="arithmatex">\(\mathbf{D}^t\)</span> will be dominated by the eigenvalue with the largest absolute value, which we will call the <strong>leading eigenvalue</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To see that <span class="arithmatex">\(\mathbf{D}^t\)</span> will be dominated by the eigenvalue with the largest absolute value as time increases, let the leading eigenvalue be <span class="arithmatex">\(\lambda_1\)</span> and factor it out of <span class="arithmatex">\(\mathbf{D}^t\)</span></p>
+<div class="arithmatex">\[
+\mathbf{D}^t = \lambda_1^t 
+\begin{pmatrix} 
+1 &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; (\lambda_2/\lambda_1)^t &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\ 
+0 &amp; 0 &amp; \cdots &amp; (\lambda_n/\lambda_1)^t\\  
+\end{pmatrix}
+\]</div>
+<p>Since <span class="arithmatex">\(|\lambda_i/\lambda_1|&lt;1\)</span> for all <span class="arithmatex">\(i\)</span>, for large <span class="arithmatex">\(t\)</span> these all go to zero and we have</p>
+<div class="arithmatex">\[
+\mathbf{D}^t \approx \tilde{\mathbf{D}}^t  \equiv \lambda_1^t 
+\begin{pmatrix} 
+1 &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; 0 &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\ 
+0 &amp; 0 &amp; \cdots &amp; 0\\  
+\end{pmatrix}
+\]</div>
+</div>
+<p>We can therefore approximate <span class="arithmatex">\(\vec{x}(t)\)</span> after a sufficient amount of time as </p>
+<div class="arithmatex">\[
+\begin{aligned}
+\tilde{\vec{x}}(t) &amp;= \mathbf{A}\tilde{\mathbf{D}}^t\mathbf{A}^{-1}\vec{x}(0)\\
+&amp;= \lambda_1^t \vec{v}_1 \vec{u}_1 \vec{x}(0)
+\end{aligned}
+\]</div>
+<p>where <span class="arithmatex">\(\vec{v}_1\)</span> and <span class="arithmatex">\(\vec{u}_1\)</span> are the right and left eigenvectors associated with the leading eigenvalue, <span class="arithmatex">\(\lambda_1\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Finding the left eigenvectors via the inverse of <span class="arithmatex">\(\mathbf{A}\)</span> guarantees that the eigenvectors have been scaled such that <span class="arithmatex">\(\vec{u}_1\vec{v}_1 = 1\)</span>. If the eigenvectors have been derived in another way, make sure you scale them so that this is true, eg, make the left eigenvalue equal to <span class="arithmatex">\(\vec{u}_1/(\vec{u}_1 \vec{v}_1)\)</span>. Otherwise the long-term approximation will be off by a constant factor.</p>
+</div>
+<p>This means that, in the long-term,</p>
+<ul>
+<li><span class="arithmatex">\(\vec{x}(t)\)</span> will grow like <span class="arithmatex">\(\lambda_1^t\)</span>, where <span class="arithmatex">\(\lambda_1\)</span> is the leading eigenvalue</li>
+<li>each variable in <span class="arithmatex">\(\vec{x}(t)\)</span> will oscillate around the equilibrium if <span class="arithmatex">\(\lambda_1&lt;0\)</span></li>
+<li><span class="arithmatex">\(\vec{x}(t)\)</span> will approach the right eigenvector associated with the leading eigenvalue, <span class="arithmatex">\(\vec{v}_1\)</span></li>
+<li><span class="arithmatex">\(\vec{x}(t)\)</span> is weighted by a constant, <span class="arithmatex">\(\vec{u}_1 \vec{x}(0)\)</span>, describing the "initial size" of the system</li>
+</ul>
+<h3 id="complex-eigenvalues">Complex eigenvalues</h3>
+<p>The final complication to discuss is complex eigenvalues. Specifically, what is <span class="arithmatex">\(\lambda^t\)</span> when <span class="arithmatex">\(\lambda = A + B i\)</span>?</p>
+<p>To do this, we can first use some simple geometry on the complex plane (a two-dimensional space with the real part, <span class="arithmatex">\(A\)</span>, on the x-axis and the imaginary part, <span class="arithmatex">\(B\)</span>, on the y-axis) to show that any complex number can be written</p>
+<div class="arithmatex">\[
+A + Bi = R (\cos(\theta) + i \sin(\theta))
+\]</div>
+<p>where <span class="arithmatex">\(R = \sqrt{A^2 + B^2}\)</span> is the absolute value of <span class="arithmatex">\(\lambda\)</span> and <span class="arithmatex">\(\theta = \arctan(B/A)\)</span> is the angle between <span class="arithmatex">\(\lambda\)</span> and the x-axis.</p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt
+import math
+
+A,B = 1,1 #real and imaginary parts
+
+fig, ax = plt.subplots()
+
+ax.arrow(0,0,A,B, head_width=0.05, color='black', length_includes_head=True) #eigenvalue as vector in complex plane
+
+dx = 0.05
+ax.plot([0-dx/2,A-dx/2],[0+dx,B+dx],marker='o',c='b')
+ax.text(A/2,B/2+3*dx,r'$R$',rotation=math.atan(B/A)*180/math.pi,c='b',fontsize=15,ha='center',va='center')
+
+ax.plot([0,A],[B,B],marker='o',c='r')
+ax.text(A/2,B+dx,r'$A=R \cos(\theta)$',c='r',fontsize=15,ha='center',va='center')
+
+ax.plot([A,A],[0,B],marker='o',c='g')
+ax.text(A+dx,B/2,r'$B=R \sin(\theta)$',c='g',fontsize=15,ha='center',va='center',rotation=90)
+
+ax.set_xlabel('real part, $A$')
+ax.set_ylabel('imaginary part, $B$')
+ax.set_xlim(-dx,A+2*dx)
+ax.set_ylim(-dx,B+2*dx)
+
+dx=A/4
+ax.plot([0,dx],[0,0],c='orange')
+ax.add_patch(Arc((0,0), width=2*dx, height=2*dx, theta1=0, theta2=math.atan(B/A)*180/math.pi, edgecolor='orange'))
+ax.text(dx/2,dx/6,r'$\theta$',fontsize=15,c='orange')
+
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-13_files/lecture-13_2_0.png" /></p>
+<p>We then use Euler's equation, <span class="arithmatex">\(\cos(\theta) + i \sin(\theta) = e^{i \theta}\)</span>, to write </p>
+<div class="arithmatex">\[
+A + Bi = R e^{i \theta}
+\]</div>
+<p>And we can now take powers of <span class="arithmatex">\(\lambda\)</span> </p>
+<div class="arithmatex">\[
+\lambda^t = R^t e^{i \theta t}
+\]</div>
+<h3 id="summary">Summary</h3>
+<p>To summarize, for any system of linear recursion equations, <span class="arithmatex">\(\vec{x}(t+1)\)</span>, we can </p>
+<ul>
+<li>write the general solution in terms of the eigenvalues and eigenvectors, <span class="arithmatex">\(\vec{x}(t) = \mathbf{A}\mathbf{D}^t\mathbf{A}^{-1}\vec{x}(0)\)</span></li>
+<li>define the leading eigenvalue as the one with the largest absolute value</li>
+<li>say that the equilibrium is stable if the leading eigenvalue is less than 1</li>
+<li>approximate the long-term dynamics in terms of the leading eigenvalue and its associated eigenvectors, <span class="arithmatex">\(\vec{x}(t) = \lambda_1^t \vec{v}_1 \vec{u}_1 \vec{x}(0)\)</span></li>
+</ul>
+<h3 id="motivating-example-revisited">Motivating example revisited</h3>
+<p>Now let's return to our motivating example of birds on islands. And let's imagine we have good estimates of the parameter values (after years of tough fieldwork!): <span class="arithmatex">\(m_{12}=m_{21}=0.1\)</span>, <span class="arithmatex">\(b_1=b_2=0.2\)</span>, <span class="arithmatex">\(d_1=0.1\)</span>, <span class="arithmatex">\(d_2=0.2\)</span>. To derive the general solution, giving the number of birds on the two islands in year <span class="arithmatex">\(t\)</span>, we first derive the eigenvalues and eigenvectors of <span class="arithmatex">\(\mathbf{M}\)</span>. Using the techniques in Lecture 12 we find that the eigenvalues are <span class="arithmatex">\(\lambda_1\approx1.03\)</span> and <span class="arithmatex">\(\lambda_2\approx0.8\)</span>. The associated right eigenvectors are <span class="arithmatex">\(\vec{v}_1\approx\begin{pmatrix} 1 \\ 0.57 \end{pmatrix}\)</span> and <span class="arithmatex">\(\vec{v}_2\approx\begin{pmatrix} 1 \\ -1.57 \end{pmatrix}\)</span>. We therefore have </p>
+<div class="arithmatex">\[
+\mathbf{D} = \begin{pmatrix} 1.03 &amp; 0 \\ 0 &amp; 0.8 \end{pmatrix}
+\]</div>
+<p>and </p>
+<div class="arithmatex">\[
+\mathbf{A} = \begin{pmatrix} 1 &amp; 1 \\ 0.57 &amp; -1.57 \end{pmatrix}
+\]</div>
+<p>This year's census of the islands tells us that there are currently 100 birds on island 1 and 50 on island 2. Taking this as the starting point, <span class="arithmatex">\(\vec{n}(0) = \begin{pmatrix} 100 \\ 50 \end{pmatrix}\)</span>, we can use our general solution to predict the number of birds on the two islands over time. Below we plot the predicted number of birds on the two islands over the next 100 years.</p>
+<pre data-executable="true" data-language="python">
+m12, m21, b1, b2, d1, d2 = 0.1, 0.1, 0.2, 0.2, 0.1, 0.2 #parameter values
+
+# general solution
+from sympy import *
+M = Matrix([[(1-m12)*(1+b1)*(1-d1), m21*(1+b1)*(1-d1)], #matrix
+            [m12*(1+b2)*(1-d2), (1-m21)*(1+b2)*(1-d2)]])
+A, D = M.diagonalize() #quick way to get matrix of right eigenvectors (A) and eigenvalues (D)
+n0 = Matrix([100,50]) #note this is made into a column vector automatically
+nt = A*D**t*A.inv()*n0 #general solution
+
+# plot
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+for j in range(2): #for each island
+    ax.plot([nt.subs(t,i)[j] for i in range(100)], label='island %d'%(j+1), marker=".")
+ax.legend()
+ax.set_xlabel('years from now')
+ax.set_ylabel('number of birds')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-13_files/lecture-13_4_0.png" /></p>
+<p>We see that the population grows, which we should have expected given that the leading eigenvalue, <span class="arithmatex">\(\lambda_1\approx1.03\)</span>, has an absolute value greater than 1. </p>
+<p>We also see that there are about 0.57 birds on island 2 for every 1 bird on island 1, as predicted by the right eigenvector associated with the leading eigenvector, <span class="arithmatex">\(\vec{v}_1 \approx \begin{pmatrix} 1 \\ 0.57 \end{pmatrix}\)</span>.</p>
+<p>More generally, our long-term prediction is <span class="arithmatex">\(\vec{n}(t) \approx \lambda_1^t \vec{v}_1 \vec{u}_1 \vec{n}(0)\)</span>. Overlaying this approximation as black curves on the above plot shows that this works very well.</p>
+<pre data-executable="true" data-language="python">
+# long-term approximation
+u1 = Matrix(1,2,A.inv()[0:2]) #left eigenvector is first row in A inverse
+ntapp = l1**t * v1[0] * u1 * n0
+
+# plot
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+for j in range(2): #for each island
+    ax.plot([nt.subs(t,i)[j] for i in range(100)], label='island %d'%(j+1), marker=".") #general solution
+    ax.plot([ntapp.subs(t,i)[j] for i in range(100)], c='k') #long-term approx
+ax.legend()
+ax.set_xlabel('years from now')
+ax.set_ylabel('number of birds')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-13_files/lecture-13_6_0.png" /></p>
+<p><span id='section2'></span></p>
+<h2 id="2-continuous-time">2. Continuous time</h2>
+<hr>
+
+<p>Now let's consider a system of linear equations in continuous time, which we can write in matrix form as</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}\vec{x}}{\mathrm{d}t} = \mathbf{M} \vec{x}
+\]</div>
+<h3 id="general-solution_1">General solution</h3>
+<p>Just as in the univariate case of exponential growth, the general solution is simply </p>
+<div class="arithmatex">\[
+\vec{x}(t) = e^{\mathbf{M}t}\vec{x}(0)
+\]</div>
+<p>But now we have <span class="arithmatex">\(e\)</span> to the power of a <em>matrix</em>, and <span class="arithmatex">\(e^{\mathbf{M}t} = \sum_{i=0}^{\infty} \mathbf{M}^i t^i / i!\)</span> is complicated!</p>
+<p>Fortunately we can use the same transform as in the discrete time case, <span class="arithmatex">\(\vec{y}=\mathbf{A}^{-1}\vec{x}\)</span>, to write the general solution as </p>
+<div class="arithmatex">\[
+\vec{x}(t) = \mathbf{A} e^{\mathbf{D}t} \mathbf{A}^{-1}\vec{x}(0)
+\]</div>
+<p>This is much simpler because <span class="arithmatex">\(e^{\mathbf{D}t}\)</span> is just</p>
+<div class="arithmatex">\[
+e^{\mathbf{D}t} = \begin{pmatrix}
+e^{\lambda_1 t} &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; e^{\lambda_2 t} &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+0 &amp; \cdots &amp; 0 &amp; e^{\lambda_n t}
+\end{pmatrix}
+\]</div>
+<h3 id="long-term-dynamics_1">Long-term dynamics</h3>
+<p>From this general solution we see that the system will approach equilibrium, <span class="arithmatex">\(\hat{\vec{x}} = \vec{0}\)</span>, only if all the entries of <span class="arithmatex">\(e^{\mathbf{D}t}\)</span> approach zero as time increases, which requires that all the eigenvalues are negative.</p>
+<p>Taking <span class="arithmatex">\(\lambda_1\)</span> to be the eigenvalue with the largest value, which we will call the <strong>leading eigenvalue</strong>, we also see that after sufficient time <span class="arithmatex">\(e^{\mathbf{D}t}\)</span> becomes dominated by this entry</p>
+<div class="arithmatex">\[
+e^{\mathbf{D}t} \approx 
+\begin{pmatrix}
+e^{\lambda_1 t} &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; 0 &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+0 &amp; \cdots &amp; 0 &amp; 0
+\end{pmatrix}
+\]</div>
+<p>implying that the long-term dynamics can be approximated by </p>
+<div class="arithmatex">\[
+\vec{x}(t) \approx e^{\lambda_1 t} \vec{v}_1 \vec{u}_1 \vec{x}(0)
+\]</div>
+<p>where <span class="arithmatex">\(\vec{v}_1\)</span> and <span class="arithmatex">\(\vec{u}_1\)</span> are the right and left eigenvectors associated with the leading eigenvalue, <span class="arithmatex">\(\lambda_1\)</span>.</p>
+<h3 id="complex-eigenvalues_1">Complex eigenvalues</h3>
+<p>When we have complex eigenvalues we can again use Euler's equation to write</p>
+<div class="arithmatex">\[
+\begin{aligned}
+e^{\lambda t} &amp;= e^{(A + Bi) t}\\
+&amp;= e^{At}e^{Bti}\\
+&amp;= e^{At}(\cos(Bt) + i\sin(Bt))
+\end{aligned}
+\]</div>
+<p>Because both <span class="arithmatex">\(\cos(Bt)\)</span> and <span class="arithmatex">\(\sin(Bt)\)</span> are bounded (between -1 and 1), whether <span class="arithmatex">\(e^{\lambda t}\)</span> grows or shrinks in long term depends only on the real part, <span class="arithmatex">\(A\)</span>. So, in contrast to discrete time, when determining the leading eigenvalue in continuous time we only have to consider the real parts of the eigenvalues.</p>
+<h3 id="summary_1">Summary</h3>
+<p>In summary, for any system of linear differential equations, <span class="arithmatex">\(\frac{\mathrm{d}\vec{x}}{\mathrm{d}t}\)</span>, we can </p>
+<ul>
+<li>write the general solution in terms of the eigenvalues and eigenvectors, <span class="arithmatex">\(\vec{x}(t) = \mathbf{A} e^{\mathbf{D}t} \mathbf{A}^{-1}\vec{x}(0)\)</span></li>
+<li>define the leading eigenvalue as the eigenvalue with the largest real part</li>
+<li>say that the equilibrium is stable if the real part of the leading eigenvalue is negative</li>
+<li>approximate the long-term dynamics in terms of the leading eigenvalue and its associated eigenvectors, <span class="arithmatex">\(\vec{x}(t) \approx e^{\lambda_1 t} \vec{v}_1 \vec{u}_1 \vec{x}(0)\)</span></li>
+</ul>
+<h3 id="example">Example</h3>
+<p>Let's consider a different example here in continuous time. Instead of thinking about birds on islands, let's think about a model of sexual selection. We will model the mean value of a male trait, <span class="arithmatex">\(\bar{z}\)</span>, such as the length of a birds tail, and the mean value of female preference for that trait, <span class="arithmatex">\(\bar{p}\)</span> (if <span class="arithmatex">\(\bar{p}&gt;0\)</span> females tend to prefer larger male traits, if <span class="arithmatex">\(\bar{p}&lt;0\)</span> females tend to prefer smaller male traits). We assume the optimal male trait value in the absence of sexual selection is <span class="arithmatex">\(\theta\)</span>, i.e., natural selection always pushes <span class="arithmatex">\(\bar{z}\)</span> towards <span class="arithmatex">\(\theta\)</span> (we'll take <span class="arithmatex">\(\theta=0\)</span>, meaning <span class="arithmatex">\(\bar{z}\)</span> is measured relative to the optimum). We assume female choice is costly, i.e., natural selection always pushes <span class="arithmatex">\(\bar{p}\)</span> towards 0. Finally we will assume that male traits and female preference share some genetic basis, meaning that they will covary (e.g., there may be some alleles that increase the trait value when in males and increase the preference when in females, causing positive covariance). This covariance means that a change in male trait will cause a change in female preference, and vice-versa.</p>
+<p>We can describe the dynamics of <span class="arithmatex">\(\bar{z}\)</span> and <span class="arithmatex">\(\bar{p}\)</span> with a system of linear differential equations</p>
+<div class="arithmatex">\[
+\begin{align}
+\frac{\mathrm{d}\bar{z}}{\mathrm{d}t} = G_z (a \bar{p} - c \bar{z}) - B b \bar{p}\\
+\frac{\mathrm{d}\bar{p}}{\mathrm{d}t} = B (a \bar{p} - c \bar{z}) - G_p b \bar{p} \\
+\end{align}
+\]</div>
+<p>where <span class="arithmatex">\(G_z\)</span> and <span class="arithmatex">\(G_p\)</span> are the amounts of genetic variation in male traits and female preference (this is the "fuel" of evolution, so the rates of evolution are proportional to these variances), <span class="arithmatex">\(B\)</span> is the covariance between male traits and female preference, <span class="arithmatex">\(a\)</span> is the strength of sexual selection, and <span class="arithmatex">\(c\)</span> and <span class="arithmatex">\(b\)</span> are the strengths of natural selection on male traits and female preference.</p>
+<p>Choosing some parameter values and plotting the general solution, we see the mean male trait and mean female preference cycle over time, decaying towards zero.</p>
+<pre data-executable="true" data-language="python">
+Gz, Gp, B, a, b, c, z0, p0, tmax = 0.15, 0.8, 0.32, 0.95, 0.3, 0.45, 1, 0, 1000 #parameter values
+
+# general solution
+from sympy import *
+M = Matrix([[-Gz*c, Gz*a-b*B],
+            [-B*c, -Gp*b+a*B]])
+A, D = M.diagonalize() #quick way to get matrix of right eigenvectors (A) and eigenvalues (D)
+n0 = Matrix([z0,p0]) #note this is made into a column vector automatically
+nt = A*exp(D*t)*A.inv()*n0 #general solution
+
+# plot
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+ax.plot([re(nt.subs(t,i)[0]) for i in range(tmax)], label='male trait') #need to remove the imaginary part because of numerical error
+ax.plot([re(nt.subs(t,i)[1]) for i in range(tmax)], label='female preference')
+ax.legend()
+ax.set_xlabel('time')
+ax.set_ylabel('value')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-13_files/lecture-13_8_0.png" /></p>
+<p>This cycling occurs because initially the mean male trait is positive but there is no mean female preference. This implies that both natural and sexual selection favour smaller male traits, causing the mean to decline. But because of a correlated response, female preference also declines, favouring male traits less than 0. Eventually female preference becomes too costly and begins to increase back toward zero. This causes a correlated increase in the male trait, and so on. </p>
+<p>With these parameter values the eigenvalues are <span class="arithmatex">\(\lambda \approx -0.002 \pm 0.05 i\)</span>.</p>
+<p>We could therefore have predicted this cycling based on these eigenvalues, as they are complex.</p>
+<p>We could also have predicted the eventual decay to zero (the equilibrium), as the real parts of both eigenvalues are negative.</p>
+<p>In this case the two eigenvalues have the same real part and therefore there is no one leading eigenvalue, meaning that we cannot use our long-term approximation, <span class="arithmatex">\(\vec{x}(t) \approx e^{\lambda_1 t} \vec{v}_1 \vec{u}_1 \vec{x}(0)\)</span>.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../lecture-12/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lecture 12" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lecture 12
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lecture-14/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture 14" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lecture 14
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

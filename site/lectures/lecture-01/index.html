@@ -1,0 +1,1433 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Lecture 1 - EEB430/1430 Mathematical modelling in ecology and evolution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+  
+  
+    
+    
+    
+  
+  
+  <style>.md-tag-icon{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.5 7A1.5 1.5 0 0 1 4 5.5 1.5 1.5 0 0 1 5.5 4 1.5 1.5 0 0 1 7 5.5 1.5 1.5 0 0 1 5.5 7m15.91 4.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.11 0-2 .89-2 2v7c0 .55.22 1.05.59 1.41l8.99 9c.37.36.87.59 1.42.59.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.56-.23-1.06-.59-1.42Z"/></svg>');}</style>
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-1-introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-header__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EEB430/1430 Mathematical modelling in ecology and evolution
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../syllabus/general_info/" class="md-tabs__link">
+        Syllabus
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../schedule/" class="md-tabs__link md-tabs__link--active">
+        Lectures
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/schedule/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../acknowledgements/" class="md-tabs__link">
+      Acknowledgements
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-nav__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    EEB430/1430 Mathematical modelling in ecology and evolution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Syllabus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syllabus" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Syllabus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        General info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        Course structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        When and where
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/assignments/" class="md-nav__link">
+        Assignments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        Final Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/exams/" class="md-nav__link">
+        Exams
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        Instructors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/other_resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Lectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lecture 1
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-use-mathematical-models-in-ecology-and-evolution" class="md-nav__link">
+    1. Why use mathematical models in ecology and evolution?
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Why use mathematical models in ecology and evolution?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-hiv" class="md-nav__link">
+    Example 1: HIV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-extreme-events" class="md-nav__link">
+    Example 2: Extreme Events
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-sex-chromosomes" class="md-nav__link">
+    Example 3: Sex chromosomes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-syllabus" class="md-nav__link">
+    2. Syllabus
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        Lecture 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        Lecture 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        Lecture 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        Lecture 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        Lecture 6
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        Lecture 7
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        Lecture 8
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        Lecture 9
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        Lecture 10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        Lecture 11
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        Lecture 12
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        Lecture 13
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-14/" class="md-nav__link">
+        Lecture 14
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        Lecture 15
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        Lecture 16
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        Lecture 17
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        Lecture 18
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        Lecture 19
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        Lecture 20
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-use-mathematical-models-in-ecology-and-evolution" class="md-nav__link">
+    1. Why use mathematical models in ecology and evolution?
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Why use mathematical models in ecology and evolution?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-hiv" class="md-nav__link">
+    Example 1: HIV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-extreme-events" class="md-nav__link">
+    Example 2: Extreme Events
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-sex-chromosomes" class="md-nav__link">
+    Example 3: Sex chromosomes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-syllabus" class="md-nav__link">
+    2. Syllabus
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      binderUrl: "https://gke.mybinder.org",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+<h1 id="lecture-1-introduction">Lecture 1: Introduction</h1>
+<hr style="margin-bottom: 0em;">
+<p><center></p>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+<p></center></p>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Why use mathematical models in ecology and evolution?</a></li>
+<li><a href="#section2">Syllabus</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-why-use-mathematical-models-in-ecology-and-evolution">1. Why use mathematical models in ecology and evolution?</h2>
+<hr>
+
+<p>Mathematics permeates ecology and evolution, from simple back-of-the-envelope calculations to the development of sophisticated mathematical models. This is because mathematics is a unique tool that can take what we already know (or assume to be true) and rigorously lead us to the logical conclusions.</p>
+<p>To see this (while also introducing you to the kind of models I work with), let's look at a few examples.</p>
+<h3 id="example-1-hiv">Example 1: HIV</h3>
+<p>See sections 1.2-1.4 of the text for more info.</p>
+<p>Human immunodeficiency virus (HIV) is, as the name suggests, a virus that infects humans and causes acquired immunodeficiency syndrome (AIDS). This is a terrible diesase that has caused over 20 million deaths worldwide. It is transmitted via bodily fluids. Once inside the body HIV particles (virions) attach to a protein called CD4 on the cell membrane of helper T cells (part of our immune system) and others. Once attached, the virus inserts its RNA into the host cell, which is reverse transcribed into DNA and becomes part of the host genome. The host cell can remain in the 'latently infected' state for some time. When the viral DNA is eventually transcribed by the host cell, starting an 'active infection', hundreds of new virions are produced, often killing the host cell. These new virions then go on to infect other CD4+ cells. A large decline in the number of helper T cells is what causes AIDS. This is because helper T cells bind to viruses and secrete chemical signals to stimulate the immune system. So without helper T cells the immune system is very comprimised.</p>
+<p>Based on this, once infected with HIV (and without treatment) we expect the number of virions to rapidly increase and the number of helper T cells to decline. This is generally what is observed. However, the number of virions then tends to steeply decline. Why might this be?</p>
+<p>Here are two hypotheses:</p>
+<ol>
+<li>the immune system recognizes HIV and suppresses it</li>
+<li>the decline in helper T cells prevents HIV from replicating</li>
+</ol>
+<p>To decide whether the second hypothesis is valid <a href="https://www.science.org/doi/abs/10.1126/science.271.5248.497">Phillips (1996)</a> built a mathematical model describing the rate of change in the number of CD4+ cells and free virions. </p>
+<p>See the note below for the details of the model if you are interested (but don't worry if you don't understand all this yet!).</p>
+<details class="note">
+<summary>Details of the Philips (1996) model</summary>
+<p>See Box 2.4 in the text for more details.</p>
+<p>Philips built a dynamical model of the infection process using 4 differential equations:</p>
+<p><span class="arithmatex">\(\frac{dR}{dt} = \Gamma \tau - \mu R - \beta V R\)</span></p>
+<p><span class="arithmatex">\(\frac{dL}{dt} = p \beta V R - \mu L - \alpha L\)</span></p>
+<p><span class="arithmatex">\(\frac{dE}{dt} = (1 - p) \beta V R + \alpha L - \delta E\)</span></p>
+<p><span class="arithmatex">\(\frac{dV}{dt} = \pi E - \sigma V\)</span></p>
+<p>These equations describe the rate of change in the number of susceptible CD4+ cells (R), latently infected cells (L), actively infected cells (E), and free virions (V). These are the 4 "variables" of the model, as their values change over time. The remainder of the symbols represent "parameters", whose values do not change (they are constants). The meaning of the parameters and the values used by Phillips (1996) are shown in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Description</th>
+<th>Value (units/day)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\Gamma\)</span></td>
+<td>Rate that CD4+ cells are produced</td>
+<td>1.36</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\tau\)</span></td>
+<td>Proportion of CD4+ cells that are susceptible to attack</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mu\)</span></td>
+<td>HIV-independent death rate of susceptible CD4+ cells</td>
+<td>1.36 x 10^-3</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\beta\)</span></td>
+<td>Rate of CD4+ cell infection per HIV virion</td>
+<td>0.00027</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(p\)</span></td>
+<td>Proportion of newly infected cells becoming latently infected</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\alpha\)</span></td>
+<td>Activation rate of latently infected cells</td>
+<td>3.6 x 10^-2</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\delta\)</span></td>
+<td>Death rate of actively infected cells</td>
+<td>0.33</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\pi\)</span></td>
+<td>Rate of production of virions by actively infected cells</td>
+<td>100</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sigma\)</span></td>
+<td>Removal rate of cell-free virus</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Given these parameter descriptions, can you "read" the differential equations above? For example, what does <span class="arithmatex">\(\Gamma \tau\)</span> represent, biologically?</p>
+<p>Using these equations and parameter values Philips (1996) asked how the number of CD4+ cells (R + L + E) and free virions (V) changed over time following infection. </p>
+</details>
+<p>To see how Philips' model behaves, activate the kernel at the top of the page and run the code below</p>
+<pre data-executable="true" data-language="python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Build a function to iterate through the model (see note above for description of equations)
+def philips_model(R=200, L=0, E=0, V=4e-5, days=120, steps=120):
+    #choose parameter values
+    gamma, mu, tau, beta, p, alpha, sigma, delta, pi = [1.36, 1.36e-3, 0.2, 0.00027, 0.1, 3.6e-2, 2, 0.33, 100] 
+    record = []
+    for t in np.linspace(0, days, steps):        
+        dRdt = gamma * tau - mu * R - beta * V * R
+        R += dRdt
+        dLdt = p * beta * V * R - mu * L - alpha * L
+        L += dLdt
+        dEdt = (1-p) * beta * V * R + alpha * L - delta * E
+        E += dEdt
+        dVdt = pi * E - sigma * V
+        V += dVdt
+        record += ([[R + L + E, V]])
+    return np.array(record)
+
+# Interpolate through differentials and record population sizes
+steps = 120
+days = 120
+uninfected_lymphocytes, free_virions = philips_model(days=days, steps=steps).T
+number_of_days = np.linspace(1, days, steps)
+
+# Initialize plot
+fig, left_ax = plt.subplots()
+right_ax = left_ax.twinx()
+fig.set_size_inches(8,4)
+
+# Plot data on left axis
+left_ax.plot(number_of_days, uninfected_lymphocytes, color='green', label='R');
+left_ax.set_ylabel('CD4+ cells (R + E + L)', fontsize=14)
+left_ax.legend(frameon=False, bbox_to_anchor=(0.99, 0.99))
+left_ax.set_xlabel('Days from infection', fontsize=14)
+
+# Plot data on right axis
+right_ax.plot(number_of_days, free_virions, color='darkred', label='V');
+right_ax.set_ylabel('Free virions V', fontsize=14)
+right_ax.legend(frameon=False, bbox_to_anchor=(0.99, 0.85))
+
+# Format plot and show it
+plt.yscale('log')
+fig.tight_layout()
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-01_files/lecture-01_5_0.png" /></p>
+<p>Compare to Figure 1.3 and Figure 1.4 in the text. We see the initial increase in virions (red) and delcine in CD4+ cells (green), followed by a decline virions (note the log scale on the right axis -- this is a big decline, from over 1000 to about 10). Because this model does not include an immune response against the virions but still exhibits the decline in virions, we conclude that the second hypothesis is valid, that it is theoretically plausible that the decline in virions is due to a lack of CD4+ cells to infect. A few years later this hypothesis was empirically tested and validated -- a nice example of theory guiding science.</p>
+<p>Feel free to play around with the code above, changing parameter values or even the structure of the model. Do the dynamics change as you expected?</p>
+<h3 id="example-2-extreme-events">Example 2: Extreme Events</h3>
+<p>A second example is a model that I helped Dr. Kelsey Lyberger (then a PhD student at UC Davis with Sebastian Schreiber) with in <a href="https://www.biorxiv.org/content/10.1101/2020.04.02.014951v2">Lyberger et al 2021</a>.</p>
+<p><center></p>
+<p><img alt="" src="../lecture-01-img/kelsey.png" width="50%" /></p>
+<p></center></p>
+<p><center><sup>Kelsey Lyberger, doing <i>Daphnia</i> fieldwork I suppose.</sup></center></p>
+<p>Kelsey was interested in how populations respond to extreme climatic events, like hurricanes. It has long been clear that such events can impact the size of a population, e.g., by causing extra mortality, and may in fact put populations at risk of extinction. More recently it has become apparent that extreme events can also impose strong natural selection, and that populations can quickly adapt to the new environment. Some examples include:</p>
+<ul>
+<li><a href="https://www.jstor.org/stable/2406980">Ice-storms select on sparrow body size</a></li>
+<li><a href="https://www.pnas.org/doi/10.1073/pnas.2000801117">Hurricanes select on lizard limbs and toe pads</a></li>
+<li><a href="https://www.science.org/doi/10.1126/science.aad8786">Droughts select on Darwin finch beaks</a></li>
+<li><a href="https://nph.onlinelibrary.wiley.com/doi/10.1111/j.1469-8137.2010.03603.x">Droughts select on flowering time in <em>Brassica</em></a></li>
+</ul>
+<p>Now, how should such rapid adaptive evolution impact population size? This is the question Kelsey set out to answer with a mathematical model.</p>
+<div class="admonition todo">
+<p class="admonition-title">To do: give details of Kelsey's model</p>
+</div>
+<p>Below is a stochastic simulation much like that used by Kelsey. With an activated kernel, run the code below to create a plot very similar to Figure 1 in Lyberger et al. (this may take a minute).</p>
+<pre data-executable="true" data-language="python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+def lyberger_model(Vg=0.75, Ve=0, event_duration=1, seed=0, other_parameters=[120, 500, 1, 2, 100, 0, 2.5]):
+    # Unpack parameters
+    generations, K, w, lmbda, event_time, initial_theta_t, dtheta_t = other_parameters
+
+    # Initialize population
+    members = np.random.normal(initial_theta_t, 0, K)
+
+    # Run simulations
+    np.random.seed(seed)
+    population_size, mean_breeding_value = [], []
+    for g in range(generations):
+        if g in np.arange(event_time, event_time + event_duration):
+            theta_t = initial_theta_t + dtheta_t
+        else:
+            theta_t = initial_theta_t
+
+        # Viability selection
+        prob_survival = np.array([np.exp(-(theta_t - z + np.random.normal(0, Ve))**2 / (2*w**2)) for z in members])
+        survived = np.array([True if p > np.random.uniform(0,1) else False for p in prob_survival])
+
+        if len(survived) == 0:
+            break
+
+        # Survivors
+        members = members[survived]
+
+        # Random mating
+        offspring = []
+        for m in np.random.choice(members, len(members)):
+            if len(offspring) > K:
+                offspring = np.random.choice(offspring, K)
+                break
+            else:
+                n_off = np.random.poisson(lmbda)
+                mate = np.random.choice(members)
+                offspring += [(m + mate)/2 for _ in range(n_off)]
+
+        # Sample new trait values for offspring
+        offspring = np.array(offspring)
+        offspring = np.random.normal(offspring, Vg)
+
+        # Record statistics
+        population_size.append(len(offspring))
+        mean_breeding_value.append(np.mean(offspring))
+
+        members = offspring
+
+    return (
+        np.arange(0, generations-event_time+1), 
+        np.array(population_size[event_time-1:]),
+        np.array(mean_breeding_value[event_time-1:])
+    )
+
+# Initialize plot
+fig, ax = plt.subplots(2, sharex=True)
+fig.set_size_inches(8,6)
+
+event_duration = 1
+
+# Run 10 simulations per segregation (V0) and environment variance (VE) parameter combination
+for Vg, Ve, c, lab in [[1, 0, 'black', 'with evolution'], [0, 1, 'red', 'without evolution']]:
+    # Plot simulations
+    simulations = np.array([lyberger_model(Vg=Vg, Ve=Ve, event_duration=event_duration, seed=s) for s in range(10)])
+    ax[0].plot(simulations[:,0].T, simulations[:,1].T, color=c, alpha=0.3);
+    ax[1].plot(simulations[:,0].T, simulations[:,2].T, color=c, alpha=0.3);
+
+    # Hack together only one instance of the legend
+    ax[0].plot([np.min(simulations[:,0].T)], [np.min(simulations[:,1].T)], alpha=1,
+                  label = lab, color=c)
+    ax[1].plot([np.min(simulations[:,0].T)], [np.min(simulations[:,2].T)], alpha=1,
+                  label = lab, color=c)
+
+# Add environmental event duration
+ax[0].fill_between([0,event_duration], y1=500, alpha=0.2)
+ax[1].fill_between([0,event_duration], y1=-0.2, y2=2, alpha=0.2)
+
+# Add labels
+ax[0].set_ylabel('Population size', fontsize=12)
+ax[1].set_ylabel('Mean trait value', fontsize=12)
+ax[1].set_xlabel('Generation', fontsize=14)
+
+# Add legend
+plt.legend(frameon=False)
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-01_files/lecture-01_13_0.png" /></p>
+<p>The key result, that you can see in the plot above, is that when extreme events are short, adaptive evolution (black lines) can paradoxically <em>reduce</em> population size (relative to the red lines, where there is no evolution). The reason for this is that, while during the extreme event (shaded section) evolution is adaptive, once the extreme event ends the population finds itself maladapted to the original environment. Adaptive evolution can therefore hamper population persistence, and this is an important thing to keep in mind when documenting rapid adaptive evolution in response to extreme events -- it is not necessarily a good thing for the species (or our conservation goals).</p>
+<h3 id="example-3-sex-chromosomes">Example 3: Sex chromosomes</h3>
+<p>A third example is a model that I worked on during my PhD, led by fellow PhD student Dr. Michael Scott, in <a href="https://www.biorxiv.org/content/10.1101/269431v3">Scott et al. 2018</a>.
+<center></p>
+<p><img alt="" src="../lecture-01-img/mike.jpg" width="35%" /></p>
+<p></center></p>
+<p><center><sup>Michael Scott, with penguins and snakes.</sup></center></p>
+<p>The inspiration for this model comes from the fact that new sex determination systems are constantly evolving, as can be deduced from this phylogeny. For example, it is clear from this phylogeny that ZW sex determination (where females are ZW and males are ZZ) has evolved multiple times (eg, in both birds/reptiles and lepidoptera).</p>
+<p><img alt="" src="../lecture-01-img/bachtrog2014.png" /></p>
+<p><center><sup>Figure 3 from Bachtrog et al. 2014</sup></center></p>
+<div class="admonition note">
+<p class="admonition-title">Sex vs gender</p>
+<p>Here we are referring to biological sex (defined by the type of gametes produced by an individual) not gender (defined by behaviour and morphology). For more information see <a href="https://gendersexandnature.wordpress.com">https://gendersexandnature.wordpress.com</a> and <a href="https://genderinclusivebiology.squarespace.com/">https://genderinclusivebiology.squarespace.com/</a>.</p>
+</div>
+<p>Focusing solely on sex chromosomes (as opposed to hermaphroditism or environmental sex determination (ESD)), there are two main hypotheses for changes in sex determination systems:</p>
+<ol>
+<li>
+<p>A "selfish" Y chromosome gets in more than 50% of male gametes <span class="arithmatex">\(\rightarrow\)</span> more than 50% of the population is male ("sex-ratio bias") <span class="arithmatex">\(\rightarrow\)</span> a W chromosome, which causes all its carriers to be female, invades because individuals of the rarer sex have more offspring (since every offspring has a female and male parent).</p>
+</li>
+<li>
+<p>Selection favours different copies of a gene in the two sexes ("sexually-antagonistic selection") <span class="arithmatex">\(\rightarrow\)</span> the chromosome carrying this gene becomes a new sex chromosome, allowing the gene copy ("allele") favoured in males to be on the Y chromosome (and therefore only in males) and the allele favoured in females to be on the X (which is in females 2/3 of the time).</p>
+</li>
+</ol>
+<p>A key element missing from both of these hypotheses (and models supporting them) is selection that occurs during the haploid phase of the life-cycle (eg, competition between pollen grains for fertilization of an ovule). This "haploid selection" is important to consider because it can cause both sex-ratio bias (eg, if pollen grains carrying a Y are more successful than those carrying an X) and sexually-antagonistic selection (eg, if selection at the haploid phase differs between gamete types). It can also cause selection to differ at the haploid and diploid stages of the life-cycle ("ploidally-antagonistic selection").</p>
+<p>So how is haploid selection expected to affect turnover between sex determination systems?</p>
+<p>Michael and I built a model to ask this question, with the help of Sally Otto (our supervisor), and used many of the techniques covered in this class to analyze it.</p>
+<details class="todo">
+<summary>To do: add model details</summary>
+<p><center></p>
+<p><img alt="" src="../lecture-01-img/barfbag-model.png" width="65%" /></p>
+<p></center></p>
+<p><center><sup>(Placeholder) Modelling plan discussed on the way home from a conference</sup></center></p>
+</details>
+<p>This was quite a complicated model and analysis, but the general take-home was that haploid selection greatly increases the scope for sex chromosome turnover. </p>
+<p>For example, in the plot below we see a case where selection favours one allele in male gametes (eg, during pollen competition) and another allele in diploids (ie, this is ploidally-antagonistic selection). Despite the fact that it causes sex-ratio bias (dashed curve), the Y chromosome spreads through the population (black and gray curves), while at the same time a W chromosome invades (blue curve) and equalizes the sex ratio. </p>
+<div class="admonition todo">
+<p class="admonition-title">To do: add code to create this plot</p>
+</div>
+<p><center></p>
+<p><img alt="" src="../lecture-01-img/combination-turnover.png" width="65%" /></p>
+<p></center></p>
+<p><center><sup>Sex chromosome turnover.</sup></center></p>
+<p>The conclusion we reached from this mathematical model -- that haploid selection is expected to lead to more turnovers in sex determination systems -- was simultaneously supported by work done in Stephen Wright's lab here in EEB, by (then undergrad and now PhD student) George Sandler in <a href="https://www.biorxiv.org/content/10.1101/264382v2">Sandler et al. 2018</a>.</p>
+<p><span id='section2'></span></p>
+<h2 id="2-syllabus">2. Syllabus</h2>
+<hr>
+
+<p>OK, now that we've gone over some motivating examples of modeling in ecology and evolution, let's take a look at how we're going to learn to become modelers in this course. Point your browser over to the <a href="../../syllabus/general_info">syllabus</a> and read each of the pages there.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../schedule/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Schedule" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Schedule
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lecture-02/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture 2" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lecture 2
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

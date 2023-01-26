@@ -1,0 +1,1610 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>Lecture 9 - EEB430/1430 Mathematical modelling in ecology and evolution</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+  
+  
+    
+    
+    
+  
+  
+  <style>.md-tag-icon{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.5 7A1.5 1.5 0 0 1 4 5.5 1.5 1.5 0 0 1 5.5 4 1.5 1.5 0 0 1 7 5.5 1.5 1.5 0 0 1 5.5 7m15.91 4.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.11 0-2 .89-2 2v7c0 .55.22 1.05.59 1.41l8.99 9c.37.36.87.59 1.42.59.55 0 1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.56-.23-1.06-.59-1.42Z"/></svg>');}</style>
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-9-general-solutions-univariate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-header__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EEB430/1430 Mathematical modelling in ecology and evolution
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 9
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../syllabus/general_info/" class="md-tabs__link">
+        Syllabus
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../schedule/" class="md-tabs__link md-tabs__link--active">
+        Lectures
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../labs/schedule/" class="md-tabs__link">
+        Labs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../acknowledgements/" class="md-tabs__link">
+      Acknowledgements
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EEB430/1430 Mathematical modelling in ecology and evolution" class="md-nav__button md-logo" aria-label="EEB430/1430 Mathematical modelling in ecology and evolution" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    EEB430/1430 Mathematical modelling in ecology and evolution
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Syllabus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Syllabus" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Syllabus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        General info
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        Course structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        Textbook
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        When and where
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/assignments/" class="md-nav__link">
+        Assignments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        Final Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/exams/" class="md-nav__link">
+        Exams
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        Instructors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/other_resources/" class="md-nav__link">
+        Other resources
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Lectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        Lecture 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        Lecture 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        Lecture 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        Lecture 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        Lecture 5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        Lecture 6
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        Lecture 7
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        Lecture 8
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lecture 9
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lecture 9
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-general-solutions" class="md-nav__link">
+    1. General solutions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-linear-models-in-discrete-time" class="md-nav__link">
+    2. Linear models in discrete time
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Linear models in discrete time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brute-force-iteration" class="md-nav__link">
+    Brute force iteration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solving-affine-models" class="md-nav__link">
+    Solving affine models
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nonlinear-models-in-discrete-time" class="md-nav__link">
+    3. Nonlinear models in discrete time
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Nonlinear models in discrete time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solving-with-transformations" class="md-nav__link">
+    Solving with transformations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solving-with-conceptualization" class="md-nav__link">
+    Solving with conceptualization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-linear-models-in-continuous-time" class="md-nav__link">
+    4. Linear models in continuous time
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Linear models in continuous time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separation-of-variables" class="md-nav__link">
+    Separation of variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-transformations" class="md-nav__link">
+    Using transformations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-nonlinear-models-in-continuous-time" class="md-nav__link">
+    5. Nonlinear models in continuous time
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Nonlinear models in continuous time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separation-of-variables_1" class="md-nav__link">
+    Separation of variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-methods" class="md-nav__link">
+    Alternative methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-summary" class="md-nav__link">
+    6. Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        Lecture 10
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        Lecture 11
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        Lecture 12
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        Lecture 13
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-14/" class="md-nav__link">
+        Lecture 14
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        Lecture 15
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        Lecture 16
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        Lecture 17
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        Lecture 18
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        Lecture 19
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        Lecture 20
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        Acknowledgements
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    Lecture overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-general-solutions" class="md-nav__link">
+    1. General solutions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-linear-models-in-discrete-time" class="md-nav__link">
+    2. Linear models in discrete time
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Linear models in discrete time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brute-force-iteration" class="md-nav__link">
+    Brute force iteration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solving-affine-models" class="md-nav__link">
+    Solving affine models
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nonlinear-models-in-discrete-time" class="md-nav__link">
+    3. Nonlinear models in discrete time
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Nonlinear models in discrete time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solving-with-transformations" class="md-nav__link">
+    Solving with transformations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solving-with-conceptualization" class="md-nav__link">
+    Solving with conceptualization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-linear-models-in-continuous-time" class="md-nav__link">
+    4. Linear models in continuous time
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Linear models in continuous time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separation-of-variables" class="md-nav__link">
+    Separation of variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-transformations" class="md-nav__link">
+    Using transformations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-nonlinear-models-in-continuous-time" class="md-nav__link">
+    5. Nonlinear models in continuous time
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Nonlinear models in continuous time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separation-of-variables_1" class="md-nav__link">
+    Separation of variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-methods" class="md-nav__link">
+    Alternative methods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-summary" class="md-nav__link">
+    6. Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      binderUrl: "https://gke.mybinder.org",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+
+<h1 id="lecture-9-general-solutions-univariate">Lecture 9: General solutions (univariate)</h1>
+<hr style="margin-bottom: 0em;">
+<p><center></p>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+<p></center></p>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">General solutions</a></li>
+<li><a href="#section2">Linear models in discrete time</a></li>
+<li><a href="#section3">Nonlinear models in discrete time</a></li>
+<li><a href="#section4">Linear models in continuous time</a></li>
+<li><a href="#section5">Nonlinear models in continuous time</a></li>
+<li><a href="#section6">Summary</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-general-solutions">1. General solutions</h2>
+<hr>
+
+<p>Last week we learned how to find <strong>equilibria</strong> and determine their <strong>local stability</strong> in models with one variable (univariate).</p>
+<p>Those analyses describe the <em>long-term dynamics</em> of our models, i.e., what we expect after a long time has passed.</p>
+<p>This week we’ll look at some simple cases where we can describe the <em>entire</em> dynamics, including the short-term, by solving for the variable as a function of time, <span class="arithmatex">\(x_t = f(t)\)</span> </p>
+<p>This is called a <strong>general solution</strong>.</p>
+<p><span id='section2'></span></p>
+<h2 id="2-linear-models-in-discrete-time">2. Linear models in discrete time</h2>
+<hr>
+
+<p>With a single variable, <span class="arithmatex">\(x\)</span>, in discrete time all <strong>linear models</strong> can be written </p>
+<div class="arithmatex">\[
+x_{t+1} = a x_t + b
+\]</div>
+<p>There are two cases that we will consider separately: 1) <span class="arithmatex">\(b = 0\)</span> and 2) <span class="arithmatex">\(b \neq 0\)</span>.</p>
+<h3 id="brute-force-iteration">Brute force iteration</h3>
+<p>When <span class="arithmatex">\(b = 0\)</span> we can use <strong>brute force iteration</strong></p>
+<div class="arithmatex">\[
+\begin{aligned}
+x_t &amp;= a x_{t-1}\\
+&amp;= a a x_{t-2}\\
+&amp;= a a a x_{t-3}\\ 
+&amp;\vdots\\
+&amp;= a\cdots a x_0\\
+&amp;= a^t x_0
+\end{aligned}
+\]</div>
+<p>This is the general solution for exponential growth in discrete time, with reproductive factor <span class="arithmatex">\(a\)</span>. We can see that our variable will oscillate around the equilibrium (<span class="arithmatex">\(\hat{x}=0\)</span>) if <span class="arithmatex">\(a&lt;0\)</span> and will either approach the equilibrium (<span class="arithmatex">\(|a|&lt;1\)</span>) or depart from it (<span class="arithmatex">\(|a|&gt;1\)</span>), consistent with our local stability analysis. See this for yourself by playing with the value of <span class="arithmatex">\(a\)</span> in the plot below.  </p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt
+a, x0 = 0.99, 10 #define parameter values and initial condition
+ts = range(1000) #time values
+xs = [a**t * x0 for t in ts] #variable values from general solution
+plt.scatter(ts, xs) #plot discretely
+plt.ylabel('$x(t)$')
+plt.xlabel('$t$')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-09_files/lecture-09_3_0.png" /></p>
+<h3 id="solving-affine-models">Solving affine models</h3>
+<p>When <span class="arithmatex">\(b \neq 0\)</span> (which gives us what is called an <strong>affine model</strong>) we need to use a <strong>transformation</strong>, much like we did when determining local stability.</p>
+<p><strong>Step 1</strong>: Solve for the equilibrium</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\hat{x} &amp;= a \hat{x} + b \\
+\hat{x} &amp;= \frac{b}{1 - a}
+\end{aligned}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that if <span class="arithmatex">\(a=1\)</span> there is no equilibrium for <span class="arithmatex">\(b\neq0\)</span>, and instead you can use brute force iteration to show that <span class="arithmatex">\(x_t = x_0 + b t\)</span>.</p>
+</div>
+<p><strong>Step 2</strong>: Define <span class="arithmatex">\(\delta_t = x_t - \hat{x}\)</span>, the deviation of our variable from the equilibrium (this is our transformation).</p>
+<p><strong>Step 3</strong>: Write the recursion equation for the transformed variable</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\delta_{t+1} &amp;= x_{t+1} - \hat{x} \\
+&amp;= a x_t + b - \hat{x} \\
+&amp;= a(\delta_t + \hat{x}) + b - \hat{x}\\
+&amp;= a \left(\delta_t + \frac{b}{1 - a}\right) + b - \frac{b}{1 - a}\\
+&amp;= a \delta_t
+\end{aligned}
+\]</div>
+<p><strong>Step 4</strong>: This is the same recursion we derived above for <span class="arithmatex">\(x\)</span> when <span class="arithmatex">\(b=0\)</span>. So the general solution for the transformed variable is <span class="arithmatex">\(\delta_t = a^t \delta_0\)</span>.</p>
+<p><strong>Step 5</strong>: Reverse transform back to <span class="arithmatex">\(x_t\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+x_t &amp;= \delta_t + \hat{x}\\
+&amp;= a^t \delta_0 + \hat{x}\\
+&amp;= a^t (x_0 - \hat{x}) + \hat{x}\\
+&amp;= a^t x_0 + (1 - a^t)\hat{x}
+\end{aligned}
+\]</div>
+<p>This says that our variable moves from <span class="arithmatex">\(x_0\)</span> towards/away from <span class="arithmatex">\(\hat{x}\)</span> by a factor <span class="arithmatex">\(a\)</span> per time step. Note that if <span class="arithmatex">\(b=0\)</span> then <span class="arithmatex">\(\hat{x}=0\)</span> and this reduces to what we derived above, <span class="arithmatex">\(x_t=a^t x_0\)</span>.</p>
+<p>Below we plot the general solution for a given value of <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span> from a number of different intitial conditions. Try playing with the values of <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span> and observe the different dynamics.</p>
+<pre data-executable="true" data-language="python">
+a, b, x0 = 0.99, 1, 10 #define parameter values and initial condition
+ts = range(1000) #time values
+xs = [a**t * x0 + (1-a**t)*b/(1-a) for t in ts] #variable values from general solution
+plt.scatter(ts, xs) #plot discretely
+plt.ylabel('$x(t)$')
+plt.xlabel('$t$')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-09_files/lecture-09_5_0.png" /></p>
+<p><span id='section3'></span></p>
+<h2 id="3-nonlinear-models-in-discrete-time">3. Nonlinear models in discrete time</h2>
+<hr>
+
+<p>Unfortunately there is no recipe to solve <strong>nonlinear models</strong> in discrete time, even with one variable.</p>
+<p>In fact, most of the time there is no general solution.</p>
+<p>To get a sense of why that might be, remember the chaos of logistic growth!</p>
+<pre data-executable="true" data-language="python">
+import numpy as np
+
+# Generator for logistic growth
+def n(n0, r, k, max=np.inf):
+    t, nt = 0, n0
+    while t < max:
+        yield nt
+        t, nt = t + 1, nt + r * nt * (1 - nt / k)
+
+# Sample the periodicity of the oscillations by taking unique values after reaching carrying capacity
+def log_map(r, n0=900, k=1000):    
+    return np.unique([nt for t, nt in enumerate(n(n0, r, k, max=75)) if t > 30])
+
+# Compute the logistic map for different growth rates in discrete time
+r, Nr = np.array([]), np.array([])
+for i in np.linspace(1.5, 3, 1000):
+    nl = log_map(i)
+    r = np.hstack((r, [i for _ in range(len(nl))]))
+    Nr = np.hstack((Nr, nl))
+
+# Plot the logistic map on a black background
+fig, ax = plt.subplots()
+ax.patch.set_facecolor('black')
+ax.scatter(r, Nr, s=0.075, color='white')
+ax.set_xlabel('intrinsic growth rate, $r$')
+ax.set_ylabel('population size, $n$')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-09_files/lecture-09_7_0.png" /></p>
+<h3 id="solving-with-transformations">Solving with transformations</h3>
+<p>Sometimes, however, you can find a <strong>transformation</strong> that works.</p>
+<p>For example, with haploid selection we have</p>
+<div class="arithmatex">\[
+p_{t+1} = \frac{W_A p_t}{W_A p_t + W_a q_t}
+\]</div>
+<p>Brute force iteration will create a giant mess.</p>
+<p>But what about if we let <span class="arithmatex">\(f_t = p_t/q_t\)</span>?</p>
+<p>Noting that <span class="arithmatex">\(q_{t+1} = 1 - p_{t+1} = (W_a p_t)/(W_A p_t + W_a q_t)\)</span> we have</p>
+<div class="arithmatex">\[
+\begin{aligned}
+f_{t+1} &amp;= \frac{p_{t+1}}{q_{t+1}}\\
+&amp;= \frac{W_A p_t}{W_a q_t}\\
+&amp;= \frac{W_A}{W_a} f_t
+\end{aligned}
+\]</div>
+<p>This implies that <span class="arithmatex">\(f_t = (W_A/W_a)^t f_0\)</span>!</p>
+<p>Converting back to <span class="arithmatex">\(p_t\)</span> we see</p>
+<div class="arithmatex">\[
+p_t = \frac{f_t}{1-f_t} = \frac{W_A^t p_0}{W_A^t p_0 + W_a^t q_0}
+\]</div>
+<h3 id="solving-with-conceptualization">Solving with conceptualization</h3>
+<p>An alternative way to derive this general solution is to think about ("conceptualize") the <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(a\)</span> alleles as two competing populations that each grow exponentially according to their fitness</p>
+<div class="arithmatex">\[
+\begin{aligned}
+n_A(t) &amp;= W_A^t n_A(0)\\
+n_a(t) &amp;= W_a^t n_a(0)   
+\end{aligned}
+\]</div>
+<p>Then the frequency of allele <span class="arithmatex">\(A\)</span> at time <span class="arithmatex">\(t\)</span> is</p>
+<div class="arithmatex">\[
+p_t = \frac{n_A(t)}{n_A(t) + n_a(t)} = \frac{W_A^t n_A(0)}{W_A^t n_A(0) + W_a^t n_a(0)}
+\]</div>
+<p>Dividing numerator and denominator by the total initial population size <span class="arithmatex">\(n_A(0) + n_a(0)\)</span></p>
+<div class="arithmatex">\[
+p_t = \frac{W_A^t p_0}{W_A^t p_0 + W_a^t q_0}
+\]</div>
+<p>Below we plot this general solution for a given <span class="arithmatex">\(W_A\)</span>, <span class="arithmatex">\(W_a\)</span>, and <span class="arithmatex">\(p_0\)</span>.</p>
+<pre data-executable="true" data-language="python">
+WA, Wa, p0 = 1.1, 1, 0.01 #define parameter values and initial condition
+ts = range(100) #time values
+ps = [(WA**t * p0)/(WA**t * p0 + Wa**t * (1-p0)) for t in ts] #variable values from general solution
+plt.scatter(ts, ps) #plot discretely
+plt.ylabel('allele frequency, $p(t)$')
+plt.xlabel('generation, $t$')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-09_files/lecture-09_10_0.png" /></p>
+<p><span id='section4'></span></p>
+<h2 id="4-linear-models-in-continuous-time">4. Linear models in continuous time</h2>
+<hr>
+
+<p>In continuous time, a linear differential equation of one variable can be written</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}x}{\mathrm{d}t} = a x + b
+\]</div>
+<p>Let's first look at the case where <span class="arithmatex">\(b=0\)</span>.</p>
+<h3 id="separation-of-variables">Separation of variables</h3>
+<p>Here we can use a method called <strong>seperation of variables</strong>.</p>
+<p>That is, our differential equation can be written <span class="arithmatex">\(\mathrm{d}x/\mathrm{d}t = f(x) g(t)\)</span>, i.e., we can separate the variables <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(t\)</span>.</p>
+<p>We can then re-write the equation as  <span class="arithmatex">\(\mathrm{d}x/f(x) = g(t)\mathrm{d}t\)</span> and take the indefinite integral of both sides.</p>
+<p>In our case we have <span class="arithmatex">\(f(x)=a x\)</span> and <span class="arithmatex">\(g(t)=1\)</span> so</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\int \frac{\mathrm{d}x}{a x} &amp;= \int \mathrm{d}t \\
+\frac{\ln(x)}{a} + c_1 &amp;= t + c_2\\
+\ln(x) &amp;= a t + c \; \text{(where } c = c_2 - c_1\text{)}\\
+x_t &amp;= e^{a t} e^{a c}
+\end{aligned}
+\]</div>
+<p>Plugging in <span class="arithmatex">\(t=0\)</span> we have <span class="arithmatex">\(x_0 = e^{a c}\)</span> and so our general solution is</p>
+<div class="arithmatex">\[
+x_t = x_0 e^{at}
+\]</div>
+<p>This is the general solution for exponential growth in continuous time with growth rate <span class="arithmatex">\(a\)</span>. We see that variable will either converge on (<span class="arithmatex">\(a&lt;0\)</span>) or depart from (<span class="arithmatex">\(a&gt;0\)</span>) the equilibrium (<span class="arithmatex">\(\hat x=0\)</span>), consistent with our local stability analysis. </p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt
+a, x0 = 0.01, 10 #define parameter values and initial condition
+ts = range(1000) #time values
+xs = [exp(a*t) * x0 for t in ts] #variable values from general solution
+plt.plot(ts, xs) #plot continuously
+plt.ylabel('$x(t)$')
+plt.xlabel('$t$')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-09_files/lecture-09_13_0.png" /></p>
+<h3 id="using-transformations">Using transformations</h3>
+<p>Now let's consider the case where <span class="arithmatex">\(b\neq0\)</span>.</p>
+<p>This can also be solved by the method of separation of variables but let's do 
+it with a transformation, like we did in discrete time.</p>
+<p><strong>Step 1</strong>: Solve for the equilibrium, </p>
+<div class="arithmatex">\[
+\begin{aligned}
+0 &amp;= a \hat{x} + b\\
+\hat{x} &amp;= -b/a
+\end{aligned}
+\]</div>
+<p><strong>Step 2</strong>: Define <span class="arithmatex">\(\delta = x - \hat{x}\)</span> as the deviation of the variable from equilibrium.</p>
+<p><strong>Step 3</strong>: Derive the differential equation for <span class="arithmatex">\(\delta\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}\delta}{\mathrm{d}t} &amp;= \frac{\mathrm{d}(x - \hat{x})}{\mathrm{d}t}\\
+&amp;= \frac{\mathrm{d}x}{\mathrm{d}t} - \frac{\mathrm{d}\hat{x}}{\mathrm{d}t}\\
+&amp;= \frac{\mathrm{d}x}{\mathrm{d}t}\\
+&amp;= a x + b\\
+&amp;= a (\delta + \hat{x}) + b\\
+&amp;= a(\delta + -b/a) + b\\
+&amp;= a \delta
+\end{aligned}
+\]</div>
+<p><strong>Step 4</strong>: This is the same differential equation we had above for <span class="arithmatex">\(x\)</span> when <span class="arithmatex">\(b=0\)</span>. The general solution is therefore <span class="arithmatex">\(\delta\)</span> is <span class="arithmatex">\(\delta_t = \delta_0 e^{a t}\)</span>.</p>
+<p><strong>Step 5</strong>: Replace <span class="arithmatex">\(\delta\)</span> with <span class="arithmatex">\(x - \hat{x}\)</span> to back transform to our original variable</p>
+<div class="arithmatex">\[
+x_t = e^{a t} x_0 + (1 - e^{a t})\hat{x}
+\]</div>
+<p>Similar to the discrete case (but without the oscillations), this tells us there is an exponential approach to (<span class="arithmatex">\(a&lt;0\)</span>) or departure from (<span class="arithmatex">\(a&gt;0\)</span>) the equilibrium, <span class="arithmatex">\(\hat{x}\)</span>.</p>
+<p>Below we plot this general solution for given values of <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span> and a range of initial conditions, <span class="arithmatex">\(x_0\)</span>.</p>
+<pre data-executable="true" data-language="python">
+a, b, x0 = -0.01, 1, 10 #define parameter values and initial condition
+ts = range(1000) #time values
+xs = [exp(a*t) * x0 + (1-exp(a*t))*(-b/a) for t in ts] #variable values from general solution
+plt.plot(ts, xs) #plot continuously
+plt.ylabel('$x(t)$')
+plt.xlabel('$t$')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-09_files/lecture-09_15_0.png" /></p>
+<p><span id='section5'></span></p>
+<h2 id="5-nonlinear-models-in-continuous-time">5. Nonlinear models in continuous time</h2>
+<hr>
+
+<p>Some nonlinear differential equations can also be solved. But there is no general recipe.</p>
+<h3 id="separation-of-variables_1">Separation of variables</h3>
+<p>Sometimes separation of variables works, as in the case of logistic growth and haploid selection (which are equivalent in form in continuous-time!).</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}p}{\mathrm{d}t} &amp;= s p (1-p)\\
+\frac{\mathrm{d}p}{s p (1-p)} &amp;= \mathrm{d}t\\
+\left(\frac{1}{s p} + \frac{1/s}{1-p}\right) \mathrm{d}p &amp;= \mathrm{d}t \;\text{(method of partial fractions, rule A.19 in the text)}\\
+\int \frac{1}{s p} \mathrm{d}p + \int \frac{1}{s(1-p)} \mathrm{d}p &amp;= \int \mathrm{d}t\\
+\ln(p)/s - \ln(1 - p)/s + c_1 &amp;= t + c_2 \\
+\ln\left(\frac{p}{1-p}\right) &amp;= s t + s c \; \text{(where } c = c_2 - c_1\text{)}\\
+\frac{p}{1-p} &amp;= e^{st} e^{sc}
+\end{aligned}
+\]</div>
+<p>Plugging in <span class="arithmatex">\(t=0\)</span> we have <span class="arithmatex">\(p_0/(1-p_0) = e^{sc}\)</span>. Then solving this linear equation for <span class="arithmatex">\(p\)</span></p>
+<div class="arithmatex">\[
+p_t = \frac{e^{st} p_0}{1 - p_0 + e^{st} p_0}
+\]</div>
+<p>This shows essentially the same dynamics as haploid selection in discrete time.</p>
+<pre data-executable="true" data-language="python">
+s, p0 = 0.1, 0.01 #define parameter values and initial condition
+ts = range(100) #time values
+ps = [(exp(s*t) * p0)/(1 - p0 + exp(s*t)*p0) for t in ts] #variable values from general solution
+plt.plot(ts, ps) #plot continuously
+plt.ylabel('allele frequency, $p(t)$')
+plt.xlabel('generation, $t$')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-09_files/lecture-09_18_0.png" /></p>
+<h3 id="alternative-methods">Alternative methods</h3>
+<p>Separation of variables does not always work as it may not be possible to solve the integrals.</p>
+<p>However, separation of variables is not the only method.</p>
+<p>Box 6.2 in the text describes how to solve three forms of differential equations that are not amenable to separation of variables (ie, that cannot be written like <span class="arithmatex">\(\mathrm{d}x/\mathrm{d}t = f(x) g(t)\)</span>).</p>
+<p><span id='section6'></span></p>
+<h2 id="6-summary">6. Summary</h2>
+<hr>
+
+<p>Today we've covered how to find the <strong>general solution</strong> for some <strong>univariate</strong> models.</p>
+<p>We now have three methods to analyze univariate models:</p>
+<ul>
+<li><strong>numerical</strong> and <strong>graphical</strong> analyses (for particular parameter values)</li>
+<li>finding <strong>equilibria</strong> and determining their <strong>local stability</strong> (general long-term dynamics)</li>
+<li>finding the <strong>general solution</strong> (general short- and long-term dynamics)</li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../lecture-08/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lecture 8" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lecture 8
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../lecture-10/" class="md-footer__link md-footer__link--next" aria-label="Next: Lecture 10" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lecture 10
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

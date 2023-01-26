@@ -1,0 +1,95 @@
+site_name: "EEB430/1430 Mathematical modelling in ecology and evolution"
+extra_css: 
+  - stylesheets/extra.css
+
+theme:
+  logo: images/favicon_non_transparent.svg
+  favicon: images/favicon_non_transparent.svg
+  icon:
+    repo: fontawesome/brands/github
+    tag:
+      default: material/tag
+  features:
+    - content.code.annotate
+    - navigation.tabs #indexes
+  name: material
+  palette:
+    - scheme: default
+      primary: green
+      accent: purple
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+plugins:
+  - search
+
+nav:
+  - Overview: index.md
+  - Syllabus: 
+    - General info: syllabus/general_info.md
+    - Course structure: syllabus/course_structure.md
+    - Textbook: syllabus/textbook.md
+    - When and where: syllabus/when_and_where.md
+    - Assignments: syllabus/assignments.md
+    - Final Project: syllabus/final_project.md
+    - Exams: syllabus/exams.md
+    - Instructors: syllabus/instructors.md
+    - Other resources: syllabus/other_resources.md 
+  - Lectures:
+    - Schedule: lectures/schedule.md
+    - Lecture 1: lectures/lecture-01.md
+    - Lecture 2: lectures/lecture-02.md
+    - Lecture 3: lectures/lecture-03.md
+    - Lecture 4: lectures/lecture-04.md
+    - Lecture 5: lectures/lecture-05.md
+    - Lecture 6: lectures/lecture-06.md
+    - Lecture 7: lectures/lecture-07.md
+    - Lecture 8: lectures/lecture-08.md
+    - Lecture 9: lectures/lecture-09.md
+    - Lecture 10: lectures/lecture-10.md
+    - Lecture 11: lectures/lecture-11.md
+    - Lecture 12: lectures/lecture-12.md
+    - Lecture 13: lectures/lecture-13.md
+    - Lecture 14: lectures/lecture-14.md
+    - Lecture 15: lectures/lecture-15.md
+    - Lecture 16: lectures/lecture-16.md
+    - Lecture 17: lectures/lecture-17.md
+    - Lecture 18: lectures/lecture-18.md
+    - Lecture 19: lectures/lecture-19.md
+    - Lecture 20: lectures/lecture-20.md
+  - Labs:
+    - Schedule: labs/schedule.md
+  - Acknowledgements: acknowledgements.md 
