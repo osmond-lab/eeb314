@@ -14,13 +14,11 @@ Mathematics is central to science because it provides a rigorous way to go from 
 - [x] do homework
 
 ## Grading scheme
-The scheme is slightly different for EEB430 (undergrads) and EEB1430 (grads). Where different the latter is in parentheses.
-
 - 20% - homeworks
 - 20% - labs
-- 20% (15%) - midterm
-- 15% (25%) - final project
-- 25% (20%) - final
+- 20% - midterm
+- 15% - final project
+- 25% - final
 
 ### Late fees
 

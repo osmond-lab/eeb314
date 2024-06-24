@@ -24,8 +24,6 @@ You'll do the final project in two parts.
 	- Max 4 pages (not including any code that you used, which can be included as a link to Google Colab or as additional file)
 	- [Example](final_project/partII_example.md)
 
-And for grad students taking EEB1430, you'll also give a short presentation of your final project in the final class.  
-
 !!! tip 
 
 	If you are having trouble coming up with a new model, take one of the models that we've analysed in the course and change one or more of its underlying assumptions to get a new set of	equations. Then analyse these equations. Discuss the differences between the assumptions used and also	between the results obtained.
