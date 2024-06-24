@@ -2,27 +2,13 @@
 
 This repository stores content for the Mathematical Modelling in Ecology and Evolution (originally EEB430, now EEB314, University of Toronto) website. The website was created by @tomouellette -- many thanks!
 
-## Building lecture content
+## Building lectures
 
 ### Step 1
 
-Write your lecture content into a jupyter notebook and save it into the `notebooks/lectures/` folder as `lecture-X.ipynb` (e.g. `lecture-1.ipynb` or `lecture-12.ipynb`). If you have any images associated with this notebook, save them in a folder within `notebooks/lectures/` called `lecture-X-img/`.
+Write your lecture content into a jupyter notebook and save it into the `notebooks/lectures/` folder as `lecture-X.ipynb` (e.g. `lecture-01.ipynb`). If you have any images associated with this notebook, save them in a folder within `notebooks/lectures/` called `lecture-X-img/`.
 
 ### Step 2
-
-Open the `mkdocs.yml` file and go down to the line that says `nav`. The structure of the `nav` section determines the layout of the website. If this is a new lecture named `lecture-25.ipynb` then add it do the `nav` section as denoted below:
-
-```yaml
-nav:
-  - Overview: index.md
-  - Lectures:
-    - Lecture 1: lectures/lecture-1.md
-    - Lecture 25: lectures/lecture-25.md
-```
-
-Note that `.ipynb` is replaced with `.md` in the `nav` section.
-
-### Step 3
 
 To build your interactive book, now enter the `bin/` folder (i.e. `cd bin` from the root), and call the `nb2imd.sh` script as follows:
 
@@ -36,22 +22,19 @@ cp -r ../notebooks/lectures/lecture-X-img/ ../docs/lectures/lecture-X-img/
 
 where `lecture-X` is the name of the lecture.
 
-### Step 4
+### Step 3
 
-You can view a local version of the website by calling `mkdocs serve` in the root of this folder (i.e. `mkdocs.yml` must be at the same level). Note you may need to install `mkdocs` and dependencies first with
+Open the `mkdocs.yml` file and go down to the line that says `nav`. The structure of the `nav` section determines the layout of the website. If this is a new lecture named `lecture-25.ipynb` then add it do the `nav` section as denoted below:
 
-```bash
-pip install mkdocs
-pip install mkdocs-material
+```yaml
+nav:
+  - Overview: index.md
+  - Lectures:
+    - Lecture 01: lectures/lecture-1.md
+    - Lecture 25: lectures/lecture-25.md
 ```
 
-### Step 5
-
-If everything looks good locally, you can build the site calling `mkdocs build`. A new folder called `site` will be built that has everything you need for hosting the live website. You can copy the `site` folder to wherever you are hosting, eg., `osmond-lab.github.io/teaching/`.
-
-### Useful information
-
-The website was built using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). Therefore, all the functionalitites described there can be added here if desired. Second, the executable cells were integrated using [Thebe](https://github.com/executablebooks/thebe). If any changes to the code blocks are desired, please look at their documentation for more information. Alternatively, you can directly modify the style of the code blocks by editing the `.css` stylesheets stored in `docs/stylesheets`.
+Note that `.ipynb` is replaced with `.md` in the `nav` section.
 
 ## Building labs
 
@@ -71,11 +54,26 @@ To make them accessible to users, simply right click on the jupyter notebook in 
 
 Take the copied/shareable link, and add it to the markdown table in `docs/labs/schedule.md`.
 
-### Step 5
+## Building the site
 
-Build the site as before (or make all changes before building) and then copy to where you are hosting, as noted above.
+### Step 1
 
-## Site structure
+You can view a local version of the website by calling `mkdocs serve` in the root of this folder (i.e. `mkdocs.yml` must be at the same level). Note you may need to install `mkdocs` and dependencies first with
+
+```bash
+pip install mkdocs
+pip install mkdocs-material
+```
+
+### Step 2
+
+If everything looks good locally, you can build the site calling `mkdocs build`. A new folder called `site` will be built that has everything you need for hosting the live website. You can now push to publish via GitHub Pages (see https://squidfunk.github.io/mkdocs-material/publishing-your-site/#with-github-actions for more info).
+
+## More info
+
+The website was built using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). Therefore, all the functionalitites described there can be added here if desired. Second, the executable cells were integrated using [Thebe](https://github.com/executablebooks/thebe). If any changes to the code blocks are desired, please look at their documentation for more information. Alternatively, you can directly modify the style of the code blocks by editing the `.css` stylesheets stored in `docs/stylesheets`.
+
+### Site structure
 
 The `nav` section controls the site structure. Adding or removing tags will add or remove the corresponding page. For example, if you wanted to only hide a section of the website you could go to the `nav` in `mkdocs.yml` and do:
 
