@@ -1,6 +1,6 @@
 # EEB430
 
-This repository stores content for the Mathematical Modelling in Ecology and Evolution (EEB430, University of Toronto) website. The website was created by @tomouellette -- many thanks!
+This repository stores content for the Mathematical Modelling in Ecology and Evolution (originally EEB430, now EEB314, University of Toronto) website. The website was created by @tomouellette -- many thanks!
 
 ## Building lecture content
 
