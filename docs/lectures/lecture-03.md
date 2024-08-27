@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 3: Exponential & logistic growth
 
@@ -118,7 +118,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-03_files/lecture-03_5_0.png)
+    
 
 
 ### Exponential growth in continuous time
@@ -171,7 +173,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-03_files/lecture-03_7_0.png)
+    
 
 
 We can now combine our two plots to compare these two predictions, exponential growth in discrete vs. continuous time.
@@ -189,7 +193,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-03_files/lecture-03_9_0.png)
+    
 
 
 !!! note "Why the difference?"
@@ -249,7 +255,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-03_files/lecture-03_16_0.png)
+    
 
 
 The population size in the next generation is the expected number of offspring per parent times the the total number of parents
@@ -290,7 +298,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-03_files/lecture-03_19_0.png)
+    
 
 
 ### Logistic growth in continuous time

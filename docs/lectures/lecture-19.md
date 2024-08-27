@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 19: Probability II (demographic stochasticity)
 
@@ -99,7 +99,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-19_files/lecture-19_5_0.png)
+    
 
 
 Two key properties of a Poisson random variable are
@@ -174,7 +176,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-19_files/lecture-19_11_0.png)
+    
 
 
 Above we calculated the probability a single lineage goes extinct, $\eta$. From this, the probability that the entire population goes extinct is the probability that all $n_t$ lineages go extinct, $\eta^{n_t}$. 

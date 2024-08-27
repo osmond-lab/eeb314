@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 6: Numerical and graphical techniques II (multivariate)
 
@@ -116,7 +116,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-06_files/lecture-06_3_0.png)
+    
 
 
 Now let's simplify the cob-web plot and just indicate the direction (and magnitude) of change in $p_t$ with time. This is known as a **phase-line diagram** with a **vector field** (the arrows).
@@ -173,11 +175,15 @@ plot_phase_line_haploid(WA=0.5, Wa=1, p0=0.99)
 </pre>
 
 
+    
 ![png](lecture-06_files/lecture-06_5_0.png)
+    
 
 
 
+    
 ![png](lecture-06_files/lecture-06_5_1.png)
+    
 
 
 As in the cob-web plots, we see the allele frequency approaches $p=1$ when $W_A>W_a$ and $p=0$ when $W_a>W_A$. We also notice, as above, the changes are fastest (fewer, longer arrows) at intermediate frequencies.
@@ -249,7 +255,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-06_files/lecture-06_7_0.png)
+    
 
 
 Notice that this time we chose two initial frequencies for the same plot, to show that under **heterozygote advantage** ($W_{AA}<W_{Aa}>W_{aa}$) the allele frequency approaches an intermediate value from either direction. 
@@ -352,7 +360,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-06_files/lecture-06_11_0.png)
+    
 
 
 With this approach we see that the dynamics appear to be approaching a value near $n_1 = 1000, n_2 = 500$ from nearly any initial condition.
@@ -410,7 +420,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-06_files/lecture-06_13_0.png)
+    
 
 
 The null clines help us understand the dynamics. In each area bounded by null clines the arrows point in the same general direction (eg, in the top right area they point down and to the left). This helps us see where the dynamics are heading -- in this case most initial conditions head to the intersection of the null clines for $n_1$ and $n_2$ (red and blue), i.e., where the change in both our variables is zero, near $n_1=1000$ and $n_2=500$.

@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 7: Equilibria
 

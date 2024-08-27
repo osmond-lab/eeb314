@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 1: Introduction
 
@@ -139,7 +139,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-01_files/lecture-01_5_0.png)
+    
 
 
 Compare to Figure 1.3 and Figure 1.4 in the text. We see the initial increase in virions (red) and delcine in CD4+ cells (green), followed by a decline virions (note the log scale on the right axis -- this is a big decline, from over 1000 to about 10). Because this model does not include an immune response against the virions but still exhibits the decline in virions, we conclude that the second hypothesis is valid, that it is theoretically plausible that the decline in virions is due to a lack of CD4+ cells to infect. A few years later this hypothesis was empirically tested and validated -- a nice example of theory guiding science.
@@ -263,7 +265,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-01_files/lecture-01_13_0.png)
+    
 
 
 The key result, that you can see in the plot above, is that when extreme events are short, adaptive evolution (black lines) can paradoxically *reduce* population size (relative to the red lines, where there is no evolution). The reason for this is that, while during the extreme event (shaded section) evolution is adaptive, once the extreme event ends the population finds itself maladapted to the original environment. Adaptive evolution can therefore hamper population persistence, and this is an important thing to keep in mind when documenting rapid adaptive evolution in response to extreme events -- it is not necessarily a good thing for the species (or our conservation goals).

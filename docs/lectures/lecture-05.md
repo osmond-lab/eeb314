@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 5: Numerical and graphical techniques I (univariate)
 
@@ -98,7 +98,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-05_files/lecture-05_7_0.png)
+    
 
 
 This allowed us to compare what happens for different values of the reproductive factor, $R$.
@@ -119,7 +121,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-05_files/lecture-05_9_0.png)
+    
 
 
 We see that when $R>1$ we get population growth and when $R<1$ we get population decline. When $R=1$ the population size remains constant.
@@ -171,7 +175,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-05_files/lecture-05_12_0.png)
+    
 
 
 !!! note "Bifurcation diagrams and chaos"
@@ -202,7 +208,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-05_files/lecture-05_14_0.png)
+    
 
 
 <span id='section3'></span>
@@ -280,7 +288,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-05_files/lecture-05_16_0.png)
+    
 
 
 Note that the cobweb plots (staircase looking lines in blue) track the movement of the allele frequencies from $t \rightarrow t + 1$. By following the cobweb, you can determine if and where the system will converge to an **equilibrium**. (Next week we'll do this mathematically.) What are the stable equilibria above?
@@ -349,7 +359,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-05_files/lecture-05_19_0.png)
+    
 
 
 What is the stable equilibrium in this case?
@@ -397,7 +409,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-05_files/lecture-05_22_0.png)
+    
 
 
 What does this tell us about how allele frequency will change when $s>0$ vs. $s<0$? And what allele frequencies, $p$, cause more rapid evolution?

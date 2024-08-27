@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 12: Linear algebra III
 
@@ -121,7 +121,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-12_files/lecture-12_3_0.png)
+    
 
 
 <span id='section3'></span>

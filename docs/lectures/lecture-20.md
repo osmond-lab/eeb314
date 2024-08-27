@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 20: Probability III (the coalescent)
 
@@ -90,7 +90,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-20_files/lecture-20_6_0.png)
+    
 
 
 One of the most important aspects of this model is that we can choose to think about the history of just some subset of the alleles in the current generation. This is helpful because 1) we do not need to model the entire population and 2) this has a close connection to data (since we almost never sample every individual in a population).
@@ -115,7 +117,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-20_files/lecture-20_8_0.png)
+    
 
 
 ### Time for two lineages to coalesce
@@ -181,7 +185,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-20_files/lecture-20_10_0.png)
+    
 
 
 ### Time for $n$ lineages to coalesce
@@ -240,6 +246,8 @@ ts.first().draw_svg(node_labels={}, size=(500,300)) #plot tree without node labe
 
 
 
+    
 ![svg](lecture-20_files/lecture-20_12_0.svg)
+    
 
 

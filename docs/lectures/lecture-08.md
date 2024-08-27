@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 8: Local stability (univariate)
 
@@ -107,7 +107,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-08_files/lecture-08_2_0.png)
+    
 
 
 Our goal in this lecture is to mathematically determine whether a small perturbation away from an equilibrium point will grow or shrink in magnitude over time $\Longrightarrow$ **local stability analysis**.
@@ -131,7 +133,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-08_files/lecture-08_4_0.png)
+    
 
 
 If we drew the same plot for $r=-0.5$ we see that the population size then moves away from $n=K$, as the rate of change in $n$ is negative when $n<K$ and positive when $K<n$. 
@@ -149,7 +153,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-08_files/lecture-08_6_0.png)
+    
 
 
 The key difference between these plots near the equilibrium of interest, $\hat n=K$, is that 
@@ -280,11 +286,15 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-08_files/lecture-08_11_0.png)
+    
 
 
 
+    
 ![png](lecture-08_files/lecture-08_11_1.png)
+    
 
 
 <span id='section3'></span>
@@ -404,15 +414,21 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-08_files/lecture-08_15_0.png)
+    
 
 
 
+    
 ![png](lecture-08_files/lecture-08_15_1.png)
+    
 
 
 
+    
 ![png](lecture-08_files/lecture-08_15_2.png)
+    
 
 
 <span id='section4'></span>

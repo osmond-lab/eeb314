@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 4: One-locus selection
 
@@ -146,7 +146,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-04_files/lecture-04_3_0.png)
+    
 
 
 <span id='section3'></span>
@@ -268,7 +270,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-04_files/lecture-04_5_0.png)
+    
 
 
 ## 4. Comparing haploid and diploid selection
@@ -331,7 +335,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-04_files/lecture-04_7_0.png)
+    
 
 
 <span id='section4'></span>

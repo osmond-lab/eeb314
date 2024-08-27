@@ -34,11 +34,11 @@ if __name__ == '__main__':
 		'      binderOptions: {\n',
 		'      repo: "mmosmond/executable-cells",\n',
 		'      ref: "main",\n',
-		'      binderUrl: "https://gke.mybinder.org",\n'
 		'      },\n',
 		'  }\n',
 		'</script>\n',
-		'<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>\n\n'
+		'<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>\n'
+		'<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">\n\n'
 	]
 
 	# Add header to lines

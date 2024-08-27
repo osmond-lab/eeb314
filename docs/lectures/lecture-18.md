@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 18: Probability I (genetic drift)
 
@@ -196,7 +196,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-18_files/lecture-18_16_0.png)
+    
 
 
 Note that for $p=0$ or $p=1$ we have Var($X$) = 0, i.e., there is no uncertainity. Further note that Var($X$) = $p(1-p)$ peaks at $p=0.5$, i.e., the highest uncertainity is associated with the toss of a fair coin.

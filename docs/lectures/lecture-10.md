@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 10: Linear algebra I
 
@@ -159,7 +159,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-10_files/lecture-10_3_0.png)
+    
 
 
 <span id='section3'></span>
@@ -368,7 +370,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-10_files/lecture-10_6_0.png)
+    
 
 
 ### Multiplication
@@ -431,7 +435,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-10_files/lecture-10_8_0.png)
+    
 
 
 Multiplying vectors and matrices together is a bit trickier, but is based on the fact that a row vector times a column vector is equal to the sum of the products of their respective entries
@@ -500,7 +506,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-10_files/lecture-10_10_0.png)
+    
 
 
 To multiply a matrix by a matrix, this procedure is then repeated first for the first column of the second matrix and then for the second column of the second matrix, etc:

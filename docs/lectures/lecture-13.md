@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 13: General solutions (linear multivariate)
 
@@ -345,7 +345,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-13_files/lecture-13_2_0.png)
+    
 
 
 We then use Euler's equation, $\cos(\theta) + i \sin(\theta) = e^{i \theta}$, to write 
@@ -409,7 +411,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-13_files/lecture-13_4_0.png)
+    
 
 
 We see that the population grows, which we should have expected given that the leading eigenvalue, $\lambda_1\approx1.03$, has an absolute value greater than 1. 
@@ -437,7 +441,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-13_files/lecture-13_6_0.png)
+    
 
 
 <span id='section2'></span>
@@ -565,7 +571,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-13_files/lecture-13_8_0.png)
+    
 
 
 This cycling occurs because initially the mean male trait is positive but there is no mean female preference. This implies that both natural and sexual selection favour smaller male traits, causing the mean to decline. But because of a correlated response, female preference also declines, favouring male traits less than 0. Eventually female preference becomes too costly and begins to increase back toward zero. This causes a correlated increase in the male trait, and so on. 

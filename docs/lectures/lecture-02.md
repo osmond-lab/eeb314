@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 2: Model construction
 
@@ -238,7 +238,9 @@ p.show()
 </pre>
 
 
+    
 ![png](lecture-02_files/lecture-02_3_0.png)
+    
 
 
 From this plot we see, for example, that the frequency of heterozygotes, Aa, is maximized at intermediate allele frequencies.

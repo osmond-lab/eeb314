@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 9: General solutions (univariate)
 
@@ -87,7 +87,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-09_files/lecture-09_3_0.png)
+    
 
 
 ### Solving affine models
@@ -150,7 +152,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-09_files/lecture-09_5_0.png)
+    
 
 
 <span id='section3'></span>
@@ -195,7 +199,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-09_files/lecture-09_7_0.png)
+    
 
 
 ### Solving with transformations 
@@ -267,7 +273,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-09_files/lecture-09_10_0.png)
+    
 
 
 <span id='section4'></span>
@@ -322,7 +330,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-09_files/lecture-09_13_0.png)
+    
 
 
 ### Using transformations
@@ -381,7 +391,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-09_files/lecture-09_15_0.png)
+    
 
 
 <span id='section5'></span>
@@ -426,7 +438,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-09_files/lecture-09_18_0.png)
+    
 
 
 ### Alternative methods

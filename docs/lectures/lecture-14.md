@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 14: Demography
 
@@ -238,7 +238,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-14_files/lecture-14_4_0.png)
+    
 
 
 <span id='section3'></span>
@@ -459,5 +461,7 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-14_files/lecture-14_6_0.png)
+    
 

@@ -6,11 +6,11 @@
       binderOptions: {
       repo: "mmosmond/executable-cells",
       ref: "main",
-      binderUrl: "https://gke.mybinder.org",
       },
   }
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
 # Lecture 11: Linear algebra II
 
@@ -157,7 +157,9 @@ plt.show()
 </pre>
 
 
+    
 ![png](lecture-11_files/lecture-11_2_0.png)
+    
 
 
 ### Inverse
