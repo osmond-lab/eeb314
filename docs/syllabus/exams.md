@@ -12,5 +12,4 @@
 - Covers all material, with focus on Lectures 10-20 and Labs 6-10
 - Examples: 
 	- [2021](exam_files/final2021.pdf), [solutions](exam_files/final2021_solns.pdf) 
-		- question 3 is an evolutionary invasion analysis, not covered in the lectures on this site
 	- [2022](exam_files/final2022.pdf), [solutions](exam_files/final2022_solns.pdf) 

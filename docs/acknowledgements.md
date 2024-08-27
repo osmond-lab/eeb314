@@ -6,7 +6,7 @@ I'm also very grateful to [Leithen M'Gonigle](https://www.sfu.ca/biology/faculty
 
 Thanks also to [Ailene McPherson](https://amacp.github.io/) who, along with Sally and Leithen, continues to help me teach this course and inspires me to become a better teacher.
 
-Thanks are also due to [Puneeth Deraje](https://osmond-lab.github.io/people.html) who has gone above and beyond as a TA. Puneeth created Lectures 18 and 19 and Lab 10.
+Thanks are also due to [Puneeth Deraje](https://osmond-lab.github.io/people.html) who went above and beyond as the course's first TA. 
 
 And you wouldn't be reading this without the help of [Tom Ouellette](https://tomouellette.github.io/) who did an amazing job creating this website as a course development TA.
 

@@ -14,11 +14,11 @@ Mathematics is central to science because it provides a rigorous way to go from 
 - [x] do homework
 
 ## Grading scheme
+- 10% - labs
 - 20% - homeworks
-- 20% - labs
 - 20% - midterm
-- 15% - final project
-- 25% - final
+- 20% - final project
+- 30% - final
 
 ### Late fees
 
