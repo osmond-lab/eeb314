@@ -59,15 +59,15 @@ plugins:
 nav:
   - Overview: index.md
   - Syllabus: 
+    - Instructors: syllabus/instructors.md
+    - When and where: syllabus/when_and_where.md
     - General info: syllabus/general_info.md
     - Course structure: syllabus/course_structure.md
     - Textbook: syllabus/textbook.md
-    - When and where: syllabus/when_and_where.md
     - Assignments: syllabus/assignments.md
     - Final Project: syllabus/final_project.md
     - Exams: syllabus/exams.md
-    - Instructors: syllabus/instructors.md
-    - Other resources: syllabus/other_resources.md 
+    - Other resources: syllabus/resources.md 
   - Lectures:
     - Schedule: lectures/schedule.md
     - Lecture 1: lectures/lecture-01.md

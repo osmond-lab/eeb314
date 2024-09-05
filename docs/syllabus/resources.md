@@ -1,4 +1,4 @@
-# Other resources
+# Resources
 
 There are many resources available at the University of Toronto to help you succeed in this course. Below are a few:
 
