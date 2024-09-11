@@ -212,7 +212,7 @@ plt.show()
 
 Exponential growth cannot continue indefinitely.
 
-Take for example a population of pheasants on an island off the coast of Washington State. Just 8 pheasants were introduced in 1937, but the population then grew exponentially, tripling in size every year ($R=3$) for the first 5 years.  Had this population continued to grow exponentially there would have been 7 million of them by the year 1950 and $10^{28}$ by now – which at 2 kg per pheasant is 3000 times the mass of the earth!! In fact, Lack observed that “the figures suggest that the increase was slowing down and was about to cease, but at this point the island was occupied by the military and many of the birds shot.”
+Take for example a population of pheasants on an island off the coast of Washington State. Just 8 pheasants were introduced in 1937, but the population then grew exponentially, tripling in size every year ($R=3$) for the first 5 years.  Had this population continued to grow exponentially there would have been 7 million of them by the year 1950 and $10^{28}$ by now – which at 2 kg per pheasant is 3000 times the mass of the earth!!
 
 Although populations may initially experience exponential growth, resources eventually become depleted and competition becomes more severe. This suggests that we should change our model assumptions.
 
@@ -302,6 +302,10 @@ plt.show()
 ![png](lecture-03_files/lecture-03_19_0.png)
     
 
+
+!!! info "Complex dynamics"
+
+    Logistic growth in discrete time can show some surprisingly complex dynamics, which we'll explore in lab.
 
 ### Logistic growth in continuous time
 

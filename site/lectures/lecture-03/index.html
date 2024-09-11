@@ -1240,7 +1240,7 @@ plt.show()
 </div>
 <h3 id="the-trouble-with-exponential-growth">The trouble with exponential growth</h3>
 <p>Exponential growth cannot continue indefinitely.</p>
-<p>Take for example a population of pheasants on an island off the coast of Washington State. Just 8 pheasants were introduced in 1937, but the population then grew exponentially, tripling in size every year (<span class="arithmatex">\(R=3\)</span>) for the first 5 years.  Had this population continued to grow exponentially there would have been 7 million of them by the year 1950 and <span class="arithmatex">\(10^{28}\)</span> by now – which at 2 kg per pheasant is 3000 times the mass of the earth!! In fact, Lack observed that “the figures suggest that the increase was slowing down and was about to cease, but at this point the island was occupied by the military and many of the birds shot.”</p>
+<p>Take for example a population of pheasants on an island off the coast of Washington State. Just 8 pheasants were introduced in 1937, but the population then grew exponentially, tripling in size every year (<span class="arithmatex">\(R=3\)</span>) for the first 5 years.  Had this population continued to grow exponentially there would have been 7 million of them by the year 1950 and <span class="arithmatex">\(10^{28}\)</span> by now – which at 2 kg per pheasant is 3000 times the mass of the earth!!</p>
 <p>Although populations may initially experience exponential growth, resources eventually become depleted and competition becomes more severe. This suggests that we should change our model assumptions.</p>
 <p><span id='section3'></span></p>
 <h2 id="3-logistic-growth">3. Logistic growth</h2>
@@ -1303,6 +1303,10 @@ plt.show()
 </pre>
 
 <p><img alt="png" src="../lecture-03_files/lecture-03_19_0.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Complex dynamics</p>
+<p>Logistic growth in discrete time can show some surprisingly complex dynamics, which we'll explore in lab.</p>
+</div>
 <h3 id="logistic-growth-in-continuous-time">Logistic growth in continuous time</h3>
 <p>The model of logistic growth in continuous time, as with discrete time, follows from the assumption that each individual has a <strong>growth rate</strong> that decreases as a linear function of the population size <span class="arithmatex">\(r(1 - n_t/K)\)</span>.</p>
 <p>If there are <span class="arithmatex">\(n_t\)</span> individuals in the population at time <span class="arithmatex">\(t\)</span>, then the rate of change of the population size will be</p>

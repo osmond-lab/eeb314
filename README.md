@@ -54,6 +54,10 @@ To make them accessible to users, simply right click on the jupyter notebook in 
 
 Take the copied/shareable link, and add it to the markdown table in `docs/labs/schedule.md`.
 
+### Step 5
+
+The labs can now be edited and saved directly in Google CoLab. Careful not to leave all the answers there!
+
 ## Building the site
 
 ### Step 1
