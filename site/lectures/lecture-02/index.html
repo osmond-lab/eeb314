@@ -622,19 +622,12 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-evolution-and-the-hardy-weinberg-equilibrium" class="md-nav__link">
-    2. Evolution and the Hardy-Weinberg equilibrium
+  <a href="#2-example-hardy-weinberg-equilibrium" class="md-nav__link">
+    2. Example: Hardy-Weinberg equilibrium
   </a>
   
-    <nav class="md-nav" aria-label="2. Evolution and the Hardy-Weinberg equilibrium">
+    <nav class="md-nav" aria-label="2. Example: Hardy-Weinberg equilibrium">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#natural-selection" class="md-nav__link">
-    Natural selection
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#evolution-in-the-absence-of-selection" class="md-nav__link">
@@ -1129,19 +1122,12 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-evolution-and-the-hardy-weinberg-equilibrium" class="md-nav__link">
-    2. Evolution and the Hardy-Weinberg equilibrium
+  <a href="#2-example-hardy-weinberg-equilibrium" class="md-nav__link">
+    2. Example: Hardy-Weinberg equilibrium
   </a>
   
-    <nav class="md-nav" aria-label="2. Evolution and the Hardy-Weinberg equilibrium">
+    <nav class="md-nav" aria-label="2. Example: Hardy-Weinberg equilibrium">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#natural-selection" class="md-nav__link">
-    Natural selection
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#evolution-in-the-absence-of-selection" class="md-nav__link">
@@ -1252,7 +1238,7 @@
 <h2 id="lecture-overview">Lecture overview</h2>
 <ol>
 <li><a href="#section1">Constructing a model</a></li>
-<li><a href="#section2">Evolution and the Hardy-Weinberg equilibrium</a></li>
+<li><a href="#section2">Example: Hardy-Weinberg equilibrium</a></li>
 </ol>
 <p><span id='section1'></span></p>
 <h2 id="1-constructing-a-model">1. Constructing a model</h2>
@@ -1266,18 +1252,23 @@
 <li>Simplify, Simplify!</li>
 <li>Start with the simplest, biologically reasonable description of the problem.</li>
 </ul>
+<p>For example, we might ask: how does immigration affect population size?</p>
 <h3 id="ii-determine-the-basic-ingredients">ii. Determine the basic ingredients</h3>
 <ul>
-<li>Define the variables in the model.</li>
+<li>Define the <strong>variables</strong> in the model.</li>
 <li>Describe any constraints on the variables.</li>
 <li>Describe any interactions between variables.</li>
-<li>Decide whether you will treat time as discrete or continuous.</li>
+<li>Decide whether you will treat time as continuous or discrete.</li>
 <li>Choose a time scale (i.e., decide what a time step equals in discrete time and specify whether rates will be measured per second, minute, day, year, generation, etc.).</li>
-<li>Define the parameters in the model.</li>
+<li>Define the <strong>parameters</strong> in the model.</li>
 <li>Describe any constraints on the parameters.</li>
 </ul>
+<p>In our example, there is a single variable, <span class="arithmatex">\(n(t)\)</span>, denoting population size at time <span class="arithmatex">\(t\)</span>. This must be non-negative, <span class="arithmatex">\(n(t)\geq0\)</span>, to be biologically valid. </p>
+<p>We'll look at both continuous and discrete time, with an arbitrary time scale (if we wanted to plug in some numerical parameter values we'd have to specify this, but here we won't).</p>
+<p>In continuous time our parameters will be immigration rate (<span class="arithmatex">\(m\)</span>), per capita birth rate (<span class="arithmatex">\(b\)</span>), and per capita death rate (<span class="arithmatex">\(d\)</span>). These must all be non-negative under our interpretation. The units of <span class="arithmatex">\(m\)</span> are individuals/time while the units of <span class="arithmatex">\(b\)</span> and <span class="arithmatex">\(d\)</span> are simply 1/time (e.g., for birth we have the number of individuals produced per individual per time, so that individuals cancels out and we are left with 1/time).</p>
+<p>In discrete time the parameters will be the average number of immigrants per time step (<span class="arithmatex">\(M\)</span>), the average number of offspring per individual per time step (<span class="arithmatex">\(B\)</span>), and the fraction of individuals that die each time step (<span class="arithmatex">\(D\)</span>). These must all be non-negative and <span class="arithmatex">\(D\)</span> must also be less than or equal to 1 as it is a fraction. </p>
 <h3 id="iii-qualitatively-describe-the-biological-system">iii. Qualitatively describe the biological system</h3>
-<p>For continuous-time models, draw a flow diagram to describe changes to the variables over time. For example, if we had a population experiencing migration, death, and birth we could draw the following.</p>
+<p>For continuous-time models, draw a <strong>flow diagram</strong> to describe changes to the variables over time. For our example we could draw the following:</p>
 <p><center>
 <pre class="mermaid"><code>graph LR;
     A((n)) --birth--&gt; A;
@@ -1286,7 +1277,7 @@
     style B height:0px;
     style C height:0px;</code></pre>
 </center></p>
-<p>For discrete-time models, draw a life-cycle diagram with all the events that occur each time unit. For example, if we were modeling a population that experienced migration, then birth, then death each time step, we could draw the following.</p>
+<p>For discrete-time models, draw a <strong>life-cycle diagram</strong> with all the events that occur each time unit. For our example, if we assume migration, then birth, then death each time step, we could draw the following:</p>
 <p><center>
 <pre class="mermaid"><code>graph LR;
     A((n)) --migration--&gt; B((n'));
@@ -1297,36 +1288,74 @@
 <h3 id="iv-quantitatively-describe-the-biological-system">iv. Quantitatively describe the biological system</h3>
 <p>Using the diagrams and tables as a guide, write down the equations. Perform checks. Are the constraints on the variables still met as time passes? Make sure that the units of the right-hand side equal those on the left-hand side.</p>
 <p>For continuous-time models, add rates for arrows coming in to the flow diagram and subtract rates for arrows coming out of the flow diagram. </p>
-<p>For example, in the model shown above the rate of change in the number of individuals, <span class="arithmatex">\(\frac{\mathrm{d} n(t)}{\mathrm{d} t}\)</span>, is</p>
-<div class="arithmatex">\[
-\frac{\mathrm{d} n(t)}{\mathrm{d} t} = m + b n(t) - d n(t)
-\]</div>
-<p>where <span class="arithmatex">\(m\)</span>, <span class="arithmatex">\(b\)</span>, and <span class="arithmatex">\(d\)</span> are the per capita (ie, per individual) rates of migration, birth, and death.</p>
-<p>In discrete time, you must take into account the order of events when constructing equations.</p>
-<p>To build an equation for the population size in the next generation, <span class="arithmatex">\(n(t+1)\)</span>, based on the life-cycle diagram above, first construct an equation for each event </p>
-<div class="arithmatex">\[n' = n_t + m\]</div>
-<div class="arithmatex">\[n'' = n' + bn'\]</div>
-<div class="arithmatex">\[n_{t+1} = n'' - dn''\]</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Note that <span class="arithmatex">\(m\)</span> and <span class="arithmatex">\(d\)</span> are now the <em>fraction</em> of individuals that migrate and die, and <span class="arithmatex">\(b\)</span> is the <em>number</em> of offspring per parent (above these parameters were all <em>rates</em>). </p>
-</div>
-<p>Next, substitute <span class="arithmatex">\(n''\)</span> and then <span class="arithmatex">\(n'\)</span> into the equation for <span class="arithmatex">\(n_{t+1}\)</span> to write <span class="arithmatex">\(n_{t+1}\)</span> in terms of <span class="arithmatex">\(n_t\)</span></p>
+<p>For example, in the model shown above the rate of change in the number of individuals, <span class="arithmatex">\(\frac{\mathrm{d} n}{\mathrm{d} t}\)</span>, is</p>
 <div class="arithmatex">\[
 \begin{aligned}
-n_{t+1} &amp;= n'' − dn'' \\
-&amp;= (n' + bn′) − d(n' + bn′) \\
-&amp;= n'(1 + b − d − db) \\
-&amp;= (n_t +m)(1+b−d−db) \\
+\frac{\mathrm{d} n}{\mathrm{d} t} &amp;= m + b n(t) - d n(t)\\
+&amp;= m + (b - d) n(t)
 \end{aligned}
 \]</div>
-<p>We now have a recursion equation that correctly takes into account the order of the life cycle (migration, birth, death) and the point at which the census is taken (immediately after death).</p>
+<p>This is a <strong>differential equation</strong>.</p>
+<p>In discrete time, you must take into account the order of events when constructing equations. To build an equation for the population size in the next generation, <span class="arithmatex">\(n(t+1)\)</span>, based on the life-cycle diagram above, first construct an equation for each event </p>
+<div class="arithmatex">\[n' = n(t) + m\]</div>
+<div class="arithmatex">\[n'' = n' + bn'\]</div>
+<div class="arithmatex">\[n(t+1) = n'' - dn''\]</div>
+<p>Next, substitute <span class="arithmatex">\(n''\)</span> and then <span class="arithmatex">\(n'\)</span> into the equation for <span class="arithmatex">\(n(t+1)\)</span> to write <span class="arithmatex">\(n(t+1)\)</span> in terms of <span class="arithmatex">\(n(t)\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+n(t+1) &amp;= n'' − dn'' \\
+&amp;= (n' + bn′) − d(n' + bn′) \\
+&amp;= n'(1 + b − d − db) \\
+&amp;= (n(t) + m)(1 + b − d − db) \\
+\end{aligned}
+\]</div>
+<p>We now have a <strong>recursion equation</strong> that correctly takes into account the order of the life cycle (migration, birth, death) and the point at which the census is taken (immediately after death).</p>
 <h3 id="v-analyze-the-equations">v. Analyze the equations</h3>
 <ul>
 <li>Start by using the equations to simulate and graph the changes to the system over time. </li>
 <li>Choose and perform appropriate analyses.</li>
 <li>Make sure that the analyses can address the problem.</li>
 </ul>
+<p>We'll save the mathematical analyses for later in the course, but we can use the above equations to simulate the model.</p>
+<pre data-executable="true" data-language="python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+# define
+def discrete_model(nt, b, d, m):
+    '''recursion equation giving population size in next time step as a function
+    of the population size at this time, nt, and the birth, death, and immigration rates, 
+    b, d, and m.'''
+    return (nt + m) * (1 + b - d - b*d) #the recursion equation we derived above
+
+def continuous_model(nt, b, d, m, dt):
+    '''approximate differential equation giving population size in next time step as a function
+    of the population size at this time, nt, and the birth, death, and immigration rates, 
+    b, d, and m. The dt is the size of the time step: as this approaches 0 we get the differential equation.'''
+    return nt + (m + (b - d)*nt)*dt #the differential equation we derived above
+
+# simulate
+nd, nc = [], [] #empty lists to store data
+ntd, ntc = 1, 1 #initial popn size
+b, d, m, T, dt = 0.05, 0.1, 1, 100, 0.1 #parameter values
+for t in np.arange(0,T,dt):
+    if t%1==0:
+        ntd = discrete_model(ntd, b, d, m) #get the next population size from the recursion equation
+        nd.append(ntd) #and append it to the list
+    ntc = continuous_model(ntc, b, d, m, dt) #get the next population size from the differential equation
+    nc.append(ntc) #and append it to the list
+
+# plot
+fig, ax = plt.subplots()
+ax.scatter(np.arange(0, T), nd, label='discrete') #plot population size at each time
+ax.scatter(np.arange(0, T, dt), nc, label='continuous') #plot population size at each time
+ax.set_xlabel('time, $t$')
+ax.set_ylabel('population size, $n(t)$')
+plt.legend()
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-02_files/lecture-02_2_0.png" /></p>
 <h3 id="vi-checks-and-balances">vi. Checks and balances</h3>
 <ul>
 <li>Check the results against data or any known special cases.</li>
@@ -1334,6 +1363,7 @@ n_{t+1} &amp;= n'' − dn'' \\
 <li>Consider alternatives to the simplest model.</li>
 <li>Extend or simplify the model, as appropriate, and repeat steps 2-5.</li>
 </ul>
+<p>If <span class="arithmatex">\(b&gt;d\)</span> the population grows without bound (try this in the code above). But competition should prevent unbounded population growth. We could therefore extend the model to include competition. We'll see one way to do this in the next lecture.</p>
 <h3 id="vii-relate-the-results-back-to-the-question">vii. Relate the results back to the question</h3>
 <ul>
 <li>Do the results answer the biological question?</li>
@@ -1341,23 +1371,19 @@ n_{t+1} &amp;= n'' − dn'' \\
 <li>Interpret the results verbally, and describe conceptually any new insights into the biological process.</li>
 <li>Describe potential experiments.</li>
 </ul>
+<p>Immigration appears to increase the population size (try setting <span class="arithmatex">\(m=0\)</span> for comparison in the code above), though we'd need to do the mathematical analysis to be more confident in this statement. </p>
+<p>There is some counter-intuitiveness in the discrete model: try creating the recursion equation for a different order of events in the lifecycle. The recursion equation depends on the order and will therefore lead to different dynamics.</p>
+<p>Potential experiments incude manipulating immigration in lab populations (e.g., bacteria) or comparing population sizes on islands that are different distances from the mainland.</p>
 <p><span id='section2'></span></p>
-<h2 id="2-evolution-and-the-hardy-weinberg-equilibrium">2. Evolution and the Hardy-Weinberg equilibrium</h2>
+<h2 id="2-example-hardy-weinberg-equilibrium">2. Example: Hardy-Weinberg equilibrium</h2>
 <hr>
 
-<h3 id="natural-selection">Natural selection</h3>
-<p>Natural selection requires three conditions be met (<a href="https://www.annualreviews.org/doi/10.1146/annurev.es.01.110170.000245">Lewontin 1970</a>):</p>
-<ol>
-<li>Variation in traits: different individuals have different traits</li>
-<li>Variation in fitness: different traits have different rates of survival and/or reproduction</li>
-<li>Fitness is heritable: traits are inherited to some degree</li>
-</ol>
-<p>Although selection is an important idea, it's impossible to know what kind of observations are consistent with selection if we don't have a baseline to compare against. So let's first construct a model of evolution in the absence of selection using the general steps described in section 1, <a href='#section1'>Constructing a model</a>.</p>
+<p>Let's revisit what should be a familiar evolutionary concept: Hardy-Weinberg equilibrium.  </p>
 <h3 id="evolution-in-the-absence-of-selection">Evolution in the absence of selection</h3>
 <h4 id="i-formulate-the-question_1">i. Formulate the question</h4>
 <ul>
 <li><strong>What do you want to know</strong><ul>
-<li>How do allele frequencies change over time in the absence of natural selection?</li>
+<li>How do allele frequencies change due to random mating and segregation alone?</li>
 </ul>
 </li>
 <li><strong>Boil the question down</strong><ul>
@@ -1365,7 +1391,7 @@ n_{t+1} &amp;= n'' − dn'' \\
 </ul>
 </li>
 <li><strong>Simple, biologically reasonable description</strong> <ul>
-<li>We assume that each diploid genotype (AA, Aa, and aa) has equal fitness and that individuals reproduce and then die (non-overlapping generations). We also assume that individuals produce haploid gametes that form a gamete pool. Gametes within the gamete pool unite at random to produce the next generation of diploid individuals.</li>
+<li>We assume all individuals have equal fitness and that individuals reproduce and then die (non-overlapping generations). We also assume that individuals produce haploid gametes via meiosis (segregation) that form a gamete pool. Gametes within the gamete pool unite at random to produce the next generation of diploid individuals. </li>
 </ul>
 </li>
 </ul>
@@ -1397,14 +1423,15 @@ n_{t+1} &amp;= n'' − dn'' \\
 </li>
 </ul>
 <h4 id="iii-qualitatively-describe-the-biological-system_1">iii. Qualitatively describe the biological system</h4>
-<p>Gametes unite at random in the gamete pool to produce diploid offspring. These offspring grow into adults that undergo meiosis, creating gametes, and die. Below we draw the life-cycle diagram.</p>
+<p>Diploid adults undergo meiosis, creating haploid gametes, and die. Gametes unite at random in the gamete pool to produce diploid offspring, which form the adults in next generation. Below we draw the life-cycle diagram.</p>
 <p><center>
 <pre class="mermaid"><code>    graph LR;
-    A((random&lt;br&gt; union)) --diploid--&gt; B((meiosis));
-    B --haploid--&gt; A;</code></pre>
+    A((p)) --meiosis--&gt; B((p'));
+    B --union--&gt; A;</code></pre>
 </center></p>
 <h4 id="iv-quantiatively-describe-the-biological-system">iv. Quantiatively describe the biological system</h4>
-<p>To calculate the frequency of each genoytpe in the next generation we use a table of events. The "Union" column indicates the pair of gametes that are meeting each other, the "Frequency" column indicates the proportion of gamete pairs in the population with this particular union, and the remaining columns indicate which diploid genotype is created by the union.</p>
+<p>If all individuals create the same number of gametes and each allele within an individual is equally likely to be passed down then meiosis/segregation does not change allele frequencies, <span class="arithmatex">\(p'=p(t)\)</span>.</p>
+<p>To calculate the frequency of each genoytpe in the next generation, via random union of gametes, we use a table of events. The "Union" column indicates the pair of gametes that are meeting each other, the "Frequency" column indicates the proportion of gamete pairs in the population with this particular union, and the remaining columns indicate which diploid genotype is created by the union.</p>
 <table>
 <thead>
 <tr>
@@ -1418,28 +1445,28 @@ n_{t+1} &amp;= n'' − dn'' \\
 <tbody>
 <tr>
 <td>A x A</td>
-<td><span class="arithmatex">\(p^2\)</span></td>
+<td><span class="arithmatex">\(p'^2\)</span></td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 </tr>
 <tr>
 <td>A x a</td>
-<td><span class="arithmatex">\(pq\)</span></td>
+<td><span class="arithmatex">\(p'q'\)</span></td>
 <td>0</td>
 <td>1</td>
 <td>0</td>
 </tr>
 <tr>
 <td>a x A</td>
-<td><span class="arithmatex">\(qp\)</span></td>
+<td><span class="arithmatex">\(q'p'\)</span></td>
 <td>0</td>
 <td>1</td>
 <td>0</td>
 </tr>
 <tr>
 <td>a x a</td>
-<td><span class="arithmatex">\(q^2\)</span></td>
+<td><span class="arithmatex">\(q'^2\)</span></td>
 <td>0</td>
 <td>0</td>
 <td>1</td>
@@ -1447,17 +1474,17 @@ n_{t+1} &amp;= n'' − dn'' \\
 <tr>
 <td></td>
 <td></td>
-<td><span style='color: red'><span class="arithmatex">\(p^2\)</span></span></td>
-<td><span style='color: red'><span class="arithmatex">\(2pq\)</span></span></td>
-<td><span style='color: red'> <span class="arithmatex">\(q^2\)</span> </span></td>
+<td><span style='color: red'><span class="arithmatex">\(p'^2\)</span></span></td>
+<td><span style='color: red'><span class="arithmatex">\(2p'q'\)</span></span></td>
+<td><span style='color: red'> <span class="arithmatex">\(q'^2\)</span> </span></td>
 </tr>
 </tbody>
 </table>
 <p>The genotype frequencies denoted in <span style='color: red'>red</span> are known as the <strong>Hardy-Weinberg frequencies</strong>. Note that this table shows that populations not at "Hardy-Weinberg equilibrium" reach Hardy-Weinberg equilibrium after only one generation of random mating. </p>
 <p>We now have the frequency of genotypes in the next generation in terms of the allele frequencies in the previous generation,</p>
-<div class="arithmatex">\[x' = p^2\]</div>
-<div class="arithmatex">\[y' = 2pq\]</div>
-<div class="arithmatex">\[z' = q^2\]</div>
+<div class="arithmatex">\[x(t+1) = p'^2 = p(t)^2\]</div>
+<div class="arithmatex">\[y(t+1) = 2p'q' = 2p(t)q(t)\]</div>
+<div class="arithmatex">\[z(t+1) = q'^2 = q(t)^2\]</div>
 <p>To understand how the genotype frequencies at Hardy-Weinberg vary with allele frequency, we can plot them.</p>
 <pre data-executable="true" data-language="python">
 from sympy import *
@@ -1477,35 +1504,35 @@ p[2].label='aa'
 p.show()
 </pre>
 
-<p><img alt="png" src="../lecture-02_files/lecture-02_3_0.png" /></p>
+<p><img alt="png" src="../lecture-02_files/lecture-02_5_0.png" /></p>
 <p>From this plot we see, for example, that the frequency of heterozygotes, Aa, is maximized at intermediate allele frequencies.</p>
 <p>Subbing in <span class="arithmatex">\(p=x+y/2\)</span> and <span class="arithmatex">\(q=y/2+z\)</span> we get the recursion equations describing the frequency of diploid genotypes in the next generation as a function of the diploid genotypes in the current generation,</p>
-<div class="arithmatex">\[x' = (x + y/2)^2\]</div>
-<div class="arithmatex">\[y' = 2(x + y/2)(y/2 + z)\]</div>
-<div class="arithmatex">\[z' = (y/2 + z)^2\]</div>
+<div class="arithmatex">\[x(t+1) = (x(t) + y(t)/2)^2\]</div>
+<div class="arithmatex">\[y(t+1) = 2(x(t) + y(t)/2)(y(t)/2 + z(t))\]</div>
+<div class="arithmatex">\[z(t+1) = (y(t)/2 + z(t))^2\]</div>
 <h4 id="v-analyze-the-equations_1">v. Analyze the equations</h4>
 <p>Now back to our question. What is the frequency of allele A in the next generation?</p>
-<div class="arithmatex">\[p' = x' + y'/2\]</div>
-<div class="arithmatex">\[p' = p^2 + 2pq/2\]</div>
-<div class="arithmatex">\[p' = p(p + q)\]</div>
-<div class="arithmatex">\[p' = p\]</div>
+<div class="arithmatex">\[p(t+1) = x(t+1) + y(t+1)/2\]</div>
+<div class="arithmatex">\[p(t+1) = p(t)^2 + 2p(t)q(t)/2\]</div>
+<div class="arithmatex">\[p(t+1) = p(t)(p(t) + q(t))\]</div>
+<div class="arithmatex">\[p(t+1) = p(t)\]</div>
 <h4 id="vi-checks-and-balances_1">vi. Checks and balances</h4>
 <ul>
-<li>Does <span class="arithmatex">\(x' + y' + z' = 1\)</span>? </li>
+<li>Does <span class="arithmatex">\(x(t+1) + y(t+1) + z(t+1) = 1\)</span>? </li>
 </ul>
 <div class="arithmatex">\[
 \begin{aligned}
-x' + y' + z' 
-&amp;= p^2 + 2pq + q^2\\
-&amp;= (p+q)^2\\
+x(t+1) + y(t+1) + z(t+1) 
+&amp;= p(t+1)^2 + 2p(t+1)q(t+1) + q(t+1)^2\\
+&amp;= (p(t+1)+q(t+1))^2\\
 &amp;= (1)^2\\
 &amp;= 1
 \end{aligned}
 \]</div>
 <h4 id="vii-relate-the-results-back-to-the-question_1">vii. Relate the results back to the question</h4>
 <ul>
-<li>How do allele frequencies change over time in the absence of natural selection? <ul>
-<li>They don't</li>
+<li>How do allele frequencies change over time due to random mating and segregation? <ul>
+<li>They don't!</li>
 </ul>
 </li>
 </ul>
@@ -1548,7 +1575,7 @@ x' + y' + z'
 <div class="arithmatex">\[x = p^2 = 0.2916\]</div>
 <div class="arithmatex">\[y = 2pq = 0.4985\]</div>
 <div class="arithmatex">\[z = q^2 = 0.2116\]</div>
-<p>These predicted genotype frequencies are exceptionally close to those actually observed, indicating Hardy-Weinberg equilibrium and suggesting an absence of selection on this phenotype. </p>
+<p>These predicted genotype frequencies are exceptionally close to those actually observed, indicating Hardy-Weinberg equilibrium and suggesting an absence of selection (and other forces) on this phenotype. </p>
 </div>
 
 

@@ -57,35 +57,35 @@ We’ll start with the simpler exponential model.
 
 ### Exponential growth in discrete time
 
-Imagine we start with $n_t$ individuals at some time $t$. If we assume that each of these individuals produces $b$ offspring, the number of individuals after reproduction is $n_t + n_t b = n_t(1 + b)$.
+Imagine we start with $n(t)$ individuals at some time $t$. If we assume that each of these individuals produces $b$ offspring, the number of individuals after reproduction is $n(t) + n(t) b = n(t)(1 + b)$.
 
-If we then assume a fraction $d$ die, the number of individuals remaining after death is $n_t(1+b) - n_t(1+b)d = n_t(1+b)(1-d)$.
+If we then assume a fraction $d$ die, the number of individuals remaining after death is $n(t)(1+b) - n(t)(1+b)d = n(t)(1+b)(1-d)$.
 
-With no further events in the life-cycle, this is the expected number of individuals in the next generation, $n_{t+1}$, which we can write as
+With no further events in the life-cycle, this is the expected number of individuals in the next generation, $n(t+1)$, which we can write as
 
 $$
 \begin{aligned}
-n_{t+1}
-&= n_t(1+b)(1-d) \\
-&= n_t R \\
+n(t+1)
+&= n(t)(1+b)(1-d) \\
+&= n(t) R \\
 \end{aligned}
 $$
 
 where $R=(1+b)(1-d)$ is a constant referred to as the **reproductive factor**.
 
-This equation, $n_{t+1}=n_t R$, is the **recursion equation** for exponential growth.
+This equation, $n(t+1)=n(t) R$, is the **recursion equation** for exponential growth.
 
 !!! note "Exponential vs geometric growth"
 
-    Technically this recursion equation describes "geometric" growth, since $n_t$ will grow with $t$ as a geometric series, but here we simply call it "exponential growth in discrete time" to make a clear connection with exponential growth in continuous time.
+    Technically this recursion equation describes "geometric" growth, since $n(t)$ will grow with $t$ as a geometric series, but here we simply call it "exponential growth in discrete time" to make a clear connection with exponential growth in continuous time.
 
 We can also describe the *change* in the number of individuals by subtracting off the current number,
 
 $$
 \begin{aligned}
 \Delta n 
-&= n_{t+1} - n_t\\ 
-&= n_t(R-1)
+&= n(t+1) - n(t)\\ 
+&= n(t)(R-1)
 \end{aligned}
 $$
 
@@ -113,7 +113,7 @@ for t in np.arange(0,100): #for time from 0 to 99
 fig, ax = plt.subplots()
 ax.scatter(np.arange(0, 100), nd) #plot population size at each time
 ax.set_xlabel('Time, $t$')
-ax.set_ylabel('Population size, $n_t$')
+ax.set_ylabel('Population size, $n(t)$')
 plt.show()
 </pre>
 
@@ -127,14 +127,14 @@ plt.show()
 
 Now assume that each individual continuously gives birth at rate $b$ and dies at rate $d$.
 
-If there are $n_t$ individuals in the population at time $t$, then the rate of change in the number of individuals is
+If there are $n(t)$ individuals in the population at time $t$, then the instantaneous rate of change in the number of individuals is
 
 $$
 \begin{aligned}
-\frac{\mathrm{d} n_t}{\mathrm{d} t} 
-&= n_t b - n_t d\\
-&= n_t (b - d)\\
-&= n_t r_c
+\frac{\mathrm{d} n}{\mathrm{d} t} 
+&= n(t) b - n(t) d\\
+&= (b - d) n(t)\\
+&= r_c n(t)
 \end{aligned}
 $$
 
@@ -146,7 +146,7 @@ Let's also plot these dynamics.
 
 !!! note "Approximating a differential equation"
 
-    The differential equation describes the change in the population size in an "infinitesimally" small amount of time, $\mathrm{d}t$. To plot these dynamics we therefore make an approximation, taking $\mathrm{d}t$ to be small, but not infinitely so. Rearranging the differential equation gives $\mathrm{d}n_t = n_t(b-d)\mathrm{d}t$ and the population size after $\mathrm{d}t$ is therefore $n_{t+\mathrm{d}t} = n_t + \mathrm{d}n_t$. This is a recursion equation that approximates our differential equation.
+    The differential equation describes the change in the population size in an "infinitesimally" small amount of time, $\mathrm{d}t$. To plot these dynamics we therefore make an approximation, taking $\mathrm{d}t$ to be small, but not infinitely so. Rearranging the differential equation gives $\mathrm{d}n(t) = n(t)(b-d)\mathrm{d}t$ and the population size after $\mathrm{d}t$ is therefore $n_{t+\mathrm{d}t} = n(t) + \mathrm{d}n(t)$. This is a recursion equation that approximates our differential equation.
 
 
 <pre data-executable="true" data-language="python">
@@ -168,7 +168,7 @@ for t in np.arange(0,100,dt): #for time from 0 to 99 by increments of dt
 fig, ax = plt.subplots()
 ax.scatter(np.arange(0, 100, dt), nc) #plot population size at each time
 ax.set_xlabel('Time, $t$')
-ax.set_ylabel('Population size, $n_t$')
+ax.set_ylabel('Population size, $n(t)$')
 plt.show()
 </pre>
 
@@ -187,7 +187,7 @@ fig, ax = plt.subplots()
 ax.scatter(np.arange(0, 100), nd, label='discrete time') #plot population size at each time
 ax.scatter(np.arange(0, 100, dt), nc, label='continuous time') #plot population size at each time
 ax.set_xlabel('Time, $t$')
-ax.set_ylabel('Population size, $n_t$')
+ax.set_ylabel('Population size, $n(t)$')
 plt.legend()
 plt.show()
 </pre>
@@ -226,11 +226,11 @@ Exponential growth assumes the growth rate ($r_d$, $r_c$) is constant. **Logisti
 
 In discrete-time, the reproductive factor under logistic growth can be written as
 
-$$R(n_t) = 1 + r\left(1 - \frac{n_t}{K}\right)$$
+$$R(n(t)) = 1 + r\left(1 - \frac{n(t)}{K}\right)$$
 
-Notice that each individual is expected to have one offspring ($R=1$) if the **intrinsic growth rate** (ie, growth rate when rare) is zero, $r = 0$, or if the population size is at **carrying capacity**, $n_t=K$. 
+Notice that each individual is expected to have one offspring ($R=1$) if the **intrinsic growth rate** (ie, growth rate when rare) is zero, $r = 0$, or if the population size is at **carrying capacity**, $n(t)=K$. 
 
-Try plotting the reproductive factor as a function of $n_t$ for a few different values of $r$ and $K$.
+Try plotting the reproductive factor as a function of $n(t)$ for a few different values of $r$ and $K$.
 
 
 <pre data-executable="true" data-language="python">
@@ -247,7 +247,7 @@ for r, K in zip([1, 2, 1], [100, 100, 50]): #for each pair of r and K values
     ax.plot(nt, R, label=f"r = {r}, K = {K}") #and plot
 
 ax.plot(nt, [1 for i in nt], '--', color='gray') #1 line for reference
-ax.set_xlabel('Population size, $n_t$')
+ax.set_xlabel('Population size, $n(t)$')
 ax.set_ylabel('Reproductive factor, $R$')
 ax.legend(frameon=False)
 plt.ylim(0,None)
@@ -262,19 +262,19 @@ plt.show()
 
 The population size in the next generation is the expected number of offspring per parent times the the total number of parents
 
-$$n_{t+1} = \left(1 + r\left(1-\frac{n_t}{K}\right)\right)n_t$$
+$$n(t+1) = \left(1 + r\left(1-\frac{n(t)}{K}\right)\right)n(t)$$
 
 This is the recursion equation for logistic growth.
 
-This recursion is a **non-linear** function of $n_t$ (*non-linear means that there is a term in the equation where the term is taken to some power other than 1; here if we expand out the recursion we get a $n_t^2$ term*). This reflects the fact that logistic growth models an interaction between individuals (competition).
+This recursion is a **non-linear** function of $n(t)$ (*non-linear means that there is a term in the equation where the term is taken to some power other than 1; here if we expand out the recursion we get a $n(t)^2$ term*). This reflects the fact that logistic growth models an interaction between individuals (competition).
 
 The change in population size from one generation to the next, $\Delta n$, is therefore
 
-$$\Delta n = n_{t+1} - n_t = r\left(1 - \frac{n_t}{K}\right)n_t$$
+$$\Delta n = n(t+1) - n(t) = r\left(1 - \frac{n(t)}{K}\right)n(t)$$
 
 Based on this difference equation, when will the population grow in size?
 
-Test out your answer by plotting population size over time in the discrete-time logistic model. Try changing the initial population size or carrying capacity so that $n_t > K$.
+Test out your answer by plotting population size over time in the discrete-time logistic model. Try changing the initial population size or carrying capacity so that $n(t) > K$.
 
 
 <pre data-executable="true" data-language="python">
@@ -293,7 +293,7 @@ ax.axhline(100, label=f"K = {K}", linestyle='dashed', color='gray') #carrying ca
 
 # Add annotations
 ax.set_xlabel('Time, $t$')
-ax.set_ylabel('Population size, $n_t$')
+ax.set_ylabel('Population size, $n(t)$')
 plt.show()
 </pre>
 
@@ -309,15 +309,15 @@ plt.show()
 
 ### Logistic growth in continuous time
 
-The model of logistic growth in continuous time, as with discrete time, follows from the assumption that each individual has a **growth rate** that decreases as a linear function of the population size $r(1 - n_t/K)$.
+The model of logistic growth in continuous time, as with discrete time, follows from the assumption that each individual has a **growth rate** that decreases as a linear function of the population size $r(1 - n(t)/K)$.
 
-If there are $n_t$ individuals in the population at time $t$, then the rate of change of the population size will be
+If there are $n(t)$ individuals in the population at time $t$, then the rate of change of the population size will be
 
-$$\frac{\mathrm{d}n_t}{\mathrm{d}t} = r\left(1 - \frac{n_t}{K}\right)n_t$$
+$$\frac{\mathrm{d}n}{\mathrm{d}t} = r\left(1 - \frac{n(t)}{K}\right)n(t)$$
 
 This is a **differential equation** of logistic growth.
 
-Note that in both discrete and continuous time the logistic growth model reduces to the exponential growth model as $n_t/K$ approaches 0, i.e., when the population size is much smaller than the carrying capacity $n_t << K$.
+Note that in both discrete and continuous time the logistic growth model reduces to the exponential growth model as $n/K$ approaches 0, i.e., when the population size is much smaller than the carrying capacity $n << K$.
 
 !!! note "An example of logistic growth"
 
