@@ -630,14 +630,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#evolution-in-the-absence-of-selection" class="md-nav__link">
-    Evolution in the absence of selection
-  </a>
-  
-    <nav class="md-nav" aria-label="Evolution in the absence of selection">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#i-formulate-the-question_1" class="md-nav__link">
     i. Formulate the question
   </a>
@@ -683,11 +675,6 @@
   <a href="#vii-relate-the-results-back-to-the-question_1" class="md-nav__link">
     vii. Relate the results back to the question
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1130,14 +1117,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#evolution-in-the-absence-of-selection" class="md-nav__link">
-    Evolution in the absence of selection
-  </a>
-  
-    <nav class="md-nav" aria-label="Evolution in the absence of selection">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#i-formulate-the-question_1" class="md-nav__link">
     i. Formulate the question
   </a>
@@ -1183,11 +1162,6 @@
   <a href="#vii-relate-the-results-back-to-the-question_1" class="md-nav__link">
     vii. Relate the results back to the question
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1378,59 +1352,61 @@ plt.show()
 <h2 id="2-example-hardy-weinberg-equilibrium">2. Example: Hardy-Weinberg equilibrium</h2>
 <hr>
 
-<p>Let's revisit what should be a familiar evolutionary concept: Hardy-Weinberg equilibrium.  </p>
-<h3 id="evolution-in-the-absence-of-selection">Evolution in the absence of selection</h3>
+<p>To demonstrate how to use a <strong>table of events</strong> let's revisit what should be a familiar evolutionary concept: Hardy-Weinberg equilibrium.</p>
 <h4 id="i-formulate-the-question_1">i. Formulate the question</h4>
 <ul>
 <li><strong>What do you want to know</strong><ul>
-<li>How do allele frequencies change due to random mating and segregation alone?</li>
+<li>How do genotype frequencies change due to random mating and segregation alone?</li>
 </ul>
 </li>
 <li><strong>Boil the question down</strong><ul>
-<li>In a diploid population with two variant "alleles" of a gene (A and a), how will the frequency of the A allele change over time?</li>
+<li>In a population with two variant "alleles" of a gene (A and a), how will the frequencies of the AA, Aa, and aa diploid genotypes change over time?</li>
 </ul>
 </li>
-<li><strong>Simple, biologically reasonable description</strong> <ul>
-<li>We assume all individuals have equal fitness and that individuals reproduce and then die (non-overlapping generations). We also assume that individuals produce haploid gametes via meiosis (segregation) that form a gamete pool. Gametes within the gamete pool unite at random to produce the next generation of diploid individuals. </li>
+<li><strong>Simple, biologically reasonable description</strong><ul>
+<li>We assume all individuals have equal fitness and that individuals reproduce and then die (non-overlapping generations). We also assume that individuals produce haploid gametes via meiosis (segregation) to form a gamete pool. Gametes within the gamete pool unite at random to produce the next generation of diploid individuals.</li>
 </ul>
 </li>
 </ul>
 <h4 id="ii-determine-the-basic-ingredients_1">ii. Determine the basic ingredients</h4>
 <ul>
 <li><strong>Variables</strong><ul>
-<li><span class="arithmatex">\(x\)</span> = frequency of AA individuals </li>
+<li><span class="arithmatex">\(x\)</span> = frequency of AA individuals</li>
 <li><span class="arithmatex">\(y\)</span> = frequency of Aa individuals</li>
 <li><span class="arithmatex">\(z\)</span> = frequency of aa individuals</li>
-<li>From this we can extract the allele frequencies<ul>
+<li>From these we can extract the allele frequencies:<ul>
 <li>the frequency of A is <span class="arithmatex">\(p = x + y/2\)</span> (ie, all of the alleles in genotype AA (<span class="arithmatex">\(x\)</span>) are A but only 1/2 of the alleles in genotype Aa (<span class="arithmatex">\(y\)</span>) are A)</li>
 <li>the frequency of a is <span class="arithmatex">\(q = 1 - p = y/2 + z\)</span></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>Constraints on these variables</strong> <ul>
-<li><span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(z\)</span> are <span class="arithmatex">\(≥0\)</span> and <span class="arithmatex">\(≤1\)</span> </li>
+<li><strong>Constraints on these variables</strong><ul>
+<li><span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(z\)</span> are <span class="arithmatex">\(≥0\)</span> and <span class="arithmatex">\(≤1\)</span></li>
 <li><span class="arithmatex">\(x+y+z=1\)</span></li>
 </ul>
 </li>
-<li><strong>How we'll treat time</strong> <ul>
+<li><strong>How we'll treat time</strong><ul>
 <li>We will follow the genotype frequencies from one generation to the next, using a discrete-time model</li>
 </ul>
 </li>
 <li><strong>Parameters</strong><ul>
-<li>there are no parameters in this model (which is a little bit unusual)</li>
+<li>there are no parameters in this model (which is a little bit unusual!)</li>
 </ul>
 </li>
 </ul>
 <h4 id="iii-qualitatively-describe-the-biological-system_1">iii. Qualitatively describe the biological system</h4>
 <p>Diploid adults undergo meiosis, creating haploid gametes, and die. Gametes unite at random in the gamete pool to produce diploid offspring, which form the adults in next generation. Below we draw the life-cycle diagram.</p>
 <p><center>
-<pre class="mermaid"><code>    graph LR;
-    A((p)) --meiosis--&gt; B((p'));
-    B --union--&gt; A;</code></pre>
+```mermaid
+    graph LR;
+    A((x,y,z)) --meiosis--&gt; B((p'));
+    B --union--&gt; A;
+</pre>
 </center></p>
+<p>Since there are no diploid genotypes in the gamete pooled formed after meiosis, there we track the frequency of the A allele, <span class="arithmatex">\(p'\)</span>.</p>
 <h4 id="iv-quantiatively-describe-the-biological-system">iv. Quantiatively describe the biological system</h4>
-<p>If all individuals create the same number of gametes and each allele within an individual is equally likely to be passed down then meiosis/segregation does not change allele frequencies, <span class="arithmatex">\(p'=p(t)\)</span>.</p>
+<p>If all individuals create the same number of gametes and each individual produces an equal number of gametes with each allele then meiosis/segregation does not change allele frequencies, <span class="arithmatex">\(p'=p(t)=x(t)+y(t)/2\)</span>.</p>
 <p>To calculate the frequency of each genoytpe in the next generation, via random union of gametes, we use a table of events. The "Union" column indicates the pair of gametes that are meeting each other, the "Frequency" column indicates the proportion of gamete pairs in the population with this particular union, and the remaining columns indicate which diploid genotype is created by the union.</p>
 <table>
 <thead>
@@ -1480,7 +1456,7 @@ plt.show()
 </tr>
 </tbody>
 </table>
-<p>The genotype frequencies denoted in <span style='color: red'>red</span> are known as the <strong>Hardy-Weinberg frequencies</strong>. Note that this table shows that populations not at "Hardy-Weinberg equilibrium" reach Hardy-Weinberg equilibrium after only one generation of random mating. </p>
+<p>The genotype frequencies denoted in <span style='color: red'>red</span> are known as the <strong>Hardy-Weinberg frequencies</strong>. They relate the genotype frequencies with the allele frequency. This table shows that populations not at "Hardy-Weinberg equilibrium" reach Hardy-Weinberg equilibrium after only one generation of random mating.</p>
 <p>We now have the frequency of genotypes in the next generation in terms of the allele frequencies in the previous generation,</p>
 <div class="arithmatex">\[x(t+1) = p'^2 = p(t)^2\]</div>
 <div class="arithmatex">\[y(t+1) = 2p'q' = 2p(t)q(t)\]</div>
@@ -1511,11 +1487,14 @@ p.show()
 <div class="arithmatex">\[y(t+1) = 2(x(t) + y(t)/2)(y(t)/2 + z(t))\]</div>
 <div class="arithmatex">\[z(t+1) = (y(t)/2 + z(t))^2\]</div>
 <h4 id="v-analyze-the-equations_1">v. Analyze the equations</h4>
-<p>Now back to our question. What is the frequency of allele A in the next generation?</p>
+<p>Now back to our question. How do the genotype frequencies change over time?</p>
+<p>We could simulate or analyze the recursion equations above, but there is an easier way in this case. </p>
+<p>First examine how the allele frequency changes:</p>
 <div class="arithmatex">\[p(t+1) = x(t+1) + y(t+1)/2\]</div>
 <div class="arithmatex">\[p(t+1) = p(t)^2 + 2p(t)q(t)/2\]</div>
 <div class="arithmatex">\[p(t+1) = p(t)(p(t) + q(t))\]</div>
 <div class="arithmatex">\[p(t+1) = p(t)\]</div>
+<p>It doesn't! Since <span class="arithmatex">\(p(t)\)</span> is a constant and the genotype frequencies reach Hardy-Weinberg in a single generation, e.g., <span class="arithmatex">\(x(t+1) = p(t)^2\)</span>, then the genotype frequencies are also constant after that first generation.</p>
 <h4 id="vi-checks-and-balances_1">vi. Checks and balances</h4>
 <ul>
 <li>Does <span class="arithmatex">\(x(t+1) + y(t+1) + z(t+1) = 1\)</span>? </li>
@@ -1531,8 +1510,8 @@ x(t+1) + y(t+1) + z(t+1)
 \]</div>
 <h4 id="vii-relate-the-results-back-to-the-question_1">vii. Relate the results back to the question</h4>
 <ul>
-<li>How do allele frequencies change over time due to random mating and segregation? <ul>
-<li>They don't!</li>
+<li>How do genotype frequencies change over time due to random mating and segregation? <ul>
+<li>They reach Hardy-Weinberg after a single generation and never change again</li>
 </ul>
 </li>
 </ul>
@@ -1575,7 +1554,7 @@ x(t+1) + y(t+1) + z(t+1)
 <div class="arithmatex">\[x = p^2 = 0.2916\]</div>
 <div class="arithmatex">\[y = 2pq = 0.4985\]</div>
 <div class="arithmatex">\[z = q^2 = 0.2116\]</div>
-<p>These predicted genotype frequencies are exceptionally close to those actually observed, indicating Hardy-Weinberg equilibrium and suggesting an absence of selection (and other forces) on this phenotype. </p>
+<p>These predicted genotype frequencies are exceptionally close to those actually observed, indicating Hardy-Weinberg equilibrium.</p>
 </div>
 
 

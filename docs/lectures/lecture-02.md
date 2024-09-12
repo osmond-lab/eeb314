@@ -208,34 +208,32 @@ Potential experiments incude manipulating immigration in lab populations (e.g., 
 ## 2. Example: Hardy-Weinberg equilibrium
 <hr>
 
-Let's revisit what should be a familiar evolutionary concept: Hardy-Weinberg equilibrium.  
-
-### Evolution in the absence of selection
+To demonstrate how to use a **table of events** let's revisit what should be a familiar evolutionary concept: Hardy-Weinberg equilibrium.
 
 #### i. Formulate the question
 - **What do you want to know**
-    - How do allele frequencies change due to random mating and segregation alone?
+    - How do genotype frequencies change due to random mating and segregation alone?
 - **Boil the question down**
-    - In a diploid population with two variant "alleles" of a gene (A and a), how will the frequency of the A allele change over time?
-- **Simple, biologically reasonable description** 
-    - We assume all individuals have equal fitness and that individuals reproduce and then die (non-overlapping generations). We also assume that individuals produce haploid gametes via meiosis (segregation) that form a gamete pool. Gametes within the gamete pool unite at random to produce the next generation of diploid individuals. 
-
+    - In a population with two variant "alleles" of a gene (A and a), how will the frequencies of the AA, Aa, and aa diploid genotypes change over time?
+- **Simple, biologically reasonable description**
+    - We assume all individuals have equal fitness and that individuals reproduce and then die (non-overlapping generations). We also assume that individuals produce haploid gametes via meiosis (segregation) to form a gamete pool. Gametes within the gamete pool unite at random to produce the next generation of diploid individuals.
+    
 #### ii. Determine the basic ingredients
 
 - **Variables**
-    - $x$ = frequency of AA individuals 
+    - $x$ = frequency of AA individuals
     - $y$ = frequency of Aa individuals
     - $z$ = frequency of aa individuals
-    - From this we can extract the allele frequencies
+    - From these we can extract the allele frequencies:
         - the frequency of A is $p = x + y/2$ (ie, all of the alleles in genotype AA ($x$) are A but only 1/2 of the alleles in genotype Aa ($y$) are A)
         - the frequency of a is $q = 1 - p = y/2 + z$
-- **Constraints on these variables** 
-    - $x$, $y$, $z$ are $≥0$ and $≤1$ 
+- **Constraints on these variables**
+    - $x$, $y$, $z$ are $≥0$ and $≤1$
     - $x+y+z=1$
-- **How we'll treat time** 
+- **How we'll treat time**
     - We will follow the genotype frequencies from one generation to the next, using a discrete-time model
 - **Parameters**
-    - there are no parameters in this model (which is a little bit unusual)
+    - there are no parameters in this model (which is a little bit unusual!)
 
 #### iii. Qualitatively describe the biological system
 
@@ -244,14 +242,16 @@ Diploid adults undergo meiosis, creating haploid gametes, and die. Gametes unite
 <center>
 ```mermaid
     graph LR;
-    A((p)) --meiosis--> B((p'));
+    A((x,y,z)) --meiosis--> B((p'));
     B --union--> A;
-```   
+</pre>
 </center>
 
-#### iv. Quantiatively describe the biological system
+Since there are no diploid genotypes in the gamete pooled formed after meiosis, there we track the frequency of the A allele, $p'$.
 
-If all individuals create the same number of gametes and each allele within an individual is equally likely to be passed down then meiosis/segregation does not change allele frequencies, $p'=p(t)$.
+#### iv. Quantiatively describe the biological system
+                          
+If all individuals create the same number of gametes and each individual produces an equal number of gametes with each allele then meiosis/segregation does not change allele frequencies, $p'=p(t)=x(t)+y(t)/2$.
 
 To calculate the frequency of each genoytpe in the next generation, via random union of gametes, we use a table of events. The "Union" column indicates the pair of gametes that are meeting each other, the "Frequency" column indicates the proportion of gamete pairs in the population with this particular union, and the remaining columns indicate which diploid genotype is created by the union.
 
@@ -263,7 +263,7 @@ To calculate the frequency of each genoytpe in the next generation, via random u
 | a x a | $q'^2$ | 0 | 0 | 1 |
 | | | <span style='color: red'>$p'^2$</span> | <span style='color: red'>$2p'q'$</span> | <span style='color: red'> $q'^2$ </span> |
 
-The genotype frequencies denoted in <span style='color: red'>red</span> are known as the **Hardy-Weinberg frequencies**. Note that this table shows that populations not at "Hardy-Weinberg equilibrium" reach Hardy-Weinberg equilibrium after only one generation of random mating. 
+The genotype frequencies denoted in <span style='color: red'>red</span> are known as the **Hardy-Weinberg frequencies**. They relate the genotype frequencies with the allele frequency. This table shows that populations not at "Hardy-Weinberg equilibrium" reach Hardy-Weinberg equilibrium after only one generation of random mating.
 
 We now have the frequency of genotypes in the next generation in terms of the allele frequencies in the previous generation,
 
@@ -312,7 +312,11 @@ $$z(t+1) = (y(t)/2 + z(t))^2$$
 
 #### v. Analyze the equations
 
-Now back to our question. What is the frequency of allele A in the next generation?
+Now back to our question. How do the genotype frequencies change over time?
+
+We could simulate or analyze the recursion equations above, but there is an easier way in this case. 
+
+First examine how the allele frequency changes:
 
 $$p(t+1) = x(t+1) + y(t+1)/2$$
 
@@ -321,6 +325,8 @@ $$p(t+1) = p(t)^2 + 2p(t)q(t)/2$$
 $$p(t+1) = p(t)(p(t) + q(t))$$
 
 $$p(t+1) = p(t)$$
+
+It doesn't! Since $p(t)$ is a constant and the genotype frequencies reach Hardy-Weinberg in a single generation, e.g., $x(t+1) = p(t)^2$, then the genotype frequencies are also constant after that first generation.
 
 #### vi. Checks and balances
 
@@ -338,8 +344,8 @@ $$
 
 #### vii. Relate the results back to the question
 
-- How do allele frequencies change over time due to random mating and segregation? 
-    - They don't!
+- How do genotype frequencies change over time due to random mating and segregation? 
+    - They reach Hardy-Weinberg after a single generation and never change again
 
 !!! note "Data example: blood types"
 
@@ -374,4 +380,4 @@ $$
     
     $$z = q^2 = 0.2116$$
 
-    These predicted genotype frequencies are exceptionally close to those actually observed, indicating Hardy-Weinberg equilibrium and suggesting an absence of selection (and other forces) on this phenotype. 
+    These predicted genotype frequencies are exceptionally close to those actually observed, indicating Hardy-Weinberg equilibrium.
