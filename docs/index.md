@@ -11,7 +11,7 @@
 </center>
 <hr>
 
-Mathematics is central to science because it provides a rigorous way to go from a set of assumptions to their logical consequences. In ecology & evolution this might be how we think a virus will spread and evolve, how climate change will impact a threatened population, or how much genetic diversity we expect to see in a randomly mating population. In this course you'll learn how to build, analyze, and interpret mathematical models of increasing complexity through readings, lectures, homeworks, computer labs, and a final project. Our focus is on deterministic dynamical models (recursions and differential equations), which requires basic calculus and linear algebra.
+Mathematics is central to science because it provides a rigorous way to go from a set of assumptions to their logical consequences. In ecology & evolution this might be how we think a virus will spread and evolve, how climate change will impact a threatened population, or how much genetic diversity we expect to see in a randomly mating population. In this course you'll learn how to build, analyze, and interpret mathematical models of increasing complexity through readings, lectures, homeworks, computer labs, and a final project. Our focus is on deterministic dynamical models (recursions and differential equations), which requires us to learn and use some calculus and linear algebra.
 
 Please see the [University of Toronto Academic Calendar](https://artsci.calendar.utoronto.ca/course/eeb314h1) for more details on the course prerequisites and additional information on the distribution/breadth requirements this course satisfies.
 

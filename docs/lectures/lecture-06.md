@@ -34,14 +34,14 @@
 ## 1. Numerical and graphical techniques
 <hr>
 
-Last time we talked about two numerical/graphical approaches to get a better understanding of our models:
+In the last lecture we talked about two numerical/graphical approaches to get a better understanding of our models:
 
-- Plotting a variable as a function of time (eg, $p_t$ as a function of $t$)
-- Plotting a variable as a function of itself (eg, $p_{t+1}$ as a function of $p_t$). 
+- Plotting a variable as a function of time (eg, $p(t)$ as a function of $t$)
+- Plotting a variable as a function of itself (eg, $p(t+1)$ as a function of $p(t)$). 
 
 The latter works well for models with one variable.
 
-Today we’re going to talk about a third numerical technique, a **phase-plane diagram**, which is especially useful for models that have two variables.
+In this lecture we’re going to talk about a third numerical technique, a **phase-plane diagram**, which is especially useful for models that have two variables.
 
 <span id='section2'></span>
 ## 2. Phase-line diagrams
@@ -52,10 +52,10 @@ Before looking at models with two variables, let’s first consider some with on
 Consider again haploid selection where
 
 $$
-p_{t+1} = \frac{W_Ap_t}{W_Ap_t + W_a(1-p_t)}
+p(t+1) = \frac{W_Ap(t)}{W_Ap(t) + W_a(1-p(t))}
 $$
 
-Last time we plotted $p_{t + 1}$ as a function of $p_t$ and used this to examine the dynamics starting from any initial value. We called this plot a **cob-web** plot.
+Last time we plotted $p_{t + 1}$ as a function of $p(t)$ and used this to examine the dynamics starting from any initial value. We called this plot a **cob-web** plot.
 
 
 <pre data-executable="true" data-language="python">
@@ -67,15 +67,15 @@ import matplotlib.pyplot as plt
 def cobweb_haploid(p0, WA, Wa, max=np.inf):
     t, pnow, pnext = 0, p0, 0 #initial conditions
     while t <= max:
-        yield pnow, pnext #current value of p_t and p_(t+1)
+        yield pnow, pnext #current value of p(t) and p_(t+1)
         pnext = (WA * pnow) / (WA * pnow + Wa * (1 - pnow)) #update p_(t+1)
-        yield pnow, pnext #current value of p_t and p_(t+1)
-        pnow = pnext #update p_t
+        yield pnow, pnext #current value of p(t) and p_(t+1)
+        pnow = pnext #update p(t)
         t += 1 #update t
         
 # Build function for generating figure
 def plot_haploid_selection(WA, Wa, p0=0.5, ax=None):
-    pt = sympy.symbols('pt') #define our variable p_t
+    pt = sympy.symbols('pt') #define our variable p(t)
 
     # Write out sympy equation
     f = (WA * pt) / (WA * pt + Wa * (1 - pt)) #the recursion equation
@@ -87,7 +87,7 @@ def plot_haploid_selection(WA, Wa, p0=0.5, ax=None):
     # Build plot
     if ax == None:
         fig, ax = plt.subplots()
-    ax.plot(t, fy, color='black', label=f"$W_A$ = {WA}, $W_a$ = {Wa}") #plot p_(t+1) as function of p_t
+    ax.plot(t, fy, color='black', label=f"$W_A$ = {WA}, $W_a$ = {Wa}") #plot p_(t+1) as function of p(t)
     ax.plot(t, t, color='black', linestyle='--') #draw 1:1 line for reference
     
     # Add cobweb
@@ -97,8 +97,8 @@ def plot_haploid_selection(WA, Wa, p0=0.5, ax=None):
     # Annotate and label plot
     ax.set_xlim(0,1)
     ax.set_ylim(0,1)
-    ax.set_xlabel("allele frequency at $t$, $p_t$")
-    ax.set_ylabel("allele frequency at $t+1$, $p_{t+1}$")
+    ax.set_xlabel("allele frequency at $t$, $p(t)$")
+    ax.set_ylabel("allele frequency at $t+1$, $p(t+1)$")
     ax.legend(frameon=False)
     return ax
 
@@ -121,15 +121,15 @@ plt.show()
     
 
 
-Now let's simplify the cob-web plot and just indicate the direction (and magnitude) of change in $p_t$ with time. This is known as a **phase-line diagram** with a **vector field** (the arrows).
+Now let's simplify the cob-web plot and just indicate the direction (and magnitude) of change in $p(t)$ with time. This is known as a **phase-line diagram** with a **vector field** (the arrows).
 
 
 <pre data-executable="true" data-language="python">
 def phase_line_haploid(p0, WA, Wa, max=np.inf):
-    'generator for p_t'
+    'generator for p(t)'
     t, pnow, pnext = 0, p0, 0 #initial conditions
     while t < max:
-        yield pnow #current value of p_t and p_(t+1)
+        yield pnow #current value of p(t) and p_(t+1)
         pnext = (WA * pnow) / (WA * pnow + Wa * (1 - pnow))
         pnow = pnext #update p(t)
         t += 1 #update t
@@ -191,7 +191,7 @@ As in the cob-web plots, we see the allele frequency approaches $p=1$ when $W_A>
 Similarly, with the more complex model of diploid selection
 
 $$
-p_{t+1} = \frac{W_{AA}p_t^2 + W_{Aa}p_tq_t}{W_{AA}p_t^2 + W_{Aa}p_tq_t + W_{aa}q_t^2}
+p(t+1) = \frac{W_{AA}p(t)^2 + W_{Aa}p(t)q(t)}{W_{AA}p(t)^2 + W_{Aa}p(t)q(t) + W_{aa}q(t)^2}
 $$
 
 we can draw a phase-line diagram and vector field for a set of parameter values.
@@ -199,7 +199,7 @@ we can draw a phase-line diagram and vector field for a set of parameter values.
 
 <pre data-executable="true" data-language="python">
 def phase_line_diploid(p0, WAA, WAa, Waa, max=np.inf):
-    'generator for p_t'
+    'generator for p(t)'
     t, pnow, pnext = 0, p0, 0 #initial conditions
     while t < max:
         yield pnow #current value of p(t) and p(t+1)
@@ -260,7 +260,7 @@ plt.show()
     
 
 
-Notice that this time we chose two initial frequencies for the same plot, to show that under **heterozygote advantage** ($W_{AA}<W_{Aa}>W_{aa}$) the allele frequency approaches an intermediate value from either direction. 
+Notice that this time we chose two initial frequencies for the same plot (orange vs blue), to show that under **heterozygote advantage** ($W_{AA}<W_{Aa}>W_{aa}$) the allele frequency approaches an intermediate value from either direction. 
 
 <span id='section3'></span>
 ## 3. Phase-plane diagrams
@@ -270,10 +270,10 @@ Now let’s extend this technique from one to two variables.
 
 ### Lotka-Volterra model
 
-And let’s introduce a new model for this purpose, the **Lotka-Volterra** model of
+We'll introduce a new model for this purpose, the **Lotka-Volterra** model of
 competition (see section 3.4.1 in the text).
 
-This is an extension of the logistic growth model to include competition between
+This is an extension of the logistic growth model (Lecture 3) to include competition between
 multiple species (in our case two).
 
 Let the population size of each species be $n_1(t)$ and $n_2(t)$. These are our two
@@ -297,7 +297,7 @@ Often individuals of the same species will use more similar resources and theref
 
 ### Phase-planes and vector fields
 
-So why did we introduce the Lotka-Volterra model? Well, **phase-plane diagrams** are plots of one variable against another ($n_1$ vs. $n_2$), on which we can plot **vector fields**, vectors originating from many different starting conditions that indicate the direction and magnitude of change in the two variables. With this we can graphically investigate the dynamics of the Lotka-Volterra model by first defining the rates of change $\Delta$ in both $n_1$ and $n_2$ and then choosing some parameter values to explore.
+So why did we introduce the Lotka-Volterra model? Well, **phase-plane diagrams** are plots of one variable against another ($n_1$ vs. $n_2$), on which we can plot **vector fields**, vectors originating from many different starting conditions that indicate the direction and magnitude of change in the two variables. With this we can graphically investigate the dynamics of the Lotka-Volterra model by first defining the rates of change in our two variables, $\Delta n_1$ and $\Delta n_2$ and then choosing some parameter values to explore.
 
 $$
 \Delta n_1 \equiv n_1(t+1) - n_1(t) = n_1(t)r_1\left(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1}\right)
@@ -307,7 +307,7 @@ $$
 \Delta n_2 \equiv n_2(t+1) - n_2(t) = n_2(t)r_2\left(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2}\right)
 $$
 
-Let's explore the Lotka-Volterra with the following parameter values: $r_1 = 0.5, r_2 = 0.5, K_1 = 1000, K_2 = 1000, \alpha_{12} = 0.0, \alpha_{21} = 0.5$.
+Let's plot a phase-plane for the Lotka-Volterra with the following parameter values: $r_1 = 0.5, r_2 = 0.5, K_1 = 1000, K_2 = 1000, \alpha_{12} = 0.5, \alpha_{21} = 0.5$.
 
 
 <pre data-executable="true" data-language="python">
@@ -347,7 +347,7 @@ n1, n2 = sympy.symbols('n1, n2')
 # Choose the parameter values
 r1, r2 = 0.5, 0.5
 k1, k2 = 1000, 1000
-a12, a21 = 0, 0.5
+a12, a21 = 0.5, 0.5
 
 # Specify the difference equations
 dn1 = r1 * n1 * (1 - (n1 + a12 * n2) / k1)
@@ -365,21 +365,21 @@ plt.show()
     
 
 
-With this approach we see that the dynamics appear to be approaching a value near $n_1 = 1000, n_2 = 500$ from nearly any initial condition.
+With this approach we see that the dynamics appear to be approaching a value near $n_1 = 700, n_2 = 700$ from nearly any initial condition.
 
 ### Null clines
 
 
-To better understand the dynamics, we can ask for what values of our variables ($n_1, n_2$) is the change inour variables zero ($\Delta n_1 = 0$, $\Delta n_2 = 0$). These values are known as **null clines**.
+To better understand the dynamics, we can ask for what values of our variables ($n_1, n_2$) is the change in our variables zero ($\Delta n_1 = 0$, $\Delta n_2 = 0$). These values are known as **null clines**.
 
 Concretely, going back to our previous formula for the change in $n_1$ and $n_2$ in the Lotka-Volterra model
 
 $$
-\Delta n_1 = n_1(t)r_1(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1})
+\Delta n_1 = n_1(t)r_1\left(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1}\right)
 $$
 
 $$
-\Delta n_2 = n_2(t)r_2(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2})
+\Delta n_2 = n_2(t)r_2\left(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2}\right)
 $$
 
 We want to know when $\Delta n_1$ and $\Delta n_2$ are 0. Solving for these inequalities shows that
@@ -400,16 +400,16 @@ Plotting these null clines on the phase-plane diagram, we get
 ax = plot_vector_field(dn1, dn2, axes_labels=["number of species 1, $n_1$", "number of species 2, $n_2$"])
 xrange, yrange = np.linspace(0, 1200, 100), np.linspace(0, 1200, 100)
 
-#plot the null clines for species 1 (blue)
 def plot_nullclines(ax):
-    nullcline_1 = list(sympy.solve(sympy.Eq(dn1, 0)))
-    ax.plot([nullcline_1[0] for i in range(len(xrange))], yrange, color='b')
-    ax.plot([nullcline_1[1] for i in range(len(xrange))], yrange, color='b')
-
+    #plot the null clines for species 1 (blue)
+    nullcline_1 = [list(i.values())[0] for i in sympy.solve(sympy.Eq(dn1, 0))]
+    ax.plot(xrange, sympy.lambdify(n1, nullcline_1[1])(xrange), color=plt.cm.tab10(0)) # this null cline is a function of n1 (i.e. x)
+    ax.plot([nullcline_1[0] for _ in xrange], yrange, color=plt.cm.tab10(0))
+    
     # #plot the null clines for species 2 (red)
     nullcline_2 = [list(i.values())[0] for i in sympy.solve(sympy.Eq(dn2, 0))]
-    ax.plot(sympy.lambdify(n2, nullcline_2[0])(yrange), yrange, color='r') # A this null cline is a function of n2 (i.e. y)
-    ax.plot(xrange, [nullcline_2[1] for i in range(len(yrange))], color='r')
+    ax.plot(sympy.lambdify(n2, nullcline_2[0])(yrange), yrange, color=plt.cm.tab10(1)) # this null cline is a function of n2 (i.e. y)
+    ax.plot(xrange, [nullcline_2[1] for _ in yrange], color=plt.cm.tab10(1))
 
     ax.set_ylim(-10, 1210)
     ax.set_xlim(-10, 1210)
@@ -425,8 +425,8 @@ plt.show()
     
 
 
-The null clines help us understand the dynamics. In each area bounded by null clines the arrows point in the same general direction (eg, in the top right area they point down and to the left). This helps us see where the dynamics are heading -- in this case most initial conditions head to the intersection of the null clines for $n_1$ and $n_2$ (red and blue), i.e., where the change in both our variables is zero, near $n_1=1000$ and $n_2=500$.
+The null clines (blue for $n_1$ and orange for $n_2$) help us understand the dynamics. In each area bounded by null clines the vectors point in the same general direction (eg, in the top right area they point down and to the left). This helps us see where the dynamics are heading -- in this case most initial conditions head to the intersection of the non-zero null clines for $n_1$ and $n_2$, near $n_1=700$ and $n_2=700$. Note that where the null cline of one variable intersects a null cline of the other variable neither variable is changing, indicating **equilibria**.
 
 We can also make phase diagrams for continuous-time models, just using differential equations in place of difference equations.
 
-We’ll see an example of that for another model, of predator and prey, in this week’s lab.
+We’ll see an example of that for another model, of predator and prey, in Lab 3.

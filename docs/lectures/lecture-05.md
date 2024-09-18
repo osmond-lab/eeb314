@@ -51,30 +51,30 @@ The upside is that this approach can highlight errors or reveal unexpected patte
 
 In the discrete exponential growth model, there is one parameter, $R$, the number of offspring per parent ("reproductive factor").
 
-In last week’s lab we wrote a recursive function (actually, a generator) to generate values of $n_t$, the population size, at sequential time points.
+In last week’s lab we wrote a recursive function (actually, a generator) to generate values of $n(t)$, the population size, at sequential time points.
 
 
 <pre data-executable="true" data-language="python">
 import numpy as np
 
 def n(t0, n0, R, max=np.inf):
-    # Set the initial value of t and n_t
+    # Set the initial value of t and n(t)
     t, nt = t0, n0
     
-    # Yield new values of n_t if t hasn't gone past the max value
+    # Yield new values of n(t) if t hasn't gone past the max value
     while t < max: 
         yield nt 
         
-        # Then update t and n_t
+        # Then update t and n(t)
         t, nt = t + 1, nt * R
 </pre>
 
-We then chose some **parameter values** (reproductive factor, $R = 2$) and **initial conditions** (initial population size, $n_0 = 1$) to get the values of $n_t$ from the initial ($t = 0$) to final ($t = 10$) time.
+We then chose some **parameter values** (reproductive factor, $R = 2$) and **initial conditions** (initial population size, $n(0) = 1$) to get the values of $n(t)$ from the initial ($t = 0$) to final ($t = 10$) time.
 
 
 <pre data-executable="true" data-language="python">
 nt = n(t0=0, n0=1, R=2, max=10) #choose some parameter values
-nts = [n for n in nt] #get all the t, n_t values
+nts = [n for n in nt] #get all the t, n(t) values
 nts
 </pre>
 
@@ -85,15 +85,15 @@ nts
 
 
 
-And we then plotted $n_t$ as a function of $t$
+And we then plotted $n(t)$ as a function of $t$
 
 
 <pre data-executable="true" data-language="python">
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
 ax.plot(range(10), nts, marker = '.', markersize = 10)
-ax.set_xlabel('generation, $t$')
-ax.set_ylabel('population size, $n_t$')
+ax.set_xlabel('time step, $t$')
+ax.set_ylabel('population size, $n(t)$')
 plt.show()
 </pre>
 
@@ -114,8 +114,8 @@ for i, R in enumerate([1.1,1,0.9]):
     nts = [n for n in nt]
     ax.plot(range(10), nts, color=colors[i], label=f"R = {R}", marker = '.', markersize = 10)
 
-ax.set_xlabel('generation, $t$')
-ax.set_ylabel('population size, $n_t$')
+ax.set_xlabel('time step, $t$')
+ax.set_ylabel('population size, $n(t)$')
 ax.legend()
 plt.show()
 </pre>
@@ -126,11 +126,11 @@ plt.show()
     
 
 
-We see that when $R>1$ we get population growth and when $R<1$ we get population decline. When $R=1$ the population size remains constant.
+From this we can deduce that when $R>1$ the population grows, when $R<1$ the population declines, and when $R=1$ the population size remains constant.
 
 ### Logistic growth model
 
-In the discrete logistic growth model, there are two parameters, the intrinsic growth rate, $r$, and the carrying capacity, $K$. The behaviour doesn’t change much with different values of $K$ but it is *extremely* sensitive to the value of $r$, as you may remember from last week’s lab.
+In the discrete logistic growth model there are two parameters, the intrinsic growth rate, $r$, and the carrying capacity, $K$. The behaviour doesn’t change much with different values of $K$ but it is *extremely* sensitive to the value of $r$, as you may remember from Lab 2.
 
 
 <pre data-executable="true" data-language="python">
@@ -166,8 +166,8 @@ for r in [2.70, 3.0995]:
 ax[0].set_title('smaller $r$')
 ax[1].set_title('larger $r$')
 for i in range(2):
-    ax[i].set_xlabel('generation, $t$')
-    ax[i].set_ylabel('population size, $n_t$')
+    ax[i].set_xlabel('time step, $t$')
+    ax[i].set_ylabel('population size, $n(t)$')
     ax[i].legend()
 
 fig.tight_layout()
@@ -192,18 +192,18 @@ def log_map(r, n0=900, k=1000):
     return np.unique([nt for t, nt in enumerate(n(n0, r, k, max=75)) if t > 30])
 
 # Compute the logistic map for different growth rates in discrete time
-r, Nr = np.array([]), np.array([]) #list of r and n_t values we will plot
+r, Nr = np.array([]), np.array([]) #list of r and n(t) values we will plot
 for i in np.linspace(1.5, 3, 1000): #these are the r values we will simulate
     nl = log_map(i) #get the unique values after carrying capacity
-    r = np.hstack((r, [i for _ in range(len(nl))])) #add the r value to plotting list (repeat the value of r for each unique n_t value (for plotting))
-    Nr = np.hstack((Nr, nl)) #add the n_t values to plotting list
+    r = np.hstack((r, [i for _ in range(len(nl))])) #add the r value to plotting list (repeat the value of r for each unique n(t) value (for plotting))
+    Nr = np.hstack((Nr, nl)) #add the n(t) values to plotting list
     
 # Plot the logistic map on a black background (why not?)
 fig, ax = plt.subplots()
 ax.patch.set_facecolor('black')
 ax.scatter(r, Nr, s=0.075, color='white')
 plt.xlabel('intrinsic growth rate, $r$')
-plt.ylabel('population size, $n_t$')
+plt.ylabel('population size, $n(t)$')
 plt.show()
 </pre>
 
@@ -219,14 +219,14 @@ plt.show()
 
 OK, so now we’ll move on to a plot that is easier to generate and is very useful for models with just one variable (which is what we’ve been working with so far).
 
-Instead of plotting the variable as a function of time, we’ll plot the variable as a function of the variable in the previous time, e.g., plotting $n_{t+1}$ as a function of $n_t$.
+Instead of plotting the variable as a function of time, we’ll plot the variable as a function of the variable in the previous time, e.g., plotting $n(t+1)$ as a function of $n(t)$.
 
 ### Haploid selection
 
 Let's start with our model of haploid selection
 
 $$
-p_{t+1} = \frac{W_A p_t}{W_A p_t + W_a (1-p_t)}
+p(t+1) = \frac{W_A p(t)}{W_A p(t) + W_a (1-p(t))}
 $$
 
 and plot for two different sets of parameter values, where $A$ has a higher or lower fitness than $a$. 
@@ -239,15 +239,15 @@ import sympy
 def cobweb_haploid(p0, WA, Wa, max=np.inf):
     t, pnow, pnext = 0, p0, 0 #initial conditions
     while t <= max:
-        yield pnow, pnext #current value of p_t and p_(t+1)
+        yield pnow, pnext #current value of p(t) and p_(t+1)
         pnext = (WA * pnow) / (WA * pnow + Wa * (1 - pnow)) #update p_(t+1)
-        yield pnow, pnext #current value of p_t and p_(t+1)
-        pnow = pnext #update p_t
+        yield pnow, pnext #current value of p(t) and p_(t+1)
+        pnow = pnext #update p(t)
         t += 1 #update t
         
 # Build function for generating figure
 def plot_haploid_selection(WA, Wa, p0=0.5, ax=None):
-    pt = sympy.symbols('pt') #define our variable p_t
+    pt = sympy.symbols('pt') #define our variable p(t)
 
     # Write out sympy equation
     f = (WA * pt) / (WA * pt + Wa * (1 - pt)) #the recursion equation
@@ -259,7 +259,7 @@ def plot_haploid_selection(WA, Wa, p0=0.5, ax=None):
     # Build plot
     if ax == None:
         fig, ax = plt.subplots()
-    ax.plot(t, fy, color='black', label=f"$W_A$ = {WA}, $W_a$ = {Wa}") #plot p_(t+1) as function of p_t
+    ax.plot(t, fy, color='black', label=f"$W_A$ = {WA}, $W_a$ = {Wa}") #plot p_(t+1) as function of p(t)
     ax.plot(t, t, color='black', linestyle='--') #draw 1:1 line for reference
     
     # Add cobweb
@@ -269,8 +269,8 @@ def plot_haploid_selection(WA, Wa, p0=0.5, ax=None):
     # Annotate and label plot
     ax.set_xlim(0,1)
     ax.set_ylim(0,1)
-    ax.set_xlabel("allele frequency at $t$, $p_t$")
-    ax.set_ylabel("allele frequency at $t+1$, $p_{t+1}$")
+    ax.set_xlabel("allele frequency at $t$, $p(t)$")
+    ax.set_ylabel("allele frequency at $t+1$, $p(t+1)$")
     ax.legend(frameon=False)
     return ax
         
@@ -293,14 +293,16 @@ plt.show()
     
 
 
-Note that the cobweb plots (staircase looking lines in blue) track the movement of the allele frequencies from $t \rightarrow t + 1$. By following the cobweb, you can determine if and where the system will converge to an **equilibrium**. (Next week we'll do this mathematically.) What are the stable equilibria above?
+There are three components to this plot. First, the solid curve gives the recursion itself ($p(t+1)$ as a function of $p(t)$). Second, the dashed line shows where $p(t+1)=p(t)$. And third, the blue lines show how the variable changes over multiple time steps. 
+
+Foreshadowing what is to come (Lecture 7), the dashed line is helpful for two reasons. First, it indicates where the variable does not change over time. So wherever the recursion (solid line) intersects with the dashed line is an **equilibrium**. Second, it reflects $p(t+1)$ back onto $p(t)$, updating the variable. For example, in the left panel above we start with an allele frequency of $p(t)=0.5$, draw a blue vertical line to the recursion to find $p(t+1)$, and then update $p(t)$ to $p(t+1)$ by drawing the horizontal blue line to the dashed line. Now we can ask what $p(t+1)$ is given this updated value of $p(t)$ by drawing another vertical blue line, and so on. Following the blue line we can therefore see where the system is heading, which tells us about the **stability** of the equilibria. What are the stable equilibria in the two panels above?
 
 ### Diploid selection
 
-Now let’s move on to the slightly more complex model of diploid selection
+To demonstrate the utility of this method, let’s move on to the slightly more complex model of diploid selection
 
 $$
-p_{t+1} = \frac{W_{AA} p_t^2 + W_{Aa}p_t q_t}{W_{AA}p_t^2 + W_{Aa}2p_tq_t + W_{aa}q_t^2}
+p(t+1) = \frac{W_{AA} p(t)^2 + W_{Aa}p(t) q_t}{W_{AA}p(t)^2 + W_{Aa}2p(t)q_t + W_{aa}q_t^2}
 $$
 
 To show some different behaviour than above, this time let's set $W_{AA} < W_{Aa} > W_{aa}$ and plot for two different starting frequencies, $p_0$.
@@ -340,8 +342,8 @@ def plot_diploid_selection(WAA, WAa, Waa, ax=None, p0=0.5):
     ax.plot(x, x, color='black', linestyle='--')
     ax.set_xlim(0,1)
     ax.set_ylim(0,1)
-    ax.set_xlabel("allele frequency at $t$, $p_t$")
-    ax.set_ylabel("allele frequency at $t+1$, $p_{t+1}$")
+    ax.set_xlabel("allele frequency at $t$, $p(t)$")
+    ax.set_ylabel("allele frequency at $t+1$, $p(t+1)$")
     ax.legend(frameon=False)
     return ax
 
@@ -364,13 +366,13 @@ plt.show()
     
 
 
-What is the stable equilibrium in this case?
+How many equilibria are there? Which appear to be stable?
 
-### Other models
+### Difference/differential equations
 
 We can do something very similar for difference and differential equations.
 
-Now we plot the **change** in the variable as a function of the current value of the variable, e.g., plot $dn/dt$ as a function of $n$.
+Now we plot the **change** in the variable as a function of the current value of the variable, e.g., plot $\Delta n$ or $dn/dt$ as a function of $n(t)$.
 
 For example, in our model of haploid selection we have
 
@@ -415,8 +417,6 @@ plt.show()
 
 
 What does this tell us about how allele frequency will change when $s>0$ vs. $s<0$? And what allele frequencies, $p$, cause more rapid evolution?
-
-In this week's lab we'll plot the continuous logistic growth model, which shows some more complex dynamics.
 
 <span id='section4'></span>
 ## 4. Summary
