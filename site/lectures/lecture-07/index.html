@@ -1206,16 +1206,16 @@
 
 <p>An <strong>equilibrium</strong> is any state of a system which tends to persist unchanged over time.</p>
 <p>For <em>discrete-time</em> models, the equilibria are defined as those values of the variables where no changes occur from one time step to the next. </p>
-<p>For example, those values of allele frequency <span class="arithmatex">\(p_t\)</span> where</p>
+<p>For example, those values of allele frequency <span class="arithmatex">\(p(t)\)</span> where</p>
 <div class="arithmatex">\[
 \begin{aligned}
 \Delta p &amp;= 0\\
-p_{t+1} - p_t &amp;= 0\\
-p_{t+1} &amp;= p_t
+p(t+1) - p(t) &amp;= 0\\
+p(t+1) &amp;= p(t)
 \end{aligned}
 \]</div>
 <p>Similarly, for <em>continuous-time</em> models, the equilibria are defined as those values of the variables for which the rate of change in the variables equals zero. </p>
-<p>For example, those values of allele frequency <span class="arithmatex">\(p\)</span> where</p>
+<p>For example, those values of allele frequency <span class="arithmatex">\(p(t)\)</span> where</p>
 <div class="arithmatex">\[
 \frac{\mathrm{d}p}{\mathrm{d}t} = 0
 \]</div>
@@ -1231,22 +1231,22 @@ p_{t+1} &amp;= p_t
 <tbody>
 <tr>
 <td>Exponential growth</td>
-<td><span class="arithmatex">\(n_{t+1} = R n_t\)</span></td>
-<td><span class="arithmatex">\(\frac{\mathrm{d}n}{\mathrm{d}t} = r n\)</span></td>
+<td><span class="arithmatex">\(n(t+1) = R n(t)\)</span></td>
+<td><span class="arithmatex">\(\frac{\mathrm{d}n}{\mathrm{d}t} = r n(t)\)</span></td>
 </tr>
 <tr>
 <td>Logistic growth</td>
-<td><span class="arithmatex">\(n_{t+1} = (1 + r(1 - \frac{n_t}{K}))n_t\)</span></td>
-<td><span class="arithmatex">\(\frac{\mathrm{d}n}{\mathrm{d}t} = r(1 - \frac{n}{K})n\)</span></td>
+<td><span class="arithmatex">\(n(t+1) = (1 + r(1 - \frac{n(t)}{K}))n(t)\)</span></td>
+<td><span class="arithmatex">\(\frac{\mathrm{d}n}{\mathrm{d}t} = r(1 - \frac{n(t)}{K})n(t)\)</span></td>
 </tr>
 <tr>
 <td>Haploid selection</td>
-<td><span class="arithmatex">\(p_{t+1} = \frac{W_A p_t}{W_A p_t + W_a q_t}\)</span></td>
-<td><span class="arithmatex">\(\frac{\mathrm{d}p}{\mathrm{d}t} = s p(1-p)\)</span></td>
+<td><span class="arithmatex">\(p(t+1) = \frac{W_A p(t)}{W_A p(t) + W_a q(t)}\)</span></td>
+<td><span class="arithmatex">\(\frac{\mathrm{d}p}{\mathrm{d}t} = s p(t)(1-p(t))\)</span></td>
 </tr>
 <tr>
 <td>Diploid selection</td>
-<td><span class="arithmatex">\(p_{t+1} = \frac{p_t^2W_{AA} + p_t q_tW_{Aa}}{p_t^2W_{AA} + 2 p_t q_tW_{Aa} +  q_t^2W_{aa}}\)</span></td>
+<td><span class="arithmatex">\(p(t+1) = \frac{p(t)^2W_{AA} + p(t) q(t)W_{Aa}}{p(t)^2W_{AA} + 2 p(t) q(t)W_{Aa} +  q(t)^2W_{aa}}\)</span></td>
 <td>Not derived</td>
 </tr>
 </tbody>
@@ -1258,9 +1258,9 @@ p_{t+1} &amp;= p_t
 <p>Here, we will solve for the equilibria in both the discrete- and continuous-time exponential-growth models.</p>
 <h3 id="discrete-time">Discrete time</h3>
 <div class="arithmatex">\[
-n_{t+1} = Rn_t
+n(t+1) = Rn(t)
 \]</div>
-<p>Set <span class="arithmatex">\(n_{t+1} = n_t = \hat n\)</span> and solve for <span class="arithmatex">\(\hat{n}\)</span></p>
+<p>Set <span class="arithmatex">\(n(t+1) = n(t) = \hat n\)</span> and solve for <span class="arithmatex">\(\hat{n}\)</span></p>
 <div class="arithmatex">\[
 \begin{aligned}
 \hat n &amp;= R\hat n\\
@@ -1269,9 +1269,9 @@ n_{t+1} = Rn_t
 \]</div>
 <h3 id="continuous-time">Continuous time</h3>
 <div class="arithmatex">\[
-\frac{\mathrm{d}n}{\mathrm{d}t} = r n
+\frac{\mathrm{d}n}{\mathrm{d}t} = r n(t)
 \]</div>
-<p>Set <span class="arithmatex">\(\mathrm{d}n/\mathrm{d}t = 0\)</span> and <span class="arithmatex">\(n = \hat n\)</span> and solve for <span class="arithmatex">\(\hat n\)</span></p>
+<p>Set <span class="arithmatex">\(\mathrm{d}n/\mathrm{d}t = 0\)</span> and <span class="arithmatex">\(n(t) = \hat n\)</span> and solve for <span class="arithmatex">\(\hat n\)</span></p>
 <div class="arithmatex">\[
 \begin{aligned}
 0 &amp;= r \hat{n}\\
@@ -1290,9 +1290,9 @@ n_{t+1} = Rn_t
 <p>Here, we will solve for the equilibria in both the discrete- and continuous-time logistic-growth models.</p>
 <h3 id="discrete-time_1">Discrete time</h3>
 <div class="arithmatex">\[
-n_{t+1} = \left(1 + r\left(1 - \frac{n_t}{K}\right)\right)n_t
+n(t+1) = \left(1 + r\left(1 - \frac{n(t)}{K}\right)\right)n(t)
 \]</div>
-<p>As above, we substitute <span class="arithmatex">\(n_{t+1} = n_t = \hat n\)</span> and want to solve for <span class="arithmatex">\(\hat{n}\)</span>.</p>
+<p>As above, we substitute <span class="arithmatex">\(n(t+1) = n(t) = \hat n\)</span> and want to solve for <span class="arithmatex">\(\hat{n}\)</span>.</p>
 <div class="arithmatex">\[
 \hat n = \left(1 + r\left(1 - \frac{\hat n}{K}\right)\right)\hat{n} 
 \]</div>
@@ -1327,9 +1327,9 @@ n_{t+1} = \left(1 + r\left(1 - \frac{n_t}{K}\right)\right)n_t
 <p>Here, we will solve for the equilibria in both the discrete- and continuous-time haploid-selection models.</p>
 <h3 id="discrete-time_2">Discrete time</h3>
 <div class="arithmatex">\[
-p_{t+1} = \frac{p_tW_A}{p_tW_A + q_tW_a}
+p(t+1) = \frac{p(t)W_A}{p(t)W_A + q(t)W_a}
 \]</div>
-<p>Replace <span class="arithmatex">\(p_{t+1}\)</span> and <span class="arithmatex">\(p_t\)</span> with <span class="arithmatex">\(\hat p\)</span> and replace <span class="arithmatex">\(q_t\)</span> with <span class="arithmatex">\(\hat q\)</span> and solve for <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(\hat q\)</span></p>
+<p>Replace <span class="arithmatex">\(p(t+1)\)</span> and <span class="arithmatex">\(p(t)\)</span> with <span class="arithmatex">\(\hat p\)</span> and replace <span class="arithmatex">\(q(t)\)</span> with <span class="arithmatex">\(\hat q\)</span> and solve for <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(\hat q\)</span></p>
 <div class="arithmatex">\[
 \begin{aligned}
 \hat{p} &amp;= \frac{\hat p W_A}{\hat p W_A + \hat q W_a}\\
@@ -1357,9 +1357,9 @@ p_{t+1} = \frac{p_tW_A}{p_tW_A + q_tW_a}
 </ul>
 <h3 id="continuous-time_2">Continuous time</h3>
 <div class="arithmatex">\[
-\frac{\mathrm{d}p}{\mathrm{d}t} = sp(1-p)
+\frac{\mathrm{d}p}{\mathrm{d}t} = sp(t)(1-p(t))
 \]</div>
-<p>In the continuous-time model, we set the derivative equal to zero and <span class="arithmatex">\(p=\hat{p}\)</span></p>
+<p>In the continuous-time model, we set the derivative equal to zero and <span class="arithmatex">\(p(t)=\hat{p}\)</span></p>
 <div class="arithmatex">\[
 \begin{aligned}
 0 &amp;= s\hat p(1 -\hat p)
@@ -1373,9 +1373,9 @@ p_{t+1} = \frac{p_tW_A}{p_tW_A + q_tW_a}
 <h3 id="discrete-time_3">Discrete time</h3>
 <p>Here, we will solve for the equilibria in the discrete-time diploid-selection model</p>
 <div class="arithmatex">\[
-p_{t+1} = \frac{p_t^2 W_{AA} + p_t  q_t W_{Aa}}{p_t^2 W_{AA} + 2 p_t q_t W_{Aa} + q_t^2 W_{aa}}
+p(t+1) = \frac{p(t)^2 W_{AA} + p(t)  q(t) W_{Aa}}{p(t)^2 W_{AA} + 2 p(t) q(t) W_{Aa} + q(t)^2 W_{aa}}
 \]</div>
-<p>We replace <span class="arithmatex">\(p_{t+1}\)</span> and <span class="arithmatex">\(p_t\)</span> with <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(q_t\)</span> with <span class="arithmatex">\(\hat{q}\)</span> and solve for <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(\hat q\)</span></p>
+<p>We replace <span class="arithmatex">\(p(t+1)\)</span> and <span class="arithmatex">\(p(t)\)</span> with <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(q(t)\)</span> with <span class="arithmatex">\(\hat{q}\)</span> and solve for <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(\hat q\)</span></p>
 <div class="arithmatex">\[
 \begin{aligned}
 \hat{p} &amp;= \frac{\hat{p}^2 W_{AA} + \hat{p} \hat{q} W_{Aa}}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}\\
@@ -1467,7 +1467,7 @@ W_{aa} - W_{Aa} &amp;= \hat p(W_{AA} -2W_{Aa} + W_{aa})\\
 </tr>
 <tr>
 <td>Diploid selection</td>
-<td><span class="arithmatex">\(\hat p = 0, \hat p = 1, \hat p = \frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{AA}}\)</span></td>
+<td><span class="arithmatex">\(\hat p = 0, \hat p = 1, \hat p = \frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}}\)</span></td>
 <td>Not derived</td>
 </tr>
 </tbody>

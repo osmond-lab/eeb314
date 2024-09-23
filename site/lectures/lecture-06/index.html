@@ -1341,15 +1341,15 @@ plt.show()
 </pre>
 
 <p><img alt="png" src="../lecture-06_files/lecture-06_11_0.png" /></p>
-<p>With this approach we see that the dynamics appear to be approaching a value near <span class="arithmatex">\(n_1 = 1000, n_2 = 500\)</span> from nearly any initial condition.</p>
+<p>With this approach we see that the dynamics appear to be approaching a value near <span class="arithmatex">\(n_1 = 700, n_2 = 700\)</span> from nearly any initial condition.</p>
 <h3 id="null-clines">Null clines</h3>
 <p>To better understand the dynamics, we can ask for what values of our variables (<span class="arithmatex">\(n_1, n_2\)</span>) is the change in our variables zero (<span class="arithmatex">\(\Delta n_1 = 0\)</span>, <span class="arithmatex">\(\Delta n_2 = 0\)</span>). These values are known as <strong>null clines</strong>.</p>
 <p>Concretely, going back to our previous formula for the change in <span class="arithmatex">\(n_1\)</span> and <span class="arithmatex">\(n_2\)</span> in the Lotka-Volterra model</p>
 <div class="arithmatex">\[
-\Delta n_1 = n_1(t)r_1(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1})
+\Delta n_1 = n_1(t)r_1\left(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1}\right)
 \]</div>
 <div class="arithmatex">\[
-\Delta n_2 = n_2(t)r_2(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2})
+\Delta n_2 = n_2(t)r_2\left(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2}\right)
 \]</div>
 <p>We want to know when <span class="arithmatex">\(\Delta n_1\)</span> and <span class="arithmatex">\(\Delta n_2\)</span> are 0. Solving for these inequalities shows that</p>
 <div class="arithmatex">\[
@@ -1384,7 +1384,7 @@ plt.show()
 </pre>
 
 <p><img alt="png" src="../lecture-06_files/lecture-06_13_0.png" /></p>
-<p>The null clines (blue for <span class="arithmatex">\(n_1\)</span> and orange for <span class="arithmatex">\(n_2\)</span>) help us understand the dynamics. In each area bounded by null clines the vectors point in the same general direction (eg, in the top right area they point down and to the left). This helps us see where the dynamics are heading -- in this case most initial conditions head to the intersection of the non-zero null clines for <span class="arithmatex">\(n_1\)</span> and <span class="arithmatex">\(n_2\)</span>, near <span class="arithmatex">\(n_1=1000\)</span> and <span class="arithmatex">\(n_2=500\)</span>. Note that where the null cline of one variable intersects a null cline of the other variable neither variable is changing, indicating <strong>equilibria</strong>.</p>
+<p>The null clines (blue for <span class="arithmatex">\(n_1\)</span> and orange for <span class="arithmatex">\(n_2\)</span>) help us understand the dynamics. In each area bounded by null clines the vectors point in the same general direction (eg, in the top right area they point down and to the left). This helps us see where the dynamics are heading -- in this case most initial conditions head to the intersection of the non-zero null clines for <span class="arithmatex">\(n_1\)</span> and <span class="arithmatex">\(n_2\)</span>, near <span class="arithmatex">\(n_1=700\)</span> and <span class="arithmatex">\(n_2=700\)</span>. Note that where the null cline of one variable intersects a null cline of the other variable neither variable is changing, indicating <strong>equilibria</strong>.</p>
 <p>We can also make phase diagrams for continuous-time models, just using differential equations in place of difference equations.</p>
 <p>We’ll see an example of that for another model, of predator and prey, in Lab 3.</p>
 

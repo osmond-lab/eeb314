@@ -41,19 +41,19 @@ An **equilibrium** is any state of a system which tends to persist unchanged ove
 
 For *discrete-time* models, the equilibria are defined as those values of the variables where no changes occur from one time step to the next. 
 
-For example, those values of allele frequency $p_t$ where
+For example, those values of allele frequency $p(t)$ where
 
 $$
 \begin{aligned}
 \Delta p &= 0\\
-p_{t+1} - p_t &= 0\\
-p_{t+1} &= p_t
+p(t+1) - p(t) &= 0\\
+p(t+1) &= p(t)
 \end{aligned}
 $$
 
 Similarly, for *continuous-time* models, the equilibria are defined as those values of the variables for which the rate of change in the variables equals zero. 
 
-For example, those values of allele frequency $p$ where
+For example, those values of allele frequency $p(t)$ where
 
 $$
 \frac{\mathrm{d}p}{\mathrm{d}t} = 0
@@ -64,10 +64,10 @@ What are the equilibria for the following models?
 
 | Model | Discrete time | Continous time |
 | ----- | ------------- | -------------- |
-| Exponential growth | $n_{t+1} = R n_t$ | $\frac{\mathrm{d}n}{\mathrm{d}t} = r n$ |
-| Logistic growth | $n_{t+1} = (1 + r(1 - \frac{n_t}{K}))n_t$ | $\frac{\mathrm{d}n}{\mathrm{d}t} = r(1 - \frac{n}{K})n$ |
-| Haploid selection | $p_{t+1} = \frac{W_A p_t}{W_A p_t + W_a q_t}$ | $\frac{\mathrm{d}p}{\mathrm{d}t} = s p(1-p)$ |
-| Diploid selection | $p_{t+1} = \frac{p_t^2W_{AA} + p_t q_tW_{Aa}}{p_t^2W_{AA} + 2 p_t q_tW_{Aa} +  q_t^2W_{aa}}$ | Not derived |
+| Exponential growth | $n(t+1) = R n(t)$ | $\frac{\mathrm{d}n}{\mathrm{d}t} = r n(t)$ |
+| Logistic growth | $n(t+1) = (1 + r(1 - \frac{n(t)}{K}))n(t)$ | $\frac{\mathrm{d}n}{\mathrm{d}t} = r(1 - \frac{n(t)}{K})n(t)$ |
+| Haploid selection | $p(t+1) = \frac{W_A p(t)}{W_A p(t) + W_a q(t)}$ | $\frac{\mathrm{d}p}{\mathrm{d}t} = s p(t)(1-p(t))$ |
+| Diploid selection | $p(t+1) = \frac{p(t)^2W_{AA} + p(t) q(t)W_{Aa}}{p(t)^2W_{AA} + 2 p(t) q(t)W_{Aa} +  q(t)^2W_{aa}}$ | Not derived |
 
 <span id='section2'></span>
 ## 2. Exponential growth
@@ -79,10 +79,10 @@ Here, we will solve for the equilibria in both the discrete- and continuous-time
 ### Discrete time
 
 $$
-n_{t+1} = Rn_t
+n(t+1) = Rn(t)
 $$
 
-Set $n_{t+1} = n_t = \hat n$ and solve for $\hat{n}$
+Set $n(t+1) = n(t) = \hat n$ and solve for $\hat{n}$
 
 $$
 \begin{aligned}
@@ -94,10 +94,10 @@ $$
 ### Continuous time
 
 $$
-\frac{\mathrm{d}n}{\mathrm{d}t} = r n
+\frac{\mathrm{d}n}{\mathrm{d}t} = r n(t)
 $$
 
-Set $\mathrm{d}n/\mathrm{d}t = 0$ and $n = \hat n$ and solve for $\hat n$
+Set $\mathrm{d}n/\mathrm{d}t = 0$ and $n(t) = \hat n$ and solve for $\hat n$
 
 $$
 \begin{aligned}
@@ -122,10 +122,10 @@ Here, we will solve for the equilibria in both the discrete- and continuous-time
 ### Discrete time
 
 $$
-n_{t+1} = \left(1 + r\left(1 - \frac{n_t}{K}\right)\right)n_t
+n(t+1) = \left(1 + r\left(1 - \frac{n(t)}{K}\right)\right)n(t)
 $$
 
-As above, we substitute $n_{t+1} = n_t = \hat n$ and want to solve for $\hat{n}$.
+As above, we substitute $n(t+1) = n(t) = \hat n$ and want to solve for $\hat{n}$.
 
 $$
 \hat n = \left(1 + r\left(1 - \frac{\hat n}{K}\right)\right)\hat{n} 
@@ -174,10 +174,10 @@ Here, we will solve for the equilibria in both the discrete- and continuous-time
 ### Discrete time
 
 $$
-p_{t+1} = \frac{p_tW_A}{p_tW_A + q_tW_a}
+p(t+1) = \frac{p(t)W_A}{p(t)W_A + q(t)W_a}
 $$
 
-Replace $p_{t+1}$ and $p_t$ with $\hat p$ and replace $q_t$ with $\hat q$ and solve for $\hat p$ and $\hat q$
+Replace $p(t+1)$ and $p(t)$ with $\hat p$ and replace $q(t)$ with $\hat q$ and solve for $\hat p$ and $\hat q$
 
 $$
 \begin{aligned}
@@ -214,10 +214,10 @@ To summarize, the allele frequency will not change from one generation to the ne
 ### Continuous time
 
 $$
-\frac{\mathrm{d}p}{\mathrm{d}t} = sp(1-p)
+\frac{\mathrm{d}p}{\mathrm{d}t} = sp(t)(1-p(t))
 $$
 
-In the continuous-time model, we set the derivative equal to zero and $p=\hat{p}$
+In the continuous-time model, we set the derivative equal to zero and $p(t)=\hat{p}$
 
 $$
 \begin{aligned}
@@ -236,10 +236,10 @@ And we again find the same equilibria ($\hat p=0,1$) and special case of paramet
 Here, we will solve for the equilibria in the discrete-time diploid-selection model
 
 $$
-p_{t+1} = \frac{p_t^2 W_{AA} + p_t  q_t W_{Aa}}{p_t^2 W_{AA} + 2 p_t q_t W_{Aa} + q_t^2 W_{aa}}
+p(t+1) = \frac{p(t)^2 W_{AA} + p(t)  q(t) W_{Aa}}{p(t)^2 W_{AA} + 2 p(t) q(t) W_{Aa} + q(t)^2 W_{aa}}
 $$
 
-We replace $p_{t+1}$ and $p_t$ with $\hat p$ and $q_t$ with $\hat{q}$ and solve for $\hat p$ and $\hat q$
+We replace $p(t+1)$ and $p(t)$ with $\hat p$ and $q(t)$ with $\hat{q}$ and solve for $\hat p$ and $\hat q$
 
 $$
 \begin{aligned}
@@ -334,6 +334,6 @@ In summary, the equilibria for the models we have looked at are:
 | Exponential growth | $\hat n = 0$ | $\hat n = 0$ |
 | Logistic growth | $\hat n = 0, \hat n = K$ | $\hat n = 0, \hat n = K$ |
 | Haploid selection | $\hat p = 0, \hat p = 1$ | $\hat p = 0, \hat p = 1$
-| Diploid selection | $\hat p = 0, \hat p = 1, \hat p = \frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{AA}}$ | Not derived |
+| Diploid selection | $\hat p = 0, \hat p = 1, \hat p = \frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}}$ | Not derived |
 
 Make sure that you understand how to determine equilibria in discrete- and continuous-time and can derive the equilibria of the models above on your own.
