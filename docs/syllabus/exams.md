@@ -6,6 +6,7 @@
 - Examples: 
 	- [2021](exam_files/midterm2021.pdf), [solutions](exam_files/midterm2021_solns.pdf) 
 	- [2022](exam_files/midterm2022.pdf), [solutions](exam_files/midterm2022_solns.pdf) 
+	- [2024](exam_files/midterm2024.pdf), [solutions](exam_files/midterm2024_solns.pdf) 
 
 ## Final
 
