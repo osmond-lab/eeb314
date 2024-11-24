@@ -791,15 +791,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-evolutionary-singular-strategies" class="md-nav__link">
-    2. Evolutionary singular strategies
+  <a href="#2-evolutionarily-singular-strategies" class="md-nav__link">
+    2. Evolutionarily singular strategies
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-evolutionary-stable-strategies" class="md-nav__link">
-    3. Evolutionary stable strategies
+  <a href="#3-evolutionarily-stable-strategies" class="md-nav__link">
+    3. Evolutionarily stable strategies
   </a>
   
 </li>
@@ -814,13 +814,6 @@
         <li class="md-nav__item">
   <a href="#5-pairwise-invasibility-plots" class="md-nav__link">
     5. Pairwise invasibility plots
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-summary" class="md-nav__link">
-    6. Summary
   </a>
   
 </li>
@@ -856,6 +849,20 @@
     <li class="md-nav__item">
       <a href="../lecture-20/" class="md-nav__link">
         Lecture 20
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-21/" class="md-nav__link">
+        Lecture 21
       </a>
     </li>
   
@@ -972,15 +979,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-evolutionary-singular-strategies" class="md-nav__link">
-    2. Evolutionary singular strategies
+  <a href="#2-evolutionarily-singular-strategies" class="md-nav__link">
+    2. Evolutionarily singular strategies
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-evolutionary-stable-strategies" class="md-nav__link">
-    3. Evolutionary stable strategies
+  <a href="#3-evolutionarily-stable-strategies" class="md-nav__link">
+    3. Evolutionarily stable strategies
   </a>
   
 </li>
@@ -995,13 +1002,6 @@
         <li class="md-nav__item">
   <a href="#5-pairwise-invasibility-plots" class="md-nav__link">
     5. Pairwise invasibility plots
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-summary" class="md-nav__link">
-    6. Summary
   </a>
   
 </li>
@@ -1048,120 +1048,286 @@
 <h2 id="lecture-overview">Lecture overview</h2>
 <ol>
 <li><a href="#section1">Invasion fitness</a></li>
-<li><a href="#section2">Evolutionary singular strategies</a></li>
-<li><a href="#section3">Evolutionary stable strategies</a></li>
+<li><a href="#section2">Evolutionarily singular strategies</a></li>
+<li><a href="#section3">Evolutionarily stable strategies</a></li>
 <li><a href="#section4">Evolutionary convergence</a></li>
 <li><a href="#section5">Pairwise invasibility plots</a></li>
-<li><a href="#section6">Summary</a></li>
 </ol>
-<p>In the models we've discussed so far we've taken the parameters to be fixed. In reality, many of these parameters can evolve. For example, in our model of exponential growth in discrete time [n(t+1)=n(t) R] we took <span class="arithmatex">\(R\)</span> to be the same for all individuals for all time. But clearly any mutation causing a larger <span class="arithmatex">\(R\)</span> would increase in frequency, causing the value of <span class="arithmatex">\(R\)</span> to increase over time. In this lecture we'll explore how to determine the direction of evolution and the stability of evolutionary endpoints for more complex models using a technique called <b>evolutionary invasion analysis</b>.</p>
-<p>The idea:
-  - determine which parameters of our model an evolving trait affects
-  - take the population to be fixed for some "resident" trait value
-  - determine the equilibria and stability of the system with only the resident trait
-  - derive an equation for the growth of a rare "mutant" allele that affects the trait
-  - ask when the mutant will invade
-  - look for potential evolutionary endpoints
-  - determine the stability of those endpoints</p>
+<p>In the models we've discussed so far we've taken the parameters to be fixed. In reality, many of these parameters can evolve. For example, in our model of exponential growth in discrete time, <span class="arithmatex">\(n(t+1)=n(t) R\)</span>, we took <span class="arithmatex">\(R\)</span> to be the same for all individuals for all time. But any mutation causing a larger <span class="arithmatex">\(R\)</span> would increase in frequency, causing the value of <span class="arithmatex">\(R\)</span> to increase over time. In this lecture we'll explore how to determine the direction of evolution and the stability of evolutionary endpoints for more complex models using a technique called <b>evolutionary invasion analysis</b> (also known as adaptive dynamics).</p>
+<p>The idea:</p>
+<ul>
+<li>determine which parameter(s) of our model an evolving trait affects</li>
+<li>take the population to be fixed for some "resident" trait value</li>
+<li>determine the equilibria and stability of the system with only the resident trait</li>
+<li>derive the growth rate of a new individual with a "mutant" trait value</li>
+<li>ask when the mutant trait value will invade</li>
+<li>look for potential evolutionary endpoints</li>
+<li>determine the stability of those endpoints</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">The evolution of dispersal</p>
+<p>To motivate evolutionary invasion analysis, let's consider the evolution of dispersal. </p>
+<p>Imagine there are <span class="arithmatex">\(S\)</span> sites, with a most one individual reproducing at each. We census the population at the time of reproduction. A reproducing individual has a large number <span class="arithmatex">\(B\)</span> offspring and then dies. A fraction <span class="arithmatex">\(d\)</span> of those offspring disperse and a fraction <span class="arithmatex">\(1-c\)</span> of those survive. The survivors then equally divided among all sites. One individual in each site is then chosen at random to reproduce, which begins the life-cycle anew.</p>
+<p>The question is, how should dispersal, <span class="arithmatex">\(d\)</span>, evolve? There is a cost, <span class="arithmatex">\(c\)</span>, which selects against dispersal but dispersal also allows offspring to avoid competiting with their kin, which could select for more dispersal. We'll use evolutionary invasion analysis to sort this out.</p>
+</div>
 <p><span id='section1'></span></p>
 <h2 id="1-invasion-fitness">1. Invasion fitness</h2>
 <hr>
 
 <p>Let's think about this analysis very generally (in discrete time).</p>
-<p>Let the number of individuals with the resident trait value be <span class="arithmatex">\(n\)</span> and the number of individuals with the mutant trait value <span class="arithmatex">\(n_m\)</span>. (And we'll assume asexual reproduction for simplicity, so that residents produce residents and mutant produce mutants.)</p>
-<p>Let the potentially nonlinear dynamics of these two groups of individuals depend on their respective trait values, <span class="arithmatex">\(z\)</span> and <span class="arithmatex">\(z_m\)</span>,</p>
-<div class="arithmatex">\[\begin{aligned}
+<p>Let the number of individuals with the resident trait value be <span class="arithmatex">\(n\)</span> and the number of individuals with the mutant trait value <span class="arithmatex">\(n_m\)</span>. (And we'll assume asexual reproduction for simplicity, so that residents produce residents and mutant produce mutants.)
+Let the potentially nonlinear dynamics of these two groups of individuals depend on their respective trait values, <span class="arithmatex">\(z\)</span> and <span class="arithmatex">\(z_m\)</span>,</p>
+<div class="arithmatex">\[
+\begin{aligned}
 n(t+1) &amp;= n(t) R(n(t), n_m(t), z, z_m)\\
 n_m(t+1) &amp;= n_m(t) R_m(n(t), n_m(t), z, z_m)
-\end{aligned}\]</div>
+\end{aligned}
+\]</div>
 <p>The Jacobian of this system is</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \mathbf{J} &amp;= 
 \begin{pmatrix}
 \frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)} &amp; \frac{\mathrm{d}n(t+1)}{\mathrm{d}n_m(t)} \\
 \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n(t)} &amp; \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)} 
 \end{pmatrix}
-\end{aligned}\]</div>
-<p>Now consider some non-zero resident equilibrium, <span class="arithmatex">\(\hat{n}&gt;0\)</span>, without the mutant, <span class="arithmatex">\(\hat{n}_m=0\)</span>.</p>
-<p>Assuming that the resident does not produce mutants, <span class="arithmatex">\(\frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n(t)}\big|_{n_m=0}=0\)</span>,
+\end{aligned}
+\]</div>
+<p>Now consider some non-zero resident equilibrium, <span class="arithmatex">\(\hat{n}&gt;0\)</span>, without the mutant, <span class="arithmatex">\(\hat{n}_m=0\)</span>.
+Assuming that the resident does not produce mutants, <span class="arithmatex">\(\frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n(t)}\big|_{n_m=0}=0\)</span>,
 the Jacobian evaluated at this equilibrium simplifies to</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \mathbf{J}\big|_{n_m=0,n=\hat{n}} &amp;= 
 \begin{pmatrix}
 \frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)} &amp; \frac{\mathrm{d}n(t+1)}{\mathrm{d}n_m(t)} \\
 0 &amp; \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)} 
 \end{pmatrix}_{n_m=0,n=\hat{n}}
-\end{aligned}\]</div>
+\end{aligned}
+\]</div>
 <p>We can immediately see that the two eigenvalues of this upper triangular matrix are</p>
-<div class="arithmatex">\[\begin{aligned}
+<div class="arithmatex">\[
+\begin{aligned}
 \lambda_1 &amp;= \frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)}\bigg|_{n_m=0,n=\hat{n}}\\
-\lambda_2 &amp;= \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)}\bigg|_{n_m=0,n=\hat{n}}\\
-\end{aligned}\]</div>
-<p>The first, <span class="arithmatex">\(\lambda_1\)</span>, determines whether the resident equilibrium, <span class="arithmatex">\(\hat{n}&gt;0\)</span>, is stable in the absence of mutants. We'll take <span class="arithmatex">\(0&lt; \lambda_1 &lt; 1\)</span> as given.</p>
-<p>The second, <span class="arithmatex">\(\lambda_2\)</span>, determines whether the resident equilibrium is stable in the presence of a small number of mutants. We call <span class="arithmatex">\(\lambda_2\)</span> the \textbf{invasion fitness}, <span class="arithmatex">\(\lambda(z_m,z)\)</span>.</p>
-<p>In particular, the mutant will invade whenever <span class="arithmatex">\(\lambda(z_m,z) &gt; 1\)</span>.</p>
+\lambda_2 &amp;= \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)}\bigg|_{n_m=0,n=\hat{n}}
+\end{aligned}
+\]</div>
+<p>The first, <span class="arithmatex">\(\lambda_1\)</span>, determines whether the resident equilibrium, <span class="arithmatex">\(\hat{n}&gt;0\)</span>, is stable in the absence of mutants. We'll take <span class="arithmatex">\(0 &lt; \lambda_1 &lt; 1\)</span> as a given (we're only interested in stable resident equilibria, we can disregard the others).</p>
+<p>The second, <span class="arithmatex">\(\lambda_2\)</span>, determines whether the resident equilibrium is stable in the presence of a small number of mutants. We call <span class="arithmatex">\(\lambda_2\)</span> the <strong>invasion fitness</strong>, <span class="arithmatex">\(\lambda(z_m,z)\)</span>. The mutant will invade whenever <span class="arithmatex">\(\lambda(z_m,z) &gt; 1\)</span>.</p>
 <p>In some simple cases we might be able to use the invasion criterium, <span class="arithmatex">\(\lambda(z_m,z)&gt;1\)</span>, to determine what values of <span class="arithmatex">\(z_m\)</span> (relative to <span class="arithmatex">\(z\)</span>) can invade. In most cases, however, <span class="arithmatex">\(\lambda(z_m,z)\)</span> will be complex enough that this will not be possible, so we rely on a simple approximation.</p>
-<div class="admonition todo">
-<p class="admonition-title">Todo</p>
-<p>Give example where we can look at <span class="arithmatex">\(\lambda(z_m,z)&gt;1\)</span> directly.</p>
+<div class="admonition note">
+<p class="admonition-title">The evolution of dispersal</p>
+<p>Let a fraction <span class="arithmatex">\(d\)</span> of the resident offspring disperse and a fraction <span class="arithmatex">\(d_m\)</span> of the mutant offspring disperse. And let there be <span class="arithmatex">\(n(t)\)</span> residents, <span class="arithmatex">\(n_m(t)\)</span> mutants, and <span class="arithmatex">\(S-n(t)-n_m(t)\geq0\)</span> empty sites. Then the probability a resident offspring replaces a resident is the number of resident offspring in a resident patch divided by the total number of offspring in that patch,</p>
+<div class="arithmatex">\[
+\begin{aligned}
+p_{rr} &amp;= \frac{B(1-d) + (n(t)-1)Bd(1-c)/S}{B(1-d) + (n(t)-1)Bd(1-c)/S + n_m(t)Bd_m(1-c)/S}\\
+&amp;= \frac{S(1-d) + (n(t)-1)d(1-c)}{S(1-d) + (n(t)-1)d(1-c) + n_m(t)d_m(1-c)}
+\end{aligned}
+\]</div>
+<p>Here <span class="arithmatex">\(B(1-d)\)</span> is the number of non-dispersing offspring produced by the resident in that patch, <span class="arithmatex">\((n(t)-1)Bd(1-c)/S\)</span> is the number of resident offspring dispersing to the patch from elsewhere, and <span class="arithmatex">\(n_m(t)Bd_m(1-c)/S\)</span> is the number of mutant offspring dispersing to the patch. The probability that a mutant offspring replaces a mutant <span class="arithmatex">\(p_{mm}\)</span> is the same expression with <span class="arithmatex">\(d\)</span> and <span class="arithmatex">\(d_m\)</span> and <span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(n_m\)</span> exchanged. The probability that a resident offspring wins an empty patch is </p>
+<div class="arithmatex">\[
+\begin{aligned}
+p_{re} &amp;= \frac{n(t)Bd(1-c)}{n(t)Bd(1-c) + n_m(t)Bd_m(1-c)}\\
+&amp;= \frac{n(t)d}{n(t)d + n_m(t)d_m}
+\end{aligned}
+\]</div>
+<p>Then the number of resident and mutant individuals in the next generation are</p>
+<div class="arithmatex">\[
+\begin{aligned}
+n(t+1) &amp;= n(t) p_{rr} + n_m(t) (1 - p_{mm}) + (S - n(t) - n_m(t)) p_{re}\\
+n_m(t+1) &amp;= n(t) (1-p_{rr}) + n_m(t) p_{mm} + (S - n(t) - n_m(t)) (1-p_{re})
+\end{aligned}
+\]</div>
+<p>Now consider an equilibrium with no mutants, <span class="arithmatex">\(\hat{n}_m=0\)</span>. Setting <span class="arithmatex">\(n(t+1) = n(t) = \hat{n}\)</span> gives <span class="arithmatex">\(\hat{n}=S\)</span>.</p>
+<p>We determine the stability of this equilibrium with the Jacobian. From the general analysis above we know the two eigenvalues are</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\lambda_1 &amp;= \frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)}\bigg|_{n_m=0,n=S} = 0\\
+\lambda_2 &amp;= \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)}\bigg|_{n_m=0,n=S} = \frac{1-d_m}{1-d_m + d(1-c)} + \frac{d_m(1-c)}{1-d + d(1-c)}
+\end{aligned}
+\]</div>
+<p>The first eigenvalue is less than 1 in absolute value, meaning the resident equilibrium is stable. The second eigenvalue is our invasion fitness</p>
+<div class="arithmatex">\[
+\lambda(d_m,d) = \frac{1-d_m}{1-d_m + d(1-c)} + \frac{d_m(1-c)}{1-d + d(1-c)}
+\]</div>
+<p>In this relatively simple example, we can determine exactly what mutant trait values can invade by looking at where</p>
+<div class="arithmatex">\[
+\lambda(d_m,d) - 1 = \frac{(1-c)(d_m-d)(1-cd-d_m)}{(1-cd)(1-d_m+d(1-c))}
+\]</div>
+<p>is positive. The sign of <span class="arithmatex">\(\lambda(d_m,d) - 1\)</span> is the sign of <span class="arithmatex">\((d_m-d)(1-cd-d_m)\)</span>. So the mutant will invade if both terms are positive <span class="arithmatex">\(d&lt;d_m&lt;1-cd\)</span> or both terms are negative <span class="arithmatex">\(1-cd&lt;d_m&lt;d\)</span>. In either case, the mutant will invade when it has a trait value between <span class="arithmatex">\(1-cd\)</span> and <span class="arithmatex">\(d\)</span>.</p>
 </div>
 <p><span id='section2'></span></p>
-<h2 id="2-evolutionary-singular-strategies">2. Evolutionary singular strategies</h2>
+<h2 id="2-evolutionarily-singular-strategies">2. Evolutionarily singular strategies</h2>
 <hr>
 
-<p>When the mutant trait value is very close to the resident trait value, we can use a first order Taylor series approximation around <span class="arithmatex">\(z_m = z\)</span></p>
-<div class="arithmatex">\[\begin{aligned}
-\lambda(z_m,z) &amp;\approx \lambda(z,z) + \frac{\partial \lambda}{\partial z_m}\bigg|_{z_m=z} (z_m-z)\\\pause
+<p>When the mutant trait value is very close to the resident trait value, we can approximate invasion fitness with a Taylor series around <span class="arithmatex">\(z_m = z\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\lambda(z_m,z) &amp;\approx \lambda(z,z) + \frac{\partial \lambda}{\partial z_m}\bigg|_{z_m=z} (z_m-z)\\
 &amp;= 1 + \frac{\partial \lambda}{\partial z_m}\bigg|_{z_m=z} (z_m-z)
-\end{aligned}\]</div>
-<p>This allows us to determine which direction evolution will proceed:</p>
-<div class="arithmatex">\[\begin{itemize}
-\item[] $\frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z}&gt;0 \implies$ invasion, $\lambda(z_m,z)&gt;1$, when $z_m&gt;z$\pause
-\item[] $\frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z}&lt;0 \implies$ invasion, $\lambda(z_m,z)&gt;1$, when $z_m&lt;z$
-\end{itemize}\]</div>
-<p>The direction of evolution by small steps is given by <span class="arithmatex">\(\frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z}\)</span>, the selection gradient.</p>
-<p>Potential evolutionary endpoints, also called <b>evolutionarily singular strategies</b>, are the resident trait values <span class="arithmatex">\(z=\hat{z}\)</span> where there is no directional selection</p>
-<div class="arithmatex">\[\frac{\partial \lambda}{\partial z_m}\bigg|_{z_m=\hat{z}, z=\hat{z}} = 0\]</div>
+\end{aligned}
+\]</div>
+<p>This allows us to determine which direction evolution will proceed from the current resident value:</p>
+<ul>
+<li>if <span class="arithmatex">\(\frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z}&gt;0\)</span> then invasion when <span class="arithmatex">\(z_m&gt;z\)</span></li>
+<li>if <span class="arithmatex">\(\frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z}&lt;0\)</span> then invasion when <span class="arithmatex">\(z_m&lt;z\)</span></li>
+</ul>
+<p>The direction of evolution by small steps is given by <span class="arithmatex">\(\frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z}\)</span>, which we call the <strong>selection gradient</strong>.</p>
+<p>Potential evolutionary endpoints, also called <strong>evolutionarily singular strategies</strong>, are the resident trait values <span class="arithmatex">\(z=\hat{z}\)</span> where there is no directional selection</p>
+<div class="arithmatex">\[
+\frac{\partial \lambda}{\partial z_m}\bigg|_{z_m=\hat{z}, z=\hat{z}} = 0
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">The evolution of dispersal</p>
+<p>The selection gradient is</p>
+<div class="arithmatex">\[
+\frac{\partial \lambda}{\partial d_m}\Big|_{d_m=d} = \frac{(1-d-dc))(1-c)}{(1-cd)^2}
+\]</div>
+<p>The sign of this is the sign of 1-d-dc, meaning the dispersal rate will increase whenever d&lt;1/(1+c) and decrease whenever 1/(1+c)&lt;d. Setting the selection gradient to zero and solving for the evolutionarily singular strategy gives <span class="arithmatex">\(\hat{d} = 1/(1+c)\)</span>.</p>
+</div>
 <p><span id='section3'></span></p>
-<h2 id="3-evolutionary-stable-strategies">3. Evolutionary stable strategies</h2>
+<h2 id="3-evolutionarily-stable-strategies">3. Evolutionarily stable strategies</h2>
 <hr>
 
-<p>An evolutionarily singular strategy, <span class="arithmatex">\(\hat{z}\)</span>, will only be an <b>evolutionarily stable strategy</b> (ESS), <span class="arithmatex">\(z^*\)</span>, if it cannot be invaded.</p>
-<p>In the evolution of dispersal example, we could show that <span class="arithmatex">\(\hat{d} = \frac{1}{1+c}\)</span> was \textit{globally} stable because <span class="arithmatex">\(\lambda(d_m,d)|_{d=\hat{d}}&lt;1\)</span> for all <span class="arithmatex">\(d_m\)</span>.</p>
-<p>Global stability will be impossible to prove for more complex models, and so we often focus on \textit{local} stability, which requires that <span class="arithmatex">\(\lambda(z_m,z)|_{z=\hat{z}}\)</span> is concave at <span class="arithmatex">\(z_m=\hat{z}\)</span></p>
-<div class="arithmatex">\[\frac{\partial^2 \lambda}{\partial z_m^2}\bigg|_{z_m=\hat{z}, z=\hat{z}} &lt; 0\]</div>
-<p>To summarize, an evolutionarily stable strategy, <span class="arithmatex">\(z^*\)</span>, satisfies both</p>
-<div class="arithmatex">\[\begin{aligned}
-\frac{\partial \lambda}{\partial z_m}\bigg|_{z_m=z^*, z=z^*} &amp;= 0\\
-\frac{\partial^2 \lambda}{\partial z_m^2}\bigg|_{z_m=z^*, z=z^*} &amp;&lt; 0
-\end{aligned}\]</div>
-<p>i.e., <span class="arithmatex">\(z^*\)</span> is a (local) fitness maximum.</p>
+<p>An evolutionarily singular strategy, <span class="arithmatex">\(\hat{z}\)</span>, will only be an <strong>evolutionarily stable strategy</strong> (ESS), <span class="arithmatex">\(z^*\)</span>, if it cannot be invaded.</p>
+<p>Global evolutionary stability will be impossible to prove for most models and so we often focus on <em>local</em> stability, which requires that <span class="arithmatex">\(\lambda(z_m,z)|_{z=\hat{z}}\)</span> is concave at <span class="arithmatex">\(z_m=\hat{z}\)</span> (i.e., <span class="arithmatex">\(\hat{z}\)</span> is a local fitness maximum),</p>
+<div class="arithmatex">\[
+\frac{\partial^2 \lambda}{\partial z_m^2}\bigg|_{z_m=\hat{z}, z=\hat{z}} &lt; 0
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">The evolution of dispersal</p>
+<p>The second derivative of invasion fitness with respect to the mutant trait value evalulated at the singular strategy is</p>
+<div class="arithmatex">\[
+\frac{\partial^2 \lambda}{\partial d_m^2}\Big|_{d_m=d=\hat{d}} = -2(1-c)(1+c)^2
+\]</div>
+<p>Because <span class="arithmatex">\(0&lt;c&lt;1\)</span> this is always negative, which means the singular strategy is always evolutionarily stable.</p>
+</div>
 <p><span id='section4'></span></p>
 <h2 id="4-evolutionary-convergence">4. Evolutionary convergence</h2>
 <hr>
 
 <p>There is one more characteristic of evolutionarily singular strategies that we care about, and
 that is whether evolution actually leads to that strategy or not. For evolution to move the trait value towards a singular strategy, <span class="arithmatex">\(\hat{z}\)</span>, we need evolution to increase the trait value when it is less than <span class="arithmatex">\(\hat{z}\)</span> and decrease the trait value when it is greater than <span class="arithmatex">\(\hat{z}\)</span>. In other words, we need the selection gradient <span class="arithmatex">\(\frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z}\)</span> to decrease as we move through <span class="arithmatex">\(z=\hat{z}\)</span></p>
-<div class="arithmatex">\[\frac{\mathrm{d}}{\mathrm{d} z}\left( \frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z} \right)_{z=\hat{z}} &lt; 0\]</div>
-<p>Singular strategies that satisfy this criteria are called <b>convergence stable</b>. Interestingly, not all evolutionarily stable strategies are convergence stable and not all convergence stable singular strategies are evolutionarily stable! Evolutionarily stable strategies that are not convergence stable are called <b>Garden of Eden strategies</b>.Singular strategies that are convergence stable but not evolutionarily stable are called <b>evolutionary branching points</b>. The latter are of particular interest because the system evolves towards a state where multiple strategies can coexist, leading to diversification.</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}}{\mathrm{d} z}\left( \frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z} \right)_{z=\hat{z}} &lt; 0
+\]</div>
+<p>Singular strategies that satisfy this criteria are said to be <strong>convergence stable</strong>. </p>
+<p>Interestingly, not all evolutionarily stable strategies are convergence stable and not all convergence stable singular strategies are evolutionarily stable! Evolutionarily stable strategies that are not convergence stable are called <strong>Garden of Eden strategies</strong>. Singular strategies that are convergence stable but not evolutionarily stable are called <strong>evolutionary branching points</strong>. The latter are of particular interest because the system evolves towards a state where multiple strategies can invade and coexist, leading to diversification.</p>
+<div class="admonition note">
+<p class="admonition-title">The evolution of dispersal</p>
+<p>The derivative of the selection gradient evaluated at the singular strategy is</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}}{\mathrm{d} d}\left( \frac{\partial \lambda}{\partial d_m}\Big|_{d_m=d} \right)_{d=\hat{d}} = -(1-c)(1+c)^3
+\]</div>
+<p>Because <span class="arithmatex">\(0&lt;c&lt;1\)</span> this is always negative, which means the singular strategy is always convergence stable.</p>
+</div>
 <p><span id='section5'></span></p>
 <h2 id="5-pairwise-invasibility-plots">5. Pairwise invasibility plots</h2>
 <hr>
 
-<p>A helpful way to visualize the two types of stability at an evolutionarily singular strategy is called a <b>pairwise invasibility plot (PIP)</b></p>
-<div class="admonition to do">
-<p class="admonition-title">To</p>
-<p>show PIP</p>
-</div>
-<p><span id='section6'></span></p>
-<h2 id="6-summary">6. Summary</h2>
-<hr>
+<p>A helpful way to visualize the two types of stability of an evolutionarily singular strategy is called a <strong>pairwise invasibility plot</strong> (PIP). In this plot we have the resident trait value <span class="arithmatex">\(z\)</span> on the x-axis, the mutant trait value <span class="arithmatex">\(z_m\)</span> on the y-axis, and we color in the regions where the mutant can invade, <span class="arithmatex">\(\lambda(z_m,z)&gt;1\)</span>.</p>
+<p>The four types of evolutionarily singular strategies <span class="arithmatex">\(\hat{z}\)</span> are then represented by the following PIPs</p>
+<pre data-executable="true" data-language="python">
+import numpy as np
+from matplotlib import pyplot as plt
 
-<p>There are four types of evolutionarily singular strategies <span class="arithmatex">\(\hat{z}\)</span>, where <span class="arithmatex">\(\frac{\partial \lambda}{\partial z_m}\Big|_{z_m=\hat{z},z=\hat{z}}=0\)</span>.</p>
-<div class="admonition to do">
-<p class="admonition-title">To</p>
-<p>show PIPs for each type</p>
+# dummy invasion fitness
+def inv(x, y, slope, z=1):
+    if y < x:
+      if y > slope * x:
+        return z
+    if y > x:
+      if y < slope * x:
+        return z
+    return 1-z
+
+# evaluate
+def compute_pip(slope=-2,z=1,xmin=-2,xmax=2,steps=100):
+    xs = np.linspace(xmin,xmax,steps)
+    X,Y = np.meshgrid(xs,xs) # X and Y values
+    # store the invasion success in a matrix
+    PIP = []
+    for y in xs:
+      row = []
+      for x in xs:
+        row.append(inv(x,y,slope,z))
+      PIP.append(row)
+    return X,Y,PIP
+
+# plot
+def plotfun(X,Y,Z,slope=1,ax=None):
+    if ax==None:
+      fig, ax=plt.subplots(1,1,figsize=(5,5))
+    ax.contourf(X,Y,Z, colors=['white','black','blue','black'])
+    ax.plot(X[0],X[0],'k',lw=5)
+    ax.plot(X[0],X[0]*slope,'k',lw=5)
+    ax.set_xlim(min(X[0]),max(X[0]))
+    ax.set_ylim(min(X[0]),max(X[0]))
+    ax.set_xlabel('resident trait value $z$')
+    ax.set_ylabel('mutant trait value $z_m$')
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+fig, axs = plt.subplots(2,2,figsize=(10,10))
+X,Y,Z = compute_pip(slope=-4,z=1)
+plotfun(X,Y,Z,slope=-4,ax=axs[0][0])
+axs[0][0].set_title('evolutionarily stable',fontsize=14)
+axs[0][1].text(2.1,0,'convergence stable',fontsize=14,rotation=270,verticalalignment='center')
+X,Y,Z = compute_pip(slope=4,z=0)
+plotfun(X,Y,Z,slope=4,ax=axs[0][1])
+axs[0][1].set_title('evolutionarily unstable',fontsize=14)
+X,Y,Z = compute_pip(slope=4,z=1)
+plotfun(X,Y,Z,slope=4,ax=axs[1][0])
+axs[1][1].text(2.1,0,'convergence unstable',fontsize=14,rotation=270,verticalalignment='center')
+X,Y,Z = compute_pip(slope=-4,z=0)
+plotfun(X,Y,Z,slope=-4,ax=axs[1][1])
+</pre>
+
+<p><img alt="png" src="../lecture-18_files/lecture-18_17_0.png" /></p>
+<p>We can read a PIP by choosing a resident trait value (a point on the x-axis) and looking to see what mutant trait values can invade it (blue regions in that vertical slice). Choose one of the possible invading trait values and set this to be the new resident trait value. Continue indefinitely. </p>
+<p>When we assume mutants have trait values close to the resident, we restrict ourselves to moving along the 1:1 line. Then, we move to the right when there is blue directly above the 1:1 line but not below and we move to the left when there is blue directly below the 1:1 line but not above. Where there is blue directly above and below the 1:1 we are at a singular strategy that is a fitness minimum (it can be invaded in both directions). Where there is white directly above and below the 1:1 we are at a singular strategy that is a fitness maximum (it can't be invaded in either direction).</p>
+<p>Try reading each of the plots above. Prove to yourself that the top left has a convergence stable evolutionarily stable strategy, the top right has a branching point, the bottom left has a has a Garden of Eden, and the bottom right has an invasible repellor (a fitness minimum that is not convergence stable).</p>
+<div class="admonition note">
+<p class="admonition-title">The evolution of dispersal</p>
+<p>In our model of the evolution of dispersal, the singular strategy is always evolutionarily and convgence stable, and the PIP is below.</p>
 </div>
+<pre data-executable="true" data-language="python">
+import numpy as np
+from matplotlib import pyplot as plt
+
+# invasion fitness
+def inv_fun(dm,d,c):
+    invasionfitness = (1-dm)/(1-dm + d*(1-c)) + (dm*(1-c))/(1-d + d*(1-c))
+    if invasionfitness>1:
+        return 1 # return 1 if mutant invades
+    return 0 # return 0 if mutant does not invade
+
+# evaluate
+def compute_pip(c=0.5,dmin=0.01,dmax=0.99,steps=100):
+    ds = np.linspace(dmin,dmax,steps)
+    X,Y = np.meshgrid(ds,ds) # X and Y values
+    # store the invasion success in a matrix
+    PIP = []
+    for dm in ds:
+      row = []
+      for d in ds:
+        row.append(inv_fun(dm,d,c))
+      PIP.append(row)
+    return X,Y,PIP
+
+# plot
+def plotfun(X,Y,Z):
+    fig, ax = plt.subplots(1,1,figsize=(5,5))
+    ax.set_xlabel('$d$')
+    ax.set_ylabel('$d_m$')
+    ax.contourf(X,Y,Z, colors=['white','black','blue','black'])
+    ax.plot(X[0],X[0],'k',lw=5)
+
+X,Y,Z=compute_pip()
+plotfun(X,Y,Z)
+</pre>
+
+<p><img alt="png" src="../lecture-18_files/lecture-18_20_0.png" /></p>
 
 
 

@@ -19,6 +19,7 @@
 | 15 | [Equilibria and stability (nonlinear multivariate)](lecture-15.md) | Chapter 8 (37p.) |
 | 16 | [Epidemiology](lecture-16.md) | 294-301 (7p.) |
 | 17 | [Multi-locus population genetics](lecture-17.md) | 322-330 (8p.) |
-| 18 | [Probability I (genetic drift)](lecture-18.md) | 521-528, 576-577 (10p.) |
-| 19 | [Probability II (demographic stochasticity)](lecture-19.md) | 534-536, 13.2, 641-642 (11p.) |
-| 20 | [Probability III (the coalescent)](lecture-20.md) | 13.8 (9p.) |
+| 18 | [Evolutionary invasion analysis](lecture-18.md) | 12.1-12.4 (30p.) |
+| 19 | [Probability I (genetic drift)](lecture-19.md) | 521-528, 576-577 (10p.) |
+| 20 | [Probability II (demographic stochasticity)](lecture-20.md) | 534-536, 13.2, 641-642 (11p.) |
+| 21 | [Probability III (the coalescent)](lecture-21.md) | 13.8 (9p.) |

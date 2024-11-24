@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 20: Probability III (the coalescent)
+# Lecture 20: Probability II (demographic stochasticity)
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,228 +26,195 @@
 
 ## Lecture overview
 
-1. [The coalescent](#section1)
+1. [Poisson random variable](#section1)
+2. [Demographic stochasticity](#section2)
+3. [Extinction](#section3)
+4. [Establishment](#section4)
 
-All the models we have studied so far have looked forward in time, into the future. But this doesn't have to always be the case, we can also look back in time, modeling the past. Here we look at one particularly powerful example from population genetics.
+!!! note "credits"
+
+    This lecture was created by PhD student Puneeth Deraje as part of a course development TA position -- thanks Puneeth! If you are following along with the text, this lecture does not follow along as closely.
+
+In [Lecture 18](lecture-18.md) we learned how to model stochasticity in population genetics (genetic drift). In this lecture we'll learn how to model stochasticity in population dynamics (**demographic stochasticity**). 
+
+To do so we'll work with the simplest model of population dynamics possible, exponential growth (see [Lecture 3](lecture-03.md)). In discrete time this is
+
+$$n_{t+1} = R n_t$$
+
+where $n_t$ is the number of individuals at time $t$ and $R$ is the reproductive factor. In this deterministic model every individual had a reproductive factor of exactly $R$ at every time step. In reality there will be stochasticity in $R$ across individuals and time. We can account for that by replacing $R$ with a random variable. 
 
 <span id='section1'></span>
-## 1. The coalescent
+## 1. Poisson random variable
 <hr>
 
-Let's consider a population composed of $N$ diploid individuals, i.e., with $2N$ alleles at a given locus. We want to model the history of these alleles -- from which alleles in the previous generations do they descend? 
+Recall the binomial random variable from the previous lecture, $X \sim \mathrm{Bin}(n,p)$. The probability this random variable takes on value $k$ is then 
 
-One of the simplest ways to model this is to treat all of the alleles as equivalent (e.g., no fitness differences) so that a given allele in the current generation picks its "parent" allele at random from amongst the $2N$ alleles in the previous generation.
+$$\Pr(X = k) = {n \choose k} p^k (1-p)^{n-k}$$
 
-We can simulate this and plot the result, arranging the $2N$ alleles horizontally, stacking previous generations on top, and drawing lines to connect "children" and "parent" alleles.
+We could model the reproductive factor as a binomial random variable. For example, perhaps each individual at time $t$ produces $n$ offspring before dying, and each offspring survives to become an adult with probability $p$. Using this model requires estimates of two parameters, $n$ and $p$. But there is a simpler way.
+
+Let the mean number of offspring produced be $\lambda=np$. Rearranging this in terms of $p$, we can write the binomial as $X\sim \mathrm{Bin}(n,\lambda/n)$. Note that the mean is always $\lambda$, regardless of $n$. Now imagine that individuals in the population we are modelling tend to have a very large number of offspring, very few of which survive. We can approximate this in the extreme by taking $n\rightarrow \infty$. Let $Y$ be this random variable, $Y = \lim_{n \rightarrow \infty} \mathrm{Bin}(n, \lambda/n))$. The distribution of $Y$ is then 
+
+$$
+\begin{aligned}
+\Pr(Y=k) &= \lim_{n \rightarrow \infty} {n \choose k} \left(\frac{\lambda}{n}\right)^k \left(1-\frac{\lambda}{n}\right)^{n-k} \\
+&= \lim_{n \rightarrow \infty} \frac{n(n-1)(n-2)...(n-k+1)}{k!} \frac{\lambda^k}{n^k} \left(1-\frac{\lambda}{n}\right)^{n-k}\\
+&= \frac{\lambda^k}{k!}\lim_{n \rightarrow \infty} \frac{n(n-1)(n-2)...(n-k+1)}{n^k} \left(1-\frac{\lambda}{n}\right)^{n-k}\\
+&= \frac{\lambda^k}{k!}\lim_{n \rightarrow \infty} 1\left(1-\frac{1}{n}\right)\left(1-\frac{2}{n}\right)...\left(1-\frac{k-1}{n}\right) \left(1-\frac{\lambda}{n}\right)^{n-k}\\
+&= \frac{\lambda^k}{k!}\lim_{n \rightarrow \infty} \left(1-\frac{\lambda}{n}\right)^{n-k}\\
+&= \frac{\lambda^k e^{-\lambda}}{k!}
+\end{aligned}
+$$
+
+We call $Y$ a **Poisson random variable** with mean $\lambda$ and denoted it by $Y\sim\mathrm{Poi}(\lambda)$. We can now model the reproductive factor as a random variable with only one parameter, $\lambda$. 
+
+Note that the simpler Poisson distribution is a good approximation of the binomial distribution even for fairly moderate values of $n$, as seen in the plot below.
 
 
 <pre data-executable="true" data-language="python">
+import sympy
 import numpy as np
 import matplotlib.pyplot as plt
 
-def simulate(N,tmax):
-    
-    p = np.arange(2*N) #initial configuration
-    t = 0
-    ps = np.empty((tmax,2*N), dtype='int')
-    while t < tmax:
-        ps[t] = p
-        p = np.random.randint(0,2*N,2*N) #parents of current generation
-        t += 1
-        
-    return ps
-</pre>
+def binomial(n,p,k):
+    return sympy.binomial(n,k) * p**k * (1-p)**(n-k)
 
+def poisson(lam,k):
+    return lam**k * np.exp(-lam)/sympy.factorial(k)
 
-<pre data-executable="true" data-language="python">
-def plot_lineages(ps,ax,alpha):
-    
-    # plot lineages
-    for t,p in enumerate(ps[1:]): #loop over generations
-        ax.plot([ps[0],ps[t+1]], [t,t+1], marker='o', color='k', alpha=alpha) #connect children with parents
-    ax.scatter(ps[0], [t+1 for _ in ps[0]], marker='o', color='k', alpha=alpha) #plot all alleles of last gen
-    
-    # simplify presentation
-    # ax.axis('off')
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.spines['bottom'].set_visible(False)
-    ax.spines['left'].set_visible(False)
-    ax.xaxis.set_ticks([])
-    ax.yaxis.set_ticks(range(len(ps)))
-    ax.set_xlabel('alleles')
-    ax.set_ylabel('generations ago')
-</pre>
+n = 100
+p = 0.1
+lam = n*p
+ks = range(n+1)
 
-
-<pre data-executable="true" data-language="python">
 fig, ax = plt.subplots()
 
-ps = simulate(N=5,tmax=4)
-plot_lineages(ps,ax,alpha=0.5)
+ax.plot(ks, [binomial(n,p,k) for k in ks], label='binomial')
+ax.plot(ks, [poisson(lam,k) for k in ks], label='Poisson')
+
+ax.set_xlabel('number of successes')
+ax.set_ylabel('probability')
+ax.legend()
+plt.show()
+</pre>
+
+
+    
+![png](lecture-20_files/lecture-20_5_0.png)
+    
+
+
+Two key properties of a Poisson random variable are
+
+1) the variance is equal to the mean
+
+$$ 
+\begin{aligned} 
+\mathrm{Var}(Y) &= \lim_{n \rightarrow \infty} \mathrm{Var}\left(\mathrm{Bin}\left(n,\frac{\lambda}{n}\right)\right) \\
+&= \lim_{n \rightarrow \infty} n \frac{\lambda}{n} \left(1-\frac{\lambda}{n}\right) \\
+&= \lambda  \lim_{n \rightarrow \infty} \left(1-\frac{\lambda}{n}\right) \\
+&= \lambda
+\end{aligned}
+$$
+
+2) if $Y_1$ and $Y_2$ are two independent Poisson random variables with means $\lambda_1$ and $\lambda_2$, then their sum is distributed as a Poisson with mean $\lambda_1+\lambda_2$
+
+$$Y_1 + Y_2 \sim \mathrm{Poi}(\lambda_1 + \lambda_2)$$
+
+<span id='section2'></span>
+## 2. Demographic stochasticity
+<hr>
+
+We can now model demographic stochasticity with the Poisson distribution. 
+
+Assume each individual in the population produces a Poisson number of surviving offspring with mean $\lambda$, independent of all other individuals in the populations, and then dies. Write the number of offspring for individual $i$ as $X_i\sim\mathrm{Poi}(\lambda)$. Let the current number of individuals be $n_t$. Then the population size in the next generation, $n_{t+1}$, is distributed like the sum of $n_t$ independent and identical Poisson's
+
+$$\begin{aligned}
+n_{t+1} &\sim \sum_{i=1}^{n_t}\mathrm{Poi}(\lambda)\\
+&= \mathrm{Poi}\left(\sum_{i=1}^{n_t} \lambda\right) \\
+&= \mathrm{Poi}(\lambda n_t) \\
+\end{aligned}$$
+
+This implies that the expected population size in the next generation is $\lambda n_t$, as is the variance. In Lab 11 we'll simulate this to get a better sense of the resulting dynamics.
+
+<span id='section3'></span>
+## 3. Extinction
+<hr>
+
+Let us now look at one property of this model -- the probability of extinction.
+
+Consider a given individual at time $t$. Let $\eta$ be the probability this individual does not have descendants in the long-term, i.e., that its lineage goes extinct.
+
+To find $\eta$ we note that the probability that this lineage goes extinct, $\eta$, is the probability that this individual has $k$ surviving offspring (for all values of $k$) and all of those offspring lineages go extinct (with probability $\eta^k$). Given the probability of having $k$ surviving offspring is $\lambda^k e^{-\lambda}/k!$, this implies
+
+$$
+\begin{aligned}
+\eta 
+&= \sum_{k=0}^{\infty} \frac{e^{-\lambda}\lambda^k}{k!} \eta^k \\
+&= e^{-\lambda} \sum_{k=0}^{\infty} \frac{(\eta \lambda)^k}{k!} \\
+&= e^{-\lambda}e^{\lambda \eta} \\
+&= e^{-\lambda (1-\eta)}
+\end{aligned}
+$$
+
+One solution is $\eta=1$, certain extinction. But there can be a second biologically valid solution (between 0 and 1), meaning that extinction is not certain. This occurs when the mean number of surviving offspring is greater than one, $\lambda>1$, as shown in plot below (the solutions are where the curve intersects the 1:1 line).
+
+
+<pre data-executable="true" data-language="python">
+xs = np.linspace(0,1,100)
+fig,ax=plt.subplots()
+
+lam = 2
+
+ax.plot(xs, xs)
+ax.plot(xs, [np.exp(-lam*(1-x)) for x in xs])
+
+ax.set_xlabel(r'$\eta$')
+ax.set_ylabel(r'$e^{-\lambda (1-\eta)}$')
 
 plt.show()
 </pre>
 
 
     
-![png](lecture-20_files/lecture-20_6_0.png)
+![png](lecture-20_files/lecture-20_11_0.png)
     
 
 
-One of the most important aspects of this model is that we can choose to think about the history of just some subset of the alleles in the current generation. This is helpful because 1) we do not need to model the entire population and 2) this has a close connection to data (since we almost never sample every individual in a population).
+Above we calculated the probability a single lineage goes extinct, $\eta$. From this, the probability that the entire population goes extinct is the probability that all $n_t$ lineages go extinct, $\eta^{n_t}$. 
 
-To see this visually, we can choose a few "sample" alleles from the current generation and highlight their "lineages".
+The two major conclusions from this are
 
+1) when the mean number of surviving offspring per parent is $\lambda=1$ the deterministic model predicts a constant population size but the stochastic model says that extinction is certain.
 
-<pre data-executable="true" data-language="python">
-fig, ax = plt.subplots()
+2) when the mean number of surviving offspring per parent is $\lambda>1$ the deterministic model predicts exponential growth but the stochastic model says there is still some non-zero probability of extinction.
 
-plot_lineages(ps,ax,alpha=0.1) #plot full population in background
+<span id='section4'></span>
+## 4. Establishment
+<hr>
 
-# plot sample lineages
-for i in [0,5,9]: #samples
-    path = [i] #lineage of sample i
-    for p in ps[1:]: #loop over generations
-        path.append(p[i]) #add parent 
-        i = p[i] #make parent the child
-    ax.plot(path,range(len(path)), marker='o')
-    
-plt.show()
-</pre>
+Before moving on, the above result about extinction is mathematically identical to a classic result in population genetics concerning the establishment of a beneficial allele.
 
-
-    
-![png](lecture-20_files/lecture-20_8_0.png)
-    
-
-
-### Time for two lineages to coalesce
-
-When two sample lineages meet at a **most recent common ancestor** we say they **coalesce** ("come together"). This is where the name of the model comes from, **the coalescent**. (Note that some reserve that name for the continuous-time limit of this model, but we won't be so strict.) 
-
-The time it takes for two lineages to coalesce determines how similar those alleles are. The more distant their most recent common ancestor the more mutations that are expected to have accumulated. Thus the time to coalescence influences the amount of genetic diversity we expect to see.  
-
-The first question we will ask with this model is: how many generations does it take for two lineages to coalesce? Let's call this random variable $T_2$. We want to know how this random variable is distributed.
-
-Consider one generation at a time. We choose the parent of one of the alleles at random. We do the same for the second allele. The probability that the two lineages coalesce in the previous generation is the probability that the parent of the second allele is the same as the parent of the first allele, $p_2=1/(2N)$. 
-
-Let $X=1$ if the two lineages coalesce in the previous generation, $X=0$ if they don't coalesce. Then $X$ is a Bernoulii random variable, $X\sim\text{Ber}(p_2)$. We can now rephrase our question mathematically: how many Bernoulli trials do we have to perform to get one success?
-
-!!! note "Geometric random variable"
-
-    Let $X$ be the number of Bernoulli trials (with success probability $p$) that it takes to get 1 success. Then the probability we need to perform $X=k$ trials is the probability of having $k-1$ failures (which happens with probability $(1-p)^{k-1}$) followed by a success (which happens with probability $p$)
-    
-    $$\Pr(X=k) = (1-p)^{k-1}p$$
-    
-    This random variable $X$ is called a "geometric random variable" with parameter $p$ and denoted $X\sim\text{Geo}(p)$. After evaluating a few infinite sums it can be shown to have expectation
-    
-    $$\mathbb{E}(X) = \frac{1}{p}$$
-    
-    and variance
-    
-    $$\text{Var}(X) = \frac{1-p}{p^2}$$
-    
-Returning to the coalescent, the time for two sample lineages to coalesce is therefore geometrically distributed, $T_2\sim\text{Geo}(p_2)$. We then can expect to wait 
+Consider a population at equilibrium such that the mean number of offspring per parent is 1. And now consider a beneficial allele that tends to have more offspring, $\lambda>1$. Then we know from above that there is some non-zero probability this lineage does not go extinct, $\eta<1$. Writing the above equation about extinction in terms of the **establishment probability**, $p=1-\eta$, we have
 
 $$\begin{aligned}
-\mathbb{E}(T_2) 
-&= 1/p_2\\
-&=2N
-\end{aligned}$$ 
-
-generations until coalescence of the two lineages. However, the variance around this expectation is 
-
-$$\begin{aligned}
-\text{Var}(T_2) 
-&= \frac{1-p_2}{p^2}\\
-&=2N(2N-1)
+\eta &= e^{-\lambda (1-\eta)}\\
+1 - p &= e^{-\lambda p}\\
+p &= 1 - e^{-\lambda p}
 \end{aligned}$$
 
-which is roughly $(2N)^2$ in a large population, $2N>>1$. Since $N^2$ can be very large relative to $N$, this means that there is *a lot* of noise around the expectation.
+Now assume that the beneficial allele increases the number of offspring only slightly, so that $\lambda=1+s$ with $s$ small. We can then solve for $p$ explicitly using a Taylor series expansion of $e^{-\lambda p}=e^{-(1+s) p}$ around $s=0$
 
-We can see how noisey the coalescence time is by sampling from a geometric distribution for a given value of $N$. For example, below we sample the coalescence time 1000 times with $N=1000$ and plot those times in a histogram. We often see coalescence times ranging from very near 1 to well over 10000 (run the code a few times if you'd like).
+$$ 
+\begin{aligned}
+p &= 1 - e^{-(1+s)p} \\
+p &\approx 1 - \left(1 - (1+s)p + \frac{(1+s)^2p^2}{2}\right) \\
+p &\approx (1+s)p - \frac{(1+s)^2p^2}{2} \\
+1 &\approx 1 + s - \frac{(1+s)^2p}{2} \\
+0 &\approx s - \frac{(1+s)^2p}{2} \\
+p &\approx \frac{2s}{(1+s)^2}\\
+p &\approx 2s
+\end{aligned}
+$$
 
-
-<pre data-executable="true" data-language="python">
-import matplotlib.pyplot as plt
-
-fig, ax = plt.subplots()
-
-N = 1000 #diploid population size
-p = 1/(2*N) #probability 2 lineages coalesce in the previous generation
-ts = np.random.geometric(p,1000) #sample from a geometric with param p 1000 times
-ax.hist(ts, bins=100) #histogram of coalescence times
-
-ax.set_xlabel('number of generations until 2 lineages coalesce')
-ax.set_ylabel('number of realizations')
-plt.show()
-</pre>
-
-
-    
-![png](lecture-20_files/lecture-20_10_0.png)
-    
-
-
-### Time for $n$ lineages to coalesce
-
-Considering only two samples is a special case that gives us some intuition about the model. But in general we want to know, how long until $n$ samples all share a common ancestor? Let this time be random variable $M_n$. We want to know something about $M_n$. 
-
-We start by assuming that only one pair of lineages can coalesce each generation, which is valid when the population size is large, $N>>1$, and the sample is relatively small $n<<N$. Then we can write $M_n$ as the time it takes to go from $n$ to $n-1$ lineages, $T_n$, plus the time it takes to go from $n-1$ to $n-2$ lineages, $T_{n-1}$, and so on down to the time it takes to go from 2 to 1 lineages, $T_2$
-
-$$M_n = T_n + T_{n-1} + ... + T_2$$
-
-The next step is to find out something about the $T_i$. We do this by noting that when there are $i$ lineages the probability of *no* coalescence in the previous generation is
-
-$$1-p_i = \left(1-\frac{1}{2N}\right)\left(1-\frac{2}{2N}\right)...\left(1-\frac{i-1}{2N}\right)$$
-
-In words, we choose any parent for the first lineage, the second lineage does not have the same parent with probability $1-\frac{1}{2N}$, the third lineage does not have the same parent as either of the first two lineages with probability $1-\frac{2}{2N}$, and so on to the $i^\text{th}$ lineage.
-
-This is a complicated expression but we can simplify by taking a Taylor series around $1/N=0$ and approximating to first order, which gives
-
-$$\begin{aligned}
-1-p_i 
-&\approx 1 - \frac{1}{2N}\sum_{j=1}^{i-1}j\\
-&= 1 - \frac{1}{2N}\frac{i(i-1)}{2}\\
-&= 1 - \frac{{i \choose 2}}{2N}\\
-\end{aligned}$$
-
-so that the probability that there is coalescence is
-
-$$p_i \approx \frac{{i \choose 2}}{2N}$$
-
-This makes good sense. When $N$ is large there can be at most 1 coalescent event per generation among the sample lineages. Since there are ${i \choose 2}$ ways to choose a pair of lineages from $i$ lineages, each of which coalesce with probability $1/(2N)$, the probability of coalescence is ${i \choose 2}/(2N)$.
-
-We can now treat the $T_i$ as geometric random variables with parameter $p_i$, $T_i\sim\text{Geo}(p_i)$.
-
-This means that $M_n$, the time for $n$ samples to coalesce into 1, is the sum of $n-1$ independent geometric random variables. Unfortunately this doesn't produce a nice distribution (in contrast to the sum of Poisson random variables we saw in the last lecture). However, we can calculate the expectation since we know the expectation of a sum is the sum of the expectations
-
-$$\begin{aligned}
-\mathbb{E}(M_n) 
-&= \mathbb{E}(T_n + T_{n-1} + ... + T_2)\\
-&= \mathbb{E}(T_n) + \mathbb{E}(T_{n-1}) + ... + \mathbb{E}(T_2)\\
-&= 1/p_n + 1/p_{n-1} + ... + 1/p_2\\
-&\approx \frac{2N}{{n \choose 2}} + \frac{2N}{{n-1 \choose 2}} + ... + \frac{2N}{{2 \choose 2}}\\
-&= 2N \sum_{i=2}^n \frac{1}{{i \choose 2}} \\
-&= 4N \frac{n-1}{n} \\
-\end{aligned}$$
-
-Since $(n-1)/n<1$ we see that all $n$ sample lineages are expected to coalesce in less than $4N$ generations. This is pretty remarkable given we expect to wait more than half that time just for 2 sample lineages to coalesce! The reason for this is that coalescence happens faster when there are more lineages (since there are more pairs to choose from). So if we take a large sample then most of the lineages will coalesce very quickly and most of the time spent waiting for the most recent common ancestor will be once few lineages remain. Below we take advantage of a great Python package, ```msprime```, to quickly simulate the coalescent with $n$ samples and plot the history of those samples (a **coalescent tree**).
-
-
-<pre data-executable="true" data-language="python">
-import msprime
-n = 10
-ts = msprime.sim_ancestry(n) #simulate coalescent with n samples
-ts.first().draw_svg(node_labels={}, size=(500,300)) #plot tree without node labels
-</pre>
-
-
-
-
-    
-![svg](lecture-20_files/lecture-20_12_0.svg)
-    
-
-
+This says that the probability a weakly beneficial allele establishes (i.e., is not lost by genetic drift) is roughly twice its selective advantage.
