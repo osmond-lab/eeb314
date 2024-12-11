@@ -20,6 +20,7 @@
 | 16 | [Epidemiology](lecture-16.md) | 294-301 (7p.) |
 | 17 | [Multi-locus population genetics](lecture-17.md) | 322-330 (8p.) |
 | 18 | [Evolutionary invasion analysis](lecture-18.md) | 12.1-12.4 (30p.) |
-| 19 | [Probability I (genetic drift)](lecture-19.md) | 521-528, 576-577 (10p.) |
-| 20 | [Probability II (demographic stochasticity)](lecture-20.md) | 534-536, 13.2, 641-642 (11p.) |
-| 21 | [Probability III (the coalescent)](lecture-21.md) | 13.8 (9p.) |
+| 19 | [The evolution of dominance](lecture-19.md) | 12.5 (17p.) |
+| 20 | [Probability I (genetic drift)](lecture-20.md) | 521-528, 576-577 (10p.) |
+| 21 | [Probability II (demographic stochasticity)](lecture-21.md) | 534-536, 13.2, 641-642 (11p.) |
+| 22 | [Probability III (the coalescent)](lecture-22.md) | 13.8 (9p.) |
