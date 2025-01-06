@@ -10,7 +10,8 @@
 
 ## Final
 
-- Covers all material, with focus on Lectures 10-20 and Labs 6-10
+- Covers all material
 - Examples: 
 	- [2021](exam_files/final2021.pdf), [solutions](exam_files/final2021_solns.pdf) 
 	- [2022](exam_files/final2022.pdf), [solutions](exam_files/final2022_solns.pdf) 
+	- [2024](exam_files/final2024.pdf), [solutions](exam_files/final2024_solns.pdf) 
