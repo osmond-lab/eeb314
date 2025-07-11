@@ -44,19 +44,7 @@ The labs can be made using jupyter notebooks as before.
 
 ### Step 2
 
-When complete, they can be saved in a Google Drive folder.
- 
-### Step 3
-
-To make them accessible to users, simply right click on the jupyter notebook in Google Drive and press `Open in Colaboratory`. Once in Google CoLab, click `Share` in the top right corner. Change general access to `Anyone with the link` and then copy the link in bottom right corner.
-
-### Step 4
-
-Take the copied/shareable link, and add it to the markdown table in `docs/labs/schedule.md`.
-
-### Step 5
-
-The labs can now be edited and saved directly in Google CoLab. Careful not to leave all the answers there!
+Once pushed to GitHub, use nbgitpuller to create a link to open them from the University of Toronto's JupyterHub. 
 
 ## Building the site
 

@@ -11,19 +11,6 @@ Mathematics is central to science because it provides a rigorous way to go from 
 - [x] read text
 - [x] attend two lectures
 - [x] attend one lab
-- [x] do homework
 
 ## Grading scheme
-- 10% - labs
-- 20% - homeworks
-- 20% - midterm
-- 20% - final project
-- 30% - final
-
-### Late fees
-
-#### Homeworks and labs
-To facilitate rapid feedback and solutions, you will receive 1/2 of your grade if submitted <24 hours late and 0 for anything later 
-
-#### Final project
-You will receive 9/10 of your grade if submitted <24 hours late, else 8/10 if <48 hours late, else ...  
+TBD
