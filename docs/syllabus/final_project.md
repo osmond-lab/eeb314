@@ -1,8 +1,8 @@
 #Final project
 
-## Construct your own model.
+## Construct your own model
   
-In this project you will use the tools you've learned in class and apply them to a model that you develop. The model can be about any phenomenon in ecology and evolution, as long as you make up the model. Be as creative as you want.
+In this project you will use the tools you've learned in class and apply them to a model that you develop. The model can be about any phenomenon in ecology and evolution, as long as you make up the model.
 
 You'll do the final project in two parts.
 
@@ -21,7 +21,7 @@ You'll do the final project in two parts.
 	- Analyze your model 
 	- Explain how the results address your original question
 	- Suggest how the model could be improved or extended
-	- Max 4 pages (not including any code that you used, which can be included as a link to Google Colab or as additional file)
+	- Max 4 pages (not including any code that you used, which can be included as a link or additional file)
 	- [Example](final_project/partII_example.md)
 
 !!! tip 
