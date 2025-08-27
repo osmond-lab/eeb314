@@ -44,9 +44,7 @@ See sections 1.2-1.4 of the text for more info.
 Human immunodeficiency virus (HIV) is, as the name suggests, a virus that infects humans and causes acquired immunodeficiency syndrome (AIDS). This is a terrible diesase that has caused over 20 million deaths worldwide. It is transmitted via bodily fluids. Once inside the body HIV particles (virions) attach to a protein called CD4 on the cell membrane of helper T cells (part of our immune system) and others. Once attached, the virus inserts its RNA into the host cell, which is reverse transcribed into DNA and becomes part of the host genome. The host cell can remain in the 'latently infected' state for some time. When the viral DNA is eventually transcribed by the host cell, starting an 'active infection', hundreds of new virions are produced, often killing the host cell. These new virions then go on to infect other CD4+ cells. A large decline in the number of helper T cells is what causes AIDS. This is because helper T cells bind to viruses and secrete chemical signals to stimulate the immune system. So without helper T cells the immune system is very comprimised.
 
 <center>
-
-![](lecture-01-img/hiv.png){ width=50% }
-
+<img alt="hiv" src="../lecture-01-img/hiv.png" width=50%>
 </center>
 
 <center><sup>HIV and T cells. Source: bio.libretexts.org</sup></center>
@@ -161,7 +159,7 @@ A second example is a model that I helped Dr. Kelsey Lyberger (then a PhD studen
 
 <center>
 
-![](lecture-01-img/kelsey.png){ width=50% }
+<img alt="kelsey" src="../lecture-01-img/kelsey.png" width=50%>
 
 </center>
 
@@ -175,9 +173,7 @@ Kelsey was interested in how populations respond to extreme climatic events, lik
 - [Droughts select on flowering time in *Brassica*](https://nph.onlinelibrary.wiley.com/doi/10.1111/j.1469-8137.2010.03603.x)
 
 <center>
-
-![](lecture-01-img/lizard.png)
-    
+<img alt="lizards" src="../lecture-01-img/lizard.png">
 </center>
 
 <center><sup>Lizard being blown off perch by a leaf blower. Source: colindonihue.com</sup></center>
@@ -305,4 +301,4 @@ The key result, that you can see in the plot above, is that when extreme events 
 ## 2. Syllabus
 <hr>
 
-OK, now that we've gone over some motivating examples of modeling in ecology and evolution, let's take a look at how we're going to learn to become modelers in this course. Point your browser over to the [syllabus](../../syllabus/general_info) and read each of the pages there.
+OK, now that we've gone over some motivating examples of modeling in ecology and evolution, let's take a look at how we're going to learn to become modelers in this course. Point your browser over to the [syllabus](../syllabus/instructors.md) and read each of the pages there.

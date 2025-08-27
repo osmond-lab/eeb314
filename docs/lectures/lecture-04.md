@@ -275,6 +275,7 @@ plt.show()
     
 
 
+<span id='section4'></span>
 ## 4. Comparing haploid and diploid selection
 <hr>
 
@@ -340,7 +341,7 @@ plt.show()
     
 
 
-<span id='section4'></span>
+<span id='section5'></span>
 ## 5. One-locus haploid selection in continuous time
 <hr>
 

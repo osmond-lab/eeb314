@@ -7,6 +7,6 @@ Otto & Day 2007. [A biologist's guide to mathematical modeling in ecology and ev
 - [buy your own copy](https://press.princeton.edu/books/hardcover/9780691123448/a-biologists-guide-to-mathematical-modeling-in-ecology-and-evolution)
 
 <center>
-![](img/text.png)
+<img src="../img/text.png" width=50%>
 </center>
 
