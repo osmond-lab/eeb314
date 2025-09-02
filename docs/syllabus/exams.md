@@ -2,7 +2,7 @@
 
 ## Previous midterms
 
-Roughly covered material from Lectures 1-9 and Labs 1-5
+Roughly covers univariate lectures and labs.
 
 - [2024](exam_files/midterm2024.pdf), [solutions](exam_files/midterm2024_solns.pdf) 
 - [2022](exam_files/midterm2022.pdf), [solutions](exam_files/midterm2022_solns.pdf) 
@@ -10,7 +10,7 @@ Roughly covered material from Lectures 1-9 and Labs 1-5
 
 ## Previous finals
 
-Covered all material, with a focus on the remaining lectures and labs
+Covers all material, with a focus on the remaining lectures and labs.
 
 - [2024](exam_files/final2024.pdf), [solutions](exam_files/final2024_solns.pdf) 
 - [2022](exam_files/final2022.pdf), [solutions](exam_files/final2022_solns.pdf) 

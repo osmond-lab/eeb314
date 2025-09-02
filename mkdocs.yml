@@ -73,27 +73,28 @@ nav:
   - Lectures:
     - Schedule: lectures/schedule.md
     - Lecture 1: lectures/lecture-01.md
-    - Lecture 2: lectures/lecture-02.md
-    - Lecture 3: lectures/lecture-03.md
-    - Lecture 4: lectures/lecture-04.md
-    - Lecture 5: lectures/lecture-05.md
-    - Lecture 6: lectures/lecture-06.md
-    - Lecture 7: lectures/lecture-07.md
-    - Lecture 8: lectures/lecture-08.md
-    - Lecture 9: lectures/lecture-09.md
-    - Lecture 10: lectures/lecture-10.md
-    - Lecture 11: lectures/lecture-11.md
-    - Lecture 12: lectures/lecture-12.md
-    - Lecture 13: lectures/lecture-13.md
-    - Lecture 14: lectures/lecture-14.md
-    - Lecture 15: lectures/lecture-15.md
-    - Lecture 16: lectures/lecture-16.md
-    - Lecture 17: lectures/lecture-17.md
-    - Lecture 18: lectures/lecture-18.md
-    - Lecture 19: lectures/lecture-19.md
+#    - Lecture 2: lectures/lecture-02.md
+#    - Lecture 3: lectures/lecture-03.md
+#    - Lecture 4: lectures/lecture-04.md
+#    - Lecture 5: lectures/lecture-05.md
+#    - Lecture 6: lectures/lecture-06.md
+#    - Lecture 7: lectures/lecture-07.md
+#    - Lecture 8: lectures/lecture-08.md
+#    - Lecture 9: lectures/lecture-09.md
+#    - Lecture 10: lectures/lecture-10.md
+#    - Lecture 11: lectures/lecture-11.md
+#    - Lecture 12: lectures/lecture-12.md
+#    - Lecture 13: lectures/lecture-13.md
+#    - Lecture 14: lectures/lecture-14.md
+#    - Lecture 15: lectures/lecture-15.md
+#    - Lecture 16: lectures/lecture-16.md
+#    - Lecture 17: lectures/lecture-17.md
+#    - Lecture 18: lectures/lecture-18.md
+#    - Lecture 19: lectures/lecture-19.md
 #    - Lecture 20: lectures/lecture-20.md
 #    - Lecture 21: lectures/lecture-21.md
 #    - Lecture 22: lectures/lecture-22.md
   - Labs:
     - Schedule: labs/schedule.md
+    - Tutorial 1: labs/tutorial-01.md
   - Acknowledgements: acknowledgements.md 

@@ -78,21 +78,6 @@ nav:
     - Lecture 3: lectures/lecture-3.md
     # - Lecture 4: lectures/lecture-4.md
     # - Lecture 5: lectures/lecture-5.md
-    # - Lecture 6: lectures/lecture-6.md
-    # - Lecture 7: lectures/lecture-7.md
-    # - Lecture 8: lectures/lecture-8.md
-    # - Lecture 9: lectures/lecture-9.md
-    # - Lecture 10: lectures/lecture-10.md
-    # - Lecture 11: lectures/lecture-11.md
-    # - Lecture 12: lectures/lecture-12.md
-    # - Lecture 13: lectures/lecture-13.md
-    # - Lecture 14: lectures/lecture-14.md
-    # - Lecture 15: lectures/lecture-15.md
-    # - Lecture 16: lectures/lecture-16.md
-    # - Lecture 17: lectures/lecture-17.md
-    # - Lecture 18: lectures/lecture-18.md
-    # - Lecture 19: lectures/lecture-19.md
-    # - Lecture 20: lectures/lecture-20.md
 ```
 
 All the lines with `#` will be commented out and be removed from the site when you re-build. You can re-add them by uncommenting before re-building.

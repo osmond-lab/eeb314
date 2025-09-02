@@ -12,6 +12,6 @@ Mathematics is central to science because it provides a rigorous way to go from 
 - [x] attend two lectures
 - [x] attend one lab
 
-## Grading scheme (tentative)
+## Grading scheme
 - in-class tests: 4 x 20%
 - final project: 20%
