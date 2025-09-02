@@ -91,7 +91,28 @@ Vo, Ve, event_duration, seed = 0.75, 0, 1, 0
 generations, K, w, lmbda, event_time, initial_theta_t, dtheta_t, event_duration = 110, 500, 1, 2, 100, 0, 2.5, 1
 nreps = 10
 
-# simulation
+# recursions
+def recursions(t0,n0,z0,lmbda,w,K,event_time,event_duration,initial_theta_t,dtheta_t,Vo,Ve,tmax=np.inf):
+    
+    # initialize
+    t,nt,zt=t0,n0,z0
+
+    Vs = w**2 + Ve
+    Vg = (2*Vo - Vs + np.sqrt(4*Vo**2 + 12*Vo*Vs + Vs**2))/4
+    Vt = Vg + Vs
+
+    # yield and update
+    while t<tmax:
+        yield t, nt, zt
+        if t in np.arange(event_time, event_time + event_duration):
+            theta_t = initial_theta_t + dtheta_t #extreme event
+        else:
+            theta_t = initial_theta_t #normal
+        t += 1
+        nt = min(nt*lmbda*np.exp(-( (theta_t - zt)**2 + Vg + Ve)/ (2*Vt)), K)
+        zt += Vg*(theta_t - zt) / Vt
+
+# stochastic simulation
 def lyberger_model(Vo, Ve, event_duration, seed, generations, K, w, lmbda, event_time, initial_theta_t, dtheta_t):
     
     # initialize population
@@ -143,38 +164,12 @@ def lyberger_model(Vo, Ve, event_duration, seed, generations, K, w, lmbda, event
         np.array(mean_breeding_value[event_time-1:]) #mean trait value
     )
 
-# recursions
-def recursions(t0,n0,z0,lmbda,w,K,event_time,event_duration,initial_theta_t,dtheta_t,Vo,Ve,tmax=np.inf):
-    
-    # initialize
-    t,nt,zt=t0,n0,z0
-
-    Vs = w**2 + Ve
-    Vg = (2*Vo - Vs + np.sqrt(4*Vo**2 + 12*Vo*Vs + Vs**2))/4
-    Vt = Vg + Vs
-
-    # yield and update
-    while t<tmax:
-        yield t, nt, zt
-        if t in np.arange(event_time, event_time + event_duration):
-            theta_t = initial_theta_t + dtheta_t #extreme event
-        else:
-            theta_t = initial_theta_t #normal
-        t += 1
-        nt = min(nt*lmbda*np.exp(-( (theta_t - zt)**2 + Vg + Ve)/ (2*Vt)), K)
-        zt += Vg*(theta_t - zt) / Vt
-
 # initialize plot
 fig, ax = plt.subplots(2, sharex=True)
 fig.set_size_inches(8,6)
 
-# run 10 simulations per segregation (Vo) and environment variance (Ve) parameter combination
+# for each segregation (Vo) and environment variance (Ve) parameter combination
 for Vo, Ve, c, lab in [[0.75, 0, 'black', 'with evolution'], [0, 1, 'red', 'without evolution']]:
-
-    # plot simulations
-    simulations = np.array([lyberger_model(Vo, Ve, event_duration, s, generations, K, w, lmbda, event_time, initial_theta_t, dtheta_t) for s in range(nreps)])
-    ax[0].plot(simulations[:,0].T, simulations[:,1].T, color=c, alpha=0.3);
-    ax[1].plot(simulations[:,0].T, simulations[:,2].T, color=c, alpha=0.3);
 
     # plot recursions
     tnz = recursions(0,K,initial_theta_t,lmbda,w,K,event_time,event_duration,initial_theta_t,dtheta_t,Vo/2,Ve,generations)
@@ -182,6 +177,11 @@ for Vo, Ve, c, lab in [[0.75, 0, 'black', 'with evolution'], [0, 1, 'red', 'with
     ax[0].plot(tnzs[event_time:,0]-event_time,tnzs[event_time:,1], color=c, linestyle='--')
     ax[1].plot(tnzs[event_time:,0]-event_time,tnzs[event_time:,2], color=c, linestyle='--')
     
+    # plot stochastic simulations
+    simulations = np.array([lyberger_model(Vo, Ve, event_duration, s, generations, K, w, lmbda, event_time, initial_theta_t, dtheta_t) for s in range(nreps)])
+    ax[0].plot(simulations[:,0].T, simulations[:,1].T, color=c, alpha=0.3);
+    ax[1].plot(simulations[:,0].T, simulations[:,2].T, color=c, alpha=0.3);
+
     # hack together only one instance of the legend
     ax[0].plot([np.min(simulations[:,0].T)], [np.min(simulations[:,1].T)], alpha=1,
                   label = lab, color=c)
@@ -328,7 +328,7 @@ import matplotlib.pyplot as plt
 # define a genarator to efficiently run the recursion
 def recursion(n0, b, d, m, tmax):
     t,n=0,n0 #initial conditions
-    while t<tmax:
+    while t < tmax:
         yield t,n #output current state
         t += 1 #update time
         n = (n + m) * (1 + b - d - b*d) #update population size using the recursion equation we derived above
