@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 2: Numerical and graphical techniques(univariate)
+# Lecture 2: Numerical and graphical techniques (univariate)
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -55,7 +55,7 @@ def discrete_model(n0, b, d, m, tmax):
     t,n=0,n0
     
     # yield new values
-    while t<tmax:
+    while t < tmax:
         yield t,n
         
         # update values

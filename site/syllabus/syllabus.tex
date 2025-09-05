@@ -1,0 +1,378 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+\usepackage{fullpage}
+\begin{document}
+
+\section{Mathematical modelling in ecology and evolution (EEB314)}
+
+Mathematics is central to science because it provides a rigorous way to
+go from a set of assumptions to their logical consequences. In ecology
+\& evolution this might be how we think a virus will spread and evolve,
+how climate change will impact a threatened population, or how much
+genetic diversity we expect to see in a randomly mating population. In
+this course you'll learn how to build, analyze, and interpret
+mathematical models of increasing complexity through readings, lectures,
+computer labs, and a final project. Our focus is on deterministic
+dynamical models (recursions and differential equations), which requires
+us to learn and use some calculus and linear algebra.
+
+Please see the
+\href{https://artsci.calendar.utoronto.ca/course/eeb314h1}{University of
+Toronto Academic Calendar} for more details on the course prerequisites
+and additional information on the distribution/breadth requirements this
+course satisfies.
+
+Next taught: Fall 2025
+
+Previously taught: Fall 2024, Fall 2022 (EEB430), Fall 2021 (EEB430)
+
+\section{Instructors}\label{instructors}
+
+\subsection{Professor}\label{professor}
+
+Matthew Osmond (he/him)
+
+\begin{itemize}
+\tightlist
+\item
+  email: mm.osmond@utoronto.ca
+\item
+  website: \href{https://osmond-lab.github.io/}{osmond-lab.github.io}
+\end{itemize}
+
+\subsection{Teaching assistant}\label{teaching-assistant}
+
+Erik Curtis (he/him)
+
+\begin{itemize}
+\tightlist
+\item
+  email: erik.curtis@mail.utoronto.ca
+\end{itemize}
+
+\section{When and where}\label{when-and-where}
+
+\subsection{Lectures}\label{lectures}
+
+\begin{itemize}
+\tightlist
+\item
+  Monday \& Wednesday, 10:10 - 11:00 AM
+\item
+  Wilson Hall - New College (WI), room 523
+\end{itemize}
+
+\subsection{Labs}\label{labs}
+
+\begin{itemize}
+\tightlist
+\item
+  Wednesday, 3:10 - 5:00 PM
+\item
+  Sidney Smith (SS), room 561
+\end{itemize}
+
+\section{Course structure}\label{course-structure}
+
+\subsection{Learning objectives}\label{learning-objectives}
+
+Mathematics is central to science because it provides a rigorous way to
+go from a set of assumptions (what we take to be true) to their logical
+consequences (what we want to know). In ecology \& evolution this might
+be how we think SARS-CoV-2 may spread and evolve given a set of
+vaccination rates and travel restrictions, how caribou population sizes
+are predicted to respond to forecasted rates of climate change, or
+something much more abstract like the expected amount of genetic
+diversity in a randomly mating population. In this course we'll learn
+how to build, analyze, and interpret mathematical models of increasing
+complexity through readings, lectures, computer labs, and a final
+project. By the end of the course you will be able to:
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  build a model: go from a verbal description of a biological system to
+  a set of equations
+\item[$\boxtimes$]
+  analyze a model: manipulate a set of equations into a mathematical
+  expression of interest
+\item[$\boxtimes$]
+  interpret a model: translate mathematical expressions back into
+  biological meaning
+\end{itemize}
+
+\subsection{Weekly tasks}\label{weekly-tasks}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  read text
+\item[$\boxtimes$]
+  attend two lectures
+\item[$\boxtimes$]
+  attend one lab
+\end{itemize}
+
+\subsection{Grading scheme}\label{grading-scheme}
+
+\begin{itemize}
+\tightlist
+\item
+  in-class tests: 4 x 20\%
+\item
+  final project: 20\%
+\end{itemize}
+
+\section{Textbook}\label{textbook}
+
+Otto \& Day 2007. \href{https://www.zoology.ubc.ca/biomath/}{A
+biologist's guide to mathematical modeling in ecology and evolution}.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://librarysearch.library.utoronto.ca/permalink/01UTORONTO_INST/14bjeso/alma991106921343406196}{UofT
+  library e-copies}
+\item
+  \href{https://librarysearch.library.utoronto.ca/permalink/01UTORONTO_INST/14bjeso/alma991106624476006196}{UofT
+  library physical-copies}
+\item
+  \href{https://press.princeton.edu/books/hardcover/9780691123448/a-biologists-guide-to-mathematical-modeling-in-ecology-and-evolution}{buy
+  your own copy}
+\end{itemize}
+
+\section{Final project}\label{final-project}
+
+\subsection{Construct your own model}\label{construct-your-own-model}
+
+In this project you will use the tools you've learned in class and apply
+them to a model that you develop. The model can be about any phenomenon
+in ecology and evolution, as long as you make up the model.
+
+You'll do the final project in two parts.
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  Part 1
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Describe your biological question and why this interests you
+  \item
+    Describe your model in words (ie, the main assumptions) and explain
+    the main structure with a diagram (eg, flow or life cycle diagram)
+  \item
+    Write down the equations that you will analyze
+  \item
+    Describe what your analysis might reveal (ie, your hypothesis)
+  \item
+    Max 2 pages
+  \item
+    \href{final_project/partI_example.md}{Example}
+  \end{itemize}
+\item[$\boxtimes$]
+  Part 2
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Re-iterate your biological question and why this interests you
+  \item
+    Describe your model assumptions in detail, defining all parameters
+    and variables
+  \item
+    Write down the equations for your model
+  \item
+    Analyze your model
+  \item
+    Explain how the results address your original question
+  \item
+    Suggest how the model could be improved or extended
+  \item
+    Max 4 pages (not including any code that you used, which can be
+    included as a link or additional file)
+  \item
+    \href{final_project/partII_example.md}{Example}
+  \end{itemize}
+\end{itemize}
+
+!!! tip
+
+\begin{verbatim}
+If you are having trouble coming up with a new model, take one of the models that we've analysed in the course and change one or more of its underlying assumptions to get a new set of equations. Then analyse these equations. Discuss the differences between the assumptions used and also  between the results obtained.
+\end{verbatim}
+
+\section{Exams}\label{exams}
+
+\subsection{Previous midterms}\label{previous-midterms}
+
+Roughly covers univariate lectures and labs.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{exam_files/midterm2024.pdf}{2024},
+  \href{exam_files/midterm2024_solns.pdf}{solutions}
+\item
+  \href{exam_files/midterm2022.pdf}{2022},
+  \href{exam_files/midterm2022_solns.pdf}{solutions}
+\item
+  \href{exam_files/midterm2021.pdf}{2021},
+  \href{exam_files/midterm2021_solns.pdf}{solutions}
+\end{itemize}
+
+\subsection{Previous finals}\label{previous-finals}
+
+Covers all material, with a focus on the remaining lectures and labs.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{exam_files/final2024.pdf}{2024},
+  \href{exam_files/final2024_solns.pdf}{solutions}
+\item
+  \href{exam_files/final2022.pdf}{2022},
+  \href{exam_files/final2022_solns.pdf}{solutions}
+\item
+  \href{exam_files/final2021.pdf}{2021},
+  \href{exam_files/final2021_solns.pdf}{solutions}
+\end{itemize}
+
+\section{General info}\label{general-info}
+
+\subsection{Land acknowledgement}\label{land-acknowledgement}
+
+I wish to acknowledge this land on which the University of Toronto
+operates. For thousands of years it has been the traditional land of the
+Huron-Wendat, the Seneca, and the Mississaugas of the Credit. Today,
+this meeting place is still the home to many Indigenous people from
+across Turtle Island and I am grateful to have the opportunity to work
+on this land. For more information see
+\href{https://indigenous.utoronto.ca/about/land-acknowledgement/}{University
+of Toronto's land acknowledgement}.
+
+\subsection{Group norms}\label{group-norms}
+
+The University of Toronto is committed to equity, human rights, and
+respect for diversity. All members of the learning environment in this
+course should strive to create an atmosphere of mutual respect where all
+members of our community can express themselves, engage with each other,
+and respect one another's differences. U of T does not condone
+discrimination or harassment against any persons or communities. Please
+contact me if you have any concerns. For more information see the
+\href{https://governingcouncil.utoronto.ca/secretariat/policies/code-student-conduct-december-13-2019}{Code
+of Student Conduct}.
+
+\subsection{Accessibility}\label{accessibility}
+
+The University provides academic accommodations for students with
+disabilities in accordance with the terms of the
+\href{http://www.ohrc.on.ca/en/ontario-human-rights-code}{Ontario Human
+Rights Code}. This occurs through a collaborative process that
+acknowledges a collective obligation to develop an accessible learning
+environment that both meets the needs of students and preserves the
+essential academic requirements of the University's courses and
+programs. Students with diverse learning styles and needs are welcome in
+this course. If you have a disability that may require accommodations,
+please feel free to get in touch with me and/or the
+\href{https://studentlife.utoronto.ca/department/accessibility-services/}{Accessibility
+Services office}.
+
+\subsection{Religious observances}\label{religious-observances}
+
+The University provides reasonable accommodation of the needs of
+students who observe religious holy days other than those already
+accommodated by ordinary scheduling and statutory holidays. Students
+have a responsibility to alert members of the teaching staff in a timely
+fashion to upcoming religious observances and anticipated absences and I
+will make every reasonable effort to avoid scheduling tests,
+examinations or other compulsory activities at these times. Please reach
+out to me as early as possible to communicate any anticipated absences
+related to religious observances, and to discuss any possible related
+implications for course work.
+
+\subsection{Family care
+responsibilities}\label{family-care-responsibilities}
+
+The University of Toronto strives to provide a family-friendly
+environment. You may wish to inform me if you are a student with family
+responsibilities. If you are a student parent or have family
+responsibilities, you also may wish to visit the
+\href{https://familycare.utoronto.ca}{Family Care Office website}.
+
+\section{Resources}\label{resources}
+
+There are many resources available at the University of Toronto to help
+you succeed in this course. Below are a few:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://writing.utoronto.ca/}{Writing Center}
+\item
+  \href{https://www.academicintegrity.utoronto.ca/}{Academic integrity}
+\item
+  \href{https://studentlife.utoronto.ca/wp-content/uploads/SLC8581_7-Grandfathers-in-Academic-Integrity-AODA.pdf}{More
+  on academic integrity}
+\item
+  \href{https://teaching.utoronto.ca/teaching-support/u-of-t-resources/teaching/students/}{CTSI
+  list of supports}
+\item
+  \href{https://q.utoronto.ca/enroll/ALEYMP}{Academic success module}
+\item
+  \href{https://q.utoronto.ca/courses/46670/pages/student-guide}{Get
+  help with Quercus}
+\end{itemize}
+
+\end{document}

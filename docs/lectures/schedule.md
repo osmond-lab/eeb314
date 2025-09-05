@@ -5,7 +5,7 @@ Under construction for Fall 2025 edition. Lectures will be updated as we go.
 | Lecture | Topic | Background reading |
 | ------- | ----- | ------- |
 | 1 | [Why and how to build a model](lecture-01.md) | Preface (2p.), Chapter 1 (14p.), Chapter 2 (34p.) |
-| 2 | Numerical and graphical techniques (univariate) | 4.1-4.3 (23p.) |
+| 2 | [Numerical and graphical techniques (univariate)](lecture-02.md) | 4.1-4.3 (23p.) |
 | 3 | Equilibria (univariate) | 5.1-5.2 (12p.) |
 | 4 | Stability (univariate) | 5.3 (13p.) |
 | 5 | General solutions (univariate) | Chapter 6 (18p.) |
