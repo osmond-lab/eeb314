@@ -114,10 +114,10 @@ OK, so now we’ll move on to a plot that is easier to generate and is very usef
 
 Instead of plotting the variable as a function of time, we’ll plot the variable as a function of the variable in the previous time, e.g., plotting $n(t+1)$ as a function of $n(t)$. We could do this for exponential growth but let's move on to something else for variety.
 
-Consider a population with two types of individuals, $n_A(t)$ with allele $A$ and $n_a(t)$ with allele $a$. The frequency of $A$ in the population is $p(t) = \frac{n_a(t)}{n_A(t) + n_a(t)}$. This is the variable we wish to track.
+Consider a population with two types of individuals, $n_A(t)$ with allele $A$ and $n_a(t)$ with allele $a$. The frequency of $A$ in the population is $p(t) = \frac{n_A(t)}{n_A(t) + n_a(t)}$. This is the variable we wish to track.
 
 Let’s assume that each individual with an $A$ leaves $W_A$ descendants in the next generation and each individual with an $a$ leaves $W_a$ descendants.
-These $W_i$ are referred to as the **absolute fitnesses** as they determine the (absolute) numbers of individuals with a $A$ and a $a$ in the next generation, $n_i(t+1) = W_i n_i(t)$, for $i=A$ and $i=a$. The frequency of $A$ in the next generation is then
+These $W_i$ are referred to as the **absolute fitnesses** as they determine the (absolute) numbers of individuals with an $A$ and an $a$ in the next generation, $n_i(t+1) = W_i n_i(t)$, for $i=A$ and $i=a$. In other words, each allele grows exponentially with reproductive value $R=W_i$. The frequency of $A$ in the next generation is then
 
 $$
 \begin{aligned}
@@ -207,14 +207,14 @@ $$
 \begin{aligned}
 n(t+1) &= R n(t)\\
 n(t+1) - n(t) &= R n(t) - n(t)\\
-\Delta n &= (R-1)n(t)
+\Delta n &= (R-1)n(t).
 \end{aligned}
 $$
 
-Now recall that $R=1+B-D-BD$ so that $R-1=B-D-BD$. And let's consider a small timestep $\Delta t$ during which there are $B\Delta t$ births and $D\Delta t$ deaths per individual. Then the difference equation over this timestep, $\Delta n = n(t+\Delta t)-n(t)$ is,
+Now recall that $R=1+B-D-BD$ so that $R-1=B-D-BD$. And let's consider a small timestep $\Delta t$ during which there are $B\Delta t$ births and $D\Delta t$ deaths per individual. Then the difference equation over this timestep, $\Delta n = n(t+\Delta t)-n(t)$, is
 
 $$
-\Delta n = (B\Delta t - D\Delta t - BD(\Delta t)^2)n(t)
+\Delta n = (B\Delta t - D\Delta t - BD(\Delta t)^2)n(t).
 $$
 
 We then divide both sides by $\Delta t$ and take the limit as $\Delta t\rightarrow 0$ to get the differential equation
@@ -234,7 +234,7 @@ Now, returning to haploid selection, consider that allele $A$ has growth rate $r
 $$
 \begin{aligned}
 \frac{\mathrm{d}n_A}{\mathrm{d}t} &= r_An_A(t)\\
-\frac{\mathrm{d}n_a}{\mathrm{d}t} &= r_an_a(t)\\
+\frac{\mathrm{d}n_a}{\mathrm{d}t} &= r_an_a(t).
 \end{aligned}
 $$
 
@@ -247,11 +247,11 @@ $$
 &= \frac{r_An_A(t)(n_A(t)+n_a(t)) - n_A(t)(r_An_A(t)+r_an_a(t))}{(n_A(t)+n_a(t))^2}\\
 &= r_Ap(t) - p(t)(r_Ap(t)+r_a(1-p(t)))\\
 &= p(t)(1 - p(t))(r_A - r_a)\\
-&= p(t)(1 - p(t))s\\
+&= p(t)(1 - p(t))s.
 \end{aligned}
 $$
 
-where $s=r_A-r_a$ is called the selection coefficient of $A$ relative to $a$. The plot of $dp/dt$ vs. $p$ is below.
+The new parameter $s=r_A-r_a$ is called the selection coefficient of $A$ relative to $a$. The plot of $dp/dt$ vs. $p$ is below.
 
 
 <pre data-executable="true" data-language="python">
