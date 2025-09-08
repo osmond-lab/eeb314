@@ -5,8 +5,8 @@ Under construction for Fall 2025 edition. Labs will be updated as we go.
 | Lab | Tutorial | Coding exercise |
 | ---------- | ----- | ----- |
 | 1 | [Building recursion equations](tutorial-01.md) | Introduction to Jupyter, Python, and SymPy | 
-| 2 | tbd | Simulations and cob-webs | 
-| 3 | tbd | Equilibria, stability, and general solutions (univariate) | 
+| 2 | [Solving for equilibria](tutorial-02.md) | Simulating recursion equations with generators | 
+| 3 | tbd | Stability, and general solutions (univariate) | 
 | 4 | tbd | Vectors and matrices | 
 | 5 | tbd | Eigenvalues, eigenvectors, and linear multivariate solutions | 
 | 6 | tbd | Demography | 
