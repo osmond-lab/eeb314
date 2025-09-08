@@ -12,7 +12,7 @@
         <link rel="prev" href="../lecture-01/">
       
       
-        <link rel="next" href="../../labs/schedule/">
+        <link rel="next" href="../lecture-03/">
       
       
       <link rel="icon" href="../../images/favicon_non_transparent.svg">
@@ -776,6 +776,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1069,9 +1092,9 @@ plt.show()
 
 <p>OK, so now we’ll move on to a plot that is easier to generate and is very useful for models with just one variable (which is what we’ve been working with so far).</p>
 <p>Instead of plotting the variable as a function of time, we’ll plot the variable as a function of the variable in the previous time, e.g., plotting <span class="arithmatex">\(n(t+1)\)</span> as a function of <span class="arithmatex">\(n(t)\)</span>. We could do this for exponential growth but let's move on to something else for variety.</p>
-<p>Consider a population with two types of individuals, <span class="arithmatex">\(n_A(t)\)</span> with allele <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(n_a(t)\)</span> with allele <span class="arithmatex">\(a\)</span>. The frequency of <span class="arithmatex">\(A\)</span> in the population is <span class="arithmatex">\(p(t) = \frac{n_a(t)}{n_A(t) + n_a(t)}\)</span>. This is the variable we wish to track.</p>
+<p>Consider a population with two types of individuals, <span class="arithmatex">\(n_A(t)\)</span> with allele <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(n_a(t)\)</span> with allele <span class="arithmatex">\(a\)</span>. The frequency of <span class="arithmatex">\(A\)</span> in the population is <span class="arithmatex">\(p(t) = \frac{n_A(t)}{n_A(t) + n_a(t)}\)</span>. This is the variable we wish to track.</p>
 <p>Let’s assume that each individual with an <span class="arithmatex">\(A\)</span> leaves <span class="arithmatex">\(W_A\)</span> descendants in the next generation and each individual with an <span class="arithmatex">\(a\)</span> leaves <span class="arithmatex">\(W_a\)</span> descendants.
-These <span class="arithmatex">\(W_i\)</span> are referred to as the <strong>absolute fitnesses</strong> as they determine the (absolute) numbers of individuals with a <span class="arithmatex">\(A\)</span> and a <span class="arithmatex">\(a\)</span> in the next generation, <span class="arithmatex">\(n_i(t+1) = W_i n_i(t)\)</span>, for <span class="arithmatex">\(i=A\)</span> and <span class="arithmatex">\(i=a\)</span>. The frequency of <span class="arithmatex">\(A\)</span> in the next generation is then</p>
+These <span class="arithmatex">\(W_i\)</span> are referred to as the <strong>absolute fitnesses</strong> as they determine the (absolute) numbers of individuals with an <span class="arithmatex">\(A\)</span> and an <span class="arithmatex">\(a\)</span> in the next generation, <span class="arithmatex">\(n_i(t+1) = W_i n_i(t)\)</span>, for <span class="arithmatex">\(i=A\)</span> and <span class="arithmatex">\(i=a\)</span>. In other words, each allele grows exponentially with reproductive value <span class="arithmatex">\(R=W_i\)</span>. The frequency of <span class="arithmatex">\(A\)</span> in the next generation is then</p>
 <div class="arithmatex">\[
 \begin{aligned}
 p(t+1) 
@@ -1147,12 +1170,12 @@ plt.show()
 \begin{aligned}
 n(t+1) &amp;= R n(t)\\
 n(t+1) - n(t) &amp;= R n(t) - n(t)\\
-\Delta n &amp;= (R-1)n(t)
+\Delta n &amp;= (R-1)n(t).
 \end{aligned}
 \]</div>
-<p>Now recall that <span class="arithmatex">\(R=1+B-D-BD\)</span> so that <span class="arithmatex">\(R-1=B-D-BD\)</span>. And let's consider a small timestep <span class="arithmatex">\(\Delta t\)</span> during which there are <span class="arithmatex">\(B\Delta t\)</span> births and <span class="arithmatex">\(D\Delta t\)</span> deaths per individual. Then the difference equation over this timestep, <span class="arithmatex">\(\Delta n = n(t+\Delta t)-n(t)\)</span> is,</p>
+<p>Now recall that <span class="arithmatex">\(R=1+B-D-BD\)</span> so that <span class="arithmatex">\(R-1=B-D-BD\)</span>. And let's consider a small timestep <span class="arithmatex">\(\Delta t\)</span> during which there are <span class="arithmatex">\(B\Delta t\)</span> births and <span class="arithmatex">\(D\Delta t\)</span> deaths per individual. Then the difference equation over this timestep, <span class="arithmatex">\(\Delta n = n(t+\Delta t)-n(t)\)</span>, is</p>
 <div class="arithmatex">\[
-\Delta n = (B\Delta t - D\Delta t - BD(\Delta t)^2)n(t)
+\Delta n = (B\Delta t - D\Delta t - BD(\Delta t)^2)n(t).
 \]</div>
 <p>We then divide both sides by <span class="arithmatex">\(\Delta t\)</span> and take the limit as <span class="arithmatex">\(\Delta t\rightarrow 0\)</span> to get the differential equation</p>
 <div class="arithmatex">\[
@@ -1167,7 +1190,7 @@ n(t+1) - n(t) &amp;= R n(t) - n(t)\\
 <div class="arithmatex">\[
 \begin{aligned}
 \frac{\mathrm{d}n_A}{\mathrm{d}t} &amp;= r_An_A(t)\\
-\frac{\mathrm{d}n_a}{\mathrm{d}t} &amp;= r_an_a(t)\\
+\frac{\mathrm{d}n_a}{\mathrm{d}t} &amp;= r_an_a(t).
 \end{aligned}
 \]</div>
 <p>We now summon up the qoutient rule from 1st year calculus to derive the differential equation for the frequency of <span class="arithmatex">\(A\)</span> over time</p>
@@ -1178,10 +1201,10 @@ n(t+1) - n(t) &amp;= R n(t) - n(t)\\
 &amp;= \frac{r_An_A(t)(n_A(t)+n_a(t)) - n_A(t)(r_An_A(t)+r_an_a(t))}{(n_A(t)+n_a(t))^2}\\
 &amp;= r_Ap(t) - p(t)(r_Ap(t)+r_a(1-p(t)))\\
 &amp;= p(t)(1 - p(t))(r_A - r_a)\\
-&amp;= p(t)(1 - p(t))s\\
+&amp;= p(t)(1 - p(t))s.
 \end{aligned}
 \]</div>
-<p>where <span class="arithmatex">\(s=r_A-r_a\)</span> is called the selection coefficient of <span class="arithmatex">\(A\)</span> relative to <span class="arithmatex">\(a\)</span>. The plot of <span class="arithmatex">\(dp/dt\)</span> vs. <span class="arithmatex">\(p\)</span> is below.</p>
+<p>The new parameter <span class="arithmatex">\(s=r_A-r_a\)</span> is called the selection coefficient of <span class="arithmatex">\(A\)</span> relative to <span class="arithmatex">\(a\)</span>. The plot of <span class="arithmatex">\(dp/dt\)</span> vs. <span class="arithmatex">\(p\)</span> is below.</p>
 <pre data-executable="true" data-language="python">
 # Initialize sympy symbols
 p0, s, t = sympy.symbols('p0, s, t')

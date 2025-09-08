@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 3: Exponential & logistic growth
+# Lecture 3: Equilibria (univariate)
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,330 +26,196 @@
 
 ## Lecture overview
 
-1. [Introduction](#section1)
-2. [Exponential growth](#section2)
-3. [Logistic growth](#section3)
+1. [Equilibria](#section1)
+5. [Example: diploid selection](#section2)
+6. [Summary](#section3)
 
 <span id='section1'></span>
-## 1. Introduction
+## 1. Equilibria
 <hr>
 
-In nature, population sizes change over time in response to a myriad of factors, such as
+An **equilibrium** is any state of a system which tends to persist unchanged over time.
 
-- weather
-- competition, predation, disease, ...
-- resource availability
+For *discrete-time* models, the equilibria are defined as those values of the variables where no changes occur from one time step to the next. 
 
-The simplest models describing changes in population size are **exponential growth** and **logistic growth** which assume
+For example, those values of allele frequency $p(t)$ where
 
-- a constant environment
-- no interactions with other species 
+$$
+\begin{aligned}
+\Delta p &= 0\\
+p(t+1) - p(t) &= 0\\
+p(t+1) &= p(t)
+\end{aligned}
+$$
 
-The exponential model also assumes no competition among the members of a species for the available resources (**density-independent growth**), while the logistic model includes competition within a species (**density-dependent growth**).
+Similarly, for *continuous-time* models, the equilibria are defined as those values of the variables for which the rate of change in the variables equals zero. 
 
-Both of these models can be described in discrete and continuous time.
+For example, those values of allele frequency $p(t)$ where
 
-We’ll start with the simpler exponential model.
+$$
+\frac{\mathrm{d}p}{\mathrm{d}t} = 0
+$$
+
+
+What are the equilibria of the exponential population growth and haploid selection models discussed in the previous lecture?
 
 <span id='section2'></span>
-## 2. Exponential growth
+## 2. Example: diploid selection
 <hr>
 
-### Exponential growth in discrete time
+### The model
 
-Imagine we start with $n(t)$ individuals at some time $t$. If we assume that each of these individuals produces $b$ offspring, the number of individuals after reproduction is $n(t) + n(t) b = n(t)(1 + b)$.
+Let's now consider selection on diploid individuals, where each individual is characterized by two alleles at a locus. This leads to three genotypes: $AA$, $Aa$, and $aa$. The $Aa$ genotype is called the heterozygote and the others are homozygotes.
 
-If we then assume a fraction $d$ die, the number of individuals remaining after death is $n(t)(1+b) - n(t)(1+b)d = n(t)(1+b)(1-d)$.
+Let the number of individuals with each genotype be
 
-With no further events in the life-cycle, this is the expected number of individuals in the next generation, $n(t+1)$, which we can write as
+- $n_{AA}(t) =$ number of individuals with the $AA$ genotype in generation $t$
+- $n_{Aa}(t) =$ number of individuals with the $Aa$ genotype in generation $t$
+- $n_{aa}(t) =$ number of individuals wite the $aa$ genotype in generation $t$
 
-$$
-\begin{aligned}
-n(t+1)
-&= n(t)(1+b)(1-d) \\
-&= n(t) R \\
-\end{aligned}
-$$
-
-where $R=(1+b)(1-d)$ is a constant referred to as the **reproductive factor**.
-
-This equation, $n(t+1)=n(t) R$, is the **recursion equation** for exponential growth.
-
-!!! note "Exponential vs geometric growth"
-
-    Technically this recursion equation describes "geometric" growth, since $n(t)$ will grow with $t$ as a geometric series, but here we simply call it "exponential growth in discrete time" to make a clear connection with exponential growth in continuous time.
-
-We can also describe the *change* in the number of individuals by subtracting off the current number,
+The frequency of allele $A$ is calculated by counting up all the $A$ alleles in the population and dividing by the total number of alleles,
 
 $$
 \begin{aligned}
-\Delta n 
-&= n(t+1) - n(t)\\ 
-&= n(t)(R-1)
+p(t)
+&= \frac{2n_{AA}(t) + n_{Aa}(t)}{2(n_{AA}(t) + n_{Aa}(t) + n_{aa}(t))} \\
+&= \frac{n_{AA}(t) + \frac{1}{2}n_{Aa}(t)}{n_{AA}(t) + n_{Aa}(t) + n_{aa}(t)}.
 \end{aligned}
 $$
 
-This is the **difference equation** for exponential growth, with discrete-time growth rate $r_d = R-1 = (1+b)(1-d)-1 = b - d - bd$.
+To determine the recursion equation, let's use the following life cycle diagram, where we census the population immediately after the diploid individuals are formed by union of the haploid gametes
 
-Let's plot the dynamics described by these equations for a particular set of parameter values.
+<center>
+```mermaid
+    graph LR;
+    A((p'')) --gamete union--> B((p));
+    B --selection--> C((p'));
+    C --meiosis--> A;
+```   
+</center>
 
+Now, let’s assume that during selection each diploid individual has reproductive factor
 
-<pre data-executable="true" data-language="python">
-import numpy as np
-import matplotlib.pyplot as plt
+- $W_{AA} =$ reproductive factor of individuals with the $AA$ genotype 
+- $W_{Aa} =$ reproductive factor of individuals with the $Aa$ genotype
+- $W_{aa} =$ reproductive factor of individuals with the $aa$ genotype
 
-def exponential_discrete(nt, b, d):
-    '''recursion equation giving population size in next time step as a function
-    of the population size at this time, nt, and the birth and death rates, b and d.'''
-    return nt * (1 + b) * (1 - d)
+These reproductive factors are again referred to as the absolute fitnesses as they determine the (absolute) numbers of individuals after selection, $n_i' = W_i n_i(t)$ for $i=AA$, $i=Aa$, and $i=aa$.
 
-# Grow population
-nd, nt, b, d = [], 1, 0.2, 0.1 #define empty list nd to store population sizes and choose parameter values
-for t in np.arange(0,100): #for time from 0 to 99
-    nt = exponential_discrete(nt, b, d) #get the next population size from the recursion equation
-    nd.append(nt) #and append it to the list
-
-# Plot growth
-fig, ax = plt.subplots()
-ax.scatter(np.arange(0, 100), nd) #plot population size at each time
-ax.set_xlabel('Time, $t$')
-ax.set_ylabel('Population size, $n(t)$')
-plt.show()
-</pre>
-
-
-    
-![png](lecture-03_files/lecture-03_5_0.png)
-    
-
-
-### Exponential growth in continuous time
-
-Now assume that each individual continuously gives birth at rate $b$ and dies at rate $d$.
-
-If there are $n(t)$ individuals in the population at time $t$, then the instantaneous rate of change in the number of individuals is
+After selection these genotypes segregate into haploids via meiosis, go through the haploid phase of the life cycle, and then randomly pair to create diploids again. Random union and segregation shuffle alleles between genotypes but don't affect allele frequency. The frequency of $A$ in the next generation is therefore
 
 $$
 \begin{aligned}
-\frac{\mathrm{d} n}{\mathrm{d} t} 
-&= n(t) b - n(t) d\\
-&= (b - d) n(t)\\
-&= r_c n(t)
+p(t+1) 
+&= \frac{n_{AA}(t+1) + \frac{1}{2}n_{Aa}(t+1)}{n_{AA}(t+1) + n_{Aa}(t+1) + n_{aa}(t+1)}\\
+&= \frac{W_{AA}n_{AA}(t) + \frac{1}{2}W_{Aa}n_{Aa}(t)}{W_{AA}n_{AA}(t) + \frac{1}{2}W_{Aa}n_{Aa}(t) + W_{aa}n_{aa}(t)}.
 \end{aligned}
 $$
 
-This is the **differential equation** for exponential growth with continuous-time growth rate $r_c = b - d$.
+We want the recursion equation in terms of allele frequency, so we want to replace the $n_i$'s on the right hand side of this equation with $p$'s. To do this we note that given the random union of gametes the diploid offspring are in Hardy-Weinberg proportions, i.e.,
 
-Note that the growth rate in the discrete-time model was $r_d = b - d - b d$. The difference between the two growth rates reflects the fact that birth and death cannot happen at the exact same time in the continuous-time model (so there is no $b d$ term), while offspring that are born can die before the next generation in the discrete-time model (causing the $b d$ term).
+$$
+\begin{aligned}
+n_{AA}(t) &= p(t)^2 n(t) \\
+n_{Aa}(t) &= 2p(t) q(t) n(t) \\
+n_{aa}(t) &= q(t)^2 n(t)
+\end{aligned}
+$$
 
-Let's also plot these dynamics.
+where $n(t) = n_{AA}(t) + n_{Aa}(t) + n_{aa}(t)$ is the total population size.
 
-!!! note "Approximating a differential equation"
+Substituting these Hardy-Weinberg proportions in and simplifying, the total population size cancels out and we can rewrite the above equation in terms of allele frequency alone,
 
-    The differential equation describes the change in the population size in an "infinitesimally" small amount of time, $\mathrm{d}t$. To plot these dynamics we therefore make an approximation, taking $\mathrm{d}t$ to be small, but not infinitely so. Rearranging the differential equation gives $\mathrm{d}n(t) = n(t)(b-d)\mathrm{d}t$ and the population size after $\mathrm{d}t$ is therefore $n_{t+\mathrm{d}t} = n(t) + \mathrm{d}n(t)$. This is a recursion equation that approximates our differential equation.
+$$
+\begin{aligned}
+p(t+1) 
+&= \frac{W_{AA}p(t)^2 n(t) + W_{Aa}p(t) q(t) n(t)}{W_{AA}p(t)^2 n(t) + 2W_{Aa}p(t) q(t) n(t) + W_{aa}q(t)^2 n(t)}\\
+&= \frac{W_{AA}p(t)^2 + W_{Aa}p(t) q(t)}{W_{AA}p(t)^2 + 2W_{Aa}p(t) q(t) + W_{aa}q(t)^2}.
+\end{aligned}
+$$
 
+where we have used $q(t)=1-p(t)$ for the frequency of $a$ for convenience. This is a recursion equation for allele frequency in our model of diploid selection.
 
-<pre data-executable="true" data-language="python">
-import numpy as np
-import matplotlib.pyplot as plt
+### The equilbria
 
-def exponential_continuous(nt, b, d, dt):
-    '''approximation of the differential equation giving population size after a small time interval, dt,
-    as a function of the population size at this time, nt, and the birth and death rates, b and d.'''
-    return nt + nt * (b - d) * dt
+To find the equilibria we replace $p(t+1)$ and $p(t)$ with $\hat p$ and the $q(t)$ with $\hat{q}$ and solve for these equilibrium values, $\hat p$ and $\hat q$,
 
-# Grow population
-nc, nt, dt = [], 1, 0.1 #define empty list nc to store population sizes and choose parameter values (keep b and d as above)
-for t in np.arange(0,100,dt): #for time from 0 to 99 by increments of dt
-    nt = exponential_continuous(nt, b, d, dt) #get the next population size from the recursion equation
-    nc.append(nt) #and append it to the list
+$$
+\begin{aligned}
+\hat{p} &= \frac{\hat{p}^2 W_{AA} + \hat{p} \hat{q} W_{Aa}}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}\\
+\hat{p} &= \frac{\hat{p}(\hat p W_{AA} + \hat{q} W_{Aa})}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}
+\end{aligned}
+$$
 
-# Plot growth
-fig, ax = plt.subplots()
-ax.scatter(np.arange(0, 100, dt), nc) #plot population size at each time
-ax.set_xlabel('Time, $t$')
-ax.set_ylabel('Population size, $n(t)$')
-plt.show()
-</pre>
+We see that $\hat{p}=0$ is one equilibrium as then both sides of the equation are 0. If $\hat p$ is not 0 we can divide by $\hat p$ to get
 
+$$
+\begin{aligned}
+1 &= \frac{\hat p W_{AA} + \hat{q} W_{Aa}}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}\\
+\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa} &= \hat p W_{AA} + \hat{q} W_{Aa}\\
+0 &= (\hat{p} - \hat{p}^2) W_{AA} + (\hat{q} - 2 \hat{p} \hat{q}) W_{Aa} - \hat{q}^2 W_{aa}\\
+0 &= \hat{p}(1 - \hat{p}) W_{AA} + \hat{q}(1 - 2 \hat{p}) W_{Aa} - \hat{q}^2 W_{aa}\\
+0 &= \hat{q}(\hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - \hat{q} W_{aa})
+\end{aligned}
+$$
 
-    
-![png](lecture-03_files/lecture-03_7_0.png)
-    
+And so $\hat{q}=0\implies\hat{p}=1$ is another equilibrium. Dividing by $\hat{q}$ and putting everything in terms of $p$ we have
 
+$$
+\begin{aligned}
+0 &= \hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - \hat{q} W_{aa}\\
+0 &= \hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - (1 - \hat{p}) W_{aa}\\
+0 &= \hat{p}(W_{AA} -2W_{Aa} + W_{aa}) + W_{Aa} - W_{aa}\\
+W_{aa} - W_{Aa} &= \hat p(W_{AA} -2W_{Aa} + W_{aa})\\
+\frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}} &= \hat p\\
+\end{aligned}
+$$
 
-We can now combine our two plots to compare these two predictions, exponential growth in discrete vs. continuous time.
+We therefore have *three* equilibria under diploid selection: 
 
+- $\hat{p}=0$
+- $\hat p = \frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}}$
+- $\hat p = 1$
 
-<pre data-executable="true" data-language="python">
-# Plot growth
-fig, ax = plt.subplots()
-ax.scatter(np.arange(0, 100), nd, label='discrete time') #plot population size at each time
-ax.scatter(np.arange(0, 100, dt), nc, label='continuous time') #plot population size at each time
-ax.set_xlabel('Time, $t$')
-ax.set_ylabel('Population size, $n(t)$')
-plt.legend()
-plt.show()
-</pre>
+Since a frequency is bounded between 0 and 1, we must have $0 \leq p \leq 1$. We therefore call $\hat{p}=0$ and $\hat{p}=1$ **boundary equilibria**. These bounds also imply the third equilibrium is only **biologically valid** when 
 
+$$
+0 \leq \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} \leq 1.
+$$
 
-    
-![png](lecture-03_files/lecture-03_9_0.png)
-    
+When $W_{Aa} = W_{aa}$ this equilibrium reduces to $\hat{p}=0$ and when $W_{Aa} = W_{AA}$ this reduces to $\hat{p}=1$ (check this for yourself). The third equilibrium will be an **internal equilibrium**, representing a population with both $A$ and $a$ alleles, when
 
+$$
+0 < \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} < 1.
+$$
 
-!!! note "Why the difference?"
+The equilibrium is positive when the numerator and denominator have the same sign (i.e., are both positive or both negative). Let's split this into two "cases". Case A will have a positive numerator, $W_{Aa} > W_{aa}$, and Case B will have a negative numerator, $W_{Aa} < W_{aa}$. So, in Case A, the equilibrium is positive when the denominator is positive, $2 W_{Aa} - W_{AA} - W_{aa} > 0$. Meanwhile in case B the equilibrium is positive when the denominator is negative, $2 W_{Aa} - W_{AA} - W_{aa} < 0$.
 
-    The predictions are very similar at first but then noticeably diverge.  
-    
-    The time of this divergence depends on the values of parameters $b$ and $d$. Try increasing or decreasing both $b$ and $d$ and think about why it has that effect.
+Now we can rearrange the equilibrium to show that it is less than 1 when
 
-    Also think about why the continuous time model predicts a larger population size than the discrete time model. 
+$$
+\begin{aligned}
+\frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &< 1\\
+\frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} - 1 &< 0\\
+\frac{W_{Aa} - W_{aa} - (2 W_{Aa} -W_{AA} - W_{aa})}{2 W_{Aa} -W_{AA} - W_{aa}} &< 0\\
+\frac{W_{AA} - W_{Aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &< 0\\
+\frac{W_{Aa} - W_{AA}}{2 W_{Aa} -W_{AA} - W_{aa}} &> 0.
+\end{aligned}
+$$
+  
+Again, we need the numerator and denominator to have the same sign for this inequality to hold. In case A, where we've said that denominator is positive, this means we also need the numerator to be positive, $W_{Aa} > W_{AA}$. While in case B we said that the denominator is negative, so we also need the numerator to be negative, $W_{Aa} < W_{AA}$.
+  
+Putting this all together, there is a biologically-relevant internal equilibrium when either
 
-    Hint: remember the difference in the growth rates between the two models is $bd$. 
+- Case A: $W_{Aa} > W_{aa}$ and $W_{Aa} > W_{AA}$ (which ensures $2 W_{Aa} - W_{AA} - W_{aa} > 0$; go ahead and check!)
+- Case B: $W_{Aa} < W_{aa}$ and $W_{Aa} < W_{AA}$  (which ensures $2 W_{Aa} - W_{AA} - W_{aa} < 0$)
 
-### The trouble with exponential growth
-
-Exponential growth cannot continue indefinitely.
-
-Take for example a population of pheasants on an island off the coast of Washington State. Just 8 pheasants were introduced in 1937, but the population then grew exponentially, tripling in size every year ($R=3$) for the first 5 years.  Had this population continued to grow exponentially there would have been 7 million of them by the year 1950 and $10^{28}$ by now – which at 2 kg per pheasant is 3000 times the mass of the earth!!
-
-Although populations may initially experience exponential growth, resources eventually become depleted and competition becomes more severe. This suggests that we should change our model assumptions.
+Case A therefore represents "heterozygote advantage", $W_{AA} < W_{Aa} > W_{aa}$, while Case B represents "heterozygote disadvantage", $W_{AA} > W_{Aa} < W_{aa}$. 
 
 <span id='section3'></span>
-## 3. Logistic growth
+## 3. Summary
 <hr>
 
-Exponential growth assumes the growth rate ($r_d$, $r_c$) is constant. **Logistic growth** relaxes this assumption, and instead assumes that the growth rate decreases linearly with population size, due to competition for resources within the population. 
+Equilibria are defined by the values of the variables that persist over time, i.e., where the change is zero.
 
-### Logistic growth in discrete time
-
-In discrete-time, the reproductive factor under logistic growth can be written as
-
-$$R(n(t)) = 1 + r\left(1 - \frac{n(t)}{K}\right)$$
-
-Notice that each individual is expected to have one offspring ($R=1$) if the **intrinsic growth rate** (ie, growth rate when rare) is zero, $r = 0$, or if the population size is at **carrying capacity**, $n(t)=K$. 
-
-Try plotting the reproductive factor as a function of $n(t)$ for a few different values of $r$ and $K$.
-
-
-<pre data-executable="true" data-language="python">
-# Reproductive factor for logistic growth
-def logistic_discrete(nt, r, K):
-    '''reproductive factor in discrete logistic model with growth rate r and carrying capacity k'''
-    return 1 + r * (1 - nt/K) 
-
-# Compare a few different growth rates and carrying capacities
-fig, ax = plt.subplots()
-for r, K in zip([1, 2, 1], [100, 100, 50]): #for each pair of r and K values
-    nt = np.linspace(0, 200) #for a range of population sizes from 0 to 200
-    R = logistic_discrete(nt, r, K) #calculate the reproductive factor
-    ax.plot(nt, R, label=f"r = {r}, K = {K}") #and plot
-
-ax.plot(nt, [1 for i in nt], '--', color='gray') #1 line for reference
-ax.set_xlabel('Population size, $n(t)$')
-ax.set_ylabel('Reproductive factor, $R$')
-ax.legend(frameon=False)
-plt.ylim(0,None)
-plt.show()
-</pre>
-
-
-    
-![png](lecture-03_files/lecture-03_16_0.png)
-    
-
-
-The population size in the next generation is the expected number of offspring per parent times the the total number of parents
-
-$$n(t+1) = \left(1 + r\left(1-\frac{n(t)}{K}\right)\right)n(t)$$
-
-This is the recursion equation for logistic growth.
-
-This recursion is a **non-linear** function of $n(t)$ (*non-linear means that there is a term in the equation where the term is taken to some power other than 1; here if we expand out the recursion we get a $n(t)^2$ term*). This reflects the fact that logistic growth models an interaction between individuals (competition).
-
-The change in population size from one generation to the next, $\Delta n$, is therefore
-
-$$\Delta n = n(t+1) - n(t) = r\left(1 - \frac{n(t)}{K}\right)n(t)$$
-
-Based on this difference equation, when will the population grow in size?
-
-Test out your answer by plotting population size over time in the discrete-time logistic model. Try changing the initial population size or carrying capacity so that $n(t) > K$.
-
-
-<pre data-executable="true" data-language="python">
-# Initialize parameters
-n, nt, r, K = [], 1, 0.1, 100 #list, initial population size, intrinsic growth rate, carrying capacity
-
-# Grow population under logistic growth
-for t in np.arange(0, 100):
-    nt = nt * logistic_discrete(nt, r, K)
-    n.append(nt)
-
-# Plot growth
-fig, ax = plt.subplots()
-ax.scatter(np.arange(0, 100), n)
-ax.axhline(100, label=f"K = {K}", linestyle='dashed', color='gray') #carrying capacity as dashed line
-
-# Add annotations
-ax.set_xlabel('Time, $t$')
-ax.set_ylabel('Population size, $n(t)$')
-plt.show()
-</pre>
-
-
-    
-![png](lecture-03_files/lecture-03_19_0.png)
-    
-
-
-!!! info "Complex dynamics"
-
-    Logistic growth in discrete time can show some surprisingly complex dynamics, which we'll explore in lab.
-
-### Logistic growth in continuous time
-
-The model of logistic growth in continuous time, as with discrete time, follows from the assumption that each individual has a **growth rate** that decreases as a linear function of the population size $r(1 - n(t)/K)$.
-
-If there are $n(t)$ individuals in the population at time $t$, then the rate of change of the population size will be
-
-$$\frac{\mathrm{d}n}{\mathrm{d}t} = r\left(1 - \frac{n(t)}{K}\right)n(t)$$
-
-This is a **differential equation** of logistic growth.
-
-Note that in both discrete and continuous time the logistic growth model reduces to the exponential growth model as $n/K$ approaches 0, i.e., when the population size is much smaller than the carrying capacity $n << K$.
-
-!!! note "An example of logistic growth"
-
-    Dr. Sarah Otto cultured haploid (one copy of each chromosome) and diploid (two copies of each chromosome) populations of *Saccharomyces cereviseae*. She observed the following population sizes for the two types of cells:
-
-    <center>
-
-    ![](lecture-03-img/yeast_otto_1.png)
-
-    </center>
-
-    <center><sup>Figure. The size of haploid and diploid yeast populations in a controlled laboratory experiment.</sup></center>
-
-    Although the populations grow nearly exponentially at first, growth decreased as population size increased (i.e., density-dependent growth was observed).
-
-    The carrying capacity ($K$) is clearly larger for the haploid cells, but do haploid and diploid cells have different intrinsic growth rates ($r$)?
-
-    By fitting the logistic growth model described above to the data, Dr. Otto estimated the parameter values to be
-
-    - Haploid: r = 0.55, K = 3.7 x 10^8
-    - Diploid: r = 0.55, K = 2.3 x 10^8
-
-    The growth rates therefore do not differ (visibly or statistically). With these parameter estimates, the logistic model nicely fits the data:
-
-    <center>
-
-    ![](lecture-03-img/yeast_otto_2.png)
-
-    </center>
-
-    <center><sup>Figure. Population size of haploid and diploid yeast fit with logistic growth models.</sup></center>
-
-    *Note: This may be a bit misleading, as such excellent model fits are rarely observed, especially outside the lab!*
-
-!!! todo "To do: make the above plots in Python"
+With diploid selection there are three equilibria, two external and one potentially internal -- in the next lecture we'll see which are stable.
