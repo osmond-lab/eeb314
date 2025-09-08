@@ -756,21 +756,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Plots of variables as a function of themselves">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#haploid-selection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Haploid selection
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -965,21 +950,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Plots of variables as a function of themselves">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#haploid-selection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Haploid selection
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1045,11 +1015,28 @@
 <h2 id="1-plots-of-variables-over-time">1. Plots of variables over time</h2>
 <hr>
 
-<p>We've already seen two examples of this in the previous lecture. Let's repeat the discrete-time migration example step by step.</p>
-<p>We first write a recursive function (actually, a "generator" in Python) to generate values of the population size, <span class="arithmatex">\(n(t)\)</span>, at sequential time points, <span class="arithmatex">\(t\)</span>.</p>
+<p>The first plot is of the variables over time. We've already seen two examples of this in the previous lecture, for both evolution during extreme events and migration. In both cases we wrote recursive functions (actually, "generator"s in Python) to generate values of the variables at sequential time points.</p>
+<p>Here let's look at a simpler example to demonstrate the essence of the method by hand. Take the recursion for the migration example <span class="arithmatex">\(n(t+1) = (n(t)+M)(1+B-D-BD)\)</span>, ignore migration, <span class="arithmatex">\(M=0\)</span>, and create a new parameter, <span class="arithmatex">\(R=1+B-D-BD\)</span>. Our simplified recursion is then </p>
+<p><span class="arithmatex">\(n(t+1)=Rn(t)\)</span>.</p>
+<p>This is called <strong>exponential growth</strong> (technically "geometric" growth in discrete time) and the only parameter of the model, <span class="arithmatex">\(R\)</span>, is referred to as the reproductive value.</p>
+<p>To plot a variable over time we</p>
+<ul>
+<li>choose an initial condition,</li>
+<li>choose parameter values, and</li>
+<li>numerically iterate the equation.</li>
+</ul>
+<p>Here let's choose initial condition <span class="arithmatex">\(n(0)=100\)</span> and parameter value <span class="arithmatex">\(R=2\)</span>. Now we can iterate:</p>
+<p><span class="arithmatex">\(n(1) = Rn(0) = 2\times100 = 200\)</span></p>
+<p><span class="arithmatex">\(n(2) = Rn(1) = 2\times200 = 400\)</span></p>
+<p><span class="arithmatex">\(\vdots\)</span></p>
+<p>After doing this a few more times we can plot</p>
 <pre data-executable="true" data-language="python">
-def discrete_model(n0, b, d, m, tmax):
-    '''define generator for population size'''
+import numpy as np
+import matplotlib.pyplot as plt
+
+# recursion
+def exp_growth(n0, R, tmax):
+    '''define generator for exponential growth'''
 
     # set initial values
     t,n=0,n0
@@ -1060,19 +1047,13 @@ def discrete_model(n0, b, d, m, tmax):
 
         # update values
         t += 1
-        n = (n + m) * (1 + b - d - b*d) #the recursion equation we derived above
-</pre>
+        n = n * R
 
-<p>We then chose some <strong>parameter values</strong> (<span class="arithmatex">\(b\)</span>, <span class="arithmatex">\(d\)</span>, <span class="arithmatex">\(m\)</span>) and <strong>initial conditions</strong> (initial population size, <span class="arithmatex">\(n(0) = 1\)</span>) to get the values of <span class="arithmatex">\(n(t)\)</span> from the initial (<span class="arithmatex">\(t = 0\)</span>) to final (tmax) time.</p>
-<pre data-executable="true" data-language="python">
-import numpy as np
-tn = discrete_model(n0=1, b=0.05, d=0.1, m=1, tmax=50) #choose some parameter values and initial conditions
+# evaluate 
+tn = exp_growth(n0=100, R=2, tmax=10) #choose some parameter values and initial conditions
 tns = np.array([vals for vals in tn]) #get all the t, n(t) values
-</pre>
 
-<p>And we then plot <span class="arithmatex">\(n(t)\)</span> as a function of <span class="arithmatex">\(t\)</span>.</p>
-<pre data-executable="true" data-language="python">
-import matplotlib.pyplot as plt
+# plot
 fig, ax = plt.subplots()
 ax.plot(tns[:,0], tns[:,1], marker = '.', markersize = 10)
 ax.set_xlabel('time step, $t$')
@@ -1080,41 +1061,27 @@ ax.set_ylabel('population size, $n(t)$')
 plt.show()
 </pre>
 
-<p><img alt="png" src="../lecture-02_files/lecture-02_7_0.png" /></p>
-<p>We can use this technique to, say, compare different rates of migration.</p>
-<pre data-executable="true" data-language="python">
-fig, ax = plt.subplots()
-for i, m in enumerate([0,1,2]):
-    tn = discrete_model(n0=1, b=0.05, d=0.1, m=m, tmax=50)
-    tns = np.array([vals for vals in tn])
-    ax.plot(tns[:,0], tns[:,1], label=f"m = {m}", marker = '.', markersize = 10)
-
-ax.set_xlabel('time step, $t$')
-ax.set_ylabel('population size, $n(t)$')
-ax.legend()
-plt.show()
-</pre>
-
-<p><img alt="png" src="../lecture-02_files/lecture-02_9_0.png" /></p>
+<p><img alt="png" src="../lecture-02_files/lecture-02_3_0.png" /></p>
+<p>We can get a feel for the model by adjusting initial conditions and parameter values. What happens to the population size when you set <span class="arithmatex">\(0&lt;R&lt;1\)</span> in the code above?</p>
 <p><span id='section2'></span></p>
 <h2 id="2-plots-of-variables-as-a-function-of-themselves">2. Plots of variables as a function of themselves</h2>
 <hr>
 
 <p>OK, so now we’ll move on to a plot that is easier to generate and is very useful for models with just one variable (which is what we’ve been working with so far).</p>
-<p>Instead of plotting the variable as a function of time, we’ll plot the variable as a function of the variable in the previous time, e.g., plotting <span class="arithmatex">\(n(t+1)\)</span> as a function of <span class="arithmatex">\(n(t)\)</span>. We could do this for the model above but let's move on to something else for variety.</p>
-<h3 id="haploid-selection">Haploid selection</h3>
+<p>Instead of plotting the variable as a function of time, we’ll plot the variable as a function of the variable in the previous time, e.g., plotting <span class="arithmatex">\(n(t+1)\)</span> as a function of <span class="arithmatex">\(n(t)\)</span>. We could do this for exponential growth but let's move on to something else for variety.</p>
 <p>Consider a population with two types of individuals, <span class="arithmatex">\(n_A(t)\)</span> with allele <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(n_a(t)\)</span> with allele <span class="arithmatex">\(a\)</span>. The frequency of <span class="arithmatex">\(A\)</span> in the population is <span class="arithmatex">\(p(t) = \frac{n_a(t)}{n_A(t) + n_a(t)}\)</span>. This is the variable we wish to track.</p>
 <p>Let’s assume that each individual with an <span class="arithmatex">\(A\)</span> leaves <span class="arithmatex">\(W_A\)</span> descendants in the next generation and each individual with an <span class="arithmatex">\(a\)</span> leaves <span class="arithmatex">\(W_a\)</span> descendants.
 These <span class="arithmatex">\(W_i\)</span> are referred to as the <strong>absolute fitnesses</strong> as they determine the (absolute) numbers of individuals with a <span class="arithmatex">\(A\)</span> and a <span class="arithmatex">\(a\)</span> in the next generation, <span class="arithmatex">\(n_i(t+1) = W_i n_i(t)\)</span>, for <span class="arithmatex">\(i=A\)</span> and <span class="arithmatex">\(i=a\)</span>. The frequency of <span class="arithmatex">\(A\)</span> in the next generation is then</p>
 <div class="arithmatex">\[
 \begin{aligned}
 p(t+1) 
+&amp;= \frac{n_A(t+1)}{n_A(t+1) + n_a(t+1)} \\
 &amp;= \frac{W_A n_A(t)}{W_A n_A(t) + W_a n_a(t)} \\
 &amp;= \frac{W_A\frac{n_A(t)}{n_A(t) + n_a(t)}}{W_A\frac{n_A(t)}{n_A(t) + n_a(t)} + W_a\frac{n_a(t)}{n_A(t) + n_a(t)}}\\
 &amp;= \frac{W_A p(t)}{W_A p(t) + W_a (1-p(t))}.
 \end{aligned}
 \]</div>
-<p>This is the recursion equation we want to plot. Below is some code that plots <span class="arithmatex">\(p(t+1)\)</span> as a function of <span class="arithmatex">\(p(t)\)</span>.</p>
+<p>This is the recursion equation we want to plot. It is a classic model called <strong>haploid selection</strong>. Below is some code that plots <span class="arithmatex">\(p(t+1)\)</span> as a function of <span class="arithmatex">\(p(t)\)</span>.</p>
 <pre data-executable="true" data-language="python">
 import sympy
 
@@ -1170,15 +1137,51 @@ plot_haploid_selection(WA = 0.5, Wa = 1, ax=ax[1])
 plt.show()
 </pre>
 
-<p><img alt="png" src="../lecture-02_files/lecture-02_11_0.png" /></p>
+<p><img alt="png" src="../lecture-02_files/lecture-02_6_0.png" /></p>
 <p>There are three components to this plot. First, the solid curve gives the recursion itself (<span class="arithmatex">\(p(t+1)\)</span> as a function of <span class="arithmatex">\(p(t)\)</span>). Second, the dashed line shows where <span class="arithmatex">\(p(t+1)=p(t)\)</span>. And third, the blue lines show how the variable changes over multiple time steps. </p>
-<p>Foreshadowing what is to come, the dashed line is helpful for two reasons. First, it indicates where the variable does not change over time. So wherever the recursion (solid line) intersects with the dashed line is an <strong>equilibrium</strong>. Second, it reflects <span class="arithmatex">\(p(t+1)\)</span> back onto <span class="arithmatex">\(p(t)\)</span>, updating the variable. For example, in the left panel above we start with an allele frequency of <span class="arithmatex">\(p(t)=0.5\)</span>, draw a blue vertical line to the recursion to find <span class="arithmatex">\(p(t+1)\)</span>, and then update <span class="arithmatex">\(p(t)\)</span> to <span class="arithmatex">\(p(t+1)\)</span> by drawing the horizontal blue line to the dashed line. Now we can ask what <span class="arithmatex">\(p(t+1)\)</span> is given this updated value of <span class="arithmatex">\(p(t)\)</span> by drawing another vertical blue line, and so on. Following the blue line we can therefore see where the system is heading, which tells us about the <strong>stability</strong> of the equilibria. What are the stable equilibria in the two panels above?</p>
-<p>We can do something very similar for difference and differential equations. Now we plot the <strong>change</strong> in the variable as a function of the current value of the variable, e.g., plot <span class="arithmatex">\(\Delta n\)</span> or <span class="arithmatex">\(dn/dt\)</span> as a function of <span class="arithmatex">\(n(t)\)</span>.</p>
-<p>For example, in continuous time the haploid selection model is</p>
+<p>Foreshadowing what is to come, the dashed line is helpful for two reasons. First, it indicates where the variable does not change over time. So wherever the recursion (solid line) intersects with the dashed line is an <strong>equilibrium</strong>. Second, it reflects <span class="arithmatex">\(p(t+1)\)</span> back onto <span class="arithmatex">\(p(t)\)</span>, updating the variable. For example, in the left panel above we start with an allele frequency of <span class="arithmatex">\(p(t)=0.5\)</span>, draw a blue vertical line to the recursion to find <span class="arithmatex">\(p(t+1)\)</span>, and then update <span class="arithmatex">\(p(t)\)</span> to <span class="arithmatex">\(p(t+1)\)</span> by drawing the horizontal blue line to the dashed line. Now we can ask what <span class="arithmatex">\(p(t+1)\)</span> is given this updated value of <span class="arithmatex">\(p(t)\)</span> by drawing another vertical blue line, and so on. Following the blue line we can therefore see where the system is heading, which tells us about the <strong>stability</strong> of the equilibria. </p>
+<p>What are the stable equilibria in the two panels above?</p>
+<p>We can do something very similar for difference and differential equations. Now we plot the rate of change in the variable as a function of the current value of the variable, e.g., plot <span class="arithmatex">\(\Delta n = n(t+1)-n(t)\)</span> or <span class="arithmatex">\(dn/dt\)</span> as a function of <span class="arithmatex">\(n(t)\)</span>.</p>
+<p>Let's consider haploid selection in continuous time. To derive the differential equation let's first return to exponential growth and turn this into a difference equation,</p>
 <div class="arithmatex">\[
-\frac{\mathrm{d}p}{\mathrm{d}t} = sp(1-p)
+\begin{aligned}
+n(t+1) &amp;= R n(t)\\
+n(t+1) - n(t) &amp;= R n(t) - n(t)\\
+\Delta n &amp;= (R-1)n(t)
+\end{aligned}
 \]</div>
-<p>where <span class="arithmatex">\(s=(W_A-W_a)/W_a\)</span> is called the <strong>selection coefficient</strong> of <span class="arithmatex">\(A\)</span> relative to <span class="arithmatex">\(a\)</span>. The plot of <span class="arithmatex">\(dp/dt\)</span> vs. <span class="arithmatex">\(p\)</span> is below.</p>
+<p>Now recall that <span class="arithmatex">\(R=1+B-D-BD\)</span> so that <span class="arithmatex">\(R-1=B-D-BD\)</span>. And let's consider a small timestep <span class="arithmatex">\(\Delta t\)</span> during which there are <span class="arithmatex">\(B\Delta t\)</span> births and <span class="arithmatex">\(D\Delta t\)</span> deaths per individual. Then the difference equation over this timestep, <span class="arithmatex">\(\Delta n = n(t+\Delta t)-n(t)\)</span> is,</p>
+<div class="arithmatex">\[
+\Delta n = (B\Delta t - D\Delta t - BD(\Delta t)^2)n(t)
+\]</div>
+<p>We then divide both sides by <span class="arithmatex">\(\Delta t\)</span> and take the limit as <span class="arithmatex">\(\Delta t\rightarrow 0\)</span> to get the differential equation</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\Delta n}{\Delta t} &amp;= (B - D - BD\Delta t)n(t)\\
+\lim_{\Delta t\rightarrow0}\frac{\Delta n}{\Delta t} &amp;= (B - D)n(t)\\
+\frac{\mathrm{d}n}{\mathrm{d}t} &amp;= rn(t).
+\end{aligned}
+\]</div>
+<p>This is exponential growth in continuous time where <span class="arithmatex">\(r\)</span> is the per capita growth rate.</p>
+<p>Now, returning to haploid selection, consider that allele <span class="arithmatex">\(A\)</span> has growth rate <span class="arithmatex">\(r_A\)</span> and allele <span class="arithmatex">\(a\)</span> has growth rate <span class="arithmatex">\(r_a\)</span>, this gives two differential equations for the respective population sizes</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}n_A}{\mathrm{d}t} &amp;= r_An_A(t)\\
+\frac{\mathrm{d}n_a}{\mathrm{d}t} &amp;= r_an_a(t)\\
+\end{aligned}
+\]</div>
+<p>We now summon up the qoutient rule from 1st year calculus to derive the differential equation for the frequency of <span class="arithmatex">\(A\)</span> over time</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}p}{\mathrm{d}t} &amp;= \frac{\mathrm{d}}{\mathrm{d}t}\left(\frac{n_A(t)}{n_A(t)+n_a(t)}\right)\\
+&amp;= \frac{dn_A/dt(n_A(t)+n_a(t)) - n_A(t)(dn_A/dt+dn_a/dt)}{(n_A(t)+n_a(t))^2}\\
+&amp;= \frac{r_An_A(t)(n_A(t)+n_a(t)) - n_A(t)(r_An_A(t)+r_an_a(t))}{(n_A(t)+n_a(t))^2}\\
+&amp;= r_Ap(t) - p(t)(r_Ap(t)+r_a(1-p(t)))\\
+&amp;= p(t)(1 - p(t))(r_A - r_a)\\
+&amp;= p(t)(1 - p(t))s\\
+\end{aligned}
+\]</div>
+<p>where <span class="arithmatex">\(s=r_A-r_a\)</span> is called the selection coefficient of <span class="arithmatex">\(A\)</span> relative to <span class="arithmatex">\(a\)</span>. The plot of <span class="arithmatex">\(dp/dt\)</span> vs. <span class="arithmatex">\(p\)</span> is below.</p>
 <pre data-executable="true" data-language="python">
 # Initialize sympy symbols
 p0, s, t = sympy.symbols('p0, s, t')
@@ -1206,7 +1209,7 @@ ax.legend(frameon=False)
 plt.show()
 </pre>
 
-<p><img alt="png" src="../lecture-02_files/lecture-02_14_0.png" /></p>
+<p><img alt="png" src="../lecture-02_files/lecture-02_9_0.png" /></p>
 <p>What does this tell us about how allele frequency will change when <span class="arithmatex">\(s&gt;0\)</span> vs. <span class="arithmatex">\(s&lt;0\)</span>? And what allele frequencies, <span class="arithmatex">\(p\)</span>, cause more rapid evolution?</p>
 <p>Now let's simplify the above plots and just indicate the direction (and magnitude) of change in <span class="arithmatex">\(p(t)\)</span> with time. This is known as a <strong>phase-line diagram</strong>.</p>
 <pre data-executable="true" data-language="python">
@@ -1259,8 +1262,8 @@ plot_phase_line_haploid(WA=1, Wa=0.5, p0=0.01)
 plot_phase_line_haploid(WA=0.5, Wa=1, p0=0.99)
 </pre>
 
-<p><img alt="png" src="../lecture-02_files/lecture-02_17_0.png" /></p>
-<p><img alt="png" src="../lecture-02_files/lecture-02_17_1.png" /></p>
+<p><img alt="png" src="../lecture-02_files/lecture-02_12_0.png" /></p>
+<p><img alt="png" src="../lecture-02_files/lecture-02_12_1.png" /></p>
 <p>As above, we see the frequency of <span class="arithmatex">\(A\)</span> approaches <span class="arithmatex">\(p=1\)</span> when <span class="arithmatex">\(W_A&gt;W_a\)</span> (i.e., <span class="arithmatex">\(s&gt;0\)</span>) and <span class="arithmatex">\(p=0\)</span> when <span class="arithmatex">\(W_a&gt;W_A\)</span> (i.e., <span class="arithmatex">\(s&lt;0\)</span>). We also notice, as above, the changes are fastest (fewer, longer arrows) at intermediate frequencies.</p>
 <p><span id='section3'></span></p>
 <h2 id="3-summary">3. Summary</h2>
@@ -1270,6 +1273,11 @@ plot_phase_line_haploid(WA=0.5, Wa=1, p0=0.99)
 <ul>
 <li>plot the variable as a function of time ("simulate")</li>
 <li>plot the variable (or change in variable) as a function of itself</li>
+</ul>
+<p>We've also just been introduced to two classic models in ecology and evolution, in both discrete and continuous time:</p>
+<ul>
+<li>exponential growth</li>
+<li>haploid selection</li>
 </ul>
 
 
