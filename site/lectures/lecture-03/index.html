@@ -12,7 +12,7 @@
         <link rel="prev" href="../lecture-02/">
       
       
-        <link rel="next" href="../../labs/schedule/">
+        <link rel="next" href="../lecture-04/">
       
       
       <link rel="icon" href="../../images/favicon_non_transparent.svg">
@@ -792,9 +792,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-equilbria" class="md-nav__link">
+  <a href="#the-equilibria" class="md-nav__link">
     <span class="md-ellipsis">
-      The equilbria
+      The equilibria
     </span>
   </a>
   
@@ -818,6 +818,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 4
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1033,9 +1056,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-equilbria" class="md-nav__link">
+  <a href="#the-equilibria" class="md-nav__link">
     <span class="md-ellipsis">
-      The equilbria
+      The equilibria
     </span>
   </a>
   
@@ -1168,8 +1191,8 @@ p(t+1)
 <div class="arithmatex">\[
 \begin{aligned}
 n_{AA}(t) &amp;= p(t)^2 n(t) \\
-n_{Aa}(t) &amp;= 2p(t) q(t) n(t) \\
-n_{aa}(t) &amp;= q(t)^2 n(t)
+n_{Aa}(t) &amp;= 2p(t) (1-p(t)) n(t) \\
+n_{aa}(t) &amp;= (1-p(t))^2 n(t)
 \end{aligned}
 \]</div>
 <p>where <span class="arithmatex">\(n(t) = n_{AA}(t) + n_{Aa}(t) + n_{aa}(t)\)</span> is the total population size.</p>
@@ -1177,12 +1200,16 @@ n_{aa}(t) &amp;= q(t)^2 n(t)
 <div class="arithmatex">\[
 \begin{aligned}
 p(t+1) 
-&amp;= \frac{W_{AA}p(t)^2 n(t) + W_{Aa}p(t) q(t) n(t)}{W_{AA}p(t)^2 n(t) + 2W_{Aa}p(t) q(t) n(t) + W_{aa}q(t)^2 n(t)}\\
-&amp;= \frac{W_{AA}p(t)^2 + W_{Aa}p(t) q(t)}{W_{AA}p(t)^2 + 2W_{Aa}p(t) q(t) + W_{aa}q(t)^2}.
+&amp;= \frac{W_{AA}p(t)^2 n(t) + W_{Aa}p(t) (1-p(t)) n(t)}{W_{AA}p(t)^2 n(t) + 2W_{Aa}p(t) (1-p(t)) n(t) + W_{aa}(1-p(t))^2 n(t)}\\
+&amp;= \frac{W_{AA}p(t)^2 + W_{Aa}p(t) (1-p(t))}{W_{AA}p(t)^2 + 2W_{Aa}p(t)(1-p(t)) + W_{aa}(1-p(t))^2}.
 \end{aligned}
 \]</div>
-<p>where we have used <span class="arithmatex">\(q(t)=1-p(t)\)</span> for the frequency of <span class="arithmatex">\(a\)</span> for convenience. This is a recursion equation for allele frequency in our model of diploid selection.</p>
-<h3 id="the-equilbria">The equilbria</h3>
+<p>This is a recursion equation for allele frequency in our model of diploid selection. It's a bit long. It can be written quite a bit shorter using <span class="arithmatex">\(q=1-p\)</span> for the frequency of allele <span class="arithmatex">\(a\)</span> and noticing that the denominator is mean fitness in the population, <span class="arithmatex">\(\bar{W}(p(t))\)</span>, </p>
+<div class="arithmatex">\[
+p(t+1) 
+= \frac{W_{AA}p(t)^2 + W_{Aa}p(t)q(t)}{\bar{W}(p(t))}.
+\]</div>
+<h3 id="the-equilibria">The equilibria</h3>
 <p>To find the equilibria we replace <span class="arithmatex">\(p(t+1)\)</span> and <span class="arithmatex">\(p(t)\)</span> with <span class="arithmatex">\(\hat p\)</span> and the <span class="arithmatex">\(q(t)\)</span> with <span class="arithmatex">\(\hat{q}\)</span> and solve for these equilibrium values, <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(\hat q\)</span>,</p>
 <div class="arithmatex">\[
 \begin{aligned}
