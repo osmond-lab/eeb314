@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 5: Numerical and graphical techniques I (univariate)
+# Lecture 5: General solutions (univariate)
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,405 +26,210 @@
 
 ## Lecture overview
 
-1. [Numerical and graphical techniques](#section1)
-2. [Plots of variables over time](#section2)
-3. [Plots of variables as a function of the variables themselves](#section3)
-4. [Summary](#section4)
+1. [General solutions](#section1)
+2. [Example: haploid selection](#section2)
+3. [Summary](#section3)
 
 <span id='section1'></span>
-## 1. Numerical and graphical techniques
+## 1. General solutions
 <hr>
 
-Before we jump into more rigorous mathematical analyses, we’re first going to learn how to get a feel for the dynamics of our models.
+Equilibria and their stability describe the *long-term dynamics* of our models, i.e., what we expect after a long time has passed. Now we’ll look at some  cases where we can describe the *entire* dynamics, including the short-term, by solving for the variable as a function of time, $x(t) = f(t)$. This is called a **general solution**.
 
-To do so we’re going to choose some particular numerical values for our parameters and then use our models to predict what happens over time.
+### Linear models in discrete time
 
-The downside of this approach is that we often won’t know the parameter values to choose and, regardless, choosing particular values doesn’t tell us about the dynamics of our model more generally.
+With a single variable, $x$, a discrete time **linear model** can be written 
 
-The upside is that this approach can highlight errors or reveal unexpected patterns that guide future mathematical analyses.
+$$
+x(t+1) = a x(t) + b.
+$$
+
+For example, this could be our previous model of population growth with immigration.
+
+The general solution can be found with the following steps.
+
+**Step 1**: Solve for the equilibrium,
+
+$$
+\begin{aligned}
+\hat{x} &= a \hat{x} + b \\
+\hat{x} &= \frac{b}{1 - a}.
+\end{aligned}
+$$
+
+!!! note
+   
+    Note that if $a=1$ there is no equilibrium for $b\neq0$ and instead you can use brute force iteration (see below) to show that $x(t) = x_0 + b t$.
+
+**Step 2**: Define $\delta(t) = x(t) - \hat{x}$, the deviation of our variable from the equilibrium (this is our transformation).
+
+**Step 3**: Write the recursion equation for the transformed variable,
+
+$$
+\begin{aligned}
+\delta(t+1) &= x(t+1) - \hat{x} \\
+&= a x(t) + b - \hat{x} \\
+&= a(\delta(t) + \hat{x}) + b - \hat{x}\\
+&= a \left(\delta(t) + \frac{b}{1 - a}\right) + b - \frac{b}{1 - a}\\
+&= a \delta(t).
+\end{aligned}
+$$
+
+This is, once again, exponential growth.
+
+**Step 4**: From this we can use **brute force iteration** to get the general solution for the deviation from equilibrium,
+
+$$
+\begin{aligned}
+\delta(t) &= a \delta(t-1)\\
+&= a^2 \delta(t-2)\\
+&= a^3 \delta(t-3)\\ 
+&\vdots\\
+&= a^t \delta(0).
+\end{aligned}
+$$   
+
+**Step 5**: Reverse transform back to $x(t)$,
+
+$$
+\begin{aligned}
+x(t) &= \delta(t) + \hat{x}\\
+&= a^t \delta(0) + \hat{x}\\
+&= a^t (x(0) - \hat{x}) + \hat{x}\\
+&= a^t x(0) + (1 - a^t)\hat{x}.
+\end{aligned}
+$$
+
+This says that our variable moves from $x(0)$ towards/away from $\hat{x}$ by a factor $a$ per time step. Note that if $b=0$ then $\hat{x}=0$ and this reduces to what we derived above, $x(t)=a^t x(0)$.
+
+Below we plot the general solution for a given value of $a$ and $b$ from a number of different intitial conditions. Try playing with the values of $a$ and $b$ and observe the different dynamics.
+
+
+<pre data-executable="true" data-language="python">
+a, b, x0 = 0.99, 1, 10 #define parameter values and initial condition
+ts = range(1000) #time values
+xs = [a**t * x0 + (1-a**t)*b/(1-a) for t in ts] #variable values from general solution
+plt.scatter(ts, xs) #plot discretely
+plt.ylabel('$x(t)$')
+plt.xlabel('$t$')
+plt.show()
+</pre>
+
+
+    
+![png](lecture-05_files/lecture-05_2_0.png)
+    
+
+
+### Separation of variables in continuous time
+
+Consider the generic continuous time model,
+
+$$
+\frac{\mathrm{d}x}{\mathrm{d}t} = f(x,t),
+$$
+
+where we've allowed the right-hand side to depend on time explicitly (eg, time lags, environmental change).
+
+We will try to get the general solution for $x(t)$ using a method called **separation of variables**. This will only work if we can write the right hand side as $f(x)=g(x)h(t)$, ie, if we can separate the variables, $x$ and $t$. If we can then
+
+$$
+\begin{aligned}
+\frac{\mathrm{d}x}{\mathrm{d}t} &= g(x)h(t)\\
+\frac{\mathrm{d}x}{g(x)} &= h(t)\mathrm{d}t\\
+\int\frac{\mathrm{d}x}{g(x)} &= \int h(t)\mathrm{d}t.
+\end{aligned}
+$$
+
+If we can solve these integrals then we get a general solution. In this class we will typically not have explicit time dependence, ie, $h(t)$ is a constant. Then the right-hand integral is just the constant times $t$ and a general solution is limited by our ability to integrate $1/g(x)$.
 
 <span id='section2'></span>
-## 2. Plots of variables over time
+## 2. Example: haploid selection
 <hr>
 
-### Exponential growth model
+To see an example of separation of variables, consider our model of haploid selection in continuous time. The frequency of the $A$ allele changes at a rate that depends on its selection coefficient, $s$, and the amount of genetic variance in the population, $p(1-p)$,
 
-In the discrete exponential growth model, there is one parameter, $R$, the number of offspring per parent ("reproductive factor").
+$$
+\frac{\mathrm{d}p}{\mathrm{d}t} = sp(1-p).
+$$
 
-In last week’s lab we wrote a recursive function (actually, a generator) to generate values of $n(t)$, the population size, at sequential time points.
+Grouping the $p$ terms together, we can proceed with the above steps using $g(p)=p(1-p)$ and $h(t)=s$,
+
+$$
+\begin{aligned}
+\int\frac{\mathrm{d}p}{g(p)} &= \int h(t)\mathrm{d}t\\
+\int\frac{\mathrm{d}p}{p(1-p)} &= \int s\mathrm{d}t\\
+\int \left(\frac{1}{p} + \frac{1}{1-p}\right) \mathrm{d}p &= \int s\mathrm{d}t \;\text{(method of partial fractions, rule A1.9 in the textbook)}\\
+\ln(p) - \ln(1 - p) + c_1 &= s t + c_2 \;\text{(rule A2.21 in the textbook)}\\
+\ln\left(\frac{p}{1-p}\right) &= s t + c \; \text{(where } c = c_2 - c_1\text{)}\\
+\frac{p}{1-p} &= \exp(st + c)\\
+\frac{p(t)}{1-p(t)} &= \exp(st + c)\; \text{(just making the dependence on time explicit)}.
+\end{aligned}
+$$
+
+Note that we were careful to include the essential integration constants, $c_1$ and $c_2$, which we combined into one unknown constant, $c$. We can replace $c$ with the value of $p$ at some $t$. We typically choose $t=0$, rewriting $c$ in terms of the initial condition $p(0)$. Setting $t=0$ we have,
+
+$$
+\begin{aligned}
+\frac{p(t)}{1-p(t)} &= \exp(st + c) \\
+\frac{p(0)}{1-p(0)} &= \exp(c).
+\end{aligned}
+$$
+
+Now using this to replace $c$,
+
+$$
+\begin{aligned}
+\frac{p(t)}{1-p(t)} &= \exp(st + c) \\
+\frac{p(t)}{1-p(t)} &= \exp(st)\exp(c) \\
+\frac{p(t)}{1-p(t)} &= \exp(st)\frac{p(0)}{1-p(0)}.
+\end{aligned}
+$$
+
+And finally we solve for $p(t)$,
+
+$$
+\begin{aligned}
+\frac{p(t)}{1-p(t)} &= \exp(st)\frac{p(0)}{1-p(0)} \\
+p(t) &= (1-p(t))\exp(st)\frac{p(0)}{1-p(0)} \\ 
+p(t) &= \exp(st)\frac{p(0)}{1-p(0)} - p(t)\exp(st)\frac{p(0)}{1-p(0)} \\
+p(t) + p(t)\exp(st)\frac{p(0)}{1-p(0)} &= \exp(st)\frac{p(0)}{1-p(0)} \\
+p(t)\left(1 + \exp(st)\frac{p(0)}{1-p(0)}\right) &= \exp(st)\frac{p(0)}{1-p(0)} \\
+p(t) &= \frac{\exp(st)\frac{p(0)}{1-p(0)}}{1 + \exp(st)\frac{p(0)}{1-p(0)}} \\
+p(t) &= \frac{1}{1 + \exp(-st)\frac{1-p(0)}{p(0)}}.
+\end{aligned}
+$$
+
+This is a very classic result in population genetics, which we plot below for an initially rare and beneficial allele A that sweeps to fixation. 
 
 
 <pre data-executable="true" data-language="python">
 import numpy as np
-
-def n(t0, n0, R, max=np.inf):
-    # Set the initial value of t and n(t)
-    t, nt = t0, n0
-    
-    # Yield new values of n(t) if t hasn't gone past the max value
-    while t < max: 
-        yield nt 
-        
-        # Then update t and n(t)
-        t, nt = t + 1, nt * R
-</pre>
-
-We then chose some **parameter values** (reproductive factor, $R = 2$) and **initial conditions** (initial population size, $n(0) = 1$) to get the values of $n(t)$ from the initial ($t = 0$) to final ($t = 10$) time.
-
-
-<pre data-executable="true" data-language="python">
-nt = n(t0=0, n0=1, R=2, max=10) #choose some parameter values
-nts = [n for n in nt] #get all the t, n(t) values
-nts
-</pre>
-
-
-
-
-    [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
-
-
-
-And we then plotted $n(t)$ as a function of $t$
-
-
-<pre data-executable="true" data-language="python">
 import matplotlib.pyplot as plt
-fig, ax = plt.subplots()
-ax.plot(range(10), nts, marker = '.', markersize = 10)
-ax.set_xlabel('time step, $t$')
-ax.set_ylabel('population size, $n(t)$')
+
+s, p0 = 0.1, 0.01 #define parameter values and initial condition
+ts = range(100) #time values
+ps = [1/(1 + np.exp(-s*t)*(1-p0)/p0) for t in ts] #variable values from general solution
+
+plt.plot(ts, ps) #plot continuously
+plt.ylabel('allele frequency, $p(t)$')
+plt.xlabel('generation, $t$')
 plt.show()
 </pre>
 
 
     
-![png](lecture-05_files/lecture-05_7_0.png)
-    
-
-
-This allowed us to compare what happens for different values of the reproductive factor, $R$.
-
-
-<pre data-executable="true" data-language="python">
-colors = ['black','blue','red']
-fig, ax = plt.subplots()
-for i, R in enumerate([1.1,1,0.9]):
-    nt = n(t0=0, n0=100, R=R, max=10)
-    nts = [n for n in nt]
-    ax.plot(range(10), nts, color=colors[i], label=f"R = {R}", marker = '.', markersize = 10)
-
-ax.set_xlabel('time step, $t$')
-ax.set_ylabel('population size, $n(t)$')
-ax.legend()
-plt.show()
-</pre>
-
-
-    
-![png](lecture-05_files/lecture-05_9_0.png)
-    
-
-
-From this we can deduce that when $R>1$ the population grows, when $R<1$ the population declines, and when $R=1$ the population size remains constant.
-
-### Logistic growth model
-
-In the discrete logistic growth model there are two parameters, the intrinsic growth rate, $r$, and the carrying capacity, $K$. The behaviour doesn’t change much with different values of $K$ but it is *extremely* sensitive to the value of $r$, as you may remember from Lab 2.
-
-
-<pre data-executable="true" data-language="python">
-def n(n0, r, k, max=np.inf):
-    t, nt = 0, n0
-    while t < max:
-        yield nt
-        t, nt = t + 1, nt + r * nt * (1 - nt / k)
-        
-# Initialize plots        
-fig, ax = plt.subplots(1, 2, sharex=True, sharey=True)
-fig.set_size_inches(12,4)
-
-# Logistic growth with smaller r values
-for r in [0.40, 0.70, 1.80, 2.10]:
-    ax[0].plot( #plot lines connecting values for visual clarity
-        range(25),
-        [nt for nt in n(1, r, 1000, max=25)],
-        label = f"r = {r}",
-        marker = '.', markersize = 10 
-    )
-
-# Logistic growth with larger r values
-for r in [2.70, 3.0995]:
-    ax[1].plot(
-        range(25),
-        [nt for nt in n(1, r, 1000, max=25)],
-        label = f"r = {r}",
-        marker = '.', markersize = 10         
-    )
-
-# Add titles and annotations
-ax[0].set_title('smaller $r$')
-ax[1].set_title('larger $r$')
-for i in range(2):
-    ax[i].set_xlabel('time step, $t$')
-    ax[i].set_ylabel('population size, $n(t)$')
-    ax[i].legend()
-
-fig.tight_layout()
-plt.show()
-</pre>
-
-
-    
-![png](lecture-05_files/lecture-05_12_0.png)
-    
-
-
-!!! note "Bifurcation diagrams and chaos"
-
-    We can examine how this model behaves as we change $r$ by making a **bifurcation diagram**, which plots the values the system takes on after a long time for a given parameter value. Check out the very complex and potentially strange dynamics in the plot below. What does it mean?
-
-
-<pre data-executable="true" data-language="python">
-# Sample the periodicity of the oscillations 
-# by taking unique values after reaching carrying capacity (here we use t between 30 and 75)
-def log_map(r, n0=900, k=1000):    
-    return np.unique([nt for t, nt in enumerate(n(n0, r, k, max=75)) if t > 30])
-
-# Compute the logistic map for different growth rates in discrete time
-r, Nr = np.array([]), np.array([]) #list of r and n(t) values we will plot
-for i in np.linspace(1.5, 3, 1000): #these are the r values we will simulate
-    nl = log_map(i) #get the unique values after carrying capacity
-    r = np.hstack((r, [i for _ in range(len(nl))])) #add the r value to plotting list (repeat the value of r for each unique n(t) value (for plotting))
-    Nr = np.hstack((Nr, nl)) #add the n(t) values to plotting list
-    
-# Plot the logistic map on a black background (why not?)
-fig, ax = plt.subplots()
-ax.patch.set_facecolor('black')
-ax.scatter(r, Nr, s=0.075, color='white')
-plt.xlabel('intrinsic growth rate, $r$')
-plt.ylabel('population size, $n(t)$')
-plt.show()
-</pre>
-
-
-    
-![png](lecture-05_files/lecture-05_14_0.png)
+![png](lecture-05_files/lecture-05_5_0.png)
     
 
 
 <span id='section3'></span>
-## 3. Plots of variables as a function of the variables themselves
+## 3. Summary
 <hr>
 
-OK, so now we’ll move on to a plot that is easier to generate and is very useful for models with just one variable (which is what we’ve been working with so far).
+We can sometimes solve for the entire dynamics of our variables, the ultimate solution.
 
-Instead of plotting the variable as a function of time, we’ll plot the variable as a function of the variable in the previous time, e.g., plotting $n(t+1)$ as a function of $n(t)$.
+- for linear discrete-time models, we can always do this with a transformation and brute force integration 
+- for continuous-time models, we can sometimes do this with separation of variables
 
-### Haploid selection
-
-Let's start with our model of haploid selection
-
-$$
-p(t+1) = \frac{W_A p(t)}{W_A p(t) + W_a (1-p(t))}
-$$
-
-and plot for two different sets of parameter values, where $A$ has a higher or lower fitness than $a$. 
-
-
-<pre data-executable="true" data-language="python">
-import sympy
-
-# Build cobweb plotting function
-def cobweb_haploid(p0, WA, Wa, max=np.inf):
-    t, pnow, pnext = 0, p0, 0 #initial conditions
-    while t <= max:
-        yield pnow, pnext #current value of p(t) and p_(t+1)
-        pnext = (WA * pnow) / (WA * pnow + Wa * (1 - pnow)) #update p_(t+1)
-        yield pnow, pnext #current value of p(t) and p_(t+1)
-        pnow = pnext #update p(t)
-        t += 1 #update t
-        
-# Build function for generating figure
-def plot_haploid_selection(WA, Wa, p0=0.5, ax=None):
-    pt = sympy.symbols('pt') #define our variable p(t)
-
-    # Write out sympy equation
-    f = (WA * pt) / (WA * pt + Wa * (1 - pt)) #the recursion equation
-
-    # Compute function over a set of points in [0,1] by 'lambdifying' sympy equation (turn it into a function)
-    t = np.linspace(0,1,100)
-    fy = sympy.lambdify(pt, f)(t)
-
-    # Build plot
-    if ax == None:
-        fig, ax = plt.subplots()
-    ax.plot(t, fy, color='black', label=f"$W_A$ = {WA}, $W_a$ = {Wa}") #plot p_(t+1) as function of p(t)
-    ax.plot(t, t, color='black', linestyle='--') #draw 1:1 line for reference
-    
-    # Add cobweb
-    cobweb = np.array([p for p in cobweb_haploid(p0, WA, Wa, max=100)])
-    ax.plot(cobweb[:,0], cobweb[:,1])
-    
-    # Annotate and label plot
-    ax.set_xlim(0,1)
-    ax.set_ylim(0,1)
-    ax.set_xlabel("allele frequency at $t$, $p(t)$")
-    ax.set_ylabel("allele frequency at $t+1$, $p(t+1)$")
-    ax.legend(frameon=False)
-    return ax
-        
-# Plot figure
-fig, ax = plt.subplots(1,2)
-fig.set_size_inches(12,4)
-
-# First cobweb with WA > Wa
-plot_haploid_selection(WA = 1, Wa = 0.5, ax=ax[0])
-
-# Second cobweb with WA < Wa
-plot_haploid_selection(WA = 0.5, Wa = 1, ax=ax[1])
-
-plt.show()
-</pre>
-
-
-    
-![png](lecture-05_files/lecture-05_16_0.png)
-    
-
-
-There are three components to this plot. First, the solid curve gives the recursion itself ($p(t+1)$ as a function of $p(t)$). Second, the dashed line shows where $p(t+1)=p(t)$. And third, the blue lines show how the variable changes over multiple time steps. 
-
-Foreshadowing what is to come (Lecture 7), the dashed line is helpful for two reasons. First, it indicates where the variable does not change over time. So wherever the recursion (solid line) intersects with the dashed line is an **equilibrium**. Second, it reflects $p(t+1)$ back onto $p(t)$, updating the variable. For example, in the left panel above we start with an allele frequency of $p(t)=0.5$, draw a blue vertical line to the recursion to find $p(t+1)$, and then update $p(t)$ to $p(t+1)$ by drawing the horizontal blue line to the dashed line. Now we can ask what $p(t+1)$ is given this updated value of $p(t)$ by drawing another vertical blue line, and so on. Following the blue line we can therefore see where the system is heading, which tells us about the **stability** of the equilibria. What are the stable equilibria in the two panels above?
-
-### Diploid selection
-
-To demonstrate the utility of this method, let’s move on to the slightly more complex model of diploid selection
-
-$$
-p(t+1) = \frac{W_{AA} p(t)^2 + W_{Aa}p(t) q_t}{W_{AA}p(t)^2 + W_{Aa}2p(t)q_t + W_{aa}q_t^2}
-$$
-
-To show some different behaviour than above, this time let's set $W_{AA} < W_{Aa} > W_{aa}$ and plot for two different starting frequencies, $p_0$.
-
-
-<pre data-executable="true" data-language="python">
-def cobweb_diploid(p0, WAA, WAa, Waa, max=np.inf):
-    t, pnow, pnext = 0, p0, 0 #initial conditions
-    while t <= max:
-        yield pnow, pnext #current value of p(t) and p(t+1)
-        pnext = (WAA * pnow**2 + WAa * pnow * (1 - pnow)) / (WAA * pnow**2 + WAa * 2 * pnow * (1 - pnow) + Waa * (1 - pnow)**2) #update p(t+1)
-        yield pnow, pnext #current value of p(t) and p(t+1)
-        pnow = pnext #update p(t)
-        t += 1 #update t
-        
-# Build function for generating figure
-def plot_diploid_selection(WAA, WAa, Waa, ax=None, p0=0.5):
-    pt = sympy.symbols('pt') #define our variable p(t)
-
-    # Write out sympy equation
-    f = (WAA * pt**2 + WAa * pt * (1- pt) ) / (WAA * pt**2 + WAa * 2 * pt * (1 - pt) + Waa * (1 - pt)**2) #the recursion equation
-
-    # Compute function over a set of points in [0,1] by 'lambdifying' sympy equation
-    x = np.linspace(0,1,100)
-    fy = sympy.lambdify(pt, f)(x)
-    
-    # Build plot
-    if ax == None:
-        fig, ax = plt.subplots()
-    
-    # Add cobweb
-    cobweb = np.array([p for p in cobweb_diploid(p0, WAA, WAa, Waa, max=100)])
-    ax.plot(cobweb[:,0], cobweb[:,1])
-    
-    # Annotate and label plot
-    ax.plot(x, fy, color='black', label=f"$W_A$$_A$ = {WAA}, $W_A$$_a$ = {WAa}, $W_a$$_a$ = {Waa}")
-    ax.plot(x, x, color='black', linestyle='--')
-    ax.set_xlim(0,1)
-    ax.set_ylim(0,1)
-    ax.set_xlabel("allele frequency at $t$, $p(t)$")
-    ax.set_ylabel("allele frequency at $t+1$, $p(t+1)$")
-    ax.legend(frameon=False)
-    return ax
-
-# Plot figure
-fig, ax = plt.subplots(1,2)
-fig.set_size_inches(12,4)
-
-# First cobweb from low starting condition
-plot_diploid_selection(WAA=1, WAa=2, Waa=1, p0=0.05, ax=ax[0])
-
-# Second cobweb from high starting condition
-plot_diploid_selection(WAA=1, WAa=2, Waa=1, p0=0.95, ax=ax[1])
-
-plt.show()
-</pre>
-
-
-    
-![png](lecture-05_files/lecture-05_19_0.png)
-    
-
-
-How many equilibria are there? Which appear to be stable?
-
-### Difference/differential equations
-
-We can do something very similar for difference and differential equations.
-
-Now we plot the **change** in the variable as a function of the current value of the variable, e.g., plot $\Delta n$ or $dn/dt$ as a function of $n(t)$.
-
-For example, in our model of haploid selection we have
-
-$$
-\frac{\mathrm{d}p}{\mathrm{d}t} = sp(1-p)
-$$
-
-and our plot looks like:
-
-
-<pre data-executable="true" data-language="python">
-# Initialize sympy symbols
-p0, s, t = sympy.symbols('p0, s, t')
-p = sympy.Function('t')
-
-# Specify differential equation
-diffeq = sympy.Eq(p(t).diff(t), s * p(t) * (1 - p(t)))
-
-# Convert differential equation RHS to pythonic function
-dp = sympy.lambdify((s, p(t)), diffeq.rhs)
-
-# Plot the curve
-fig, ax = plt.subplots()
-
-for s_coeff in [0.01, -0.01]:
-    ax.plot(
-        np.linspace(0, 1, 100),
-        dp(s_coeff, np.linspace(0,1, 100)),
-        label=f"s = {s_coeff}"
-    )
-
-ax.set_xlabel('allele frequency at $t, p$')
-ax.set_ylabel('change in allele frequency, $\mathrm{d}p/\mathrm{d}t$')
-ax.legend(frameon=False)
-plt.show()
-</pre>
-
-
-    
-![png](lecture-05_files/lecture-05_22_0.png)
-    
-
-
-What does this tell us about how allele frequency will change when $s>0$ vs. $s<0$? And what allele frequencies, $p$, cause more rapid evolution?
-
-<span id='section4'></span>
-## 4. Summary
-<hr>
-
-To get a feel for our model it is helpful to graph some numerical examples:
-
-- Plot the variable as a function of time ("simulate")
-- Plot the variable (or change in variable) as a function of itself (only works for models with one variable)
-
-Next lecture we’ll look at a graphical technique for models with multiple variables...
+Unfortunately most models we encounter in research are too complex to solve for exactly. We then often rely on equilibria, stability, and simulations. 

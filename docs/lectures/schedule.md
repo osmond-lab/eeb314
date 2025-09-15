@@ -8,7 +8,7 @@ Under construction for Fall 2025 edition. Lectures will be updated as we go.
 | 2 | [Numerical and graphical techniques (univariate)](lecture-02.md) | 4.1-4.3 (23p.) |
 | 3 | [Equilibria (univariate)](lecture-03.md) | 5.1-5.2 (12p.) |
 | 4 | [Stability (univariate)](lecture-04.md) | 5.3 (13p.) |
-| 5 | General solutions (univariate) | Chapter 6 (18p.) |
+| 5 | [General solutions (univariate)](lecture-05.md) | Chapter 6 (18p.) |
 | - | Test | |
 | 6 | Vectors and matrices | P2.1-P2.4 (14p.) |
 | 7 | Linear algebra | P2.5-P2.7 (9p.) |
