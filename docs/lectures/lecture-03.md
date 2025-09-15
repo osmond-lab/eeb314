@@ -117,8 +117,8 @@ We want the recursion equation in terms of allele frequency, so we want to repla
 $$
 \begin{aligned}
 n_{AA}(t) &= p(t)^2 n(t) \\
-n_{Aa}(t) &= 2p(t) q(t) n(t) \\
-n_{aa}(t) &= q(t)^2 n(t)
+n_{Aa}(t) &= 2p(t) (1-p(t)) n(t) \\
+n_{aa}(t) &= (1-p(t))^2 n(t)
 \end{aligned}
 $$
 
@@ -129,14 +129,19 @@ Substituting these Hardy-Weinberg proportions in and simplifying, the total popu
 $$
 \begin{aligned}
 p(t+1) 
-&= \frac{W_{AA}p(t)^2 n(t) + W_{Aa}p(t) q(t) n(t)}{W_{AA}p(t)^2 n(t) + 2W_{Aa}p(t) q(t) n(t) + W_{aa}q(t)^2 n(t)}\\
-&= \frac{W_{AA}p(t)^2 + W_{Aa}p(t) q(t)}{W_{AA}p(t)^2 + 2W_{Aa}p(t) q(t) + W_{aa}q(t)^2}.
+&= \frac{W_{AA}p(t)^2 n(t) + W_{Aa}p(t) (1-p(t)) n(t)}{W_{AA}p(t)^2 n(t) + 2W_{Aa}p(t) (1-p(t)) n(t) + W_{aa}(1-p(t))^2 n(t)}\\
+&= \frac{W_{AA}p(t)^2 + W_{Aa}p(t) (1-p(t))}{W_{AA}p(t)^2 + 2W_{Aa}p(t)(1-p(t)) + W_{aa}(1-p(t))^2}.
 \end{aligned}
 $$
 
-where we have used $q(t)=1-p(t)$ for the frequency of $a$ for convenience. This is a recursion equation for allele frequency in our model of diploid selection.
+This is a recursion equation for allele frequency in our model of diploid selection. It's a bit long. It can be written quite a bit shorter using $q=1-p$ for the frequency of allele $a$ and noticing that the denominator is mean fitness in the population, $\bar{W}(p(t))$, 
 
-### The equilbria
+$$
+p(t+1) 
+= \frac{W_{AA}p(t)^2 + W_{Aa}p(t)q(t)}{\bar{W}(p(t))}.
+$$
+
+### The equilibria
 
 To find the equilibria we replace $p(t+1)$ and $p(t)$ with $\hat p$ and the $q(t)$ with $\hat{q}$ and solve for these equilibrium values, $\hat p$ and $\hat q$,
 
