@@ -6,7 +6,7 @@ Under construction for Fall 2025 edition. Labs will be updated as we go.
 | ---------- | ----- | ----- |
 | 1 | [Building recursion equations](tutorial-01.md) | Introduction to Jupyter, Python, and SymPy | 
 | 2 | [Solving for equilibria](tutorial-02.md) | Simulating recursion equations with generators | 
-| 3 | tbd | Stability, and general solutions (univariate) | 
+| 3 | [Determining local stability](tutorial-03.md) | Finding general solutions | 
 | 4 | tbd | Vectors and matrices | 
 | 5 | tbd | Eigenvalues, eigenvectors, and linear multivariate solutions | 
 | 6 | tbd | Demography | 
