@@ -87,8 +87,8 @@ So the recursion for the deviation from equilibrium, $\epsilon$, is the recursio
 Based on our knowledge of discrete-time exponential growth, we therefore know that the deviation from equilibrium will:
 
 - move from one side of the equilibrium to the other (i.e., oscillate) if $\lambda$ is negative
-    - grow if $\lambda<-1$ $\implies\hat{x}$ unstable
-    - shrink if $-1<\lambda<0$ $\implies\hat{x}$ locally stable
+    - grow if $\lambda < -1$ $\implies\hat{x}$ unstable
+    - shrink if $-1 < \lambda < 0$ $\implies\hat{x}$ locally stable
 
 - stay on the same side of the equilibrium (i.e., not oscillate) if $\lambda$ is positive
     - shrink if $0<\lambda<1$ $\implies\hat{x}$ locally stable
@@ -97,7 +97,7 @@ Based on our knowledge of discrete-time exponential growth, we therefore know th
 Local stability in discrete time therefore requires the slope of the recursion to be between -1 and 1 at the equilibrium, 
 
 $$
--1<f^{(1)}(\hat{x})=\left.\frac{\mathrm{d}x(t+1)}{\mathrm{d}x(t)}\right|_{x(t)=\hat x}<1.
+-1 < f^{(1)}(\hat{x})=\left.\frac{\mathrm{d}x(t+1)}{\mathrm{d}x(t)}\right|_{x(t)=\hat x} < 1.
 $$
 
 A very similar analysis in continuous time, where the variable changes accorging to differential equation $df(x)/dt=f(x)$, shows that an equilibrium $\hat x$ is stable if the slope of the differential equation is negative at the equilibrium, 
@@ -131,10 +131,10 @@ In the previous lecture we found there were three equilibria:
 Now our job is to find when each of these is locally stable, which requires the slope of the recursion at that point be between -1 and 1, 
 
 $$
--1<\left.\frac{\mathrm{d}p(t+1)}{\mathrm{d}p(t)}\right|_{p(t)=\hat p}<1.
+-1 < \left.\frac{\mathrm{d}p(t+1)}{\mathrm{d}p(t)}\right|_{p(t)=\hat p} < 1.
 $$
 
-To see this visually first, we can draw cobweb plots for particular parameter values. Last lecture we learned that the internal equilibrium is only valid if the hterozygote is most fit $W_{AA}<W_{Aa}>W_{aa}$ (overdominance) or least fit $W_{AA}>W_{Aa}<W_{aa}$ (underdominance), so let's look at parameter values that fall within those two cases.
+To see this visually first, we can draw cobweb plots for particular parameter values. Last lecture we learned that the internal equilibrium is only valid if the hterozygote is most fit $W_{AA} < W_{Aa} > W_{aa}$ (overdominance) or least fit $W_{AA} > W_{Aa} < W_{aa}$ (underdominance), so let's look at parameter values that fall within those two cases.
 
 
 <pre data-executable="true" data-language="python">
@@ -226,7 +226,7 @@ $$
 \end{aligned}
 $$
 
-Since fitness is always greater than or equal to zero, $W_i\geq0$, so are these derivatives. We therefore know that they are greater than -1 and what is left for stability is to determine when they are less than 1. This will occur whenever the numerator is less than the denominator, meaning that $\hat p = 0$ is stable when $W_{Aa}<W_{aa}$ and $\hat p = 1$ is stable when $W_{Aa}<W_{AA}$. This makes good sense. Take $\hat p = 0$ for example. This means that the $a$ allele is fixed. When we introduce just a few $A$ alleles, $p(t)<<1$, they will occur in heterozygotes because it is very unlikely that they pair with each other under under random mating, $p(t)^2\approx0$. So the spread of the $A$ allele and an increase in $p$ is determined by the spread of the heterozygote, which is prevented by selection when $W_{Aa}<W_{aa}$. The same reasoning holds for $\hat p = 1$. Check that these stability criteria are consistent with the cobweb plots above.
+Since fitness is always greater than or equal to zero, $W_i\geq0$, so are these derivatives. We therefore know that they are greater than -1 and what is left for stability is to determine when they are less than 1. This will occur whenever the numerator is less than the denominator, meaning that $\hat p = 0$ is stable when $W_{Aa} < W_{aa}$ and $\hat p = 1$ is stable when $W_{Aa} < W_{AA}$. This makes good sense. Take $\hat p = 0$ for example. This means that the $a$ allele is fixed. When we introduce just a few $A$ alleles, $p(t) << 1$, they will occur in heterozygotes because it is very unlikely that they pair with each other under under random mating, $p(t)^2\approx0$. So the spread of the $A$ allele and an increase in $p$ is determined by the spread of the heterozygote, which is prevented by selection when $W_{Aa} < W_{aa}$. The same reasoning holds for $\hat p = 1$. Check that these stability criteria are consistent with the cobweb plots above.
 
 Now for the internal equilibrium. It's stability is determined the same way, but this time we skip the algebra for the sake of time
 
@@ -238,7 +238,7 @@ $$
 
 Not bad. Now let's consider the two scenarios under which this internal equilibrium is biologically valid.
 
-In case A we have overdominance, $W_{AA}<W_{Aa}>W_{aa}$. This means that both numerator and denominator are positive. Since the derivative is positive it is always greater than -1 and all that is left for stability is for the derivative to be less than 1, ie the numerator is less than the denominator
+In case A we have overdominance, $W_{AA} < W_{Aa} > W_{aa}$. This means that both numerator and denominator are positive. Since the derivative is positive it is always greater than -1 and all that is left for stability is for the derivative to be less than 1, ie the numerator is less than the denominator
 
 $$
 \begin{aligned}
@@ -247,11 +247,11 @@ W_{AA}W_{Aa}-W_{AA}W_{aa}+W_{Aa}W_{aa} - W_{Aa}^2 &< 0,
 \end{aligned}
 $$
 
-which is always true with $W_{AA}<W_{Aa}>W_{aa}$, implying stability with overdominance.
+which is always true with $W_{AA} < W_{Aa} > W_{aa}$, implying stability with overdominance.
 
-In case B we have underdominance, $W_{AA}>W_{Aa}<W_{aa}$. This means that both numerator and denominator are negative. Since the derivative is positive it is always greater than -1 and all that is left for stability is for the derivative to be less than 1, which is the condition we just derived in the equation above. In case B however, the condition never holds, implying instability with underdominance.
+In case B we have underdominance, $W_{AA} > W_{Aa} < W_{aa}$. This means that both numerator and denominator are negative. Since the derivative is positive it is always greater than -1 and all that is left for stability is for the derivative to be less than 1, which is the condition we just derived in the equation above. In case B however, the condition never holds, implying instability with underdominance.
 
-In sum, the internal equilibrium is biologically valid and locally stable only if there is overdominance, $W_{AA}<W_{Aa}>W_{aa}$. This makes good intuitive sense since there are more heterozygotes at a more intermediate frequency ($2p(1-p)$ has a max at $p=1/2$). It also implies that the internal equilibrium is stable when the boundary equilibria are unstable, and vice versa. When the internal equilibrium is unstable it therefore acts as a replellor between two locally stable equilibria, pushing allele frequency towards the boundary that is on the same side of the repellor. Check that this all makes sense with the plots above.
+In sum, the internal equilibrium is biologically valid and locally stable only if there is overdominance, $W_{AA} < W_{Aa} > W_{aa}$. This makes good intuitive sense since there are more heterozygotes at a more intermediate frequency ($2p(1-p)$ has a max at $p=1/2$). It also implies that the internal equilibrium is stable when the boundary equilibria are unstable, and vice versa. When the internal equilibrium is unstable it therefore acts as a replellor between two locally stable equilibria, pushing allele frequency towards the boundary that is on the same side of the repellor. Check that this all makes sense with the plots above.
 
 <span id='section3'></span>
 ## 3. Summary
@@ -261,4 +261,4 @@ Local stability analysis for discrete- and continuous-time models with one varia
 
 1. take the derivative of the recursion or differential equation with respect to the variable, $f^{(1)}(x)$
 2. plug in the equilibrium value of the variable, $\lambda=f^{(1)}(\hat x)$
-3. local stability requires $-1<\lambda<1$ in discrete time and $\lambda<0$ in continuous time
+3. local stability requires $-1 < \lambda < 1$ in discrete time and $\lambda < 0$ in continuous time
