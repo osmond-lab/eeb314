@@ -224,3 +224,5 @@ Case A therefore represents "heterozygote advantage", $W_{AA} < W_{Aa} > W_{aa}$
 Equilibria are defined by the values of the variables that persist over time, i.e., where the change is zero.
 
 With diploid selection there are three equilibria, two external and one potentially internal -- in the next lecture we'll see which are stable.
+
+Practice questions from the textbook: 5.1-5.3, 5.4a-c, 5.5, 5.8a-b, 5.9a-b, 5.10a-b, 5.11a-b, 5.12a-b, 5.13a-b

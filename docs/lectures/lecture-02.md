@@ -369,3 +369,5 @@ We've also just been introduced to two classic models in ecology and evolution, 
 
 - exponential growth
 - haploid selection
+
+Practice questions from the textbook: 4.4-4.6, 4.12

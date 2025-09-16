@@ -384,3 +384,5 @@ Potential experiments incude manipulating immigration in lab populations (e.g., 
 
 - Mathematical models take us from assumptions to conclusions
 - There is a recipe to build them
+
+Practice questions from the textbook: 2.1 - 2.8

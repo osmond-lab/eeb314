@@ -262,3 +262,5 @@ Local stability analysis for discrete- and continuous-time models with one varia
 1. take the derivative of the recursion or differential equation with respect to the variable, $f^{(1)}(x)$
 2. plug in the equilibrium value of the variable, $\lambda=f^{(1)}(\hat x)$
 3. local stability requires $-1 < \lambda < 1$ in discrete time and $\lambda < 0$ in continuous time
+
+Practice questions from the textbook: 5.4, 5.6-5.13

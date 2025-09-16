@@ -233,3 +233,5 @@ We can sometimes solve for the entire dynamics of our variables, the ultimate so
 - for continuous-time models, we can sometimes do this with separation of variables
 
 Unfortunately most models we encounter in research are too complex to solve for exactly. We then often rely on equilibria, stability, and simulations. 
+
+Practice questions from the textbook: 6.2-6.3, 6.4a-e, 6.5-6.6, 6.7d, 6.8
