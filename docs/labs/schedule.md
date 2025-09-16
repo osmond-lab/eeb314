@@ -4,9 +4,9 @@ Under construction for Fall 2025 edition. Labs will be updated as we go.
 
 | Lab | Tutorial | Coding exercise |
 | ---------- | ----- | ----- |
-| 1 | [Building recursion equations](tutorial-01.md) | Introduction to Jupyter, Python, and SymPy | 
-| 2 | [Solving for equilibria](tutorial-02.md) | Simulating recursion equations with generators | 
-| 3 | [Determining local stability](tutorial-03.md) | Finding general solutions [hub](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab03.ipynb) | 
+| 1 | [Building recursion equations](tutorial-01.md) | [Introduction to Jupyter, Python, and SymPy](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-01.ipynb) | 
+| 2 | [Solving for equilibria](tutorial-02.md) | [Simulating recursion equations](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-02.ipynb) | 
+| 3 | [Determining local stability](tutorial-03.md) | [Finding general solutions](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-03.ipynb) | 
 | 4 | tbd | Vectors and matrices | 
 | 5 | tbd | Eigenvalues, eigenvectors, and linear multivariate solutions | 
 | 6 | tbd | Demography | 
@@ -17,6 +17,4 @@ Under construction for Fall 2025 edition. Labs will be updated as we go.
 | 11 | tbd | Invastion analysis II |
 | 12 | tbd | Invasion analysis III |
 
-The coding part of the labs are all available to view and download [here](https://github.com/osmond-lab/eeb314/tree/master/notebooks/labs).
-
-Students in the course are encouraged to view and run the coding aspect of the labs through the University of Toronto's JupyterHub [here](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab01.ipynb).
+The links for the coding part of the labs are for students at the University of Toronto. They are also all available to view and download [here](https://github.com/osmond-lab/eeb314/tree/master/notebooks/labs).
