@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 7: Equilibria
+# Lecture 7: Finding equilibria in linear multivariate models 
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,314 +26,317 @@
 
 ## Lecture overview
 
-1. [Equilibria](#section1)
-2. [Exponential growth](#section2)
-3. [Logistic growth](#section3)
-4. [Haploid selection](#section4)
-5. [Diploid selection](#section5)
-6. [Summary](#section6)
+1. [Motivation](#section1)
+2. [Matrix inversion](#section2)
+3. [Solving for equilibrium](#section3)
+4. [Summary](#section4)
 
 <span id='section1'></span>
-## 1. Equilibria
+## 1. Motivation
 <hr>
 
-An **equilibrium** is any state of a system which tends to persist unchanged over time.
+We now know that we can represent our linear multivariate model for the number of birds on two islands in matrix form,
 
-For *discrete-time* models, the equilibria are defined as those values of the variables where no changes occur from one time step to the next. 
+$$
+\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n} + \vec{m},
+$$
 
-For example, those values of allele frequency $p(t)$ where
+where 
 
 $$
 \begin{aligned}
-\Delta p &= 0\\
-p(t+1) - p(t) &= 0\\
-p(t+1) &= p(t)
+\vec{n} &= \begin{pmatrix} n_1 \\ n_2 \end{pmatrix}\\
+\mathbf{M} &= \begin{pmatrix} b_1 - d_1 - m_{12} & m_{21} \\ m_{12} & b_2 - d_2 - m_{21} \end{pmatrix}\\
+\vec{m} &= \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}.
 \end{aligned}
 $$
 
-Similarly, for *continuous-time* models, the equilibria are defined as those values of the variables for which the rate of change in the variables equals zero. 
-
-For example, those values of allele frequency $p(t)$ where
-
-$$
-\frac{\mathrm{d}p}{\mathrm{d}t} = 0
-$$
-
-
-What are the equilibria for the following models?
-
-| Model | Discrete time | Continous time |
-| ----- | ------------- | -------------- |
-| Exponential growth | $n(t+1) = R n(t)$ | $\frac{\mathrm{d}n}{\mathrm{d}t} = r n(t)$ |
-| Logistic growth | $n(t+1) = (1 + r(1 - \frac{n(t)}{K}))n(t)$ | $\frac{\mathrm{d}n}{\mathrm{d}t} = r(1 - \frac{n(t)}{K})n(t)$ |
-| Haploid selection | $p(t+1) = \frac{W_A p(t)}{W_A p(t) + W_a q(t)}$ | $\frac{\mathrm{d}p}{\mathrm{d}t} = s p(t)(1-p(t))$ |
-| Diploid selection | $p(t+1) = \frac{p(t)^2W_{AA} + p(t) q(t)W_{Aa}}{p(t)^2W_{AA} + 2 p(t) q(t)W_{Aa} +  q(t)^2W_{aa}}$ | Not derived |
+Next we would like to solve for the equilibria. To do this we need to learn how to invert a matrix.
 
 <span id='section2'></span>
-## 2. Exponential growth
+## 2. Matrix inversion
 <hr>
 
+In the last lecture we discussed matrix addition and multiplication. We did not yet discuss division. In fact, for matrices, there is no such thing as division. The analogy is the **inverse**.
 
-Here, we will solve for the equilibria in both the discrete- and continuous-time exponential-growth models.
-
-### Discrete time
+A square $m\times m$ matrix $\mathbf{M}$ is **invertible** if it may be multiplied by another matrix to get the identity matrix.  We call this second matrix, $\mathbf{M}^{-1}$ the **inverse** of the first,
 
 $$
-n(t+1) = Rn(t)
+\mathbf{M}\mathbf{M}^{-1} = \mathbf{I} = \mathbf{M}^{-1}\mathbf{M}.
 $$
 
-Set $n(t+1) = n(t) = \hat n$ and solve for $\hat{n}$
+Geometrically, the inverse reverses the stretching and rotating that the original matrix does to a vector,
+
+$$
+\mathbf{M}^{-1}(\mathbf{M}\vec{v}) = (\mathbf{M}^{-1}\mathbf{M})\vec{v} = \mathbf{I}\vec{v} = \vec{v}.
+$$
+
+There are rules to find the inverse of a matrix when it is invertible. To know if a matrix is invertible we can calculate the determinant.
+
+### Determinant
+
+The **determinant** of a $2 \times 2$ matrix is
+
+$$
+\begin{equation*}
+\text{Det}\left(
+\begin{pmatrix}
+  a & b \\
+  c & d
+\end{pmatrix}\right)
+=
+\begin{vmatrix}
+  a & b\\
+  c & d
+\end{vmatrix}
+=ad-bc.
+\end{equation*}
+$$
+
+The determinant of an $n \times n$ matrix can be obtained by working along the first row, multiplying the first element of the first row by the determinant of the matrix created by deleting the first row and first column *minus* the second element of the first row times the determinant of the matrix created by deleting the first row and second column *plus* the third element... and so on,
+
+$$
+\begin{vmatrix}
+\mathbf{M}
+\end{vmatrix}
+= \sum_{j=1}^n (-1)^{j+1} m_{1j}
+\begin{vmatrix}
+\mathbf{M}_{1j}
+\end{vmatrix},
+$$
+
+where $m_{ij}$ is the element in the $i^{\mathrm{th}}$ row and $j^{\mathrm{th}}$ column and $\mathbf{M}_{ij}$ is the matrix $\mathbf{M}$ with the $i^{\mathrm{th}}$ row and the $j^{\mathrm{th}}$ column deleted.
+
+More generally, we can move along any row $i$,
+
+$$
+|\mathbf{M}| = (-1)^{i+1}\sum_{j=1}^{n}(-1)^{j+1}m_{ij}  |\mathbf{M_{ij}}|,
+$$
+
+or any column $j$,
+
+$$
+|\mathbf{M}| = (-1)^{j+1}\sum_{i=1}^{n}(-1)^{i+1}m_{ij}  |\mathbf{M_{ij}}|.
+$$
+
+A few useful rules emerge from this:
+
+- the determinant of a matrix is the same as the determinant of its transpose, $|\mathbf{M}| = |\mathbf{M}^\intercal|$,
+- the determinant of a diagonal or triangular matrix is the product of the diagonal elements, $|\mathbf{M}| = \prod_{i=1}^n m_{ii} = m_{11}m_{22}\cdots m_{nn}$,
+- the determinant of a block-diagonal or -triangular matrix is the product of the determinants of the diagonal submatrices.
+
+It also suggests that rows or columns with lots of zeros are very helpful when calculating the determinant, for example,
 
 $$
 \begin{aligned}
-\hat n &= R\hat n\\
-\hat n &= 0
+\begin{vmatrix}
+  m_{11} & 0 & 0 \\
+  m_{21} & m_{22} & m_{23} \\
+  m_{31} & m_{32} & m_{33} \\
+\end{vmatrix}
+= 
+m_{11} 
+\begin{vmatrix}
+  m_{22} & m_{23} \\
+  m_{32} & m_{33} \\
+\end{vmatrix}.
 \end{aligned}
 $$
 
-### Continuous time
+Now, why does the determinant tell us anything about whether a matrix is invertible? Well, when the determinant is zero, $|\mathbf{M}|=0$, it means that the rows are not linearly independent, that is, some row $\vec{r}_k$ can be written as $a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n$, where the $a_i$ are scalars. As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information, and therefore cannot reverse the operation. This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of reversing the operation to know what the original numbers were. So, a matrix is invertible only if it has a nonzero determinant, $|\mathbf{M}|\neq0$. Matrices that are not invertible are called **singular**.
+
+Geometrically, mutliplying multiple vectors by a matrix whose deteriminant is zero causes them to fall along a line. Below we multiply the two black vectors by a matrix whose determinant is zero to get the two red vectors, which fall along the same line.
+
+
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt #import plotting library
+from sympy import *
+
+v1 = Matrix([[2],[1]]) #column vector 1
+v2 = Matrix([[1],[1]]) #column vector 2
+M = Matrix([[1/2,1],[1,2]]) #matrix with determinant of zero
+
+#original vectors
+for v in [v1,v2]:
+    plt.arrow(0, 0, #starting x and y values of arrow
+              float(v[0]), float(v[1]), #change in x and y 
+              head_width=0.1, color='black', length_includes_head=True) #aesthetics
+
+#stretched and rotated vectors
+for v in [M*v1,M*v2]:
+    plt.arrow(0, 0, #starting x and y values of arrow
+              float(v[0]), float(v[1]), #change in x and y 
+              head_width=0.1, color='red', length_includes_head=True) #aesthetics
+
+plt.xlim(0,5) #set bounds on x axis
+plt.ylim(0,5) #set bounds on y axis
+plt.show()
+</pre>
+
+
+    
+![png](lecture-07_files/lecture-07_2_0.png)
+    
+
+
+### Inverting
+
+Now back to how to find the inverse of a matrix.
+
+For an invertible 2x2 matrix we do the following
 
 $$
-\frac{\mathrm{d}n}{\mathrm{d}t} = r n(t)
+\begin{align}
+\mathbf{M}^{-1} 
+=&\begin{pmatrix}
+  a & b \\
+  c & d
+\end{pmatrix}^{-1}\\
+&=\frac{1}{\mathrm{Det}(\mathbf{M})}
+\begin{pmatrix}
+  d  & -b \\
+  -c & a
+\end{pmatrix}\\
+&=
+\begin{pmatrix}
+  \frac{d}{ad-bc}  & \frac{-b}{ad-bc} \\
+  \frac{-c}{ad-bc} & \frac{a}{ad-bc}
+\end{pmatrix}
+\end{align}
 $$
 
-Set $\mathrm{d}n/\mathrm{d}t = 0$ and $n(t) = \hat n$ and solve for $\hat n$
+Larger matrices are more difficult to invert, except if they are diagonal, in which case we simply invert each of the diagonal elements,
 
 $$
-\begin{aligned}
-0 &= r \hat{n}\\
-\hat n &= 0
-\end{aligned}
+\mathbf{M}^{-1} = 
+\begin{pmatrix}
+1/m_{11} & 0 & \cdots & 0\\
+0 & 1/m_{22} & \cdots & 0\\
+\vdots & \vdots & \vdots & \vdots\\
+0 & 0 & \cdots & 1/m_{nn}
+\end{pmatrix}.
 $$
-
-So the only equilibrium in both discrete- and continuous-time exponential growth is extinction, $\hat{n}=0$.
-
-!!! note "Special case of parameters"
-
-    Notice above that $R=1$ and $r=0$ also satisfy the conditions for an equilibrium. These are called **special cases of parameters**. Here this refers to the case where individuals perfectly replace themselves so that the population remains constant from *any* starting value of $n$.
 
 <span id='section3'></span>
-
-## 3. Logistic growth
+## 3. Solving for equilibrium
 <hr>
 
-Here, we will solve for the equilibria in both the discrete- and continuous-time logistic-growth models.
-
-### Discrete time
+OK, now let's return to our model of birds on islands,  
 
 $$
-n(t+1) = \left(1 + r\left(1 - \frac{n(t)}{K}\right)\right)n(t)
+\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n} + \vec{m},
 $$
 
-As above, we substitute $n(t+1) = n(t) = \hat n$ and want to solve for $\hat{n}$.
+and solve for the equilibria, $\hat{\vec{n}}$. 
+
+We do this by setting the rate of change to zero $\frac{\mathrm{d}\vec{n}}{\mathrm{d}t}=0$, subtracting $\vec{m}$ from both sides, and multiplying by the inverse matrix $\mathbf{M}^{-1}$ on the left:
 
 $$
-\hat n = \left(1 + r\left(1 - \frac{\hat n}{K}\right)\right)\hat{n} 
+\begin{align*}
+0 &= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
+-\vec{m} &= \mathbf{M}\hat{\vec{n}}\\
+-\mathbf{M}^{-1}\vec{m} &= \mathbf{M}^{-1}\mathbf{M}\hat{\vec{n}}\\
+-\mathbf{M}^{-1}\vec{m} &= \mathbf{I}\hat{\vec{n}}\\
+-\mathbf{M}^{-1}\vec{m} &= \hat{\vec{n}}.
+\end{align*}
 $$
 
-Notice that one equilibrium is $\hat n = 0$. However, this isn't the only equilibrium because dividing both sides by $\hat n$ results in
+We can write the lefthand side in terms of our parameters by calculating the inverse of this 2x2 matrix and multiplying by the vector
 
 $$
-\begin{aligned}
-1 &= 1 + r\left(1 - \frac{\hat n}{K}\right)\\
-0 &= r\left(1 - \frac{\hat n}{K}\right)
-\end{aligned}
+\begin{align}
+\hat{\vec{n}} 
+&=-\mathbf{M}^{-1}\vec{m}\\
+&=-\frac{1}{|\mathbf{M}|}
+\begin{pmatrix} b_2 - d_2 - m_{21} & -m_{21} \\ -m_{12} & b_1 - d_1 - m_{12} \end{pmatrix}
+\begin{pmatrix} m_1 \\ m_2 \end{pmatrix}\\
+&= -\frac{1}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \begin{pmatrix} (b_2 - d_2 - m_{21})m_1 -m_{21}m_2 \\ -m_{12}m_1 + (b_1 - d_1 - m_{12})m_2 \end{pmatrix}\\
+&= \begin{pmatrix} -\frac{(b_2 - d_2 - m_{21})m_1 -m_{21}m_2}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \\ -\frac{-m_{12}m_1 + (b_1 - d_1 - m_{12})m_2}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \end{pmatrix}
+\end{align}
 $$
 
-Here we have a special case of parameters, $r=0$, or
+Ta-da! Using linear algebra we solved for both equilibria, $\hat{n}_1$ and $\hat{n}_2$, with a single equation. 
+
+We can visualize this equilibrium as the intersection of the **nullclines**, which are the values of the variables that make the change in each variable zero. In this case we can solve for the nullclines in terms of $n_2$,
 
 $$
-\begin{aligned}
-0 &= 1 - \frac{\hat n}{K}\\
-\hat n &= K
-\end{aligned}
+\begin{align}
+\frac{\mathrm{d}n_1}{\mathrm{d}t} &= 0\\
+(b_1 - d_1 - m_{12})n_1 + m_{21} n_2 + m_1 &= 0\\
+m_{21} n_2 &= -m_1 - (b_1 - d_1 - m_{12})n_1\\
+n_2 &= \frac{-m_1 - (b_1 - d_1 - m_{12})n_1}{m_{21}}
+\end{align}
 $$
 
-There are therefore two equilibria: extinction, $\hat{n}=0$, or carrying capacity, $\hat{n}=K$.
-
-### Continuous time
+and
 
 $$
-\frac{\mathrm{d}n}{\mathrm{d}t} = r \left(1 - \frac{n}{K}\right)n
+\begin{align}
+\frac{\mathrm{d}n_2}{\mathrm{d}t} &= 0\\
+(b_2 - d_2 - m_{21})n_2 + m_{12} n_1 + m_2 &= 0\\
+(b_2 - d_2 - m_{21})n_2  &= -m_{12} n_1 - m_2\\
+n_2  &= \frac{-m_{12} n_1 - m_2}{b_2 - d_2 - m_{21}},
+\end{align}
 $$
 
-We set $\mathrm{d}n/\mathrm{d}t=0$ and $n=\hat{n}$
+and plot them as functions of $n_1$. Our predicted equilibrium correctly lands right on the intersection of the two nullclines.
 
-$$
-0 =  r \left(1 - \frac{\hat n}{K}\right)\hat{n}
-$$
 
-which is the same equation we had above in discrete-time, so the equilibria ($\hat n = 0,K$) and the special case of parameters ($r = 0$) are also the same.
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt
+from sympy import *
+import numpy as np
+
+# define the variables
+n1, n2 = symbols('n1, n2')
+
+# Choose the parameter values
+b1, b2 = 1, 1
+d1, d2 = 1.1, 1.1
+m12, m21 = 0.05, 0.05
+m1, m2 = 5, 5
+
+# define differential equations
+dn1dt = (b1 - d1 - m12) * n1 + m21 * n2 + m1
+dn2dt = m12 * n1 + (b2 - d2 - m21) * n2 + m2
+
+# get the nullclines
+nullcline_1 = solve(Eq(dn1dt, 0),n2)[0]
+nullcline_2 = solve(Eq(dn2dt, 0),n2)[0]
+
+# plot
+n1s = np.linspace(0,100,100)
+plt.plot(n1s, [nullcline_1.subs(n1,i) for i in n1s], label='$n_1$ nullcline')
+plt.plot(n1s, [nullcline_2.subs(n1,i) for i in n1s], label='$n_2$ nullcline')
+
+# add predicted equilibrium
+n1eq = -((b2-d2-m21)*m1-m21*m2)/((b1-d1-m12)*(b2-d2-m21)-m21*m12)
+n2eq = -(-m12*m1+(b1-d1-m12)*m2)/((b1-d1-m12)*(b2-d2-m21)-m21*m12)
+plt.scatter(n1eq,n2eq, color='k', zorder=2, s=100, label='equilibrium')
+
+plt.xlabel('number of birds on island 1, $n_1$')
+plt.ylabel('number of birds on island 2, $n_2$')
+plt.xlim(0,100)
+plt.ylim(0,100)
+plt.legend()
+plt.show()
+</pre>
+
+
+    
+![png](lecture-07_files/lecture-07_5_0.png)
+    
+
 
 <span id='section4'></span>
-## 4. Haploid selection
+## 4. Summary
 <hr>
 
-Here, we will solve for the equilibria in both the discrete- and continuous-time haploid-selection models.
+We can solve multivariate linear equations using matrix inversion, giving us a way to find equilibria when the matrix is invertible (ie, the determinant is nonzero). These equilibria are where the change in all variables is zero, i.e., where the nullclines for all variables intersect.
 
-### Discrete time
+Practice questions from the textbook: P2.6-P2.11.
 
-$$
-p(t+1) = \frac{p(t)W_A}{p(t)W_A + q(t)W_a}
-$$
 
-Replace $p(t+1)$ and $p(t)$ with $\hat p$ and replace $q(t)$ with $\hat q$ and solve for $\hat p$ and $\hat q$
+<pre data-executable="true" data-language="python">
 
-$$
-\begin{aligned}
-\hat{p} &= \frac{\hat p W_A}{\hat p W_A + \hat q W_a}\\
-\end{aligned}
-$$
-
-We first see that $\hat{p}=0$ is an equilibrium. But there is more, since dividing by $\hat p$ gives
-
-$$
-\begin{aligned}
-1 &= \frac{W_A}{\hat p W_A + \hat q W_a}\\
-\hat p W_A + \hat q W_a &= W_A\\
-\hat q W_a &= (1-\hat p) W_A
-\end{aligned}
-$$
-
-At this point we use $q=1-p$ to write this in terms of $p$ only
-
-$$
-(1-\hat p) W_a = (1-\hat p) W_A
-$$
-
-So $\hat p =1$ is another equilibrium. 
-
-And finally, dividing by $(1-\hat p)$ gives a special case of parameters, $W_A=W_a$.
-
-To summarize, the allele frequency will not change from one generation to the next in our discrete-time haploid-selection model when
-
-- $\hat p = 0 \Longrightarrow$ the population is "fixed" for the $a$ allele
-- $\hat p = 1 \Longrightarrow$ the population is fixed for the $A$ allele
-- $W_A = W_a \Longrightarrow$ the two alleles have equal fitness ("neutrality")
-
-### Continuous time
-
-$$
-\frac{\mathrm{d}p}{\mathrm{d}t} = sp(t)(1-p(t))
-$$
-
-In the continuous-time model, we set the derivative equal to zero and $p(t)=\hat{p}$
-
-$$
-\begin{aligned}
-0 &= s\hat p(1 -\hat p)
-\end{aligned}
-$$
-
-And we again find the same equilibria ($\hat p=0,1$) and special case of parameters ($s=0$, i.e., neutrality).
-
-<span id='section5'></span>
-## 5. Diploid selection
-<hr>
-
-### Discrete time
-
-Here, we will solve for the equilibria in the discrete-time diploid-selection model
-
-$$
-p(t+1) = \frac{p(t)^2 W_{AA} + p(t)  q(t) W_{Aa}}{p(t)^2 W_{AA} + 2 p(t) q(t) W_{Aa} + q(t)^2 W_{aa}}
-$$
-
-We replace $p(t+1)$ and $p(t)$ with $\hat p$ and $q(t)$ with $\hat{q}$ and solve for $\hat p$ and $\hat q$
-
-$$
-\begin{aligned}
-\hat{p} &= \frac{\hat{p}^2 W_{AA} + \hat{p} \hat{q} W_{Aa}}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}\\
-\hat{p} &= \frac{\hat{p}(\hat p W_{AA} + \hat{q} W_{Aa})}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}
-\end{aligned}
-$$
-
-We see that $\hat{p}=0$ is one equilibrium. Moving on, dividing by $\hat p$ gives
-
-$$
-\begin{aligned}
-1 &= \frac{\hat p W_{AA} + \hat{q} W_{Aa}}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}\\
-\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa} &= \hat p W_{AA} + \hat{q} W_{Aa}\\
-0 &= (\hat{p} - \hat{p}^2) W_{AA} + (\hat{q} - 2 \hat{p} \hat{q}) W_{Aa} - \hat{q}^2 W_{aa}\\
-0 &= \hat{p}(1 - \hat{p}) W_{AA} + \hat{q}(1 - 2 \hat{p}) W_{Aa} - \hat{q}^2 W_{aa}\\
-0 &= \hat{q}(\hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - \hat{q} W_{aa})
-\end{aligned}
-$$
-
-And so $\hat{q}=0\implies\hat{p}=1$ is another equilibrium. Dividing by $\hat{q}$ and putting everything in terms of $p$ we have
-
-$$
-\begin{aligned}
-0 &= \hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - \hat{q} W_{aa}\\
-0 &= \hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - (1 - \hat{p}) W_{aa}\\
-0 &= \hat{p}(W_{AA} -2W_{Aa} + W_{aa}) + W_{Aa} - W_{aa}\\
-W_{aa} - W_{Aa} &= \hat p(W_{AA} -2W_{Aa} + W_{aa})\\
-\frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}} &= \hat p\\
-\end{aligned}
-$$
-
-We therefore have *three* equilibria under diploid selection: $\hat{p}=0,\frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}},1$.
-
-Since a frequency is bounded between 0 and 1, we must have $0 \leq p \leq 1$. We therefore call $\hat{p}=0$ and $\hat{p}=1$ **boundary equilibria**.
-  
-These bounds also imply the third equilibrium is only **biologically valid** when 
-
-$$
-0 \leq \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} \leq 1
-$$
-
-When $W_{Aa} = W_{aa}$ this equilibrium reduces to $\hat{p}=0$ and when $W_{Aa} = W_{AA}$ this reduces to $\hat{p}=1$ (check this for yourself).
-
-The third equilibrium will be an **internal equilibrium**, representing a population with both $A$ and $a$ alleles, when
-
-$$
-0 < \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} < 1
-$$
-
-The equilibrium is positive when the numerator and denominator have the same sign (i.e., are both positive or both negative).
-
-Let's split this into two "cases". Case A will have a positive numerator, $W_{Aa} > W_{aa}$, and Case B will have a negative numerator, $W_{Aa} < W_{aa}$.
-
-So, in Case A, the equilibrium is positive when the denominator is positive, $2 W_{Aa} - W_{AA} - W_{aa} > 0$.
-
-While in case B the equilibrium is positive when the denominator is negative, $2 W_{Aa} - W_{AA} - W_{aa} < 0$.
-
-Now we can rearrange the equilibrium to show that it is less than 1 when
-
-$$
-\begin{aligned}
-\frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &< 1\\
-\frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} - 1 &< 0\\
-\frac{W_{Aa} - W_{aa} - (2 W_{Aa} -W_{AA} - W_{aa})}{2 W_{Aa} -W_{AA} - W_{aa}} &< 0\\
-\frac{W_{AA} - W_{Aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &< 0\\
-\frac{W_{Aa} - W_{AA}}{2 W_{Aa} -W_{AA} - W_{aa}} &> 0\\
-\end{aligned}
-$$
-  
-Again we need the numerator and denominator to have the same sign for this inequality to hold.
-  
-In case A, where we've said that denominator is positive, this means we also need the numerator to be positive, $W_{Aa} > W_{AA}$.
-
-While in case B we said that the denominator is negative, so we also need the numerator to be negative, $W_{Aa} < W_{AA}$.
-  
-Putting this all together, there is a biologically-relevant internal equilibrium when either
-
-- Case A: $W_{Aa} > W_{aa}$ and $W_{Aa} > W_{AA}$ (which ensures $2 W_{Aa} - W_{AA} - W_{aa} > 0$; go ahead and check!)
-- Case B: $W_{Aa} < W_{aa}$ and $W_{Aa} < W_{AA}$  (which ensures $2 W_{Aa} - W_{AA} - W_{aa} < 0$)
-
-Case A therefore represents "heterozygote advantage", $W_{AA} < W_{Aa} > W_{aa}$, while Case B represents "heterozygote disadvantage", $W_{AA} > W_{Aa} < W_{aa}$. 
-
-<span id='section6'></span>
-## 6. Summary
-<hr>
-
-In summary, the equilibria for the models we have looked at are:
-
-| Model | Discrete-time equilibria | Continuous-time equilibria |
-| ----- | ------------------------ | -------------------------- |
-| Exponential growth | $\hat n = 0$ | $\hat n = 0$ |
-| Logistic growth | $\hat n = 0, \hat n = K$ | $\hat n = 0, \hat n = K$ |
-| Haploid selection | $\hat p = 0, \hat p = 1$ | $\hat p = 0, \hat p = 1$
-| Diploid selection | $\hat p = 0, \hat p = 1, \hat p = \frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}}$ | Not derived |
-
-Make sure that you understand how to determine equilibria in discrete- and continuous-time and can derive the equilibria of the models above on your own.
+</pre>

@@ -67,7 +67,7 @@ nav:
     - Textbook: syllabus/textbook.md
 #    - Assignments: syllabus/assignments.md
     - Final Project: syllabus/final_project.md
-    - Exams: syllabus/exams.md
+    - Previous Tests: syllabus/previous_tests.md
     - General info: syllabus/general_info.md
     - Other resources: syllabus/resources.md 
   - Lectures:
@@ -77,8 +77,8 @@ nav:
     - Lecture 3: lectures/lecture-03.md
     - Lecture 4: lectures/lecture-04.md
     - Lecture 5: lectures/lecture-05.md
-#    - Lecture 6: lectures/lecture-06.md
-#    - Lecture 7: lectures/lecture-07.md
+    - Lecture 6: lectures/lecture-06.md
+    - Lecture 7: lectures/lecture-07.md
 #    - Lecture 8: lectures/lecture-08.md
 #    - Lecture 9: lectures/lecture-09.md
 #    - Lecture 10: lectures/lecture-10.md
@@ -99,4 +99,5 @@ nav:
     - Tutorial 1: labs/tutorial-01.md
     - Tutorial 2: labs/tutorial-02.md
     - Tutorial 3: labs/tutorial-03.md
+    - Tutorial 4: labs/tutorial-04.md
   - Acknowledgements: acknowledgements.md 

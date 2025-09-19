@@ -1,4 +1,4 @@
-# Exams
+# Previous tests
 
 ## Previous midterms
 
@@ -10,7 +10,7 @@ Roughly covers univariate lectures and labs.
 
 ## Previous finals
 
-Covers all material, with a focus on the remaining lectures and labs.
+Covers all material, with a focus on multivariate (and any stochastic) lectures and labs.
 
 - [2024](exam_files/final2024.pdf), [solutions](exam_files/final2024_solns.pdf) 
 - [2022](exam_files/final2022.pdf), [solutions](exam_files/final2022_solns.pdf) 

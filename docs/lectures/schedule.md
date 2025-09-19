@@ -10,8 +10,8 @@ Under construction for Fall 2025 edition. Lectures will be updated as we go.
 | 4 | [Stability (univariate)](lecture-04.md) | 5.3 (13p.) |
 | 5 | [General solutions (univariate)](lecture-05.md) | 6.1-6.3, 6.5-6.7 (16p.) |
 | - | Test | |
-| 6 | Vectors and matrices | P2.1-P2.4 (14p.) |
-| 7 | Linear algebra | P2.5-P2.7 (9p.) |
+| 6 | [Representing linear multivariate models with vectors and matrices](lecture-06.md) | P2.1-P2.4 (14p.) |
+| 7 | [Finding equilibria in linear multivariate models](lecture-07.md) | P2.5-P2.7 (9p.) |
 | 8 | General solutions (linear multivariate) I | P2.8-P2.9 (13p.), 9.1-9.2 (18p.) |
 | 9 | General solutions (linear multivariate) II |  |
 | 10 | Demography | Chapter 10 (37p.) |

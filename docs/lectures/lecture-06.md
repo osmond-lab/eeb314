@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 6: Numerical and graphical techniques II (multivariate)
+# Lecture 6: Representing linear multivariate models with vectors and matrices
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,92 +26,136 @@
 
 ## Lecture overview
 
-1. [Numerical and graphical techniques](#section1)
-2. [Phase-line diagrams](#section2)
-3. [Phase-plane diagrams](#section3)
+1. [Motivation](#section1)
+2. [Vectors](#section2)
+3. [Matrices](#section3)
+4. [Addition](#section4)
+5. [Multiplication](#section5)
+6. [Summary](#section6)
 
 <span id='section1'></span>
-## 1. Numerical and graphical techniques
+## 1. Motivation
 <hr>
 
-In the last lecture we talked about two numerical/graphical approaches to get a better understanding of our models:
+Until now, we have been dealing with problems in a single variable changing over time.
+  
+Often, dynamical systems involve more than one variable (ie, they are **multivariate**). For instance, we may be interested in how the numbers of two species change as they interact (e.g., compete) with one another.
 
-- Plotting a variable as a function of time (eg, $p(t)$ as a function of $t$)
-- Plotting a variable as a function of itself (eg, $p(t+1)$ as a function of $p(t)$). 
+As an introductory example with more than one variable, consider a model tracking the number of birds on two islands. Let the number of birds on island 1 be $n_1$ and let the number of birds on island 2 be $n_2$. We assume the birds migrate between the islands at per capita rates $m_{12}$ and $m_{21}$, the birds on each island give birth at per capita rates $b_1$ and $b_2$, the birds on each island die at per capita rates $d_1$ and $d_2$, and new birds arrive on each island at rates $m_1$ and $m_2$. This is captured in the following flow diagram
 
-The latter works well for models with one variable.
+<center>
+```mermaid
+graph LR;
+    A1((n1)) --b1 n1--> A1;
+    B1[ ] --m1--> A1;
+    A1 --d1 n1--> C1[ ];
 
-In this lecture we’re going to talk about a third numerical technique, a **phase-plane diagram**, which is especially useful for models that have two variables.
+    A2((n2)) --b2 n2--> A2;
+    B2[ ] --m2--> A2;
+    A2 --d2 n2--> C2[ ];
+
+    A1 --m12 n1--> A2;
+    A2 --m21 n2--> A1;
+
+    style B1 height:0px;
+    style C1 height:0px;
+    style B2 height:0px;
+    style C2 height:0px;
+```   
+</center>
+    
+The rate of change in $n_1$ and $n_2$ are then described by the following system of differential equations
+
+$$
+\begin{aligned}
+\frac{\mathrm{d}n_1}{\mathrm{d}t} &= (b_1 - d_1 - m_{12})n_1 + m_{21} n_2 + m_1 \\
+\frac{\mathrm{d}n_1}{\mathrm{d}t} &= m_{12} n_1 + (b_2 - d_2 - m_{21})n_2 + m_1
+\end{aligned}
+$$
+
+These equations are linear functions of the variables (i.e., they contain only constant multiples of $n_1$ and $n_2$ and nothing more complicated such as $n_1^2$ or $e^{n_2}$).
+
+Linear systems of equations like these can also be written in **matrix form**
+
+$$
+\begin{aligned}
+\begin{pmatrix} \frac{\mathrm{d}n_1}{\mathrm{d}t} \\ \frac{\mathrm{d}n_2}{\mathrm{d}t} \end{pmatrix} 
+&= \begin{pmatrix} b_1 - d_1 - m_{12} & m_{21} \\ m_{12} & b_2 - d_2 - m_{21} \end{pmatrix}
+\begin{pmatrix} n_1 \\ n_2 \end{pmatrix} 
++ \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}\\
+\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} &= \mathbf{M}\vec{n} + \vec{m}
+\end{aligned}
+$$
+
+Not only is this a nice compact expression, there are rules of linear algebra that can help us conveniently solve this (and any other) set of linear equations.
+
+Let's get to know these rules.
 
 <span id='section2'></span>
-## 2. Phase-line diagrams
+## 2.Vectors
 <hr>
 
-Before looking at models with two variables, let’s first consider some with only one.
+**Vectors** are lists of elements (elements being numbers, parameters, functions, or variables).
 
-Consider again haploid selection where
+A **column vector** has elements arranged from top to bottom
 
 $$
-p(t+1) = \frac{W_Ap(t)}{W_Ap(t) + W_a(1-p(t))}
+\begin{equation*}
+\begin{pmatrix}
+  5 \\
+  2
+\end{pmatrix},
+\begin{pmatrix}
+  1 \\
+  5 \\
+  9 \\
+  7
+\end{pmatrix},
+\begin{pmatrix}
+  x \\
+  y
+\end{pmatrix},
+\begin{pmatrix}
+  x \\
+  y \\
+  z
+\end{pmatrix},
+\begin{pmatrix}
+  x_1 \\
+  x_2 \\
+  \vdots \\
+  x_n
+\end{pmatrix}
+\end{equation*}
 $$
 
-Last time we plotted $p_{t + 1}$ as a function of $p(t)$ and used this to examine the dynamics starting from any initial value. We called this plot a **cob-web** plot.
+A **row vector** has elements arranged from left to right
+
+$$
+\begin{pmatrix}5 & 2\end{pmatrix}, \begin{pmatrix} 1 & 5 & 9 & 7\end{pmatrix}, \begin{pmatrix} x & y \end{pmatrix}, \begin{pmatrix} x & y & z\end{pmatrix}, \begin{pmatrix} x_1 & x_2 & \cdots & x_n \end{pmatrix}
+$$
+
+We will indicate vectors by placing an arrow on top of the symbol
+
+$$
+\vec{x} = \begin{pmatrix} x_1 & x_2 & \cdots & x_n \end{pmatrix}
+$$
+
+The number of elements in the vector indicates its **dimension**, $n$.
+
+For example, the row vector $\begin{pmatrix}x & y\end{pmatrix}$ has dimension $n=2$.
+
+You can represent a vector of dimension $n$ as an arrow in $n$ dimensions, connecting the origin with a point whose coordinates are given by elements in the vector. For example, the vector $\vec{v} = \begin{pmatrix} 1\\2\end{pmatrix}$ can be depicted as below.
 
 
 <pre data-executable="true" data-language="python">
-import sympy
-import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt #import plotting library
 
-# Build cobweb plotting function
-def cobweb_haploid(p0, WA, Wa, max=np.inf):
-    t, pnow, pnext = 0, p0, 0 #initial conditions
-    while t <= max:
-        yield pnow, pnext #current value of p(t) and p_(t+1)
-        pnext = (WA * pnow) / (WA * pnow + Wa * (1 - pnow)) #update p_(t+1)
-        yield pnow, pnext #current value of p(t) and p_(t+1)
-        pnow = pnext #update p(t)
-        t += 1 #update t
-        
-# Build function for generating figure
-def plot_haploid_selection(WA, Wa, p0=0.5, ax=None):
-    pt = sympy.symbols('pt') #define our variable p(t)
-
-    # Write out sympy equation
-    f = (WA * pt) / (WA * pt + Wa * (1 - pt)) #the recursion equation
-
-    # Compute function over a set of points in [0,1] by 'lambdifying' sympy equation (turn it into a function)
-    t = np.linspace(0,1,100)
-    fy = sympy.lambdify(pt, f)(t)
-
-    # Build plot
-    if ax == None:
-        fig, ax = plt.subplots()
-    ax.plot(t, fy, color='black', label=f"$W_A$ = {WA}, $W_a$ = {Wa}") #plot p_(t+1) as function of p(t)
-    ax.plot(t, t, color='black', linestyle='--') #draw 1:1 line for reference
-    
-    # Add cobweb
-    cobweb = np.array([p for p in cobweb_haploid(p0, WA, Wa, max=100)])
-    ax.plot(cobweb[:,0], cobweb[:,1])
-    
-    # Annotate and label plot
-    ax.set_xlim(0,1)
-    ax.set_ylim(0,1)
-    ax.set_xlabel("allele frequency at $t$, $p(t)$")
-    ax.set_ylabel("allele frequency at $t+1$, $p(t+1)$")
-    ax.legend(frameon=False)
-    return ax
-
-# Plot figure
-fig, ax = plt.subplots(1,2)
-fig.set_size_inches(12,4)
-
-# First cobweb with WA > Wa
-plot_haploid_selection(WA = 1, Wa = 0.5, ax=ax[0])
-
-# Second cobweb with WA < Wa
-plot_haploid_selection(WA = 0.5, Wa = 1, ax=ax[1])
-
+plt.arrow(0, 0, #starting x and y values of arrow
+          1, 2, #change in x and y 
+          head_width=0.1, color='black', length_includes_head=True) #aesthetics
+plt.xlim(0,2.5) #set bounds on x axis
+plt.ylim(0,2.5) #set bounds on y axis
 plt.show()
 </pre>
 
@@ -121,312 +165,433 @@ plt.show()
     
 
 
-Now let's simplify the cob-web plot and just indicate the direction (and magnitude) of change in $p(t)$ with time. This is known as a **phase-line diagram** with a **vector field** (the arrows).
-
-
-<pre data-executable="true" data-language="python">
-def phase_line_haploid(p0, WA, Wa, max=np.inf):
-    'generator for p(t)'
-    t, pnow, pnext = 0, p0, 0 #initial conditions
-    while t < max:
-        yield pnow #current value of p(t) and p_(t+1)
-        pnext = (WA * pnow) / (WA * pnow + Wa * (1 - pnow))
-        pnow = pnext #update p(t)
-        t += 1 #update t
-
-def plot_phase_line_haploid(WA, Wa, p0, max=20, ax=None):
-    'plot phase line'
-    
-    # Set up figure
-    if ax==None:
-        fig, ax = plt.subplots()
-        fig.set_size_inches(8,0.25)
-    ax.axhline(0, color='black', linewidth=0.5)
-    
-    # Plot phase-line
-    pts = [pt for pt in phase_line_haploid(p0, WA, Wa, max=max)] #pt values
-    ax.plot(
-        pts,
-        np.zeros(max) #dummy y values (0 for all x values) because we want to plot a 1d line
-    )
-    
-    # Plot vector field
-    marker = '>' if pts[2] > pts[1] else '<' #determine which direction to point based on first 2 time points
-    ax.scatter(
-        pts,
-        np.zeros(max),#dummy y again
-        marker=marker, s=150
-    )
-    
-    # Remove background axes
-    ax.set_ylabel('$p$', rotation=0)
-    ax.set_xlabel(f"$W_A$ = {WA}, $W_a$ = {Wa}, $p_0$ = {p0}")
-    ax.get_yaxis().set_ticks([])
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.spines['bottom'].set_visible(False)
-    ax.spines['left'].set_visible(False)
-    ax.set_xlim(0,1)
-    plt.show()
-    
-plot_phase_line_haploid(WA=1, Wa=0.5, p0=0.01)
-
-plot_phase_line_haploid(WA=0.5, Wa=1, p0=0.99)
-</pre>
-
-
-    
-![png](lecture-06_files/lecture-06_5_0.png)
-    
-
-
-
-    
-![png](lecture-06_files/lecture-06_5_1.png)
-    
-
-
-As in the cob-web plots, we see the allele frequency approaches $p=1$ when $W_A>W_a$ and $p=0$ when $W_a>W_A$. We also notice, as above, the changes are fastest (fewer, longer arrows) at intermediate frequencies.
-
-Similarly, with the more complex model of diploid selection
-
-$$
-p(t+1) = \frac{W_{AA}p(t)^2 + W_{Aa}p(t)q(t)}{W_{AA}p(t)^2 + W_{Aa}p(t)q(t) + W_{aa}q(t)^2}
-$$
-
-we can draw a phase-line diagram and vector field for a set of parameter values.
-
-
-<pre data-executable="true" data-language="python">
-def phase_line_diploid(p0, WAA, WAa, Waa, max=np.inf):
-    'generator for p(t)'
-    t, pnow, pnext = 0, p0, 0 #initial conditions
-    while t < max:
-        yield pnow #current value of p(t) and p(t+1)
-        pnext = (WAA * pnow**2 + WAa * pnow * (1 - pnow)) / (WAA * pnow**2 + WAa * 2 * pnow * (1 - pnow) + Waa * (1 - pnow)**2) #update p(t+1)
-        pnow = pnext #update p(t)
-        t += 1 #update t
-        
-def plot_phase_line_diploid(WAA, WAa, Waa, p0, max=20, ax=None):
-    'plot phase line'
-    
-    # set up figure
-    if ax==None:
-        fig, ax = plt.subplots()
-        fig.set_size_inches(8,0.25)
-    ax.axhline(0, color='black', linewidth=0.5)
-    
-    # Plot phase-line
-    pts = [pt for pt in phase_line_diploid(p0, WAA, WAa, Waa, max=max)]
-    ax.plot(
-        pts,
-        np.zeros(max),
-        alpha=1
-    )
-    
-    # Plot phase-line markers
-    marker = '>' if pts[2] > pts[1] else '<'
-    ax.scatter(
-        pts,
-        np.zeros(max),
-        marker=marker, s=150
-    )
-    
-    ax.set_xlabel(f"$WAA$ = {WAA}, $WAa$ = {WAa}, $Waa$ = {Waa}, $p_0$ = {p0}")
-    
-    return ax
-
-# Plot figure
-fig, ax = plt.subplots()
-fig.set_size_inches(8,0.25)
-    
-plot_phase_line_diploid(WAA=1, WAa=2, Waa=1, p0=0.99, max=100, ax=ax) #higher starting allele frequency
-plot_phase_line_diploid(WAA=1, WAa=2, Waa=1, p0=0.01, max=100, ax=ax) #low starting allele frequency
-
-# Remove background axes
-ax.set_ylabel('$p$', rotation=0)
-ax.get_yaxis().set_ticks([])
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.set_xlim(0,1)
-plt.show()
-</pre>
-
-
-    
-![png](lecture-06_files/lecture-06_7_0.png)
-    
-
-
-Notice that this time we chose two initial frequencies for the same plot (orange vs blue), to show that under **heterozygote advantage** ($W_{AA}<W_{Aa}>W_{aa}$) the allele frequency approaches an intermediate value from either direction. 
-
 <span id='section3'></span>
-## 3. Phase-plane diagrams
+## 3. Matrices
 <hr>
 
-Now let’s extend this technique from one to two variables.
-
-### Lotka-Volterra model
-
-We'll introduce a new model for this purpose, the **Lotka-Volterra** model of
-competition (see section 3.4.1 in the text).
-
-This is an extension of the logistic growth model (Lecture 3) to include competition between
-multiple species (in our case two).
-
-Let the population size of each species be $n_1(t)$ and $n_2(t)$. These are our two
-variables.
-
-And let them have different intrinsic growth rates, $r_1$ and $r_2$, and carrying capacities,
-$K_1$ and $K_2$.
-
-To model competition, we’ll assume that, for an individual of species $i$, an individual
-of species $j$ is the competitive equivalent of $\alpha_{ij}$ individuals of species $i$. We then have
+An $m \times n$ **matrix** has $m$ rows and $n$ columns (a vector can be seen as a special case, where either $m$ or $n$ is 1)
 
 $$
-n_1(t+1) = n_1(t)\left( 1 + r_1 \left(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1}\right)\right)
+\begin{equation*}
+\begin{pmatrix}
+  x_{11}  & x_{12} & \cdots & x_{1n}\\
+  x_{21}  & x_{22} & \cdots & x_{2n}\\
+  \vdots & \vdots &        & \vdots\\
+  x_{m1}  & x_{m2} & \cdots & x_{mn}\\
+\end{pmatrix},
+\begin{pmatrix}
+  a & b \\
+  c & d
+\end{pmatrix},
+\begin{pmatrix}
+  75 & 67 \\
+  66 & 34 \\
+  12 & 14
+\end{pmatrix},
+\begin{pmatrix}
+  1 & 0 & 0 \\
+  0 & 1 & 0 \\
+  0 & 0 & 1
+\end{pmatrix}
+\end{equation*}
+$$
+
+We will indicate matrices by bolding the symbol (and using capital letters)
+
+$$
+\mathbf{X} = \begin{pmatrix}
+  x_{11}  & x_{12} & \cdots & x_{1n}\\
+  x_{21}  & x_{22} & \cdots & x_{2n}\\
+  \vdots & \vdots &        & \vdots\\
+  x_{m1}  & x_{m2} & \cdots & x_{mn}\\
+\end{pmatrix}
+$$
+
+A matrix with an equal number of rows and columns, $m=n$, is a **square matrix**
+
+$$
+\begin{pmatrix}
+  a & b & c \\
+  d & e & f \\
+  g & h & i
+\end{pmatrix}
+$$
+  
+A matrix with zeros everywhere except along the diagonal is called a **diagonal matrix**
+  
+$$
+\begin{pmatrix}
+  a & 0 & 0 \\
+  0 & b & 0 \\
+  0 & 0 & c
+\end{pmatrix}
+$$
+   
+And a special case of this with 1s along the diagonal is called the **identity matrix**
+
+$$
+\begin{pmatrix}
+  1 & 0 & 0 \\
+  0 & 1 & 0 \\
+  0 & 0 & 1
+\end{pmatrix}
+$$
+  
+A matrix with all zeros below the diagonal is called an **upper trianglular matrix**
+
+$$
+\begin{pmatrix}
+  a & b & c \\
+  0 & d & e \\
+  0 & 0 & f
+\end{pmatrix}
+$$
+  
+A matrix with all zeros above the diagonal is called an **lower trianglular matrix**
+
+$$
+\begin{pmatrix}
+  a & 0 & 0 \\
+  b & d & 0 \\
+  c & e & f
+\end{pmatrix}
+$$
+
+It is sometimes useful to chop a matrix up into multiple blocks, creating a **block matrix**
+
+$$
+\begin{pmatrix}
+  a & b & c \\
+  d & e & f \\
+  g & h & i
+\end{pmatrix}
+= 
+\begin{pmatrix}
+  \mathbf{A} & \mathbf{B} \\
+  \mathbf{C} & \mathbf{D}
+\end{pmatrix}
+$$
+
+where $\mathbf{A}=\begin{pmatrix} a & b \\ d & e\end{pmatrix}$, $\mathbf{B}=\begin{pmatrix} c\\ f\end{pmatrix}$, $\mathbf{C}=\begin{pmatrix} g & h \end{pmatrix}$, and $\mathbf{D}=\begin{pmatrix} i\end{pmatrix}$. 
+
+This is especially helpful when the block form has off-diagonal submatrices consisting of all zeros. For instance, when $\mathbf{B}=\begin{pmatrix} 0\\0\end{pmatrix}$ or $\mathbf{C}=\begin{pmatrix} 0 & 0 \end{pmatrix}$, we have a **block triangular matrix**. And when $\mathbf{B}=\begin{pmatrix} 0\\0\end{pmatrix}$ and $\mathbf{C}=\begin{pmatrix} 0 & 0 \end{pmatrix}$, 
+we have a **block diagonal matrix**.
+
+Finally, it is sometimes useful to **transpose** a matrix, which exchanges the rows and columns (an element in row $i$ column $j$ moves to row $j$ column $i$)
+
+$$
+\begin{pmatrix}
+  a_1 & a_2 & a_3 \\
+  b_1 & b_2 & b_3
+\end{pmatrix}^\intercal
+= 
+\begin{pmatrix}
+  a_1 & b_1  \\
+  a_2 & b_2  \\
+  a_3 & b_3
+\end{pmatrix}
+$$
+
+Like vectors, matrices have a graphical/geometrical interpretation: they stretch and rotate vectors (as we will see shortly).
+
+<span id='section4'></span>
+## 4. Addition
+<hr>
+
+Vector and matrix **addition** (and subtraction) is straightforward, entry-by-entry:
+
+$$
+\begin{equation*}
+\begin{pmatrix}
+  a \\
+  b
+\end{pmatrix}
++
+\begin{pmatrix}
+  c \\
+  d
+\end{pmatrix}
+=
+\begin{pmatrix}
+  a+c \\
+  b+d
+\end{pmatrix}
+\end{equation*}
 $$
 
 $$
-n_2(t+1) = n_2(t) \left(1 + r_2 \left(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2}\right)\right)
+\begin{equation*}
+\begin{pmatrix}
+  a & b \\
+  c & d
+\end{pmatrix}
++
+\begin{pmatrix}
+  e & f \\
+  g & h
+\end{pmatrix}
+=
+\begin{pmatrix}
+  a+e & b+f \\
+  c+g & d+h
+\end{pmatrix}
+\end{equation*}
 $$
 
-Often individuals of the same species will use more similar resources and therefore competition will be less severe with individuals of the other species, $0 < \alpha_{ij} < 1$, but not always. And, in fact, we could model other types of interactions (eg, mutualism) by making some of the interactions beneficial, $\alpha_{ij} < 0$.
+!!! warning 
 
-### Phase-planes and vector fields
-
-So why did we introduce the Lotka-Volterra model? Well, **phase-plane diagrams** are plots of one variable against another ($n_1$ vs. $n_2$), on which we can plot **vector fields**, vectors originating from many different starting conditions that indicate the direction and magnitude of change in the two variables. With this we can graphically investigate the dynamics of the Lotka-Volterra model by first defining the rates of change in our two variables, $\Delta n_1$ and $\Delta n_2$ and then choosing some parameter values to explore.
-
-$$
-\Delta n_1 \equiv n_1(t+1) - n_1(t) = n_1(t)r_1\left(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1}\right)
-$$
-
-$$
-\Delta n_2 \equiv n_2(t+1) - n_2(t) = n_2(t)r_2\left(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2}\right)
-$$
-
-Let's plot a phase-plane for the Lotka-Volterra with the following parameter values: $r_1 = 0.5, r_2 = 0.5, K_1 = 1000, K_2 = 1000, \alpha_{12} = 0.5, \alpha_{21} = 0.5$.
+    The vectors or matrices added together must have the same dimension!
+    
+Geometrically, adding vectors is like placing the second vector at the end of the first. Below we add the black and red vectors together to get the blue vector.
 
 
 <pre data-executable="true" data-language="python">
-# Define a function to plot the phase plane and vector field for n1 and n2
-def plot_vector_field(dn1, dn2, xlim=(0,1200), ylim=(0,1200), n_steps=25, width=8, height=6, show=False, axes_labels=[None, None]):
-    # Set x and y ranges 
-    xrange, yrange = np.linspace(xlim[0], xlim[1], n_steps), np.linspace(ylim[0], ylim[1], n_steps)
+import matplotlib.pyplot as plt #import plotting library
 
-    # Initialize 2D grid with x,y values and additional grids to track derivatives
-    X, Y = np.meshgrid(xrange, yrange)
-    U, V = np.zeros(X.shape), np.zeros(Y.shape)
+v1 = [1,2] #vector 1
+v2 = [1,0] #vector 2
+v12 = [i+j for i,j in zip(v1,v2)] #sum of the two vectors
 
-    # Compute the gradient at each x,y position
-    for i in range(len(xrange)):
-        for j in range(len(xrange)):
-            U[i,j] = sympy.lambdify((n1, n2), dn1)(X[i,j], Y[i,j]) #change in n1
-            V[i,j] = sympy.lambdify((n1, n2), dn2)(X[i,j], Y[i,j]) #change in n2
+#first vector
+plt.arrow(0, 0, #starting x and y values of arrow
+          v1[0], v1[1], #change in x and y 
+          head_width=0.1, color='black', length_includes_head=True) #aesthetics
 
-    # Plot figure
-    fig, ax = plt.subplots()
-    fig.set_size_inches(width, height)
-    ax.set_xlabel(axes_labels[0])
-    ax.set_ylabel(axes_labels[1])
-    ax.quiver(X,Y,U,V, linewidth=1) #from point X,Y draw arrow moving U in x-axis and V in y-axis
+#second vector placed at the end of first vector
+plt.arrow(v1[0], v1[1], #starting x and y values of arrow
+          v2[0], v2[1], #change in x and y 
+          head_width=0.1, color='red', length_includes_head=True) #aesthetics
 
-    if show == True:
-        plt.show()
-    else:
-        return ax
-</pre>
+#sum of the vectors
+plt.arrow(0, 0, #starting x and y values of arrow
+          v12[0], v12[1], #change in x and y 
+          head_width=0.1, color='blue', length_includes_head=True) #aesthetics
 
-
-<pre data-executable="true" data-language="python">
-# Initialize the sympy variables
-n1, n2 = sympy.symbols('n1, n2')
-
-# Choose the parameter values
-r1, r2 = 0.5, 0.5
-k1, k2 = 1000, 1000
-a12, a21 = 0.5, 0.5
-
-# Specify the difference equations
-dn1 = r1 * n1 * (1 - (n1 + a12 * n2) / k1)
-dn2 = r2 * n2 * (1 - (n2 + a21 * n1) / k2)
-
-# Plot the vector field
-plot_vector_field(dn1, dn2, axes_labels=["number of species 1, $n_1$", "number of species 2, $n_2$"])
-
+plt.xlim(0,2.5) #set bounds on x axis
+plt.ylim(0,2.5) #set bounds on y axis
 plt.show()
 </pre>
 
 
     
-![png](lecture-06_files/lecture-06_11_0.png)
+![png](lecture-06_files/lecture-06_6_0.png)
     
 
 
-With this approach we see that the dynamics appear to be approaching a value near $n_1 = 700, n_2 = 700$ from nearly any initial condition.
+<span id='section5'></span>
+## 5. Multiplication
+<hr>
 
-### Null clines
-
-
-To better understand the dynamics, we can ask for what values of our variables ($n_1, n_2$) is the change in our variables zero ($\Delta n_1 = 0$, $\Delta n_2 = 0$). These values are known as **null clines**.
-
-Concretely, going back to our previous formula for the change in $n_1$ and $n_2$ in the Lotka-Volterra model
+Vector and matrix **multiplication** by a scalar (which may be a constant, a variable, or a function, but not a matrix or a vector) is also straightforward, we just multiply every element by the scalar:
 
 $$
-\Delta n_1 = n_1(t)r_1\left(1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1}\right)
-$$
-
-$$
-\Delta n_2 = n_2(t)r_2\left(1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2}\right)
-$$
-
-We want to know when $\Delta n_1$ and $\Delta n_2$ are 0. Solving for these inequalities shows that
-
-$$
-\Delta n_1 = 0 \Longrightarrow n_1(t) = 0, 1 - \frac{n_1(t) + \alpha_{12}n_2(t)}{K_1} = 0
+\begin{equation*}
+\alpha 
+\begin{pmatrix}
+  a \\
+  b
+\end{pmatrix}
+=
+\begin{pmatrix}
+  \alpha a \\
+  \alpha b
+\end{pmatrix}
+\end{equation*}
 $$
 
 $$
-\Delta n_2 = 0 \Longrightarrow n_2(t) = 0, 1 - \frac{n_2(t) + \alpha_{21}n_1(t)}{K_2} = 0
+\begin{equation*}
+\alpha 
+\begin{pmatrix}
+  a & b\\
+  c & d
+\end{pmatrix}
+=
+\begin{pmatrix}
+  \alpha a & \alpha b\\
+  \alpha c & \alpha d
+\end{pmatrix}
+\end{equation*}
 $$
 
-Plotting these null clines on the phase-plane diagram, we get
+Geometrically, multiplying by a scalar stretches (if $\alpha>1$) or compresses (if $\alpha<1$) a vector. Below we multiply the black vector by $1/2$ to get the red vector.
 
 
 <pre data-executable="true" data-language="python">
-# Initialize plot and ranges
-ax = plot_vector_field(dn1, dn2, axes_labels=["number of species 1, $n_1$", "number of species 2, $n_2$"])
-xrange, yrange = np.linspace(0, 1200, 100), np.linspace(0, 1200, 100)
+import matplotlib.pyplot as plt #import plotting library
 
-def plot_nullclines(ax):
-    #plot the null clines for species 1 (blue)
-    nullcline_1 = [list(i.values())[0] for i in sympy.solve(sympy.Eq(dn1, 0))]
-    ax.plot(xrange, sympy.lambdify(n1, nullcline_1[1])(xrange), color=plt.cm.tab10(0)) # this null cline is a function of n1 (i.e. x)
-    ax.plot([nullcline_1[0] for _ in xrange], yrange, color=plt.cm.tab10(0))
-    
-    # #plot the null clines for species 2 (red)
-    nullcline_2 = [list(i.values())[0] for i in sympy.solve(sympy.Eq(dn2, 0))]
-    ax.plot(sympy.lambdify(n2, nullcline_2[0])(yrange), yrange, color=plt.cm.tab10(1)) # this null cline is a function of n2 (i.e. y)
-    ax.plot(xrange, [nullcline_2[1] for _ in yrange], color=plt.cm.tab10(1))
+v1 = [1,2] #vector 1
+alpha = 1/2 #scalar
+v2 = [i*alpha for i in v1] #multiplication by a scalar
 
-    ax.set_ylim(-10, 1210)
-    ax.set_xlim(-10, 1210)
-    return ax
+#original vector
+plt.arrow(0, 0, #starting x and y values of arrow
+          v1[0], v1[1], #change in x and y 
+          head_width=0.1, color='black', length_includes_head=True) #aesthetics
 
-plot_nullclines(ax)
+#stretched vector
+plt.arrow(0, 0, #starting x and y values of arrow
+          v2[0], v2[1], #change in x and y 
+          head_width=0.1, color='red', length_includes_head=True) #aesthetics
+
+plt.xlim(0,2.5) #set bounds on x axis
+plt.ylim(0,2.5) #set bounds on y axis
 plt.show()
 </pre>
 
 
     
-![png](lecture-06_files/lecture-06_13_0.png)
+![png](lecture-06_files/lecture-06_8_0.png)
     
 
 
-The null clines (blue for $n_1$ and orange for $n_2$) help us understand the dynamics. In each area bounded by null clines the vectors point in the same general direction (eg, in the top right area they point down and to the left). This helps us see where the dynamics are heading -- in this case most initial conditions head to the intersection of the non-zero null clines for $n_1$ and $n_2$, near $n_1=700$ and $n_2=700$. Note that where the null cline of one variable intersects a null cline of the other variable neither variable is changing, indicating **equilibria**.
+Multiplying vectors and matrices together is a bit trickier, but is based on the fact that a row vector times a column vector is equal to the sum of the products of their respective entries
 
-We can also make phase diagrams for continuous-time models, just using differential equations in place of difference equations.
+$$
+\begin{equation*}
+\begin{pmatrix} a & b & c \end{pmatrix}
+\begin{pmatrix}
+  x \\
+  y \\
+  z
+\end{pmatrix}
+= ax + by + cz
+\end{equation*}
+$$
 
-We’ll see an example of that for another model, of predator and prey, in Lab 3.
+This is referred to as the **dot product**. (There are other types of products for vectors and matrices, which we won't cover in this class.)
+
+To multiply a matrix by a vector, this procedure is repeated: first for the first row of the matrix, then for the second row of the matrix, etc, and stacking the sums in the resulting vector,
+
+$$
+\begin{equation*}
+\begin{pmatrix}
+  a & b & c \\
+  d & e & f \\
+  g & h & i
+\end{pmatrix}
+\begin{pmatrix}
+  x \\
+  y \\
+  z
+\end{pmatrix}
+=
+\begin{pmatrix}
+  ax + by + cz \\
+  dx + ey + fz \\
+  gx + hy + iz \\
+\end{pmatrix}
+\end{equation*}
+$$
+
+Geometrically, multiplying a vector by a matrix stretches *and* rotates a vector. Below we multiply the black vector by a matrix to get the red vector.
+
+
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt #import plotting library
+from sympy import *
+
+v = Matrix([[2],[1]]) #column vector
+M = Matrix([[1,-1],[1,1/4]]) #matrix
+u = M*v
+
+#original vector
+plt.arrow(0, 0, #starting x and y values of arrow
+          float(v[0]), float(v[1]), #change in x and y 
+          head_width=0.1, color='black', length_includes_head=True) #aesthetics
+
+#stretched and rotated vector
+plt.arrow(0, 0, #starting x and y values of arrow
+          float(u[0]), float(u[1]), #change in x and y 
+          head_width=0.1, color='red', length_includes_head=True) #aesthetics
+
+plt.xlim(0,2.5) #set bounds on x axis
+plt.ylim(0,2.5) #set bounds on y axis
+plt.show()
+</pre>
+
+
+    
+![png](lecture-06_files/lecture-06_10_0.png)
+    
+
+
+To multiply a matrix by a matrix, the same procedure is then also repeated acros the columns of the second matrix: first for the first column of the second matrix, then for the second column of the second matrix, etc, and placing the sums in their respective rows and columns of the resulting matrix,
+
+$$
+\begin{equation*}
+\begin{pmatrix}
+  a & b \\
+  c & d
+\end{pmatrix}
+\begin{pmatrix}
+  e & f \\
+  g & h
+\end{pmatrix}
+=
+\begin{pmatrix}
+  ae + bg & af + bh \\
+  ce + dg & cf + dh
+\end{pmatrix}
+\end{equation*}
+$$
+
+!!! warning 
+
+    An $m \times n$ matrix (or vector) $\mathbf{A}$ can be multiplied on the right by $\mathbf{B}$ *only* if $\mathbf{B}$ is an $n \times p$ matrix (or vector). The resulting matrix (or vector) will then be $m \times p$. 
+
+As opposed to basic algebra, matrix multiplication is *not* commutative. That is, $\mathbf{AB}$ does not generally equal $\mathbf{BA}$.
+
+This means that if we want to multiply both sides of an equation, e.g., $\mathbf{AB} = \mathbf{C}$, by $\mathbf{D}$, we need to do so on the same side, either multiplying by $\mathbf{D}$ on the right $\mathbf{ABD} = \mathbf{CD}$ or on the left $\mathbf{DAB} = \mathbf{DC}$. 
+
+On the other hand, matrix multiplication does satisfy the other basic algebra rules:
+
+- $(\mathbf{AB})\mathbf{C} = \mathbf{A}(\mathbf{BC})$ (associative law)
+- $\mathbf{A}(\mathbf{B+C}) = \mathbf{AB}+\mathbf{AC}$ (distributive law)
+- $(\mathbf{A}+\mathbf{B})\mathbf{C} = \mathbf{AC}+\mathbf{BC}$ (distributive law)
+- $\alpha(\mathbf{AB}) = (\alpha\mathbf{A})\mathbf{B} = \mathbf{A}(\alpha\mathbf{B}) = (\mathbf{A}\mathbf{B})\alpha$ (commutative law for scalars)
+
+Multiplication between the identity matrix and any vector, $\vec{v}$, or square matrix, $\mathbf{M}$, has no effect (the identity matrix is like a "1" in basic algebra),
+
+$$
+\mathbf{I}\vec{v}=\vec{v}
+$$
+
+$$
+\mathbf{I}\mathbf{M}=\mathbf{M}\mathbf{I}=\mathbf{M}
+$$
+
+<span id='section6'></span>
+## 6. Summary
+<hr>
+
+We can represent linear multivariate models in terms of matrices and vectors that are added and multiplied together.
+
+You can now check for yourself that the matrix version of the bird model
+
+$$
+\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n} + \vec{m},
+$$
+
+with 
+
+$$
+\begin{aligned}
+\vec{n} &= \begin{pmatrix} n_1 \\ n_2 \end{pmatrix}\\
+\mathbf{M} &= \begin{pmatrix} b_1 - d_1 - m_{12} & m_{21} \\ m_{12} & b_2 - d_2 - m_{21} \end{pmatrix}\\
+\vec{m} &= \begin{pmatrix} m_1 \\ m_2 \end{pmatrix},
+\end{aligned}
+$$
+
+is equivalent to the coupled differential equation version,
+
+$$
+\begin{aligned}
+\frac{\mathrm{d}n_1}{\mathrm{d}t} &= (b_1 - d_1 - m_{12})n_1 + m_{21} n_2 + m_1 \\
+\frac{\mathrm{d}n_1}{\mathrm{d}t} &= m_{12} n_1 + (b_2 - d_2 - m_{21})n_2 + m_1,
+\end{aligned}
+$$
+
+by evaluating $\mathbf{M}\vec{n} + \vec{m}$.
+
+Practice questions from the textbook: Exercises P2.1-P2.5.

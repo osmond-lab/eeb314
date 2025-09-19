@@ -7,7 +7,7 @@ Under construction for Fall 2025 edition. Labs will be updated as we go.
 | 1 | [Building recursion equations](tutorial-01.md) | [Introduction to Jupyter, Python, and SymPy](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-01.ipynb) | 
 | 2 | [Solving for equilibria](tutorial-02.md) | [Simulating recursion equations](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-02.ipynb) | 
 | 3 | [Determining local stability](tutorial-03.md) | [Finding general solutions](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-03.ipynb) | 
-| 4 | tbd | Vectors and matrices | 
+| 4 | [Phase planes](tutorial-04.md) | [Vectors and matrices](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-04.ipynb) | 
 | 5 | tbd | Eigenvalues, eigenvectors, and linear multivariate solutions | 
 | 6 | tbd | Demography | 
 | 7 | tbd | Phase planes | 

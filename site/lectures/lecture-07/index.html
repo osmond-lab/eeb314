@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../lecture-06/">
+      
+      
+        <link rel="next" href="../../labs/schedule/">
       
       
       <link rel="icon" href="../../images/favicon_non_transparent.svg">
@@ -16,7 +20,7 @@
     
     
       
-        <title>Lecture 07 - Mathematical modelling in ecology and evolution (EEB314)</title>
+        <title>Lecture 7 - Mathematical modelling in ecology and evolution (EEB314)</title>
       
     
     
@@ -81,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lecture-7-equilibria" class="md-skip">
+        <a href="#lecture-7-finding-equilibria-in-linear-multivariate-models" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Lecture 07
+              Lecture 7
             
           </span>
         </div>
@@ -236,10 +240,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../schedule/" class="md-tabs__link">
           
   
@@ -508,12 +514,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../syllabus/exams/" class="md-nav__link">
+      <a href="../../syllabus/previous_tests/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Exams
+    Previous Tests
     
   </span>
   
@@ -581,24 +587,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -611,7 +622,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Lectures
@@ -751,6 +762,163 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lecture 7
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 7
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lecture overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Motivation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-matrix-inversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Matrix inversion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Matrix inversion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#determinant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determinant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inverting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inverting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-solving-for-equilibrium" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Solving for equilibrium
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -896,6 +1064,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorial 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -961,37 +1152,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-equilibria" class="md-nav__link">
+  <a href="#1-motivation" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Equilibria
+      1. Motivation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-exponential-growth" class="md-nav__link">
+  <a href="#2-matrix-inversion" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Exponential growth
+      2. Matrix inversion
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Exponential growth">
+    <nav class="md-nav" aria-label="2. Matrix inversion">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#discrete-time" class="md-nav__link">
+  <a href="#determinant" class="md-nav__link">
     <span class="md-ellipsis">
-      Discrete time
+      Determinant
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#continuous-time" class="md-nav__link">
+  <a href="#inverting" class="md-nav__link">
     <span class="md-ellipsis">
-      Continuous time
+      Inverting
     </span>
   </a>
   
@@ -1003,99 +1194,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-logistic-growth" class="md-nav__link">
+  <a href="#3-solving-for-equilibrium" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Logistic growth
+      3. Solving for equilibrium
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="3. Logistic growth">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#discrete-time_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Discrete time
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#continuous-time_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Continuous time
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-haploid-selection" class="md-nav__link">
+  <a href="#4-summary" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Haploid selection
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Haploid selection">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#discrete-time_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Discrete time
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#continuous-time_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Continuous time
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-diploid-selection" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Diploid selection
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Diploid selection">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#discrete-time_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Discrete time
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Summary
+      4. Summary
     </span>
   </a>
   
@@ -1130,7 +1240,7 @@
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
-<h1 id="lecture-7-equilibria">Lecture 7: Equilibria</h1>
+<h1 id="lecture-7-finding-equilibria-in-linear-multivariate-models">Lecture 7: Finding equilibria in linear multivariate models</h1>
 <hr style="margin-bottom: 0em;">
 <center>
 <div class="inrow">
@@ -1143,286 +1253,261 @@
 
 <h2 id="lecture-overview">Lecture overview</h2>
 <ol>
-<li><a href="#section1">Equilibria</a></li>
-<li><a href="#section2">Exponential growth</a></li>
-<li><a href="#section3">Logistic growth</a></li>
-<li><a href="#section4">Haploid selection</a></li>
-<li><a href="#section5">Diploid selection</a></li>
-<li><a href="#section6">Summary</a></li>
+<li><a href="#section1">Motivation</a></li>
+<li><a href="#section2">Matrix inversion</a></li>
+<li><a href="#section3">Solving for equilibrium</a></li>
+<li><a href="#section4">Summary</a></li>
 </ol>
 <p><span id='section1'></span></p>
-<h2 id="1-equilibria">1. Equilibria</h2>
+<h2 id="1-motivation">1. Motivation</h2>
 <hr>
 
-<p>An <strong>equilibrium</strong> is any state of a system which tends to persist unchanged over time.</p>
-<p>For <em>discrete-time</em> models, the equilibria are defined as those values of the variables where no changes occur from one time step to the next. </p>
-<p>For example, those values of allele frequency <span class="arithmatex">\(p(t)\)</span> where</p>
+<p>We now know that we can represent our linear multivariate model for the number of birds on two islands in matrix form,</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n} + \vec{m},
+\]</div>
+<p>where </p>
 <div class="arithmatex">\[
 \begin{aligned}
-\Delta p &amp;= 0\\
-p(t+1) - p(t) &amp;= 0\\
-p(t+1) &amp;= p(t)
+\vec{n} &amp;= \begin{pmatrix} n_1 \\ n_2 \end{pmatrix}\\
+\mathbf{M} &amp;= \begin{pmatrix} b_1 - d_1 - m_{12} &amp; m_{21} \\ m_{12} &amp; b_2 - d_2 - m_{21} \end{pmatrix}\\
+\vec{m} &amp;= \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}.
 \end{aligned}
 \]</div>
-<p>Similarly, for <em>continuous-time</em> models, the equilibria are defined as those values of the variables for which the rate of change in the variables equals zero. </p>
-<p>For example, those values of allele frequency <span class="arithmatex">\(p(t)\)</span> where</p>
-<div class="arithmatex">\[
-\frac{\mathrm{d}p}{\mathrm{d}t} = 0
-\]</div>
-<p>What are the equilibria for the following models?</p>
-<table>
-<thead>
-<tr>
-<th>Model</th>
-<th>Discrete time</th>
-<th>Continous time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Exponential growth</td>
-<td><span class="arithmatex">\(n(t+1) = R n(t)\)</span></td>
-<td><span class="arithmatex">\(\frac{\mathrm{d}n}{\mathrm{d}t} = r n(t)\)</span></td>
-</tr>
-<tr>
-<td>Logistic growth</td>
-<td><span class="arithmatex">\(n(t+1) = (1 + r(1 - \frac{n(t)}{K}))n(t)\)</span></td>
-<td><span class="arithmatex">\(\frac{\mathrm{d}n}{\mathrm{d}t} = r(1 - \frac{n(t)}{K})n(t)\)</span></td>
-</tr>
-<tr>
-<td>Haploid selection</td>
-<td><span class="arithmatex">\(p(t+1) = \frac{W_A p(t)}{W_A p(t) + W_a q(t)}\)</span></td>
-<td><span class="arithmatex">\(\frac{\mathrm{d}p}{\mathrm{d}t} = s p(t)(1-p(t))\)</span></td>
-</tr>
-<tr>
-<td>Diploid selection</td>
-<td><span class="arithmatex">\(p(t+1) = \frac{p(t)^2W_{AA} + p(t) q(t)W_{Aa}}{p(t)^2W_{AA} + 2 p(t) q(t)W_{Aa} +  q(t)^2W_{aa}}\)</span></td>
-<td>Not derived</td>
-</tr>
-</tbody>
-</table>
+<p>Next we would like to solve for the equilibria. To do this we need to learn how to invert a matrix.</p>
 <p><span id='section2'></span></p>
-<h2 id="2-exponential-growth">2. Exponential growth</h2>
+<h2 id="2-matrix-inversion">2. Matrix inversion</h2>
 <hr>
 
-<p>Here, we will solve for the equilibria in both the discrete- and continuous-time exponential-growth models.</p>
-<h3 id="discrete-time">Discrete time</h3>
+<p>In the last lecture we discussed matrix addition and multiplication. We did not yet discuss division. In fact, for matrices, there is no such thing as division. The analogy is the <strong>inverse</strong>.</p>
+<p>A square <span class="arithmatex">\(m\times m\)</span> matrix <span class="arithmatex">\(\mathbf{M}\)</span> is <strong>invertible</strong> if it may be multiplied by another matrix to get the identity matrix.  We call this second matrix, <span class="arithmatex">\(\mathbf{M}^{-1}\)</span> the <strong>inverse</strong> of the first,</p>
 <div class="arithmatex">\[
-n(t+1) = Rn(t)
+\mathbf{M}\mathbf{M}^{-1} = \mathbf{I} = \mathbf{M}^{-1}\mathbf{M}.
 \]</div>
-<p>Set <span class="arithmatex">\(n(t+1) = n(t) = \hat n\)</span> and solve for <span class="arithmatex">\(\hat{n}\)</span></p>
+<p>Geometrically, the inverse reverses the stretching and rotating that the original matrix does to a vector,</p>
+<div class="arithmatex">\[
+\mathbf{M}^{-1}(\mathbf{M}\vec{v}) = (\mathbf{M}^{-1}\mathbf{M})\vec{v} = \mathbf{I}\vec{v} = \vec{v}.
+\]</div>
+<p>There are rules to find the inverse of a matrix when it is invertible. To know if a matrix is invertible we can calculate the determinant.</p>
+<h3 id="determinant">Determinant</h3>
+<p>The <strong>determinant</strong> of a <span class="arithmatex">\(2 \times 2\)</span> matrix is</p>
+<div class="arithmatex">\[
+\begin{equation*}
+\text{Det}\left(
+\begin{pmatrix}
+  a &amp; b \\
+  c &amp; d
+\end{pmatrix}\right)
+=
+\begin{vmatrix}
+  a &amp; b\\
+  c &amp; d
+\end{vmatrix}
+=ad-bc.
+\end{equation*}
+\]</div>
+<p>The determinant of an <span class="arithmatex">\(n \times n\)</span> matrix can be obtained by working along the first row, multiplying the first element of the first row by the determinant of the matrix created by deleting the first row and first column <em>minus</em> the second element of the first row times the determinant of the matrix created by deleting the first row and second column <em>plus</em> the third element... and so on,</p>
+<div class="arithmatex">\[
+\begin{vmatrix}
+\mathbf{M}
+\end{vmatrix}
+= \sum_{j=1}^n (-1)^{j+1} m_{1j}
+\begin{vmatrix}
+\mathbf{M}_{1j}
+\end{vmatrix},
+\]</div>
+<p>where <span class="arithmatex">\(m_{ij}\)</span> is the element in the <span class="arithmatex">\(i^{\mathrm{th}}\)</span> row and <span class="arithmatex">\(j^{\mathrm{th}}\)</span> column and <span class="arithmatex">\(\mathbf{M}_{ij}\)</span> is the matrix <span class="arithmatex">\(\mathbf{M}\)</span> with the <span class="arithmatex">\(i^{\mathrm{th}}\)</span> row and the <span class="arithmatex">\(j^{\mathrm{th}}\)</span> column deleted.</p>
+<p>More generally, we can move along any row <span class="arithmatex">\(i\)</span>,</p>
+<div class="arithmatex">\[
+|\mathbf{M}| = (-1)^{i+1}\sum_{j=1}^{n}(-1)^{j+1}m_{ij}  |\mathbf{M_{ij}}|,
+\]</div>
+<p>or any column <span class="arithmatex">\(j\)</span>,</p>
+<div class="arithmatex">\[
+|\mathbf{M}| = (-1)^{j+1}\sum_{i=1}^{n}(-1)^{i+1}m_{ij}  |\mathbf{M_{ij}}|.
+\]</div>
+<p>A few useful rules emerge from this:</p>
+<ul>
+<li>the determinant of a matrix is the same as the determinant of its transpose, <span class="arithmatex">\(|\mathbf{M}| = |\mathbf{M}^\intercal|\)</span>,</li>
+<li>the determinant of a diagonal or triangular matrix is the product of the diagonal elements, <span class="arithmatex">\(|\mathbf{M}| = \prod_{i=1}^n m_{ii} = m_{11}m_{22}\cdots m_{nn}\)</span>,</li>
+<li>the determinant of a block-diagonal or -triangular matrix is the product of the determinants of the diagonal submatrices.</li>
+</ul>
+<p>It also suggests that rows or columns with lots of zeros are very helpful when calculating the determinant, for example,</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\hat n &amp;= R\hat n\\
-\hat n &amp;= 0
+\begin{vmatrix}
+  m_{11} &amp; 0 &amp; 0 \\
+  m_{21} &amp; m_{22} &amp; m_{23} \\
+  m_{31} &amp; m_{32} &amp; m_{33} \\
+\end{vmatrix}
+= 
+m_{11} 
+\begin{vmatrix}
+  m_{22} &amp; m_{23} \\
+  m_{32} &amp; m_{33} \\
+\end{vmatrix}.
 \end{aligned}
 \]</div>
-<h3 id="continuous-time">Continuous time</h3>
+<p>Now, why does the determinant tell us anything about whether a matrix is invertible? Well, when the determinant is zero, <span class="arithmatex">\(|\mathbf{M}|=0\)</span>, it means that the rows are not linearly independent, that is, some row <span class="arithmatex">\(\vec{r}_k\)</span> can be written as <span class="arithmatex">\(a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n\)</span>, where the <span class="arithmatex">\(a_i\)</span> are scalars. As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information, and therefore cannot reverse the operation. This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of reversing the operation to know what the original numbers were. So, a matrix is invertible only if it has a nonzero determinant, <span class="arithmatex">\(|\mathbf{M}|\neq0\)</span>. Matrices that are not invertible are called <strong>singular</strong>.</p>
+<p>Geometrically, mutliplying multiple vectors by a matrix whose deteriminant is zero causes them to fall along a line. Below we multiply the two black vectors by a matrix whose determinant is zero to get the two red vectors, which fall along the same line.</p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt #import plotting library
+from sympy import *
+
+v1 = Matrix([[2],[1]]) #column vector 1
+v2 = Matrix([[1],[1]]) #column vector 2
+M = Matrix([[1/2,1],[1,2]]) #matrix with determinant of zero
+
+#original vectors
+for v in [v1,v2]:
+    plt.arrow(0, 0, #starting x and y values of arrow
+              float(v[0]), float(v[1]), #change in x and y 
+              head_width=0.1, color='black', length_includes_head=True) #aesthetics
+
+#stretched and rotated vectors
+for v in [M*v1,M*v2]:
+    plt.arrow(0, 0, #starting x and y values of arrow
+              float(v[0]), float(v[1]), #change in x and y 
+              head_width=0.1, color='red', length_includes_head=True) #aesthetics
+
+plt.xlim(0,5) #set bounds on x axis
+plt.ylim(0,5) #set bounds on y axis
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-07_files/lecture-07_2_0.png" /></p>
+<h3 id="inverting">Inverting</h3>
+<p>Now back to how to find the inverse of a matrix.</p>
+<p>For an invertible 2x2 matrix we do the following</p>
 <div class="arithmatex">\[
-\frac{\mathrm{d}n}{\mathrm{d}t} = r n(t)
+\begin{align}
+\mathbf{M}^{-1} 
+=&amp;\begin{pmatrix}
+  a &amp; b \\
+  c &amp; d
+\end{pmatrix}^{-1}\\
+&amp;=\frac{1}{\mathrm{Det}(\mathbf{M})}
+\begin{pmatrix}
+  d  &amp; -b \\
+  -c &amp; a
+\end{pmatrix}\\
+&amp;=
+\begin{pmatrix}
+  \frac{d}{ad-bc}  &amp; \frac{-b}{ad-bc} \\
+  \frac{-c}{ad-bc} &amp; \frac{a}{ad-bc}
+\end{pmatrix}
+\end{align}
 \]</div>
-<p>Set <span class="arithmatex">\(\mathrm{d}n/\mathrm{d}t = 0\)</span> and <span class="arithmatex">\(n(t) = \hat n\)</span> and solve for <span class="arithmatex">\(\hat n\)</span></p>
+<p>Larger matrices are more difficult to invert, except if they are diagonal, in which case we simply invert each of the diagonal elements,</p>
 <div class="arithmatex">\[
-\begin{aligned}
-0 &amp;= r \hat{n}\\
-\hat n &amp;= 0
-\end{aligned}
+\mathbf{M}^{-1} = 
+\begin{pmatrix}
+1/m_{11} &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; 1/m_{22} &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+0 &amp; 0 &amp; \cdots &amp; 1/m_{nn}
+\end{pmatrix}.
 \]</div>
-<p>So the only equilibrium in both discrete- and continuous-time exponential growth is extinction, <span class="arithmatex">\(\hat{n}=0\)</span>.</p>
-<div class="admonition note">
-<p class="admonition-title">Special case of parameters</p>
-<p>Notice above that <span class="arithmatex">\(R=1\)</span> and <span class="arithmatex">\(r=0\)</span> also satisfy the conditions for an equilibrium. These are called <strong>special cases of parameters</strong>. Here this refers to the case where individuals perfectly replace themselves so that the population remains constant from <em>any</em> starting value of <span class="arithmatex">\(n\)</span>.</p>
-</div>
 <p><span id='section3'></span></p>
-<h2 id="3-logistic-growth">3. Logistic growth</h2>
+<h2 id="3-solving-for-equilibrium">3. Solving for equilibrium</h2>
 <hr>
 
-<p>Here, we will solve for the equilibria in both the discrete- and continuous-time logistic-growth models.</p>
-<h3 id="discrete-time_1">Discrete time</h3>
+<p>OK, now let's return to our model of birds on islands,  </p>
 <div class="arithmatex">\[
-n(t+1) = \left(1 + r\left(1 - \frac{n(t)}{K}\right)\right)n(t)
+\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n} + \vec{m},
 \]</div>
-<p>As above, we substitute <span class="arithmatex">\(n(t+1) = n(t) = \hat n\)</span> and want to solve for <span class="arithmatex">\(\hat{n}\)</span>.</p>
+<p>and solve for the equilibria, <span class="arithmatex">\(\hat{\vec{n}}\)</span>. </p>
+<p>We do this by setting the rate of change to zero <span class="arithmatex">\(\frac{\mathrm{d}\vec{n}}{\mathrm{d}t}=0\)</span>, subtracting <span class="arithmatex">\(\vec{m}\)</span> from both sides, and multiplying by the inverse matrix <span class="arithmatex">\(\mathbf{M}^{-1}\)</span> on the left:</p>
 <div class="arithmatex">\[
-\hat n = \left(1 + r\left(1 - \frac{\hat n}{K}\right)\right)\hat{n} 
+\begin{align*}
+0 &amp;= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
+-\vec{m} &amp;= \mathbf{M}\hat{\vec{n}}\\
+-\mathbf{M}^{-1}\vec{m} &amp;= \mathbf{M}^{-1}\mathbf{M}\hat{\vec{n}}\\
+-\mathbf{M}^{-1}\vec{m} &amp;= \mathbf{I}\hat{\vec{n}}\\
+-\mathbf{M}^{-1}\vec{m} &amp;= \hat{\vec{n}}.
+\end{align*}
 \]</div>
-<p>Notice that one equilibrium is <span class="arithmatex">\(\hat n = 0\)</span>. However, this isn't the only equilibrium because dividing both sides by <span class="arithmatex">\(\hat n\)</span> results in</p>
+<p>We can write the lefthand side in terms of our parameters by calculating the inverse of this 2x2 matrix and multiplying by the vector</p>
 <div class="arithmatex">\[
-\begin{aligned}
-1 &amp;= 1 + r\left(1 - \frac{\hat n}{K}\right)\\
-0 &amp;= r\left(1 - \frac{\hat n}{K}\right)
-\end{aligned}
+\begin{align}
+\hat{\vec{n}} 
+&amp;=-\mathbf{M}^{-1}\vec{m}\\
+&amp;=-\frac{1}{|\mathbf{M}|}
+\begin{pmatrix} b_2 - d_2 - m_{21} &amp; -m_{21} \\ -m_{12} &amp; b_1 - d_1 - m_{12} \end{pmatrix}
+\begin{pmatrix} m_1 \\ m_2 \end{pmatrix}\\
+&amp;= -\frac{1}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \begin{pmatrix} (b_2 - d_2 - m_{21})m_1 -m_{21}m_2 \\ -m_{12}m_1 + (b_1 - d_1 - m_{12})m_2 \end{pmatrix}\\
+&amp;= \begin{pmatrix} -\frac{(b_2 - d_2 - m_{21})m_1 -m_{21}m_2}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \\ -\frac{-m_{12}m_1 + (b_1 - d_1 - m_{12})m_2}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \end{pmatrix}
+\end{align}
 \]</div>
-<p>Here we have a special case of parameters, <span class="arithmatex">\(r=0\)</span>, or</p>
+<p>Ta-da! Using linear algebra we solved for both equilibria, <span class="arithmatex">\(\hat{n}_1\)</span> and <span class="arithmatex">\(\hat{n}_2\)</span>, with a single equation. </p>
+<p>We can visualize this equilibrium as the intersection of the <strong>nullclines</strong>, which are the values of the variables that make the change in each variable zero. In this case we can solve for the nullclines in terms of <span class="arithmatex">\(n_2\)</span>,</p>
 <div class="arithmatex">\[
-\begin{aligned}
-0 &amp;= 1 - \frac{\hat n}{K}\\
-\hat n &amp;= K
-\end{aligned}
+\begin{align}
+\frac{\mathrm{d}n_1}{\mathrm{d}t} &amp;= 0\\
+(b_1 - d_1 - m_{12})n_1 + m_{21} n_2 + m_1 &amp;= 0\\
+m_{21} n_2 &amp;= -m_1 - (b_1 - d_1 - m_{12})n_1\\
+n_2 &amp;= \frac{-m_1 - (b_1 - d_1 - m_{12})n_1}{m_{21}}
+\end{align}
 \]</div>
-<p>There are therefore two equilibria: extinction, <span class="arithmatex">\(\hat{n}=0\)</span>, or carrying capacity, <span class="arithmatex">\(\hat{n}=K\)</span>.</p>
-<h3 id="continuous-time_1">Continuous time</h3>
+<p>and</p>
 <div class="arithmatex">\[
-\frac{\mathrm{d}n}{\mathrm{d}t} = r \left(1 - \frac{n}{K}\right)n
+\begin{align}
+\frac{\mathrm{d}n_2}{\mathrm{d}t} &amp;= 0\\
+(b_2 - d_2 - m_{21})n_2 + m_{12} n_1 + m_2 &amp;= 0\\
+(b_2 - d_2 - m_{21})n_2  &amp;= -m_{12} n_1 - m_2\\
+n_2  &amp;= \frac{-m_{12} n_1 - m_2}{b_2 - d_2 - m_{21}},
+\end{align}
 \]</div>
-<p>We set <span class="arithmatex">\(\mathrm{d}n/\mathrm{d}t=0\)</span> and <span class="arithmatex">\(n=\hat{n}\)</span></p>
-<div class="arithmatex">\[
-0 =  r \left(1 - \frac{\hat n}{K}\right)\hat{n}
-\]</div>
-<p>which is the same equation we had above in discrete-time, so the equilibria (<span class="arithmatex">\(\hat n = 0,K\)</span>) and the special case of parameters (<span class="arithmatex">\(r = 0\)</span>) are also the same.</p>
+<p>and plot them as functions of <span class="arithmatex">\(n_1\)</span>. Our predicted equilibrium correctly lands right on the intersection of the two nullclines.</p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt
+from sympy import *
+import numpy as np
+
+# define the variables
+n1, n2 = symbols('n1, n2')
+
+# Choose the parameter values
+b1, b2 = 1, 1
+d1, d2 = 1.1, 1.1
+m12, m21 = 0.05, 0.05
+m1, m2 = 5, 5
+
+# define differential equations
+dn1dt = (b1 - d1 - m12) * n1 + m21 * n2 + m1
+dn2dt = m12 * n1 + (b2 - d2 - m21) * n2 + m2
+
+# get the nullclines
+nullcline_1 = solve(Eq(dn1dt, 0),n2)[0]
+nullcline_2 = solve(Eq(dn2dt, 0),n2)[0]
+
+# plot
+n1s = np.linspace(0,100,100)
+plt.plot(n1s, [nullcline_1.subs(n1,i) for i in n1s], label='$n_1$ nullcline')
+plt.plot(n1s, [nullcline_2.subs(n1,i) for i in n1s], label='$n_2$ nullcline')
+
+# add predicted equilibrium
+n1eq = -((b2-d2-m21)*m1-m21*m2)/((b1-d1-m12)*(b2-d2-m21)-m21*m12)
+n2eq = -(-m12*m1+(b1-d1-m12)*m2)/((b1-d1-m12)*(b2-d2-m21)-m21*m12)
+plt.scatter(n1eq,n2eq, color='k', zorder=2, s=100, label='equilibrium')
+
+plt.xlabel('number of birds on island 1, $n_1$')
+plt.ylabel('number of birds on island 2, $n_2$')
+plt.xlim(0,100)
+plt.ylim(0,100)
+plt.legend()
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-07_files/lecture-07_5_0.png" /></p>
 <p><span id='section4'></span></p>
-<h2 id="4-haploid-selection">4. Haploid selection</h2>
+<h2 id="4-summary">4. Summary</h2>
 <hr>
 
-<p>Here, we will solve for the equilibria in both the discrete- and continuous-time haploid-selection models.</p>
-<h3 id="discrete-time_2">Discrete time</h3>
-<div class="arithmatex">\[
-p(t+1) = \frac{p(t)W_A}{p(t)W_A + q(t)W_a}
-\]</div>
-<p>Replace <span class="arithmatex">\(p(t+1)\)</span> and <span class="arithmatex">\(p(t)\)</span> with <span class="arithmatex">\(\hat p\)</span> and replace <span class="arithmatex">\(q(t)\)</span> with <span class="arithmatex">\(\hat q\)</span> and solve for <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(\hat q\)</span></p>
-<div class="arithmatex">\[
-\begin{aligned}
-\hat{p} &amp;= \frac{\hat p W_A}{\hat p W_A + \hat q W_a}\\
-\end{aligned}
-\]</div>
-<p>We first see that <span class="arithmatex">\(\hat{p}=0\)</span> is an equilibrium. But there is more, since dividing by <span class="arithmatex">\(\hat p\)</span> gives</p>
-<div class="arithmatex">\[
-\begin{aligned}
-1 &amp;= \frac{W_A}{\hat p W_A + \hat q W_a}\\
-\hat p W_A + \hat q W_a &amp;= W_A\\
-\hat q W_a &amp;= (1-\hat p) W_A
-\end{aligned}
-\]</div>
-<p>At this point we use <span class="arithmatex">\(q=1-p\)</span> to write this in terms of <span class="arithmatex">\(p\)</span> only</p>
-<div class="arithmatex">\[
-(1-\hat p) W_a = (1-\hat p) W_A
-\]</div>
-<p>So <span class="arithmatex">\(\hat p =1\)</span> is another equilibrium. </p>
-<p>And finally, dividing by <span class="arithmatex">\((1-\hat p)\)</span> gives a special case of parameters, <span class="arithmatex">\(W_A=W_a\)</span>.</p>
-<p>To summarize, the allele frequency will not change from one generation to the next in our discrete-time haploid-selection model when</p>
-<ul>
-<li><span class="arithmatex">\(\hat p = 0 \Longrightarrow\)</span> the population is "fixed" for the <span class="arithmatex">\(a\)</span> allele</li>
-<li><span class="arithmatex">\(\hat p = 1 \Longrightarrow\)</span> the population is fixed for the <span class="arithmatex">\(A\)</span> allele</li>
-<li><span class="arithmatex">\(W_A = W_a \Longrightarrow\)</span> the two alleles have equal fitness ("neutrality")</li>
-</ul>
-<h3 id="continuous-time_2">Continuous time</h3>
-<div class="arithmatex">\[
-\frac{\mathrm{d}p}{\mathrm{d}t} = sp(t)(1-p(t))
-\]</div>
-<p>In the continuous-time model, we set the derivative equal to zero and <span class="arithmatex">\(p(t)=\hat{p}\)</span></p>
-<div class="arithmatex">\[
-\begin{aligned}
-0 &amp;= s\hat p(1 -\hat p)
-\end{aligned}
-\]</div>
-<p>And we again find the same equilibria (<span class="arithmatex">\(\hat p=0,1\)</span>) and special case of parameters (<span class="arithmatex">\(s=0\)</span>, i.e., neutrality).</p>
-<p><span id='section5'></span></p>
-<h2 id="5-diploid-selection">5. Diploid selection</h2>
-<hr>
+<p>We can solve multivariate linear equations using matrix inversion, giving us a way to find equilibria when the matrix is invertible (ie, the determinant is nonzero). These equilibria are where the change in all variables is zero, i.e., where the nullclines for all variables intersect.</p>
+<p>Practice questions from the textbook: P2.6-P2.11.</p>
+<pre data-executable="true" data-language="python">
 
-<h3 id="discrete-time_3">Discrete time</h3>
-<p>Here, we will solve for the equilibria in the discrete-time diploid-selection model</p>
-<div class="arithmatex">\[
-p(t+1) = \frac{p(t)^2 W_{AA} + p(t)  q(t) W_{Aa}}{p(t)^2 W_{AA} + 2 p(t) q(t) W_{Aa} + q(t)^2 W_{aa}}
-\]</div>
-<p>We replace <span class="arithmatex">\(p(t+1)\)</span> and <span class="arithmatex">\(p(t)\)</span> with <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(q(t)\)</span> with <span class="arithmatex">\(\hat{q}\)</span> and solve for <span class="arithmatex">\(\hat p\)</span> and <span class="arithmatex">\(\hat q\)</span></p>
-<div class="arithmatex">\[
-\begin{aligned}
-\hat{p} &amp;= \frac{\hat{p}^2 W_{AA} + \hat{p} \hat{q} W_{Aa}}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}\\
-\hat{p} &amp;= \frac{\hat{p}(\hat p W_{AA} + \hat{q} W_{Aa})}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}
-\end{aligned}
-\]</div>
-<p>We see that <span class="arithmatex">\(\hat{p}=0\)</span> is one equilibrium. Moving on, dividing by <span class="arithmatex">\(\hat p\)</span> gives</p>
-<div class="arithmatex">\[
-\begin{aligned}
-1 &amp;= \frac{\hat p W_{AA} + \hat{q} W_{Aa}}{\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa}}\\
-\hat{p}^2 W_{AA} + 2 \hat{p} \hat{q} W_{Aa} + \hat{q}^2 W_{aa} &amp;= \hat p W_{AA} + \hat{q} W_{Aa}\\
-0 &amp;= (\hat{p} - \hat{p}^2) W_{AA} + (\hat{q} - 2 \hat{p} \hat{q}) W_{Aa} - \hat{q}^2 W_{aa}\\
-0 &amp;= \hat{p}(1 - \hat{p}) W_{AA} + \hat{q}(1 - 2 \hat{p}) W_{Aa} - \hat{q}^2 W_{aa}\\
-0 &amp;= \hat{q}(\hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - \hat{q} W_{aa})
-\end{aligned}
-\]</div>
-<p>And so <span class="arithmatex">\(\hat{q}=0\implies\hat{p}=1\)</span> is another equilibrium. Dividing by <span class="arithmatex">\(\hat{q}\)</span> and putting everything in terms of <span class="arithmatex">\(p\)</span> we have</p>
-<div class="arithmatex">\[
-\begin{aligned}
-0 &amp;= \hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - \hat{q} W_{aa}\\
-0 &amp;= \hat{p} W_{AA} + (1 - 2 \hat{p}) W_{Aa} - (1 - \hat{p}) W_{aa}\\
-0 &amp;= \hat{p}(W_{AA} -2W_{Aa} + W_{aa}) + W_{Aa} - W_{aa}\\
-W_{aa} - W_{Aa} &amp;= \hat p(W_{AA} -2W_{Aa} + W_{aa})\\
-\frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}} &amp;= \hat p\\
-\end{aligned}
-\]</div>
-<p>We therefore have <em>three</em> equilibria under diploid selection: <span class="arithmatex">\(\hat{p}=0,\frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}},1\)</span>.</p>
-<p>Since a frequency is bounded between 0 and 1, we must have <span class="arithmatex">\(0 \leq p \leq 1\)</span>. We therefore call <span class="arithmatex">\(\hat{p}=0\)</span> and <span class="arithmatex">\(\hat{p}=1\)</span> <strong>boundary equilibria</strong>.</p>
-<p>These bounds also imply the third equilibrium is only <strong>biologically valid</strong> when </p>
-<div class="arithmatex">\[
-0 \leq \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} \leq 1
-\]</div>
-<p>When <span class="arithmatex">\(W_{Aa} = W_{aa}\)</span> this equilibrium reduces to <span class="arithmatex">\(\hat{p}=0\)</span> and when <span class="arithmatex">\(W_{Aa} = W_{AA}\)</span> this reduces to <span class="arithmatex">\(\hat{p}=1\)</span> (check this for yourself).</p>
-<p>The third equilibrium will be an <strong>internal equilibrium</strong>, representing a population with both <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(a\)</span> alleles, when</p>
-<div class="arithmatex">\[
-0 &lt; \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &lt; 1
-\]</div>
-<p>The equilibrium is positive when the numerator and denominator have the same sign (i.e., are both positive or both negative).</p>
-<p>Let's split this into two "cases". Case A will have a positive numerator, <span class="arithmatex">\(W_{Aa} &gt; W_{aa}\)</span>, and Case B will have a negative numerator, <span class="arithmatex">\(W_{Aa} &lt; W_{aa}\)</span>.</p>
-<p>So, in Case A, the equilibrium is positive when the denominator is positive, <span class="arithmatex">\(2 W_{Aa} - W_{AA} - W_{aa} &gt; 0\)</span>.</p>
-<p>While in case B the equilibrium is positive when the denominator is negative, <span class="arithmatex">\(2 W_{Aa} - W_{AA} - W_{aa} &lt; 0\)</span>.</p>
-<p>Now we can rearrange the equilibrium to show that it is less than 1 when</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&lt; 1\\
-\frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} - 1 &amp;&lt; 0\\
-\frac{W_{Aa} - W_{aa} - (2 W_{Aa} -W_{AA} - W_{aa})}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&lt; 0\\
-\frac{W_{AA} - W_{Aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&lt; 0\\
-\frac{W_{Aa} - W_{AA}}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&gt; 0\\
-\end{aligned}
-\]</div>
-<p>Again we need the numerator and denominator to have the same sign for this inequality to hold.</p>
-<p>In case A, where we've said that denominator is positive, this means we also need the numerator to be positive, <span class="arithmatex">\(W_{Aa} &gt; W_{AA}\)</span>.</p>
-<p>While in case B we said that the denominator is negative, so we also need the numerator to be negative, <span class="arithmatex">\(W_{Aa} &lt; W_{AA}\)</span>.</p>
-<p>Putting this all together, there is a biologically-relevant internal equilibrium when either</p>
-<ul>
-<li>Case A: <span class="arithmatex">\(W_{Aa} &gt; W_{aa}\)</span> and <span class="arithmatex">\(W_{Aa} &gt; W_{AA}\)</span> (which ensures <span class="arithmatex">\(2 W_{Aa} - W_{AA} - W_{aa} &gt; 0\)</span>; go ahead and check!)</li>
-<li>Case B: <span class="arithmatex">\(W_{Aa} &lt; W_{aa}\)</span> and <span class="arithmatex">\(W_{Aa} &lt; W_{AA}\)</span>  (which ensures <span class="arithmatex">\(2 W_{Aa} - W_{AA} - W_{aa} &lt; 0\)</span>)</li>
-</ul>
-<p>Case A therefore represents "heterozygote advantage", <span class="arithmatex">\(W_{AA} &lt; W_{Aa} &gt; W_{aa}\)</span>, while Case B represents "heterozygote disadvantage", <span class="arithmatex">\(W_{AA} &gt; W_{Aa} &lt; W_{aa}\)</span>. </p>
-<p><span id='section6'></span></p>
-<h2 id="6-summary">6. Summary</h2>
-<hr>
-
-<p>In summary, the equilibria for the models we have looked at are:</p>
-<table>
-<thead>
-<tr>
-<th>Model</th>
-<th>Discrete-time equilibria</th>
-<th>Continuous-time equilibria</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Exponential growth</td>
-<td><span class="arithmatex">\(\hat n = 0\)</span></td>
-<td><span class="arithmatex">\(\hat n = 0\)</span></td>
-</tr>
-<tr>
-<td>Logistic growth</td>
-<td><span class="arithmatex">\(\hat n = 0, \hat n = K\)</span></td>
-<td><span class="arithmatex">\(\hat n = 0, \hat n = K\)</span></td>
-</tr>
-<tr>
-<td>Haploid selection</td>
-<td><span class="arithmatex">\(\hat p = 0, \hat p = 1\)</span></td>
-<td><span class="arithmatex">\(\hat p = 0, \hat p = 1\)</span></td>
-</tr>
-<tr>
-<td>Diploid selection</td>
-<td><span class="arithmatex">\(\hat p = 0, \hat p = 1, \hat p = \frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}}\)</span></td>
-<td>Not derived</td>
-</tr>
-</tbody>
-</table>
-<p>Make sure that you understand how to determine equilibria in discrete- and continuous-time and can derive the equilibria of the models above on your own.</p>
+</pre>
 
 
 
