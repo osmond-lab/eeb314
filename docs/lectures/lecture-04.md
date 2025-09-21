@@ -71,7 +71,7 @@ $$
 
 Now, to work with this infinite series we will make an assumption, that we are very the equilibrium, meaning the deviation is small, $\epsilon<<1$. This means that $\epsilon^2$ is even smaller, and $\epsilon^3$ even smaller than that, and so on. By considering small $\epsilon$ we can therefore cut-off our infinite series by ignoring any term with $\epsilon$ to a power greater than 1. This is called a "first order" Taylor series approximation of $f$ around $\epsilon=0$. This assumption is what limits us to determining only *local* stability. Global stability would require us to consider large deviations from the equilibrium as well, which is not possible for even mildly complicated functions, $f$.
 
-Keeping the first order term only, we can solve for the new deviation from the equilibrium, $\epsilon(t+1) = \hat x - x(t+1)$,
+Keeping the first order term only, we can solve for the new deviation from the equilibrium, $\epsilon(t+1) = x(t+1) - \hat x$,
 
 $$
 \begin{aligned}

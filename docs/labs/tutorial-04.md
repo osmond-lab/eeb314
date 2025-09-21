@@ -196,4 +196,48 @@ Here $n_i$ is the number of individuals of species $i$, $r_i$ is the intrinsic g
 
 Solve for the nullclines. 
 
-If you have time try drawing (or plotting) these for a given set of parameter values and indicating where the equilibria are. You can also try determining the direction of movement in each section.
+Below is a phase plane with the nullclines plotted. Where are the equilibria? Determine the direction of movement in each section by starting in the top right, where $n_1$ and $n_2$ are much larger than $K_1$ and $K_2$. Which equilibrium appears to be stable?
+
+
+<pre data-executable="true" data-language="python">
+# variables
+n1, n2 = symbols('n1, n2')
+
+# parameter values
+r1, r2 = 0.5, 0.5
+k1, k2 = 1000, 1000
+a12, a21 = 0.5, 0.5
+
+# differential equations
+dn1 = r1 * n1 * (1 - (n1 + a12 * n2) / k1)
+dn2 = r2 * n2 * (1 - (n2 + a21 * n1) / k2)
+
+# find nullclines
+nullcline_1 = solve(Eq(dn1, 0),n1)
+nullcline_2 = solve(Eq(dn2, 0),n2)
+
+fig, ax = plt.subplots()
+
+nmax = 2000
+xrange, yrange = np.linspace(0, nmax, 100), np.linspace(0, nmax, 100)
+for cline in nullcline_1:
+    ax.plot([cline.subs(n2,i) for i in yrange], yrange, color=plt.cm.tab10(0), label='$n_1$')
+for cline in nullcline_2:
+    ax.plot(xrange, [cline.subs(n1,i) for i in xrange], color=plt.cm.tab10(1), label='$n_2$')
+
+plt.xlabel('$n_1$')
+plt.ylabel('$n_2$')
+plt.legend()
+plt.show()
+</pre>
+
+
+    
+![png](tutorial-04_files/tutorial-04_7_0.png)
+    
+
+
+
+<pre data-executable="true" data-language="python">
+
+</pre>
