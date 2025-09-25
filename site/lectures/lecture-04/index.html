@@ -1250,7 +1250,7 @@ x(t+1) &amp;= f(\hat{x} + \epsilon(t))\\
 \end{aligned}
 \]</div>
 <p>Now, to work with this infinite series we will make an assumption, that we are very the equilibrium, meaning the deviation is small, <span class="arithmatex">\(\epsilon&lt;&lt;1\)</span>. This means that <span class="arithmatex">\(\epsilon^2\)</span> is even smaller, and <span class="arithmatex">\(\epsilon^3\)</span> even smaller than that, and so on. By considering small <span class="arithmatex">\(\epsilon\)</span> we can therefore cut-off our infinite series by ignoring any term with <span class="arithmatex">\(\epsilon\)</span> to a power greater than 1. This is called a "first order" Taylor series approximation of <span class="arithmatex">\(f\)</span> around <span class="arithmatex">\(\epsilon=0\)</span>. This assumption is what limits us to determining only <em>local</em> stability. Global stability would require us to consider large deviations from the equilibrium as well, which is not possible for even mildly complicated functions, <span class="arithmatex">\(f\)</span>.</p>
-<p>Keeping the first order term only, we can solve for the new deviation from the equilibrium, <span class="arithmatex">\(\epsilon(t+1) = \hat x - x(t+1)\)</span>,</p>
+<p>Keeping the first order term only, we can solve for the new deviation from the equilibrium, <span class="arithmatex">\(\epsilon(t+1) = x(t+1) - \hat x\)</span>,</p>
 <div class="arithmatex">\[
 \begin{aligned}
 x(t+1) &amp;= f(\hat{x}) + f^{(1)}(\hat{x})\epsilon(t)\\

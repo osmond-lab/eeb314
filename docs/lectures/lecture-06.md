@@ -41,7 +41,7 @@ Until now, we have been dealing with problems in a single variable changing over
   
 Often, dynamical systems involve more than one variable (ie, they are **multivariate**). For instance, we may be interested in how the numbers of two species change as they interact (e.g., compete) with one another.
 
-As an introductory example with more than one variable, consider a model tracking the number of birds on two islands. Let the number of birds on island 1 be $n_1$ and let the number of birds on island 2 be $n_2$. We assume the birds migrate between the islands at per capita rates $m_{12}$ and $m_{21}$, the birds on each island give birth at per capita rates $b_1$ and $b_2$, the birds on each island die at per capita rates $d_1$ and $d_2$, and new birds arrive on each island at rates $m_1$ and $m_2$. This is captured in the following flow diagram
+As an introductory example with more than one variable, consider a model tracking the number of birds on two islands. Let the number of birds on island 1 be $n_1$ and let the number of birds on island 2 be $n_2$. We assume the birds migrate from island $j$ to island $i$ at per capita rate $m_{ij}$, the birds on each island give birth at per capita rates $b_1$ and $b_2$, the birds on each island die at per capita rates $d_1$ and $d_2$, and new birds arrive on each island at rates $m_1$ and $m_2$. This is captured in the following flow diagram
 
 <center>
 ```mermaid
@@ -49,14 +49,11 @@ graph LR;
     A1((n1)) --b1 n1--> A1;
     B1[ ] --m1--> A1;
     A1 --d1 n1--> C1[ ];
-
     A2((n2)) --b2 n2--> A2;
     B2[ ] --m2--> A2;
     A2 --d2 n2--> C2[ ];
-
-    A1 --m12 n1--> A2;
-    A2 --m21 n2--> A1;
-
+    A1 --m21 n1--> A2;
+    A2 --m12 n2--> A1;
     style B1 height:0px;
     style C1 height:0px;
     style B2 height:0px;
@@ -68,8 +65,8 @@ The rate of change in $n_1$ and $n_2$ are then described by the following system
 
 $$
 \begin{aligned}
-\frac{\mathrm{d}n_1}{\mathrm{d}t} &= (b_1 - d_1 - m_{12})n_1 + m_{21} n_2 + m_1 \\
-\frac{\mathrm{d}n_1}{\mathrm{d}t} &= m_{12} n_1 + (b_2 - d_2 - m_{21})n_2 + m_1
+\frac{\mathrm{d}n_1}{\mathrm{d}t} &= (b_1 - d_1 - m_{21})n_1 + m_{12} n_2 + m_1 \\
+\frac{\mathrm{d}n_2}{\mathrm{d}t} &= m_{21} n_1 + (b_2 - d_2 - m_{12})n_2 + m_2
 \end{aligned}
 $$
 
@@ -80,7 +77,7 @@ Linear systems of equations like these can also be written in **matrix form**
 $$
 \begin{aligned}
 \begin{pmatrix} \frac{\mathrm{d}n_1}{\mathrm{d}t} \\ \frac{\mathrm{d}n_2}{\mathrm{d}t} \end{pmatrix} 
-&= \begin{pmatrix} b_1 - d_1 - m_{12} & m_{21} \\ m_{12} & b_2 - d_2 - m_{21} \end{pmatrix}
+&= \begin{pmatrix} b_1 - d_1 - m_{21} & m_{12} \\ m_{21} & b_2 - d_2 - m_{12} \end{pmatrix}
 \begin{pmatrix} n_1 \\ n_2 \end{pmatrix} 
 + \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}\\
 \frac{\mathrm{d}\vec{n}}{\mathrm{d}t} &= \mathbf{M}\vec{n} + \vec{m}
@@ -133,6 +130,36 @@ A **row vector** has elements arranged from left to right
 
 $$
 \begin{pmatrix}5 & 2\end{pmatrix}, \begin{pmatrix} 1 & 5 & 9 & 7\end{pmatrix}, \begin{pmatrix} x & y \end{pmatrix}, \begin{pmatrix} x & y & z\end{pmatrix}, \begin{pmatrix} x_1 & x_2 & \cdots & x_n \end{pmatrix}
+$$
+
+**Transposing** a vector switches it from a row vector to a column vector or vice-versa,
+
+$$
+\begin{equation*}
+\begin{pmatrix}
+  a \\
+  b \\
+  c
+\end{pmatrix}^\intercal
+= 
+\begin{pmatrix}
+  a & b & c
+\end{pmatrix}
+\end{equation*}
+$$
+
+$$
+\begin{equation*}
+\begin{pmatrix}
+  a & b & c
+\end{pmatrix}
+\end{equation*}^\intercal
+= 
+\begin{pmatrix}
+  a \\
+  b \\
+  c
+\end{pmatrix}
 $$
 
 We will indicate vectors by placing an arrow on top of the symbol
@@ -578,7 +605,7 @@ with
 $$
 \begin{aligned}
 \vec{n} &= \begin{pmatrix} n_1 \\ n_2 \end{pmatrix}\\
-\mathbf{M} &= \begin{pmatrix} b_1 - d_1 - m_{12} & m_{21} \\ m_{12} & b_2 - d_2 - m_{21} \end{pmatrix}\\
+\mathbf{M} &= \begin{pmatrix} b_1 - d_1 - m_{21} & m_{12} \\ m_{21} & b_2 - d_2 - m_{12} \end{pmatrix}\\
 \vec{m} &= \begin{pmatrix} m_1 \\ m_2 \end{pmatrix},
 \end{aligned}
 $$
@@ -587,11 +614,27 @@ is equivalent to the coupled differential equation version,
 
 $$
 \begin{aligned}
-\frac{\mathrm{d}n_1}{\mathrm{d}t} &= (b_1 - d_1 - m_{12})n_1 + m_{21} n_2 + m_1 \\
-\frac{\mathrm{d}n_1}{\mathrm{d}t} &= m_{12} n_1 + (b_2 - d_2 - m_{21})n_2 + m_1,
+\frac{\mathrm{d}n_1}{\mathrm{d}t} &= (b_1 - d_1 - m_{21})n_1 + m_{12} n_2 + m_1 \\
+\frac{\mathrm{d}n_2}{\mathrm{d}t} &= m_{21} n_1 + (b_2 - d_2 - m_{12})n_2 + m_2,
 \end{aligned}
 $$
 
 by evaluating $\mathbf{M}\vec{n} + \vec{m}$.
 
+We would also like to be comfortable creating the matrices and vectors for a given set of linear differential or recursion equations. For example, given
+
+$$
+\begin{aligned}
+x_1(t+1) &= b + a x_1(t) \\
+x_2(t+1) &= - d x_2(t) + c x_1(t) ,
+\end{aligned}
+$$
+
+what are $\mathbf{A}$ and $\vec{v}$ such that $\vec{x}(t+1) = \mathbf{A}\vec{x}(t) + \vec{v}$?
+
 Practice questions from the textbook: Exercises P2.1-P2.5.
+
+
+<pre data-executable="true" data-language="python">
+
+</pre>

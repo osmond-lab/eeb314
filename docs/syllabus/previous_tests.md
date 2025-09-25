@@ -1,5 +1,11 @@
 # Previous tests
 
+## Test 1
+
+Covers lectures 1-5 and tutorials 1-3.
+
+- [2025](exam_files/test1_2025.pdf), [solutions](exam_files/test1_2025_solns.pdf)
+
 ## Previous midterms
 
 Roughly covers univariate lectures and labs.
