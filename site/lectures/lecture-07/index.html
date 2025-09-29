@@ -907,9 +907,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-summary" class="md-nav__link">
+  <a href="#4-solving-for-equilibrium-when-singular" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Summary
+      4. Solving for equilibrium when singular
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Summary
     </span>
   </a>
   
@@ -1203,9 +1212,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-summary" class="md-nav__link">
+  <a href="#4-solving-for-equilibrium-when-singular" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Summary
+      4. Solving for equilibrium when singular
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Summary
     </span>
   </a>
   
@@ -1256,7 +1274,8 @@
 <li><a href="#section1">Motivation</a></li>
 <li><a href="#section2">Matrix inversion</a></li>
 <li><a href="#section3">Solving for equilibrium</a></li>
-<li><a href="#section4">Summary</a></li>
+<li><a href="#section4">Solving for equilibrium when singular</a></li>
+<li><a href="#section5">Summary</a></li>
 </ol>
 <p><span id='section1'></span></p>
 <h2 id="1-motivation">1. Motivation</h2>
@@ -1275,12 +1294,18 @@
 \end{aligned}
 \]</div>
 <p>with <span class="arithmatex">\(n_i\)</span> the number of birds on island <span class="arithmatex">\(i\)</span> at time <span class="arithmatex">\(t\)</span>, <span class="arithmatex">\(b_i\)</span> the birth rate on island <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(d_i\)</span> the death rate on island <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(m_{ij}\)</span> the rate at which birds on island <span class="arithmatex">\(j\)</span> migrate to island <span class="arithmatex">\(i\)</span>, and <span class="arithmatex">\(m_i\)</span> the rate at which birds arrive to island <span class="arithmatex">\(i\)</span> from elsewhere.</p>
-<p>Next we would like to solve for the equilibria. To do this we need to learn how to invert a matrix.</p>
+<p>Next we would like to solve for the equilibria. We can start by setting the differential equation to 0 and subtracting <span class="arithmatex">\(\vec{m}\)</span> from both sides,</p>
+<div class="arithmatex">\[
+\begin{align*}
+0 &amp;= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
+-\vec{m} &amp;= \mathbf{M}\hat{\vec{n}}.
+\end{align*}
+\]</div>
+<p>Now to isolate our variable, <span class="arithmatex">\(\hat{\vec{n}}\)</span>, we effectively need to move <span class="arithmatex">\(\mathbf{M}\)</span> to the other side of the equation. In normal algebra we would simply divide both sides by <span class="arithmatex">\(\mathbf{M}\)</span>. But note that in the last lecture we discussed matrix addition and multiplication. We did not yet discuss division. This is because for matrices there is no such thing as division. The analogy is the <strong>inverse</strong>.</p>
 <p><span id='section2'></span></p>
 <h2 id="2-matrix-inversion">2. Matrix inversion</h2>
 <hr>
 
-<p>In the last lecture we discussed matrix addition and multiplication. We did not yet discuss division. In fact, for matrices, there is no such thing as division. The analogy is the <strong>inverse</strong>.</p>
 <p>A square <span class="arithmatex">\(m\times m\)</span> matrix <span class="arithmatex">\(\mathbf{M}\)</span> is <strong>invertible</strong> if it may be multiplied by another matrix to get the identity matrix.  We call this second matrix, <span class="arithmatex">\(\mathbf{M}^{-1}\)</span>, the <strong>inverse</strong> of the first,</p>
 <div class="arithmatex">\[
 \mathbf{M}\mathbf{M}^{-1} = \mathbf{I} = \mathbf{M}^{-1}\mathbf{M}.
@@ -1307,49 +1332,65 @@
 =ad-bc.
 \end{equation*}
 \]</div>
-<p>The determinant of an <span class="arithmatex">\(n \times n\)</span> matrix can be obtained by working along the first row, multiplying the first element of the first row by the determinant of the matrix created by deleting the first row and first column <em>minus</em> the second element of the first row times the determinant of the matrix created by deleting the first row and second column <em>plus</em> the third element... and so on,</p>
+<p>In principle we can calculate the determinant of any square matrix. The determinant of an <span class="arithmatex">\(n \times n\)</span> matrix can be obtained by working along the first row, multiplying the first element of the first row by the determinant of the matrix created by deleting the first row and first column <em>minus</em> the second element of the first row times the determinant of the matrix created by deleting the first row and second column <em>plus</em> the third element... and so on. </p>
+<p>For example, </p>
 <div class="arithmatex">\[
+\begin{equation*}
 \begin{vmatrix}
-\mathbf{M}
+  a &amp; b &amp; c \\
+  d &amp; e &amp; f\\
+  g &amp; h &amp; i
 \end{vmatrix}
-= \sum_{j=1}^n (-1)^{j+1} m_{1j}
-\begin{vmatrix}
-\mathbf{M}_{1j}
-\end{vmatrix},
+= a \begin{vmatrix}
+  e &amp; f\\
+  h &amp; i
+\end{vmatrix}
+- b \begin{vmatrix}
+  d &amp; f\\
+  g &amp; i
+\end{vmatrix}
++ c \begin{vmatrix}
+  d &amp; e\\
+  g &amp; h
+\end{vmatrix}.
+\end{equation*}
 \]</div>
-<p>where <span class="arithmatex">\(m_{ij}\)</span> is the element in the <span class="arithmatex">\(i^{\mathrm{th}}\)</span> row and <span class="arithmatex">\(j^{\mathrm{th}}\)</span> column and <span class="arithmatex">\(\mathbf{M}_{ij}\)</span> is the matrix <span class="arithmatex">\(\mathbf{M}\)</span> with the <span class="arithmatex">\(i^{\mathrm{th}}\)</span> row and the <span class="arithmatex">\(j^{\mathrm{th}}\)</span> column deleted.</p>
-<p>More generally, we can move along any row <span class="arithmatex">\(i\)</span>,</p>
+<p>More generally we can perform this technique along any row or any column. The trick is remembering which terms are added and which are subtracted. One way to remember is: if both the row <span class="arithmatex">\(i\)</span> and column <span class="arithmatex">\(j\)</span> are even or both are odd then the term multiplied by the element at that position, <span class="arithmatex">\(m_{ij}\)</span>, gets a plus, otherwise it gets a minus.  </p>
+<details>
+<summary>General formula for determinants</summary>
+<p>Moving along any row <span class="arithmatex">\(i\)</span>,</p>
 <div class="arithmatex">\[
-|\mathbf{M}| = (-1)^{i+1}\sum_{j=1}^{n}(-1)^{j+1}m_{ij}  |\mathbf{M_{ij}}|,
+|\mathbf{M}| = (-1)^{i+1}\sum_{j=1}^{n}(-1)^{j+1}m_{ij}  |\mathbf{M}_{ij}|.
 \]</div>
-<p>or any column <span class="arithmatex">\(j\)</span>,</p>
+<p>Moving along column <span class="arithmatex">\(j\)</span>,</p>
 <div class="arithmatex">\[
-|\mathbf{M}| = (-1)^{j+1}\sum_{i=1}^{n}(-1)^{i+1}m_{ij}  |\mathbf{M_{ij}}|.
+|\mathbf{M}| = (-1)^{j+1}\sum_{i=1}^{n}(-1)^{i+1}m_{ij}  |\mathbf{M}_{ij}|.
 \]</div>
-<p>A few useful rules emerge from this:</p>
+</details>
+<p>A few useful rules emerge from this method:</p>
 <ul>
 <li>the determinant of a matrix is the same as the determinant of its transpose, <span class="arithmatex">\(|\mathbf{M}| = |\mathbf{M}^\intercal|\)</span>,</li>
 <li>the determinant of a diagonal or triangular matrix is the product of the diagonal elements, <span class="arithmatex">\(|\mathbf{M}| = \prod_{i=1}^n m_{ii} = m_{11}m_{22}\cdots m_{nn}\)</span>,</li>
-<li>the determinant of a block-diagonal or -triangular matrix is the product of the determinants of the diagonal submatrices.</li>
+<li>the determinant of a block-diagonal or block-triangular matrix is the product of the determinants of the diagonal submatrices.</li>
 </ul>
 <p>It also suggests that rows or columns with lots of zeros are very helpful when calculating the determinant, for example,</p>
 <div class="arithmatex">\[
 \begin{aligned}
 \begin{vmatrix}
-  m_{11} &amp; 0 &amp; 0 \\
-  m_{21} &amp; m_{22} &amp; m_{23} \\
+  m_{11} &amp; m_{12} &amp; m{13} \\
+  m_{21} &amp; 0 &amp; 0 \\
   m_{31} &amp; m_{32} &amp; m_{33} \\
 \end{vmatrix}
 = 
-m_{11} 
+- m_{21} 
 \begin{vmatrix}
-  m_{22} &amp; m_{23} \\
+  m_{12} &amp; m_{13} \\
   m_{32} &amp; m_{33} \\
 \end{vmatrix}.
 \end{aligned}
 \]</div>
-<p>Now, why does the determinant tell us anything about whether a matrix is invertible? Well, when the determinant is zero, <span class="arithmatex">\(|\mathbf{M}|=0\)</span>, it means that the rows are not linearly independent, that is, some row <span class="arithmatex">\(\vec{r}_k\)</span> can be written as <span class="arithmatex">\(a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n\)</span>, where the <span class="arithmatex">\(a_i\)</span> are scalars. As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information and therefore cannot reverse the operation. This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of reversing the operation to know what the original numbers were. So, a matrix is invertible only if it has a nonzero determinant, <span class="arithmatex">\(|\mathbf{M}|\neq0\)</span>. Matrices that are not invertible are called <strong>singular</strong>.</p>
-<p>Geometrically, mutliplying multiple vectors by a matrix whose deteriminant is zero causes them to fall along a line. Below we multiply the two black vectors by a matrix whose determinant is zero to get the two red vectors, which fall along the same line.</p>
+<p>Now, why does the determinant tell us anything about whether a matrix is invertible? Well, when the determinant is zero, <span class="arithmatex">\(|\mathbf{M}|=0\)</span>, it means that the rows are not linearly independent, that is, some row <span class="arithmatex">\(\vec{r}_k\)</span> can be written as <span class="arithmatex">\(a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n\)</span>, where the <span class="arithmatex">\(a_i\)</span> are scalars and the <span class="arithmatex">\(\vec{r}_i\)</span> are the rows of <span class="arithmatex">\(\mathbf{M}\)</span>. As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information and therefore cannot reverse the operation. This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of reversing the operation to know what the original numbers were. So, a matrix is invertible if and only if it has a nonzero determinant, <span class="arithmatex">\(|\mathbf{M}|\neq0\)</span>. Matrices that are not invertible are called <strong>singular</strong>.</p>
+<p>Geometrically, mutliplying multiple vectors by a matrix whose deteriminant is zero causes them to fall along a line. Below we multiply the two black vectors by a matrix whose determinant is zero to get the two red vectors, which fall along the same line. We have lost information and cannot undue the operation to recover the original vectors.</p>
 <pre data-executable="true" data-language="python">
 import matplotlib.pyplot as plt #import plotting library
 from sympy import *
@@ -1403,7 +1444,7 @@ plt.show()
 \end{pmatrix}
 \end{align}
 \]</div>
-<p>Larger matrices are more difficult to invert, except if they are diagonal, in which case we simply invert each of the diagonal elements,</p>
+<p>Larger matrices are more difficult to invert by hand. One exception is if they are diagonal, in which case we simply invert each of the diagonal elements,</p>
 <div class="arithmatex">\[
 \mathbf{M}^{-1} = 
 \begin{pmatrix}
@@ -1506,7 +1547,67 @@ plt.show()
 
 <p><img alt="png" src="../lecture-07_files/lecture-07_5_0.png" /></p>
 <p><span id='section4'></span></p>
-<h2 id="4-summary">4. Summary</h2>
+<h2 id="4-solving-for-equilibrium-when-singular">4. Solving for equilibrium when singular</h2>
+<hr>
+
+<p>Now, if our matrix <span class="arithmatex">\(\mathbf{M}\)</span> is singular we can still try to solve for equilibrium, we just can't use matrix algebra. Instead we try to simultaneously solve all equations. We've nearly done this above with the nullclines already. Setting the two nullclines equal to one another to find their intersection,</p>
+<div class="arithmatex">\[
+\begin{align}
+\frac{-m_1 - (b_1 - d_1 - m_{21})\hat{n}_1}{m_{12}} &amp;= \frac{-m_{21} \hat{n}_1 - m_2}{b_2 - d_2 - m_{12}}\\
+(-m_1 - (b_1 - d_1 - m_{21})\hat{n}_1)(b_2 - d_2 - m_{12}) &amp;= (-m_{21} \hat{n}_1 - m_2)m_{12}\\
+(m_{21}m_{12}-(b_1 - d_1 - m_{21})(b_2 - d_2 - m_{12}))\hat{n}_1 &amp;= - m_2m_{12} + m_1(b_2 - d_2 - m_{12})\\
+-|\mathbf{M}|\hat{n}_1 &amp;= - m_2m_{12} + m_1(b_2 - d_2 - m_{12})\\
+0 &amp;= - m_2m_{12} + m_1(b_2 - d_2 - m_{12}).
+\end{align}
+\]</div>
+<p>This is either true or not true, regardless of <span class="arithmatex">\(n_1\)</span> and <span class="arithmatex">\(n_2\)</span>. This means that the two nullclines intersect everywhere or nowhere, which implies there are either infinite equilibria (along the shared nullcline) or no equilibria.</p>
+<p>Below is a scenario where there are no equilibria, in which case the nullclines never cross because they are parallel to one another.</p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt
+from sympy import *
+import numpy as np
+
+# define the variables
+n1, n2 = symbols('n1, n2')
+
+# choose the parameter values
+b1, b2 = 1.1, 1
+d1, d2 = 1.01, 1.01
+m12 = 0.5
+m21 = (b1 - d1)*(b2 - d2 - m12)/(m12 + (b2 - d2 - m12)) #forces zero determinant
+m1 = 5
+delta = 10 #0 for infinite equilibria, nonzero for no equilibria
+m2 = m1*(b2 - d2 - m12)/m12 + delta
+
+# define differential equations
+dn1dt = (b1 - d1 - m21) * n1 + m12 * n2 + m1
+dn2dt = m21 * n1 + (b2 - d2 - m12) * n2 + m2
+
+# get the nullclines
+nullcline_1 = solve(Eq(dn1dt, 0),n2)[0]
+nullcline_2 = solve(Eq(dn2dt, 0),n2)[0]
+
+# plot
+n1s = np.linspace(0,100,100)
+plt.plot(n1s, [nullcline_1.subs(n1,i) for i in n1s], label='$n_1$ nullcline')
+plt.plot(n1s, [nullcline_2.subs(n1,i) for i in n1s], label='$n_2$ nullcline')
+
+# # add predicted equilibrium
+# n1eq = -((b2-d2-m21)*m1-m21*m2)/((b1-d1-m12)*(b2-d2-m21)-m21*m12)
+# n2eq = -(-m12*m1+(b1-d1-m12)*m2)/((b1-d1-m12)*(b2-d2-m21)-m21*m12)
+# plt.scatter(n1eq,n2eq, color='k', zorder=2, s=100, label='equilibrium')
+
+plt.xlabel('number of birds on island 1, $n_1$')
+plt.ylabel('number of birds on island 2, $n_2$')
+plt.xlim(0,100)
+plt.ylim(0,100)
+plt.legend()
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-07_files/lecture-07_7_0.png" /></p>
+<p><span id='section5'></span></p>
+<h2 id="5-summary">5. Summary</h2>
 <hr>
 
 <p>We can solve multivariate linear equations using matrix inversion, giving us a way to find equilibria when the matrix is invertible (ie, the determinant is nonzero). These equilibria are where the change in all variables is zero, i.e., where the nullclines for all variables intersect.</p>

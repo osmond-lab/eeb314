@@ -29,7 +29,8 @@
 1. [Motivation](#section1)
 2. [Matrix inversion](#section2)
 3. [Solving for equilibrium](#section3)
-4. [Summary](#section4)
+4. [Solving for equilibrium when singular](#section4)
+5. [Summary](#section5)
 
 <span id='section1'></span>
 ## 1. Motivation
@@ -53,13 +54,20 @@ $$
 
 with $n_i$ the number of birds on island $i$ at time $t$, $b_i$ the birth rate on island $i$, $d_i$ the death rate on island $i$, $m_{ij}$ the rate at which birds on island $j$ migrate to island $i$, and $m_i$ the rate at which birds arrive to island $i$ from elsewhere.
 
-Next we would like to solve for the equilibria. To do this we need to learn how to invert a matrix.
+Next we would like to solve for the equilibria. We can start by setting the differential equation to 0 and subtracting $\vec{m}$ from both sides,
+
+$$
+\begin{align*}
+0 &= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
+-\vec{m} &= \mathbf{M}\hat{\vec{n}}.
+\end{align*}
+$$
+
+Now to isolate our variable, $\hat{\vec{n}}$, we effectively need to move $\mathbf{M}$ to the other side of the equation. In normal algebra we would simply divide both sides by $\mathbf{M}$. But note that in the last lecture we discussed matrix addition and multiplication. We did not yet discuss division. This is because for matrices there is no such thing as division. The analogy is the **inverse**.
 
 <span id='section2'></span>
 ## 2. Matrix inversion
 <hr>
-
-In the last lecture we discussed matrix addition and multiplication. We did not yet discuss division. In fact, for matrices, there is no such thing as division. The analogy is the **inverse**.
 
 A square $m\times m$ matrix $\mathbf{M}$ is **invertible** if it may be multiplied by another matrix to get the identity matrix.  We call this second matrix, $\mathbf{M}^{-1}$, the **inverse** of the first,
 
@@ -95,59 +103,75 @@ $$
 \end{equation*}
 $$
 
-The determinant of an $n \times n$ matrix can be obtained by working along the first row, multiplying the first element of the first row by the determinant of the matrix created by deleting the first row and first column *minus* the second element of the first row times the determinant of the matrix created by deleting the first row and second column *plus* the third element... and so on,
+In principle we can calculate the determinant of any square matrix. The determinant of an $n \times n$ matrix can be obtained by working along the first row, multiplying the first element of the first row by the determinant of the matrix created by deleting the first row and first column *minus* the second element of the first row times the determinant of the matrix created by deleting the first row and second column *plus* the third element... and so on. 
+
+For example, 
 
 $$
+\begin{equation*}
 \begin{vmatrix}
-\mathbf{M}
+  a & b & c \\
+  d & e & f\\
+  g & h & i
 \end{vmatrix}
-= \sum_{j=1}^n (-1)^{j+1} m_{1j}
-\begin{vmatrix}
-\mathbf{M}_{1j}
-\end{vmatrix},
+= a \begin{vmatrix}
+  e & f\\
+  h & i
+\end{vmatrix}
+- b \begin{vmatrix}
+  d & f\\
+  g & i
+\end{vmatrix}
++ c \begin{vmatrix}
+  d & e\\
+  g & h
+\end{vmatrix}.
+\end{equation*}
 $$
 
-where $m_{ij}$ is the element in the $i^{\mathrm{th}}$ row and $j^{\mathrm{th}}$ column and $\mathbf{M}_{ij}$ is the matrix $\mathbf{M}$ with the $i^{\mathrm{th}}$ row and the $j^{\mathrm{th}}$ column deleted.
+More generally we can perform this technique along any row or any column. The trick is remembering which terms are added and which are subtracted. One way to remember is: if both the row $i$ and column $j$ are even or both are odd then the term multiplied by the element at that position, $m_{ij}$, gets a plus, otherwise it gets a minus.  
 
-More generally, we can move along any row $i$,
+??? "General formula for determinants"
 
-$$
-|\mathbf{M}| = (-1)^{i+1}\sum_{j=1}^{n}(-1)^{j+1}m_{ij}  |\mathbf{M_{ij}}|,
-$$
+    Moving along any row $i$,
+    
+    $$
+    |\mathbf{M}| = (-1)^{i+1}\sum_{j=1}^{n}(-1)^{j+1}m_{ij}  |\mathbf{M}_{ij}|.
+    $$
+    
+    Moving along column $j$,
+    
+    $$
+    |\mathbf{M}| = (-1)^{j+1}\sum_{i=1}^{n}(-1)^{i+1}m_{ij}  |\mathbf{M}_{ij}|.
+    $$
 
-or any column $j$,
-
-$$
-|\mathbf{M}| = (-1)^{j+1}\sum_{i=1}^{n}(-1)^{i+1}m_{ij}  |\mathbf{M_{ij}}|.
-$$
-
-A few useful rules emerge from this:
+A few useful rules emerge from this method:
 
 - the determinant of a matrix is the same as the determinant of its transpose, $|\mathbf{M}| = |\mathbf{M}^\intercal|$,
 - the determinant of a diagonal or triangular matrix is the product of the diagonal elements, $|\mathbf{M}| = \prod_{i=1}^n m_{ii} = m_{11}m_{22}\cdots m_{nn}$,
-- the determinant of a block-diagonal or -triangular matrix is the product of the determinants of the diagonal submatrices.
+- the determinant of a block-diagonal or block-triangular matrix is the product of the determinants of the diagonal submatrices.
 
 It also suggests that rows or columns with lots of zeros are very helpful when calculating the determinant, for example,
 
 $$
 \begin{aligned}
 \begin{vmatrix}
-  m_{11} & 0 & 0 \\
-  m_{21} & m_{22} & m_{23} \\
+  m_{11} & m_{12} & m{13} \\
+  m_{21} & 0 & 0 \\
   m_{31} & m_{32} & m_{33} \\
 \end{vmatrix}
 = 
-m_{11} 
+- m_{21} 
 \begin{vmatrix}
-  m_{22} & m_{23} \\
+  m_{12} & m_{13} \\
   m_{32} & m_{33} \\
 \end{vmatrix}.
 \end{aligned}
 $$
 
-Now, why does the determinant tell us anything about whether a matrix is invertible? Well, when the determinant is zero, $|\mathbf{M}|=0$, it means that the rows are not linearly independent, that is, some row $\vec{r}_k$ can be written as $a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n$, where the $a_i$ are scalars. As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information and therefore cannot reverse the operation. This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of reversing the operation to know what the original numbers were. So, a matrix is invertible only if it has a nonzero determinant, $|\mathbf{M}|\neq0$. Matrices that are not invertible are called **singular**.
+Now, why does the determinant tell us anything about whether a matrix is invertible? Well, when the determinant is zero, $|\mathbf{M}|=0$, it means that the rows are not linearly independent, that is, some row $\vec{r}_k$ can be written as $a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n$, where the $a_i$ are scalars and the $\vec{r}_i$ are the rows of $\mathbf{M}$. As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information and therefore cannot reverse the operation. This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of reversing the operation to know what the original numbers were. So, a matrix is invertible if and only if it has a nonzero determinant, $|\mathbf{M}|\neq0$. Matrices that are not invertible are called **singular**.
 
-Geometrically, mutliplying multiple vectors by a matrix whose deteriminant is zero causes them to fall along a line. Below we multiply the two black vectors by a matrix whose determinant is zero to get the two red vectors, which fall along the same line.
+Geometrically, mutliplying multiple vectors by a matrix whose deteriminant is zero causes them to fall along a line. Below we multiply the two black vectors by a matrix whose determinant is zero to get the two red vectors, which fall along the same line. We have lost information and cannot undue the operation to recover the original vectors.
 
 
 <pre data-executable="true" data-language="python">
@@ -212,7 +236,7 @@ $$
 \end{align}
 $$
 
-Larger matrices are more difficult to invert, except if they are diagonal, in which case we simply invert each of the diagonal elements,
+Larger matrices are more difficult to invert by hand. One exception is if they are diagonal, in which case we simply invert each of the diagonal elements,
 
 $$
 \mathbf{M}^{-1} = 
@@ -336,7 +360,77 @@ plt.show()
 
 
 <span id='section4'></span>
-## 4. Summary
+## 4. Solving for equilibrium when singular
+<hr>
+
+Now, if our matrix $\mathbf{M}$ is singular we can still try to solve for equilibrium, we just can't use matrix algebra. Instead we try to simultaneously solve all equations. We've nearly done this above with the nullclines already. Setting the two nullclines equal to one another to find their intersection,
+
+$$
+\begin{align}
+\frac{-m_1 - (b_1 - d_1 - m_{21})\hat{n}_1}{m_{12}} &= \frac{-m_{21} \hat{n}_1 - m_2}{b_2 - d_2 - m_{12}}\\
+(-m_1 - (b_1 - d_1 - m_{21})\hat{n}_1)(b_2 - d_2 - m_{12}) &= (-m_{21} \hat{n}_1 - m_2)m_{12}\\
+(m_{21}m_{12}-(b_1 - d_1 - m_{21})(b_2 - d_2 - m_{12}))\hat{n}_1 &= - m_2m_{12} + m_1(b_2 - d_2 - m_{12})\\
+-|\mathbf{M}|\hat{n}_1 &= - m_2m_{12} + m_1(b_2 - d_2 - m_{12})\\
+0 &= - m_2m_{12} + m_1(b_2 - d_2 - m_{12}).
+\end{align}
+$$
+
+This is either true or not true, regardless of $n_1$ and $n_2$. This means that the two nullclines intersect everywhere or nowhere, which implies there are either infinite equilibria (along the shared nullcline) or no equilibria.
+
+Below is a scenario where there are no equilibria, in which case the nullclines never cross because they are parallel to one another.
+
+
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt
+from sympy import *
+import numpy as np
+
+# define the variables
+n1, n2 = symbols('n1, n2')
+
+# choose the parameter values
+b1, b2 = 1.1, 1
+d1, d2 = 1.01, 1.01
+m12 = 0.5
+m21 = (b1 - d1)*(b2 - d2 - m12)/(m12 + (b2 - d2 - m12)) #forces zero determinant
+m1 = 5
+delta = 10 #0 for infinite equilibria, nonzero for no equilibria
+m2 = m1*(b2 - d2 - m12)/m12 + delta
+
+# define differential equations
+dn1dt = (b1 - d1 - m21) * n1 + m12 * n2 + m1
+dn2dt = m21 * n1 + (b2 - d2 - m12) * n2 + m2
+
+# get the nullclines
+nullcline_1 = solve(Eq(dn1dt, 0),n2)[0]
+nullcline_2 = solve(Eq(dn2dt, 0),n2)[0]
+
+# plot
+n1s = np.linspace(0,100,100)
+plt.plot(n1s, [nullcline_1.subs(n1,i) for i in n1s], label='$n_1$ nullcline')
+plt.plot(n1s, [nullcline_2.subs(n1,i) for i in n1s], label='$n_2$ nullcline')
+
+# # add predicted equilibrium
+# n1eq = -((b2-d2-m21)*m1-m21*m2)/((b1-d1-m12)*(b2-d2-m21)-m21*m12)
+# n2eq = -(-m12*m1+(b1-d1-m12)*m2)/((b1-d1-m12)*(b2-d2-m21)-m21*m12)
+# plt.scatter(n1eq,n2eq, color='k', zorder=2, s=100, label='equilibrium')
+
+plt.xlabel('number of birds on island 1, $n_1$')
+plt.ylabel('number of birds on island 2, $n_2$')
+plt.xlim(0,100)
+plt.ylim(0,100)
+plt.legend()
+plt.show()
+</pre>
+
+
+    
+![png](lecture-07_files/lecture-07_7_0.png)
+    
+
+
+<span id='section5'></span>
+## 5. Summary
 <hr>
 
 We can solve multivariate linear equations using matrix inversion, giving us a way to find equilibria when the matrix is invertible (ie, the determinant is nonzero). These equilibria are where the change in all variables is zero, i.e., where the nullclines for all variables intersect.
