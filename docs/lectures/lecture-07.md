@@ -46,10 +46,12 @@ where
 $$
 \begin{aligned}
 \vec{n} &= \begin{pmatrix} n_1 \\ n_2 \end{pmatrix}\\
-\mathbf{M} &= \begin{pmatrix} b_1 - d_1 - m_{12} & m_{21} \\ m_{12} & b_2 - d_2 - m_{21} \end{pmatrix}\\
-\vec{m} &= \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}.
+\mathbf{M} &= \begin{pmatrix} b_1 - d_1 - m_{21} & m_{12} \\ m_{21} & b_2 - d_2 - m_{12} \end{pmatrix}\\
+\vec{m} &= \begin{pmatrix} m_1 \\ m_2 \end{pmatrix},
 \end{aligned}
 $$
+
+with $n_i$ the number of birds on island $i$ at time $t$, $b_i$ the birth rate on island $i$, $d_i$ the death rate on island $i$, $m_{ij}$ the rate at which birds on island $j$ migrate to island $i$, and $m_i$ the rate at which birds arrive to island $i$ from elsewhere.
 
 Next we would like to solve for the equilibria. To do this we need to learn how to invert a matrix.
 
@@ -59,7 +61,7 @@ Next we would like to solve for the equilibria. To do this we need to learn how 
 
 In the last lecture we discussed matrix addition and multiplication. We did not yet discuss division. In fact, for matrices, there is no such thing as division. The analogy is the **inverse**.
 
-A square $m\times m$ matrix $\mathbf{M}$ is **invertible** if it may be multiplied by another matrix to get the identity matrix.  We call this second matrix, $\mathbf{M}^{-1}$ the **inverse** of the first,
+A square $m\times m$ matrix $\mathbf{M}$ is **invertible** if it may be multiplied by another matrix to get the identity matrix.  We call this second matrix, $\mathbf{M}^{-1}$, the **inverse** of the first,
 
 $$
 \mathbf{M}\mathbf{M}^{-1} = \mathbf{I} = \mathbf{M}^{-1}\mathbf{M}.
@@ -143,7 +145,7 @@ m_{11}
 \end{aligned}
 $$
 
-Now, why does the determinant tell us anything about whether a matrix is invertible? Well, when the determinant is zero, $|\mathbf{M}|=0$, it means that the rows are not linearly independent, that is, some row $\vec{r}_k$ can be written as $a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n$, where the $a_i$ are scalars. As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information, and therefore cannot reverse the operation. This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of reversing the operation to know what the original numbers were. So, a matrix is invertible only if it has a nonzero determinant, $|\mathbf{M}|\neq0$. Matrices that are not invertible are called **singular**.
+Now, why does the determinant tell us anything about whether a matrix is invertible? Well, when the determinant is zero, $|\mathbf{M}|=0$, it means that the rows are not linearly independent, that is, some row $\vec{r}_k$ can be written as $a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n$, where the $a_i$ are scalars. As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information and therefore cannot reverse the operation. This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of reversing the operation to know what the original numbers were. So, a matrix is invertible only if it has a nonzero determinant, $|\mathbf{M}|\neq0$. Matrices that are not invertible are called **singular**.
 
 Geometrically, mutliplying multiple vectors by a matrix whose deteriminant is zero causes them to fall along a line. Below we multiply the two black vectors by a matrix whose determinant is zero to get the two red vectors, which fall along the same line.
 
@@ -192,7 +194,12 @@ $$
   a & b \\
   c & d
 \end{pmatrix}^{-1}\\
-&=\frac{1}{\mathrm{Det}(\mathbf{M})}
+&=\frac{1}{|\mathbf{M}|}
+\begin{pmatrix}
+  d  & -b \\
+  -c & a
+\end{pmatrix}\\
+&=\frac{1}{ad-bc}
 \begin{pmatrix}
   d  & -b \\
   -c & a
@@ -241,17 +248,17 @@ $$
 \end{align*}
 $$
 
-We can write the lefthand side in terms of our parameters by calculating the inverse of this 2x2 matrix and multiplying by the vector
+We can write the left hand side in terms of our parameters by calculating the inverse of this 2x2 matrix and multiplying by the vector
 
 $$
 \begin{align}
 \hat{\vec{n}} 
 &=-\mathbf{M}^{-1}\vec{m}\\
 &=-\frac{1}{|\mathbf{M}|}
-\begin{pmatrix} b_2 - d_2 - m_{21} & -m_{21} \\ -m_{12} & b_1 - d_1 - m_{12} \end{pmatrix}
+\begin{pmatrix} b_2 - d_2 - m_{12} & -m_{12} \\ -m_{21} & b_1 - d_1 - m_{21} \end{pmatrix}
 \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}\\
-&= -\frac{1}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \begin{pmatrix} (b_2 - d_2 - m_{21})m_1 -m_{21}m_2 \\ -m_{12}m_1 + (b_1 - d_1 - m_{12})m_2 \end{pmatrix}\\
-&= \begin{pmatrix} -\frac{(b_2 - d_2 - m_{21})m_1 -m_{21}m_2}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \\ -\frac{-m_{12}m_1 + (b_1 - d_1 - m_{12})m_2}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \end{pmatrix}
+&= -\frac{1}{(b_1 - d_1 - m_{21})(b_2 - d_2 - m_{12})-m_{21}m_{12}} \begin{pmatrix} (b_2 - d_2 - m_{12})m_1 -m_{12}m_2 \\ -m_{21}m_1 + (b_1 - d_1 - m_{21})m_2 \end{pmatrix}\\
+&= \begin{pmatrix} -\frac{(b_2 - d_2 - m_{12})m_1 -m_{12}m_2}{(b_1 - d_1 - m_{21})(b_2 - d_2 - m_{12})-m_{21}m_{12}} \\ -\frac{-m_{21}m_1 + (b_1 - d_1 - m_{21})m_2}{(b_1 - d_1 - m_{21})(b_2 - d_2 - m_{12})-m_{21}m_{12}} \end{pmatrix}
 \end{align}
 $$
 
@@ -262,9 +269,9 @@ We can visualize this equilibrium as the intersection of the **nullclines**, whi
 $$
 \begin{align}
 \frac{\mathrm{d}n_1}{\mathrm{d}t} &= 0\\
-(b_1 - d_1 - m_{12})n_1 + m_{21} n_2 + m_1 &= 0\\
-m_{21} n_2 &= -m_1 - (b_1 - d_1 - m_{12})n_1\\
-n_2 &= \frac{-m_1 - (b_1 - d_1 - m_{12})n_1}{m_{21}}
+(b_1 - d_1 - m_{21})n_1 + m_{12} n_2 + m_1 &= 0\\
+m_{12} n_2 &= -m_1 - (b_1 - d_1 - m_{21})n_1\\
+n_2 &= \frac{-m_1 - (b_1 - d_1 - m_{21})n_1}{m_{12}}
 \end{align}
 $$
 
@@ -273,9 +280,9 @@ and
 $$
 \begin{align}
 \frac{\mathrm{d}n_2}{\mathrm{d}t} &= 0\\
-(b_2 - d_2 - m_{21})n_2 + m_{12} n_1 + m_2 &= 0\\
-(b_2 - d_2 - m_{21})n_2  &= -m_{12} n_1 - m_2\\
-n_2  &= \frac{-m_{12} n_1 - m_2}{b_2 - d_2 - m_{21}},
+(b_2 - d_2 - m_{12})n_2 + m_{21} n_1 + m_2 &= 0\\
+(b_2 - d_2 - m_{12})n_2  &= -m_{21} n_1 - m_2\\
+n_2  &= \frac{-m_{21} n_1 - m_2}{b_2 - d_2 - m_{12}},
 \end{align}
 $$
 

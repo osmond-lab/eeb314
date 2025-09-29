@@ -1270,17 +1270,18 @@
 <div class="arithmatex">\[
 \begin{aligned}
 \vec{n} &amp;= \begin{pmatrix} n_1 \\ n_2 \end{pmatrix}\\
-\mathbf{M} &amp;= \begin{pmatrix} b_1 - d_1 - m_{12} &amp; m_{21} \\ m_{12} &amp; b_2 - d_2 - m_{21} \end{pmatrix}\\
-\vec{m} &amp;= \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}.
+\mathbf{M} &amp;= \begin{pmatrix} b_1 - d_1 - m_{21} &amp; m_{12} \\ m_{21} &amp; b_2 - d_2 - m_{12} \end{pmatrix}\\
+\vec{m} &amp;= \begin{pmatrix} m_1 \\ m_2 \end{pmatrix},
 \end{aligned}
 \]</div>
+<p>with <span class="arithmatex">\(n_i\)</span> the number of birds on island <span class="arithmatex">\(i\)</span> at time <span class="arithmatex">\(t\)</span>, <span class="arithmatex">\(b_i\)</span> the birth rate on island <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(d_i\)</span> the death rate on island <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(m_{ij}\)</span> the rate at which birds on island <span class="arithmatex">\(j\)</span> migrate to island <span class="arithmatex">\(i\)</span>, and <span class="arithmatex">\(m_i\)</span> the rate at which birds arrive to island <span class="arithmatex">\(i\)</span> from elsewhere.</p>
 <p>Next we would like to solve for the equilibria. To do this we need to learn how to invert a matrix.</p>
 <p><span id='section2'></span></p>
 <h2 id="2-matrix-inversion">2. Matrix inversion</h2>
 <hr>
 
 <p>In the last lecture we discussed matrix addition and multiplication. We did not yet discuss division. In fact, for matrices, there is no such thing as division. The analogy is the <strong>inverse</strong>.</p>
-<p>A square <span class="arithmatex">\(m\times m\)</span> matrix <span class="arithmatex">\(\mathbf{M}\)</span> is <strong>invertible</strong> if it may be multiplied by another matrix to get the identity matrix.  We call this second matrix, <span class="arithmatex">\(\mathbf{M}^{-1}\)</span> the <strong>inverse</strong> of the first,</p>
+<p>A square <span class="arithmatex">\(m\times m\)</span> matrix <span class="arithmatex">\(\mathbf{M}\)</span> is <strong>invertible</strong> if it may be multiplied by another matrix to get the identity matrix.  We call this second matrix, <span class="arithmatex">\(\mathbf{M}^{-1}\)</span>, the <strong>inverse</strong> of the first,</p>
 <div class="arithmatex">\[
 \mathbf{M}\mathbf{M}^{-1} = \mathbf{I} = \mathbf{M}^{-1}\mathbf{M}.
 \]</div>
@@ -1347,7 +1348,7 @@ m_{11}
 \end{vmatrix}.
 \end{aligned}
 \]</div>
-<p>Now, why does the determinant tell us anything about whether a matrix is invertible? Well, when the determinant is zero, <span class="arithmatex">\(|\mathbf{M}|=0\)</span>, it means that the rows are not linearly independent, that is, some row <span class="arithmatex">\(\vec{r}_k\)</span> can be written as <span class="arithmatex">\(a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n\)</span>, where the <span class="arithmatex">\(a_i\)</span> are scalars. As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information, and therefore cannot reverse the operation. This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of reversing the operation to know what the original numbers were. So, a matrix is invertible only if it has a nonzero determinant, <span class="arithmatex">\(|\mathbf{M}|\neq0\)</span>. Matrices that are not invertible are called <strong>singular</strong>.</p>
+<p>Now, why does the determinant tell us anything about whether a matrix is invertible? Well, when the determinant is zero, <span class="arithmatex">\(|\mathbf{M}|=0\)</span>, it means that the rows are not linearly independent, that is, some row <span class="arithmatex">\(\vec{r}_k\)</span> can be written as <span class="arithmatex">\(a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n\)</span>, where the <span class="arithmatex">\(a_i\)</span> are scalars. As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information and therefore cannot reverse the operation. This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of reversing the operation to know what the original numbers were. So, a matrix is invertible only if it has a nonzero determinant, <span class="arithmatex">\(|\mathbf{M}|\neq0\)</span>. Matrices that are not invertible are called <strong>singular</strong>.</p>
 <p>Geometrically, mutliplying multiple vectors by a matrix whose deteriminant is zero causes them to fall along a line. Below we multiply the two black vectors by a matrix whose determinant is zero to get the two red vectors, which fall along the same line.</p>
 <pre data-executable="true" data-language="python">
 import matplotlib.pyplot as plt #import plotting library
@@ -1385,7 +1386,12 @@ plt.show()
   a &amp; b \\
   c &amp; d
 \end{pmatrix}^{-1}\\
-&amp;=\frac{1}{\mathrm{Det}(\mathbf{M})}
+&amp;=\frac{1}{|\mathbf{M}|}
+\begin{pmatrix}
+  d  &amp; -b \\
+  -c &amp; a
+\end{pmatrix}\\
+&amp;=\frac{1}{ad-bc}
 \begin{pmatrix}
   d  &amp; -b \\
   -c &amp; a
@@ -1426,16 +1432,16 @@ plt.show()
 -\mathbf{M}^{-1}\vec{m} &amp;= \hat{\vec{n}}.
 \end{align*}
 \]</div>
-<p>We can write the lefthand side in terms of our parameters by calculating the inverse of this 2x2 matrix and multiplying by the vector</p>
+<p>We can write the left hand side in terms of our parameters by calculating the inverse of this 2x2 matrix and multiplying by the vector</p>
 <div class="arithmatex">\[
 \begin{align}
 \hat{\vec{n}} 
 &amp;=-\mathbf{M}^{-1}\vec{m}\\
 &amp;=-\frac{1}{|\mathbf{M}|}
-\begin{pmatrix} b_2 - d_2 - m_{21} &amp; -m_{21} \\ -m_{12} &amp; b_1 - d_1 - m_{12} \end{pmatrix}
+\begin{pmatrix} b_2 - d_2 - m_{12} &amp; -m_{12} \\ -m_{21} &amp; b_1 - d_1 - m_{21} \end{pmatrix}
 \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}\\
-&amp;= -\frac{1}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \begin{pmatrix} (b_2 - d_2 - m_{21})m_1 -m_{21}m_2 \\ -m_{12}m_1 + (b_1 - d_1 - m_{12})m_2 \end{pmatrix}\\
-&amp;= \begin{pmatrix} -\frac{(b_2 - d_2 - m_{21})m_1 -m_{21}m_2}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \\ -\frac{-m_{12}m_1 + (b_1 - d_1 - m_{12})m_2}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \end{pmatrix}
+&amp;= -\frac{1}{(b_1 - d_1 - m_{21})(b_2 - d_2 - m_{12})-m_{21}m_{12}} \begin{pmatrix} (b_2 - d_2 - m_{12})m_1 -m_{12}m_2 \\ -m_{21}m_1 + (b_1 - d_1 - m_{21})m_2 \end{pmatrix}\\
+&amp;= \begin{pmatrix} -\frac{(b_2 - d_2 - m_{12})m_1 -m_{12}m_2}{(b_1 - d_1 - m_{21})(b_2 - d_2 - m_{12})-m_{21}m_{12}} \\ -\frac{-m_{21}m_1 + (b_1 - d_1 - m_{21})m_2}{(b_1 - d_1 - m_{21})(b_2 - d_2 - m_{12})-m_{21}m_{12}} \end{pmatrix}
 \end{align}
 \]</div>
 <p>Ta-da! Using linear algebra we solved for both equilibria, <span class="arithmatex">\(\hat{n}_1\)</span> and <span class="arithmatex">\(\hat{n}_2\)</span>, with a single equation. </p>
@@ -1443,18 +1449,18 @@ plt.show()
 <div class="arithmatex">\[
 \begin{align}
 \frac{\mathrm{d}n_1}{\mathrm{d}t} &amp;= 0\\
-(b_1 - d_1 - m_{12})n_1 + m_{21} n_2 + m_1 &amp;= 0\\
-m_{21} n_2 &amp;= -m_1 - (b_1 - d_1 - m_{12})n_1\\
-n_2 &amp;= \frac{-m_1 - (b_1 - d_1 - m_{12})n_1}{m_{21}}
+(b_1 - d_1 - m_{21})n_1 + m_{12} n_2 + m_1 &amp;= 0\\
+m_{12} n_2 &amp;= -m_1 - (b_1 - d_1 - m_{21})n_1\\
+n_2 &amp;= \frac{-m_1 - (b_1 - d_1 - m_{21})n_1}{m_{12}}
 \end{align}
 \]</div>
 <p>and</p>
 <div class="arithmatex">\[
 \begin{align}
 \frac{\mathrm{d}n_2}{\mathrm{d}t} &amp;= 0\\
-(b_2 - d_2 - m_{21})n_2 + m_{12} n_1 + m_2 &amp;= 0\\
-(b_2 - d_2 - m_{21})n_2  &amp;= -m_{12} n_1 - m_2\\
-n_2  &amp;= \frac{-m_{12} n_1 - m_2}{b_2 - d_2 - m_{21}},
+(b_2 - d_2 - m_{12})n_2 + m_{21} n_1 + m_2 &amp;= 0\\
+(b_2 - d_2 - m_{12})n_2  &amp;= -m_{21} n_1 - m_2\\
+n_2  &amp;= \frac{-m_{21} n_1 - m_2}{b_2 - d_2 - m_{12}},
 \end{align}
 \]</div>
 <p>and plot them as functions of <span class="arithmatex">\(n_1\)</span>. Our predicted equilibrium correctly lands right on the intersection of the two nullclines.</p>
