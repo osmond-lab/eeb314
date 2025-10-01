@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 8: Local stability (univariate)
+# Lecture 8: General solutions for linear multivariate models
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,417 +26,366 @@
 
 ## Lecture overview
 
-1. [Stability](#section1)
-2. [Local stability analysis in continuous-time one-variable models](#section2)
-3. [Local stability analysis in discrete-time one-variable models](#section3)
-4. [Summary](#section4)
+1. [Motivation](#section1)
+2. [Finding eigenvalues](#section2)
+3. [Finding eigenvectors](#section3)
+4. [Motivation revisited](#section4)
+5. [Summary](#section5)
 
 <span id='section1'></span>
-## 1. Stability
+## 1. Motivation
 <hr>
 
-When a variable is exactly at an equilibrium its value will never change. But what happens when we are not exactly at, but just near an equilibrium?
+Let's return to our model of the number of birds on two islands and switch to discrete time (assuming migration, then birth, then death). The number of birds on each island in the next time step is then
 
-Starting near an equilibrium, if the system moves towards the equilibrium over time the equilibrium is said to be **locally stable**.
+$$
+\begin{aligned}
+n_1(t+1) &= ((1-m_{21})n_1(t) + m_{12}n_2(t))(1+b_1)(1-d_1) + m_1\\
+n_2(t+1) &= (m_{21}n_1(t) + (1-m_{12})n_2(t))(1+b_2)(1-d_2) + m_2.
+\end{aligned}
+$$
 
-In contrast, if the system moves away from the equilibrium over time the equilibrium is said to be **unstable**.
+Or in matrix form,
 
-An equilibrium point is said to be **globally stable** if any starting point leads to it.
+$$
+\begin{aligned}
+\vec{n}(t+1) &= \mathbf{M}\vec{n}(t) + \vec{m},
+\end{aligned}
+$$
 
-We've seen these possibilities already graphically, eg., in phase-line plots for discrete-time diploid selection: when the heterozygote has the lowest fitness the fixation equilibria are locally (but not globally) stable and the polymorphic equilibrium is unstable.
+where
 
+$$
+\mathbf{M} = 
+\begin{pmatrix} 
+(1-m_{21})(1+b_1)(1-d_1) & m_{12}(1+b_1)(1-d_1) \\ 
+m_{21}(1+b_2)(1-d_2) & (1-m_{12})(1+b_2)(1-d_2)
+\end{pmatrix}
+$$
 
-<pre data-executable="true" data-language="python">
-import numpy as np
-import matplotlib.pyplot as plt
+and 
 
-def phase_line_diploid(p0, WAA, WAa, Waa, max=np.inf):
-    'generator for p_t'
-    t, pnow, pnext = 0, p0, 0 #initial conditions
-    while t < max:
-        yield pnow #current value of p(t) and p(t+1)
-        pnext = (WAA * pnow**2 + WAa * pnow * (1 - pnow)) / (WAA * pnow**2 + WAa * 2 * pnow * (1 - pnow) + Waa * (1 - pnow)**2) #update p(t+1)
-        pnow = pnext #update p(t)
-        t += 1 #update t
-        
-def plot_phase_line_diploid(WAA, WAa, Waa, p0, max=20, ax=None):
-    'plot phase line'
+$$
+\vec{m} = 
+\begin{pmatrix} 
+m_1 \\
+m_2.
+\end{pmatrix}.
+$$
+
+The question we now want to answer is, how do the numbers of birds on the two islands change over time?
+
+We start by noting that the equilibrium is
+
+$$
+\begin{aligned}
+\hat{\vec{n}} &= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
+-\vec{m} &= \mathbf{M}\hat{\vec{n}} - \hat{\vec{n}}\\
+-\vec{m} &= \mathbf{M}\hat{\vec{n}} - \mathbf{I}\hat{\vec{n}} \\
+-\vec{m} & = (\mathbf{M} - \mathbf{I})\hat{\vec{n}}\\
+-(\mathbf{M} - \mathbf{I})^{-1}\vec{m} & = \hat{\vec{n}}
+\end{aligned}
+$$
+
+and the deviation from this equilibrium, $\vec{\delta}(t) = \vec{n}(t) - \hat{\vec{n}}$, obeys
+
+$$
+\begin{aligned}
+\vec{\delta}(t+1) &= \vec{n}(t+1) - \hat{\vec{n}}\\
+&= \mathbf{M}\vec{n}(t) + \vec{m} - \hat{\vec{n}}\\
+&= \mathbf{M}(\vec{\delta}(t) + \hat{\vec{n}}) + \vec{m} - \hat{\vec{n}}\\
+&= \mathbf{M}\vec{\delta}(t) + \mathbf{M}\hat{\vec{n}} - \mathbf{I}\hat{\vec{n}}  + \vec{m}\\
+&= \mathbf{M}\vec{\delta}(t) + (\mathbf{M} - \mathbf{I})\hat{\vec{n}}  + \vec{m}\\
+&= \mathbf{M}\vec{\delta}(t) - \vec{m}  + \vec{m}\\
+&= \mathbf{M}\vec{\delta}(t).
+\end{aligned}
+$$
+
+This is (multivariate) exponential growth, which can be solved by brute force iteration,
+
+$$
+\begin{aligned}
+\vec{\delta}(t) &= \mathbf{M}\vec{\delta}(t-1)\\
+&= \mathbf{M}\mathbf{M}\vec{\delta}(t-2)\\
+ &= \mathbf{M}^2\vec{\delta}(t-2)\\
+&\vdots\\
+&= \mathbf{M}^t\vec{\delta}(0).
+\end{aligned}
+$$
+
+Great! We now have the general solution,
+
+$$
+\begin{aligned}
+\vec{\delta}(t) &= \mathbf{M}^t\vec{\delta}(0)\\
+\vec{n}(t) - \hat{\vec{n}} &= \mathbf{M}^t(\vec{n}(0) - \hat{\vec{n}})\\
+\vec{n}(t) &= \mathbf{M}^t(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}.
+\end{aligned}
+$$
+
+The trouble is that it will generally be hard to compute $\mathbf{M}^t$ (if you don't believe me, try calculating $\begin{pmatrix} a & b \\ c & d \end{pmatrix}^3$).
+
+Now imagine that there existed an invertible matrix $\mathbf{A}$ and a diagonal matrix $\mathbf{D}$ that satisfied $\mathbf{M} \mathbf{A} = \mathbf{A} \mathbf{D}$. Then
+
+$$
+\begin{aligned}
+\mathbf{M} \mathbf{A} &= \mathbf{A} \mathbf{D}\\
+\mathbf{M} \mathbf{A}\mathbf{A}^{-1} &= \mathbf{A} \mathbf{D}\mathbf{A}^{-1}\\  
+\mathbf{M} &= \mathbf{A} \mathbf{D} \mathbf{A}^{-1}
+\end{aligned}
+$$
+
+and
+
+$$
+\begin{aligned} 
+\vec{n}(t) &= \mathbf{M}^t(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}\\
+&= (\mathbf{A}\mathbf{D}\mathbf{A}^{-1})^t(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}\\
+&= (\mathbf{A}\mathbf{D}\mathbf{A}^{-1})
+(\mathbf{A}\mathbf{D}\mathbf{A}^{-1}) \cdots
+(\mathbf{A}\mathbf{D}\mathbf{A}^{-1})
+(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}\\
+&= \mathbf{A}\mathbf{D}(\mathbf{A}^{-1}
+\mathbf{A})\mathbf{D}(\mathbf{A}^{-1}\mathbf{A}) \cdots
+(\mathbf{A}^{-1}\mathbf{A})\mathbf{D}\mathbf{A}^{-1}
+(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}\\ 
+&= \mathbf{A}\mathbf{D}^t\mathbf{A}^{-1}
+(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}. 
+\end{aligned}
+$$
+
+This is much easier to calculate because $\mathbf{D}^t$ is just $\mathbf{D}$ with each of the diagonal elements to the power $t$. It also hints at a way to approximate longer-term dynamics and determine the stability of an equilibrium -- as we will see later.
+
+!!! note "Continuous time"
+
+    A similar analysis can be done in continuous time. If we start with 
     
-    # set up figure
-    if ax==None:
-        fig, ax = plt.subplots()
-        fig.set_size_inches(8,0.25)
+    $$
+    \frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n} + \vec{m},
+    $$
     
-    # Plot phase-line
-    ax.axhline(0, color='black', linewidth=0.5)
-    
-    # Plot vector field
-    pts = [pt for pt in phase_line_diploid(p0, WAA, WAa, Waa, max=max)]
-    marker = '>' if pts[2] > pts[1] else '<'
-    ax.scatter(
-        pts,
-        np.zeros(max),
-        marker=marker, s=50, c='black'
-    )
-    
-    ax.set_xlabel(f"$WAA$ = {WAA}, $WAa$ = {WAa}, $Waa$ = {Waa}")
-    
-    return ax
+    then the general solution is
 
-# Plot figure
-fig, ax = plt.subplots()
-fig.set_size_inches(8,0.25)
- 
-# phase line and vector field
-plot_phase_line_diploid(WAA=2, WAa=1, Waa=2, p0=0.45, max=12, ax=ax) #higher starting allele frequency
-plot_phase_line_diploid(WAA=2, WAa=1, Waa=2, p0=0.55, max=12, ax=ax) #low starting allele frequency
+    $$
+    \vec{n}(t) = \mathbf{A}\exp(\mathbf{D}t)\mathbf{A}^{-1}(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}},
+    $$
 
-# equilibria
-plt.scatter([0,1],[0,0],s=200,c='black')
-plt.scatter([0.5],[0],s=200,c='white',edgecolors='black')
+    where $\hat{\vec{n}}=-\mathbf{M}^{-1}\vec{m}$ and 
 
-# Remove background axes
-ax.set_ylabel('$p$', rotation=0)
-ax.get_yaxis().set_ticks([])
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.set_xlim(-0.05,1.05)
-plt.show()
-</pre>
+    $$
+    \exp(\mathbf{D}t) = \begin{pmatrix}
+    \exp(\lambda_1 t) & 0 & \cdots & 0\\
+    0 & \exp(\lambda_2 t) & \cdots & 0\\
+    \vdots & \vdots & \vdots & \vdots\\
+    0 & \cdots & 0 & \exp(\lambda_n t).
+    \end{pmatrix}
+    $$
 
+Now how do we find $\mathbf{A}$ and $\mathbf{D}$? We need $\mathbf{M} \mathbf{A} = \mathbf{A} \mathbf{D}$. Writing $\mathbf{A}$ in terms of its column vectors, $\mathbf{A} = \begin{pmatrix} \vec{v}_1 & \vec{v}_2 \end{pmatrix}$, and denoting the diagonal elements of $\mathbf{D}$ as $\lambda_i$, we can unpack the equation in terms of column vectors,
 
-    
-![png](lecture-08_files/lecture-08_2_0.png)
-    
+$$
+\begin{aligned}
+\mathbf{M} \mathbf{A} &= \mathbf{A} \mathbf{D}\\
+\mathbf{M} \begin{pmatrix} \vec{v}_1 & \vec{v}_2 \end{pmatrix} &= \begin{pmatrix} \vec{v}_1 & \vec{v}_2 \end{pmatrix} \begin{pmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{pmatrix}\\  
+\begin{pmatrix} \mathbf{M}\vec{v}_1 & \mathbf{M}\vec{v}_2 \end{pmatrix} &= \begin{pmatrix} \lambda_1\vec{v}_1 & \lambda_2\vec{v}_2 \end{pmatrix}.  
+\end{aligned}
+$$
 
-
-Our goal in this lecture is to mathematically determine whether a small perturbation away from an equilibrium point will grow or shrink in magnitude over time $\Longrightarrow$ **local stability analysis**.
-
-### Motivating example
-
-Consider logistic growth in continuous time, with $K = 1000$ and $r = 0.5$.
-
-For populations started near carrying capacity, a plot of $\mathrm{d}n/\mathrm{d}t$ vs. $n$ shows that they move closer to the carrying capacity over time, since the rate of change in $n$ is positive when $n<K$ and negative when $K<n$.
-
-
-<pre data-executable="true" data-language="python">
-r,k = 0.5,1000
-xs = np.linspace(0,1.5*k,100)
-ys = [r*n*(1-n/k) for n in xs]
-plt.plot(xs,ys)
-plt.plot(xs,[0 for _ in xs], color='black')
-plt.xlabel('population size, $n$')
-plt.ylabel('rate of change in population size, $dn/dt$')
-plt.show()
-</pre>
-
-
-    
-![png](lecture-08_files/lecture-08_4_0.png)
-    
-
-
-If we drew the same plot for $r=-0.5$ we see that the population size then moves away from $n=K$, as the rate of change in $n$ is negative when $n<K$ and positive when $K<n$. 
-
-
-<pre data-executable="true" data-language="python">
-r,k=-0.5,1000
-xs = np.linspace(0,1.5*k,100)
-ys = [r*n*(1-n/k) for n in xs]
-plt.plot(xs,ys)
-plt.plot(xs,[0 for _ in xs], color='black')
-plt.xlabel('population size, $n$')
-plt.ylabel('rate of change in population size, $dn/dt$')
-plt.show()
-</pre>
-
-
-    
-![png](lecture-08_files/lecture-08_6_0.png)
-    
-
-
-The key difference between these plots near the equilibrium of interest, $\hat n=K$, is that 
-
-    1. in the first case ($r=0.5$), where the equilibrium is stable, $\mathrm{d}n/\mathrm{d}t$ goes from positive to negative, meaning its slope is negative 
-    2. in the second case ($r = -0.5$), where the equilibrium is unstable, $\mathrm{d}n/\mathrm{d}t$, goes from negative to positive, meaning its slope is positive
-
-This suggests that we can determine the local stability of an equilibrium by looking at the slope of the differential equation at that equilibrium.
+So to find $\mathbf{A}$ and $\mathbf{D}$ we need to solve $\mathbf{M}\vec{v}_i = \lambda_i\vec{v}_i$. The solutions to this equation are called **eigenvalues** ($\lambda_i$) and their associated right **eigenvectors** ($\vec{v}_i$). 
 
 <span id='section2'></span>
-## 2. Local stability analysis in continuous-time one-variable models
+## 2. Finding eigenvalues
 <hr>
 
-To determine local stability mathematically, we focus on a small perturbation ($\epsilon$) away from an equilibrium ($\hat{x}$) and determine whether this perturbation will grow or shrink.
-    
-If, at time $t$, the population is a small distance from equilibrium, $x = \hat{x} + \epsilon$, the rate of change in $x$ will be $\mathrm{d}x/\mathrm{d}t = \mathrm{d}(\hat{x} + \epsilon)/\mathrm{d}t$.
-
-Let us call this derivative $f(x)=\mathrm{d}x/\mathrm{d}t$, which we can write as $f(\hat{x} + \epsilon) =  \mathrm{d}(\hat{x} + \epsilon)/\mathrm{d}t$.
-
-To work with this arbitrary function, $f$, let's introduce a pretty remarkable mathematical fact, the Taylor Series.
-
-!!! note "Taylor Series"
-
-    Any function $f(x)$ can be written as an infinite series of derivatives evaluated at $x=a$
-
-    $$
-    f(x) = \sum_{k = 0}^{\infty}\frac{f^{(k)}(a)}{k!}(x-a)^k
-    $$
-
-    where $f^{(k)}(a)$ is the $k^{\mathrm{th}}$ derivative of the function with respect to $x$, evaluated at point $a$. (See section P1.3 in the text for more information).
-
-In this case we want to write $f(\hat{x} + \epsilon)$ as a Taylor Series evaluated at the equilibrium, $\hat{x} + \epsilon = \hat{x}$
+To find the eigenvalues of a matrix, first notice that if we try to use linear algebra to solve for a right eigenvector, $\vec{v}$, we find
 
 $$
-\begin{aligned}
-\frac{\mathrm{d}(\hat{x} + \epsilon)}{\mathrm{d}t} &= f(\hat{x} + \epsilon)\\
-&= f(\hat{x}) + f^{(1)}(\hat{x})(\hat{x} + \epsilon - \hat{x}) + \frac{f^{(2)}(\hat{x})}{2}(\hat{x} + \epsilon - \hat{x})^2 + \cdots\\
-&= f(\hat{x}) + f^{(1)}(\hat{x})\epsilon + \frac{f^{(2)}(\hat{x})}{2}\epsilon^2 + \cdots\\
+\begin{aligned} 
+\mathbf{M}\vec{v} &= \lambda\vec{v}\\
+\mathbf{M}\vec{v} - \lambda\vec{v} &= \vec{0}\\
+\mathbf{M}\vec{v} - \lambda\mathbf{I}\vec{v} &= \vec{0} \\
+(\mathbf{M} - \lambda\mathbf{I})\vec{v} &= \vec{0}\\
+\vec{v} &= (\mathbf{M} - \lambda\mathbf{I})^{-1}\vec{0} \\
+\vec{v} &= \vec{0}.
 \end{aligned}
 $$
 
-Now, to work with this infinite series we will make an assumption, that we are very the equilibrium, meaning the deviation is small, $\epsilon<<1$. This means that $\epsilon^2$ is even smaller, and $\epsilon^3$ even smaller than that, and so on. By considering small $\epsilon$ we can therefore cut-off our infinite series by ignoring any term with $\epsilon$ to a power greater than 1. This is called a "first order" Taylor series approximation of $f$ around $\epsilon=0$. This assumption is what limits us to determining only *local* stability. Global stability would require us to consider large deviations from the equilibrium as well, which is not possible for even mildly complicated functions, $f$.
+But if $\vec{v} = \vec{0}$ then $\mathbf{A}$ is not invertible. This contradiction implies that we did something wrong in our calculations. The only place we made any assumptions was in our last step, where we assumed $(\mathbf{M} - \lambda\mathbf{I})$ was invertible. We then conclude that $(\mathbf{M} - \lambda\mathbf{I})$ is non-invertible and therefore must have a determinant of zero, $|\mathbf{M} - \lambda\mathbf{I}|=0$. 
 
-OK, so making this assumption of small $\epsilon$ we have
+Interestingly, this last equation, $|\mathbf{M} - \lambda\mathbf{I}|=0$, gives us a way to solve for the eigenvalues, $\lambda$, without knowing the eigenvectors, $\vec{v}$. The determinant of the $n\times n$ matrix $(\mathbf{M} - \lambda\mathbf{I})$ is an $n^{th}$ degree polynomial in $\lambda$, which is called the **characteristic polynomial** of $\mathbf{M}$. Setting this polynomial equal to zero and solving for $\lambda$ gives the $n$ eigenvalues of $\mathbf{M}$: $\lambda_1,\lambda_2,...,\lambda_n$.
 
-$$
-\begin{aligned}
-\frac{\mathrm{d}(\hat{x} + \epsilon)}{\mathrm{d}t} &= f(\hat{x}) + f^{(1)}(\hat{x})\epsilon\\
-\end{aligned}
-$$
-
-Since $\hat{x}$ is an equilibrium, $f(\hat{x})$ equals zero, leaving just $f^{(1)}(\hat{x})\epsilon$ on the right-hand side.
-
-Furthermore, the left-hand side can be expanded and simplified ($\hat{x}$ is a constant that does not change in time)
+For example, in the $n=2$ case we have
 
 $$
 \begin{aligned}
-\frac{\mathrm{d}(\hat{x}+\epsilon)}{\mathrm{d}t} &= \frac{\mathrm{d}\hat{x}}{\mathrm{d}t} + \frac{\mathrm{d}\epsilon}{\mathrm{d}t}\\
-&= \frac{\mathrm{d}\epsilon} {\mathrm{d}t}
+\mathbf{M} - \lambda \mathbf{I} &= \begin{pmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \end{pmatrix} - \lambda \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\\
+&= \begin{pmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \end{pmatrix} -  \begin{pmatrix} \lambda & 0 \\ 0 & \lambda \end{pmatrix}\\
+&= \begin{pmatrix} m_{11} - \lambda & m_{12} \\ m_{21} & m_{22} - \lambda \end{pmatrix}
 \end{aligned}
 $$
 
-Combining the above, the deviation from the equilibrium will change over time at a rate
+so that the characteristic polynomial is
 
 $$
-\frac{\mathrm{d} \epsilon}{\mathrm{d}t} = f^{(1)}(\hat{x}) \epsilon
+\begin{aligned}
+|\mathbf{M} - \lambda \mathbf{I} | =& (m_{11}-\lambda)(m_{22}-\lambda)-m_{21} m_{12}\\
+=&\lambda^2 - (m_{11}+m_{22})\lambda + (m_{11}m_{22}-m_{21}m_{12})\\
+=&\lambda^2 - \mathrm{Tr}(\mathbf{M})\lambda + \mathrm{Det}(\mathbf{M}),
+\end{aligned}
 $$
 
-This is the same as exponential growth with growth rate $r=f^{(1)}(\hat{x})$.
+where we've introduced the **trace** of a matrix, $\mathrm{Tr}(\mathbf{M})$, which is the sum of the diagonal elements.
 
-The deviation will therefore
-
-- grow if $f^{(1)}(\hat{x})>0$ $\implies\hat{x}$ unstable
-- shrink if $f^{(1)}(\hat{x})<0$ $\implies\hat{x}$ locally stable
-
-Stability in continuous time therefore requires the slope of the differential equation to be negative at the equilibrium, $f^{(1)}(\hat{x}) = \left.\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\mathrm{d}x}{\mathrm{d}t}\right)\right|_{x=\hat{x}} < 0$.
-
-### E.g., logistic growth
-
-Let's again look at the model of logistic growth in continuous time, where
+Setting this polynomial equal to zero, the two solutions can be found using the quadratic formula
 
 $$
-f(n) = \frac{\mathrm{d}n}{\mathrm{d}t} = rn \left(1 - \frac{n}{K}\right)
+\lambda = \frac{\mathrm{Tr}(\mathbf{M}) \pm \sqrt{\mathrm{Tr}(\mathbf{M})^2 - 4\mathrm{Det}(\mathbf{M})}}{2}.
 $$
 
-The derivative of $f$ with respect to $n$ is
+Finding the determinant of $(\mathbf{M} - \lambda\mathbf{I})$ becomes trickier for larger matrices, but we've already learned some helpful properties of determinants that come in handy.
+
+For instance, the eigenvalues of a diagonal or triangular matrix are simply the diagonal elements,
 
 $$
-f'(n) = r - 2 r\frac{n}{K}
+\begin{aligned}
+|\mathbf{M} - \lambda \mathbf{I}|
+&= \begin{vmatrix} m_{11} - \lambda & 0 & 0 \\ m_{21} & m_{22} - \lambda & 0 \\ m_{31} & m_{32} & m_{33} - \lambda \end{vmatrix}\\
+&= (m_{11} - \lambda) (m_{22} - \lambda) (m_{33} - \lambda).
+\end{aligned}
 $$
 
-Plugging in $n=K$ gives
+Similarly, the eigenvalues of a block-diagonal or block-triangular matrix are the eigenvalues of the submatrices along the diagonal,
 
 $$
-f'(K) = r - 2 r = -r
+\begin{aligned}
+|\mathbf{M} - \lambda \mathbf{I}| &= \begin{vmatrix} \begin{pmatrix} m_{11} - \lambda & 0 \\ m_{21} & m_{22} - \lambda \end{pmatrix} & \begin{pmatrix} 0 \\ 0 \end{pmatrix} \\ \begin{pmatrix} m_{31} & m_{32} \end{pmatrix} & \begin{pmatrix} m_{33} - \lambda \end{pmatrix} \end{vmatrix}\\
+ &= \begin{vmatrix} m_{11} - \lambda & 0 \\ m_{21} & m_{22} - \lambda \end{vmatrix} \begin{vmatrix} m_{33} - \lambda \end{vmatrix}\\
+&= (m_{11} - \lambda) (m_{22} - \lambda) (m_{33} - \lambda).
+\end{aligned}
 $$
-
-This implies that $r>0$ causes local stability of $\hat{n}=K$. We can check this is consistent with a graphical analysis, below.
-
-
-<pre data-executable="true" data-language="python">
-def f(n,r,k):
-    'differential equation for logistic growth'
-    return n*r*(1-n/k)
-
-def plot_logistic_de(r,k,ax=None):
-    'plot differential equation for logistic growth as function of n'
-    xs = np.linspace(0,k*1.5,100) #n values
-    if ax == None:
-        fig, ax = plt.subplots() 
-    # 0 line
-    ax.plot(xs, [0 for _ in xs], color='black', linestyle='--')
-    # differential equation
-    ax.plot(xs, [f(x,r,k) for x in xs], color='black')
-    #aesthetics
-    ax.set_xlabel('$n$')
-    ax.set_ylabel('$dn/dt$')
-    ax.set_title('$r=$%.1f'%r)
-    return ax
-</pre>
-
-
-<pre data-executable="true" data-language="python">
-plot_logistic_de(r=0.5, k=1000)
-plt.show()
-plot_logistic_de(r=-0.5, k=1000)
-plt.show()
-</pre>
-
-
-    
-![png](lecture-08_files/lecture-08_11_0.png)
-    
-
-
-
-    
-![png](lecture-08_files/lecture-08_11_1.png)
-    
-
 
 <span id='section3'></span>
-## 3. Local stability analysis in discrete-time one-variable models
+## 3. Finding eigenvectors
 <hr>
 
-In discrete time we instead work with a recursion equation, $x(t+1) = f(x(t))$.
+Now that we can find an eigenvalue, how do we find its associated eigenvectors?
 
-Again, consider a system that is a small distance from the equilibrium at time $t$: $x(t) = \hat{x} + \epsilon(t)$.
+We know we can't solve $\mathbf{M}\vec{v} = \lambda \vec{v}$ for $\vec{v}$ with linear algebra because $(\mathbf{M} - \lambda\mathbf{I})$ is singular. Instead we need to write out the system of equations represented by $\mathbf{M}\vec{v} = \lambda \vec{v}$ and solve for one variable after another.
 
-At time $t+1$, the population will be at $x(t+1) = \hat{x} + \epsilon(t+1) = f(\hat{x} + \epsilon(t))$.
-
-Taking the Taylor Series of $f(\hat{x} + \epsilon(t))$ around $\epsilon(t)=0$ and truncating to first order (under our assumption of small $\epsilon$) we have
+For example, for a $2 \times 2$ matrix $\mathbf{M}$ with eigenvalues $\lambda_1$ and $\lambda_2$ we know that a right eigenvector associated with $\lambda_1$, $\vec{v}_1$, must solve
 
 $$
 \begin{aligned}
-\hat{x} + \epsilon(t+1) &= f(\hat{x} + \epsilon(t))\\
-&= f(\hat{x}) + f^{(1)}(\hat{x})(\hat{x} + \epsilon(t) - \hat{x})\\
-&= f(\hat{x}) + f^{(1)}(\hat{x})\epsilon(t)
+\mathbf{M}\vec{v}_1 &= \lambda_1 \vec{v}_1\\
+\begin{pmatrix}
+  m_{11} & m_{12} \\
+  m_{21} & m_{22}
+\end{pmatrix}
+\begin{pmatrix}
+  v_1 \\
+  v_2
+\end{pmatrix} &= \lambda_1
+\begin{pmatrix}
+  v_1 \\
+  v_2
+\end{pmatrix}.
 \end{aligned}
 $$
 
-We know that $f(\hat{x}) = \hat{x}$ because $\hat{x}$ is an equilibrium, which implies
-
-$$
-\epsilon(t+1) = f^{(1)}(\hat{x})\epsilon(t)
-$$
-
-This is the recursion for exponential growth, with reproductive factor $\lambda = f^{(1)}(\hat{x})$. 
-
-Based on our knowledge of discrete-time exponential growth, we therefore know that the deviation from equilibrium will:
-
-- move from one side of the equilibrium to the other (i.e., oscillate) if $\lambda$ is negative
-    - grow if $\lambda<-1$ $\implies\hat{x}$ unstable
-    - shrink if $-1<\lambda<0$ $\implies\hat{x}$ locally stable
-
-
-- stay on the same side of the equilibrium (i.e., not oscillate) if $\lambda$ is positive
-    - shrink if $0<\lambda<1$ $\implies\hat{x}$ locally stable
-    - grow if $1<\lambda$ $\implies\hat{x}$ unstable
-    
-Local stability in discrete time therefore requires the slope of the recursion to be between -1 and 1 at the equilibrium, $-1<f^{(1)}(\hat{x})=\left.\frac{\mathrm{d}x_{t+1}}{\mathrm{d}x_t}\right|_{x_t=\hat x}<1$.
-
-### E.g., logistic growth
-
-To see how this works, let's look at the logistic growth model in discrete time. Here the recursion is
-
-$$
-f(n) = n \left(1 + r\left(1 - \frac{n}{K}\right)\right)
-$$
-
-We first take the derivative of $f$ with respect to $n$
-
-$$
-f'(n) = 1 + r - 2 r \frac{n}{K}
-$$
-
-Then we plug in the equilirbium value of interest, $n=K$
+Carrying out the matrix multiplication, we can write down a system of equations corresponding the the rows,
 
 $$
 \begin{aligned}
-f'(K) &= 1 + r - 2 r \\
-&= 1 - r
+m_{11} v_1 + m_{12} v_2 &= \lambda_1 v_1 \\
+m_{21} v_1 + m_{22} v_2 &= \lambda_1 v_2.
 \end{aligned}
 $$
 
-This will be negative when $r > 1$, creating oscillations.
+This system of equations determines the elements of the right eigenvector, $\vec{v}_1$, associated with $\lambda_1$.
 
-The equilibrium will be stable when $-1 < 1 - r < 1 \implies 0 < r < 2$.
+Note from $\mathbf{M}\vec{v} = \lambda \vec{v}$ that we can multiply $\vec{v}$ by any constant and that will also be a solution. This means there are an infinite number of eigenvectors associated with an eigenvalue and we can set one of the elements to an arbitrary value. A typical choice is to set the first entry equal to one, $v_1 = 1$.
 
-This is consistent with what we've seen in cob-web plots, as below.
+Now we have just one unknown, $v_2$, so we can choose either of the equations above to solve for $v_2$. We pick the first, giving
 
+$$
+\begin{aligned}
+m_{11} v_1 + m_{12} v_2 &= \lambda_1 v_1 \\
+m_{11} 1 + m_{12} v_2 &= \lambda_1 1 \\
+v_2 &= (\lambda_1 - m_{11}) / m_{12}.
+\end{aligned}
+$$
 
-<pre data-executable="true" data-language="python">
-# logistic growth recursion
-def f(nt,r,k):
-    return nt * (1 + r * (1 - nt / k))
+We therefore have right eigenvector $\vec{v}_1 =  \begin{pmatrix} 1 \\ (\lambda_1 - m_{11})/m_{12} \end{pmatrix}$ associated with the eigenvalue $\lambda_1$. 
 
-# Build cobweb plotting function
-def cobweb_logistic(n0, r, k, max=np.inf):
-    t, nnow, nnext = 0, n0, 0 #initial conditions
-    while t < max:
-        yield nnow, nnext #current value of n(t) and n(t+1)
-        nnext = f(nnow,r,k)
-        yield nnow, nnext #current value of n(t) and n(t+1)
-        nnow = nnext #update n(t)
-        t += 1 #update t
+Because we've done this quite generally, we also now know that the right eigenvector associated with the second eigenvalue, $\lambda_2$, is $\vec{v}_2 = \begin{pmatrix} 1 \\ (\lambda_2 - m_{11})/m_{12} \end{pmatrix}$.
 
-# Plot
-def plot_logistic_with_cobweb(r, k, n0, ncobs=10, ax=None):
-    # Plot the curves (add an additional curve past equilibrium to show stability)
-    xs = np.linspace(0,k*1.5,100) #x values
-    if ax == None:
-        fig, ax = plt.subplots() 
-    #1:1 line
-    ax.plot(xs, xs, color='black', linestyle='dashed')
-    # recursion
-    ax.plot(xs, [f(x,r,k) for x in xs], color='black')
-    # cobweb
-    cobweb = np.array([i for i in cobweb_logistic(n0, r, k, ncobs)])
-    plt.plot(cobweb[:,0], cobweb[:,1], color='blue')
-    #aesthetics
-    ax.set_ylim(0,None)
-    ax.set_xlim(0,None)
-    ax.set_xlabel('$n_t$')
-    ax.set_ylabel('$n_{t+1}$')
-    ax.set_title('$r=$%.1f'%r)
-    return ax
-</pre>
+Dependence of the eigenvectors on $m_{21}$ and $m_{22}$ will come through the eigenvalues, $\lambda_i$.
+
+<span id='section4'></span>
+## 4. Motivation revisited
+<hr> 
+
+Now let's return to our motivating example of birds on islands. And let's imagine we have good estimates of the parameter values (after years of tough fieldwork!): $m_{12}=m_{21}=0.1$, $b_1=b_2=0.2$, $d_1=d_2=0.3$, $m_1=10$, and $m_2=5$. To derive the general solution, giving the number of birds on the two islands in year $t$, we first derive the eigenvalues and eigenvectors of $\mathbf{M}$. Using the techniques above we find that the eigenvalues are $\lambda_1=0.672$ and $\lambda_2=0.84$. The associated right eigenvectors are $\vec{v}_1=\begin{pmatrix} 1 \\ 1 \end{pmatrix}$ and $\vec{v}_2=\begin{pmatrix} 1 \\ -1 \end{pmatrix}$. We therefore have 
+
+$$
+\mathbf{D} = \begin{pmatrix} 0.672 & 0 \\ 0 & 0.84 \end{pmatrix}
+$$ 
+
+and 
+
+$$
+\mathbf{A} = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}.
+$$
+
+This year's census of the islands tells us that there are currently 100 birds on island 1 and 50 on island 2. Taking this as the starting point, $\vec{n}(0) = \begin{pmatrix} 100 \\ 50 \end{pmatrix}$, we can use our general solution to predict the number of birds on the two islands over time. Below we plot the predicted number of birds on the two islands over the next 50 years.
 
 
 <pre data-executable="true" data-language="python">
-plot_logistic_with_cobweb(r=0.5, k=1000, n0=900)
-plot_logistic_with_cobweb(r=1.5, k=1000, n0=900)
-plot_logistic_with_cobweb(r=2.5, k=1000, n0=900)
+m12, m21, b1, b2, d1, d2, m1, m2 = 0.1, 0.1, 0.2, 0.2, 0.3, 0.3, 10, 5 #parameter values
+t = symbols('t')
+
+# general solution
+from sympy import *
+M = Matrix([[(1-m21)*(1+b1)*(1-d1), m12*(1+b1)*(1-d1)], #matrix
+            [m21*(1+b2)*(1-d2), (1-m12)*(1+b2)*(1-d2)]])
+A, D = M.diagonalize() #quick way to get matrix of right eigenvectors (A) and eigenvalues (D)
+n0 = Matrix([100,50]) #note this is made into a column vector automatically
+m = Matrix([m1,m2])
+nhat = -(M - eye(2)).inv()*m
+nt = A*D**t*A.inv()*(n0-nhat) + nhat #general solution
+
+# plot
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+for j in range(2): #for each island
+    ax.plot([nt.subs(t,i)[j] for i in range(50)], label='island %d'%(j+1), marker=".")
+ax.legend()
+ax.set_xlabel('years from now')
+ax.set_ylabel('number of birds')
+ax.set_ylim(0,None)
 plt.show()
 </pre>
 
 
     
-![png](lecture-08_files/lecture-08_15_0.png)
+![png](lecture-08_files/lecture-08_5_0.png)
     
 
 
-
-    
-![png](lecture-08_files/lecture-08_15_1.png)
-    
-
-
-
-    
-![png](lecture-08_files/lecture-08_15_2.png)
-    
-
-
-<span id='section4'></span>
-## 4. Summary
+<span id='section5'></span>
+## 5. Summary
 <hr>
 
-Local stability analysis for continuous- and discrete-time models with one variable:
+To summarize,  
 
-1. take the derivative of the differential equation or recursion with respect to the variable, $f^{(1)}(x)$
-2. plug in the equilibrium value of the variable, $f^{(1)}(\hat x)$
-3. determine the sign (and magnitude in discrete-time)
+- for any system of linear recursion equations, $\vec{x}(t+1) = \mathbf{M}\vec{x}(t) + \vec{m}$, we can write the general solution as $\vec{x}(t) = \mathbf{A}\mathbf{D}^t\mathbf{A}^{-1}(\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}},$ where $\hat{\vec{x}}=-(\mathbf{M} - \mathbf{I})^{-1}\vec{m}$ is the equilibrium, $\mathbf{A}$ is a matrix with right eigenvectors as columns, and $\mathbf{D}$ is a diagonal matrix with eigenvalues along the diagonal
+- similarly, for any system of linear differential equations, $\mathrm{d}\vec{x}/\mathrm{d}t = \mathbf{M}\vec{x} + \vec{m}$, we can write the general solution as $\vec{x}(t) = \mathbf{A}\exp(\mathbf{D}t)\mathbf{A}^{-1}(\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}},$ where $\hat{\vec{x}}=-\mathbf{M}^{-1}\vec{m}$ is the equilibrium, $\mathbf{A}$ is a matrix with right eigenvectors as columns, and $\mathbf{D}$ is a diagonal matrix with eigenvalues along the diagonal
+- the eigenvalues, $\lambda$, are found by solving $|\mathbf{M} - \lambda\mathbf{I}|=0$
+- the right eigenvectors, $\vec{v}$, are found by solving the equations given by $\mathbf{M}\vec{v}=\lambda\vec{v}$
+
+Practice problems from the text book: P2.12-P2.14, 9.1-9.3.
+
+
+<pre data-executable="true" data-language="python">
+
+</pre>

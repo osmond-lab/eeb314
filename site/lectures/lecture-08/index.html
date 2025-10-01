@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../lecture-07/">
+      
+      
+        <link rel="next" href="../../labs/schedule/">
       
       
       <link rel="icon" href="../../images/favicon_non_transparent.svg">
@@ -16,7 +20,7 @@
     
     
       
-        <title>Lecture 08 - Mathematical modelling in ecology and evolution (EEB314)</title>
+        <title>Lecture 8 - Mathematical modelling in ecology and evolution (EEB314)</title>
       
     
     
@@ -81,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lecture-8-local-stability-univariate" class="md-skip">
+        <a href="#lecture-8-general-solutions-for-linear-multivariate-models" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Lecture 08
+              Lecture 8
             
           </span>
         </div>
@@ -236,10 +240,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../schedule/" class="md-tabs__link">
           
   
@@ -581,24 +587,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -611,7 +622,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Lectures
@@ -802,6 +813,125 @@
 
               
             
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lecture 8
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 8
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lecture overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Motivation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-finding-eigenvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Finding eigenvalues
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-finding-eigenvectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Finding eigenvectors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-motivation-revisited" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Motivation revisited
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -965,6 +1095,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorial 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1030,81 +1183,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-stability" class="md-nav__link">
+  <a href="#1-motivation" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Stability
+      1. Motivation
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="1. Stability">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#motivating-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Motivating example
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-local-stability-analysis-in-continuous-time-one-variable-models" class="md-nav__link">
+  <a href="#2-finding-eigenvalues" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Local stability analysis in continuous-time one-variable models
+      2. Finding eigenvalues
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="2. Local stability analysis in continuous-time one-variable models">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#eg-logistic-growth" class="md-nav__link">
-    <span class="md-ellipsis">
-      E.g., logistic growth
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-local-stability-analysis-in-discrete-time-one-variable-models" class="md-nav__link">
+  <a href="#3-finding-eigenvectors" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Local stability analysis in discrete-time one-variable models
+      3. Finding eigenvectors
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="3. Local stability analysis in discrete-time one-variable models">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#eg-logistic-growth_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      E.g., logistic growth
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-summary" class="md-nav__link">
+  <a href="#4-motivation-revisited" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Summary
+      4. Motivation revisited
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Summary
     </span>
   </a>
   
@@ -1139,7 +1256,7 @@
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
-<h1 id="lecture-8-local-stability-univariate">Lecture 8: Local stability (univariate)</h1>
+<h1 id="lecture-8-general-solutions-for-linear-multivariate-models">Lecture 8: General solutions for linear multivariate models</h1>
 <hr style="margin-bottom: 0em;">
 <center>
 <div class="inrow">
@@ -1152,321 +1269,296 @@
 
 <h2 id="lecture-overview">Lecture overview</h2>
 <ol>
-<li><a href="#section1">Stability</a></li>
-<li><a href="#section2">Local stability analysis in continuous-time one-variable models</a></li>
-<li><a href="#section3">Local stability analysis in discrete-time one-variable models</a></li>
-<li><a href="#section4">Summary</a></li>
+<li><a href="#section1">Motivation</a></li>
+<li><a href="#section2">Finding eigenvalues</a></li>
+<li><a href="#section3">Finding eigenvectors</a></li>
+<li><a href="#section4">Motivation revisited</a></li>
+<li><a href="#section5">Summary</a></li>
 </ol>
 <p><span id='section1'></span></p>
-<h2 id="1-stability">1. Stability</h2>
+<h2 id="1-motivation">1. Motivation</h2>
 <hr>
 
-<p>When a variable is exactly at an equilibrium its value will never change. But what happens when we are not exactly at, but just near an equilibrium?</p>
-<p>Starting near an equilibrium, if the system moves towards the equilibrium over time the equilibrium is said to be <strong>locally stable</strong>.</p>
-<p>In contrast, if the system moves away from the equilibrium over time the equilibrium is said to be <strong>unstable</strong>.</p>
-<p>An equilibrium point is said to be <strong>globally stable</strong> if any starting point leads to it.</p>
-<p>We've seen these possibilities already graphically, eg., in phase-line plots for discrete-time diploid selection: when the heterozygote has the lowest fitness the fixation equilibria are locally (but not globally) stable and the polymorphic equilibrium is unstable.</p>
-<pre data-executable="true" data-language="python">
-import numpy as np
-import matplotlib.pyplot as plt
-
-def phase_line_diploid(p0, WAA, WAa, Waa, max=np.inf):
-    'generator for p_t'
-    t, pnow, pnext = 0, p0, 0 #initial conditions
-    while t < max:
-        yield pnow #current value of p(t) and p(t+1)
-        pnext = (WAA * pnow**2 + WAa * pnow * (1 - pnow)) / (WAA * pnow**2 + WAa * 2 * pnow * (1 - pnow) + Waa * (1 - pnow)**2) #update p(t+1)
-        pnow = pnext #update p(t)
-        t += 1 #update t
-
-def plot_phase_line_diploid(WAA, WAa, Waa, p0, max=20, ax=None):
-    'plot phase line'
-
-    # set up figure
-    if ax==None:
-        fig, ax = plt.subplots()
-        fig.set_size_inches(8,0.25)
-
-    # Plot phase-line
-    ax.axhline(0, color='black', linewidth=0.5)
-
-    # Plot vector field
-    pts = [pt for pt in phase_line_diploid(p0, WAA, WAa, Waa, max=max)]
-    marker = '>' if pts[2] > pts[1] else '<'
-    ax.scatter(
-        pts,
-        np.zeros(max),
-        marker=marker, s=50, c='black'
-    )
-
-    ax.set_xlabel(f"$WAA$ = {WAA}, $WAa$ = {WAa}, $Waa$ = {Waa}")
-
-    return ax
-
-# Plot figure
-fig, ax = plt.subplots()
-fig.set_size_inches(8,0.25)
-
-# phase line and vector field
-plot_phase_line_diploid(WAA=2, WAa=1, Waa=2, p0=0.45, max=12, ax=ax) #higher starting allele frequency
-plot_phase_line_diploid(WAA=2, WAa=1, Waa=2, p0=0.55, max=12, ax=ax) #low starting allele frequency
-
-# equilibria
-plt.scatter([0,1],[0,0],s=200,c='black')
-plt.scatter([0.5],[0],s=200,c='white',edgecolors='black')
-
-# Remove background axes
-ax.set_ylabel('$p$', rotation=0)
-ax.get_yaxis().set_ticks([])
-ax.spines['top'].set_visible(False)
-ax.spines['right'].set_visible(False)
-ax.spines['bottom'].set_visible(False)
-ax.spines['left'].set_visible(False)
-ax.set_xlim(-0.05,1.05)
-plt.show()
-</pre>
-
-<p><img alt="png" src="../lecture-08_files/lecture-08_2_0.png" /></p>
-<p>Our goal in this lecture is to mathematically determine whether a small perturbation away from an equilibrium point will grow or shrink in magnitude over time <span class="arithmatex">\(\Longrightarrow\)</span> <strong>local stability analysis</strong>.</p>
-<h3 id="motivating-example">Motivating example</h3>
-<p>Consider logistic growth in continuous time, with <span class="arithmatex">\(K = 1000\)</span> and <span class="arithmatex">\(r = 0.5\)</span>.</p>
-<p>For populations started near carrying capacity, a plot of <span class="arithmatex">\(\mathrm{d}n/\mathrm{d}t\)</span> vs. <span class="arithmatex">\(n\)</span> shows that they move closer to the carrying capacity over time, since the rate of change in <span class="arithmatex">\(n\)</span> is positive when <span class="arithmatex">\(n&lt;K\)</span> and negative when <span class="arithmatex">\(K&lt;n\)</span>.</p>
-<p><pre data-executable="true" data-language="python">
-r,k = 0.5,1000
-xs = np.linspace(0,1.5<em>k,100)
-ys = [r</em>n*(1-n/k) for n in xs]
-plt.plot(xs,ys)
-plt.plot(xs,[0 for _ in xs], color='black')
-plt.xlabel('population size, <span class="arithmatex">\(n\)</span>')
-plt.ylabel('rate of change in population size, <span class="arithmatex">\(dn/dt\)</span>')
-plt.show()
-</pre></p>
-<p><img alt="png" src="../lecture-08_files/lecture-08_4_0.png" /></p>
-<p>If we drew the same plot for <span class="arithmatex">\(r=-0.5\)</span> we see that the population size then moves away from <span class="arithmatex">\(n=K\)</span>, as the rate of change in <span class="arithmatex">\(n\)</span> is negative when <span class="arithmatex">\(n&lt;K\)</span> and positive when <span class="arithmatex">\(K&lt;n\)</span>. </p>
-<p><pre data-executable="true" data-language="python">
-r,k=-0.5,1000
-xs = np.linspace(0,1.5<em>k,100)
-ys = [r</em>n*(1-n/k) for n in xs]
-plt.plot(xs,ys)
-plt.plot(xs,[0 for _ in xs], color='black')
-plt.xlabel('population size, <span class="arithmatex">\(n\)</span>')
-plt.ylabel('rate of change in population size, <span class="arithmatex">\(dn/dt\)</span>')
-plt.show()
-</pre></p>
-<p><img alt="png" src="../lecture-08_files/lecture-08_6_0.png" /></p>
-<p>The key difference between these plots near the equilibrium of interest, <span class="arithmatex">\(\hat n=K\)</span>, is that </p>
-<div class="highlight"><pre><span></span><code>1. in the first case ($r=0.5$), where the equilibrium is stable, $\mathrm{d}n/\mathrm{d}t$ goes from positive to negative, meaning its slope is negative 
-2. in the second case ($r = -0.5$), where the equilibrium is unstable, $\mathrm{d}n/\mathrm{d}t$, goes from negative to positive, meaning its slope is positive
-</code></pre></div>
-<p>This suggests that we can determine the local stability of an equilibrium by looking at the slope of the differential equation at that equilibrium.</p>
-<p><span id='section2'></span></p>
-<h2 id="2-local-stability-analysis-in-continuous-time-one-variable-models">2. Local stability analysis in continuous-time one-variable models</h2>
-<hr>
-
-<p>To determine local stability mathematically, we focus on a small perturbation (<span class="arithmatex">\(\epsilon\)</span>) away from an equilibrium (<span class="arithmatex">\(\hat{x}\)</span>) and determine whether this perturbation will grow or shrink.</p>
-<p>If, at time <span class="arithmatex">\(t\)</span>, the population is a small distance from equilibrium, <span class="arithmatex">\(x = \hat{x} + \epsilon\)</span>, the rate of change in <span class="arithmatex">\(x\)</span> will be <span class="arithmatex">\(\mathrm{d}x/\mathrm{d}t = \mathrm{d}(\hat{x} + \epsilon)/\mathrm{d}t\)</span>.</p>
-<p>Let us call this derivative <span class="arithmatex">\(f(x)=\mathrm{d}x/\mathrm{d}t\)</span>, which we can write as <span class="arithmatex">\(f(\hat{x} + \epsilon) =  \mathrm{d}(\hat{x} + \epsilon)/\mathrm{d}t\)</span>.</p>
-<p>To work with this arbitrary function, <span class="arithmatex">\(f\)</span>, let's introduce a pretty remarkable mathematical fact, the Taylor Series.</p>
+<p>Let's return to our model of the number of birds on two islands and switch to discrete time (assuming migration, then birth, then death). The number of birds on each island in the next time step is then</p>
+<div class="arithmatex">\[
+\begin{aligned}
+n_1(t+1) &amp;= ((1-m_{21})n_1(t) + m_{12}n_2(t))(1+b_1)(1-d_1) + m_1\\
+n_2(t+1) &amp;= (m_{21}n_1(t) + (1-m_{12})n_2(t))(1+b_2)(1-d_2) + m_2.
+\end{aligned}
+\]</div>
+<p>Or in matrix form,</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\vec{n}(t+1) &amp;= \mathbf{M}\vec{n}(t) + \vec{m},
+\end{aligned}
+\]</div>
+<p>where</p>
+<div class="arithmatex">\[
+\mathbf{M} = 
+\begin{pmatrix} 
+(1-m_{21})(1+b_1)(1-d_1) &amp; m_{12}(1+b_1)(1-d_1) \\ 
+m_{21}(1+b_2)(1-d_2) &amp; (1-m_{12})(1+b_2)(1-d_2)
+\end{pmatrix}
+\]</div>
+<p>and </p>
+<div class="arithmatex">\[
+\vec{m} = 
+\begin{pmatrix} 
+m_1 \\
+m_2.
+\end{pmatrix}.
+\]</div>
+<p>The question we now want to answer is, how do the numbers of birds on the two islands change over time?</p>
+<p>We start by noting that the equilibrium is</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\hat{\vec{n}} &amp;= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
+-\vec{m} &amp;= \mathbf{M}\hat{\vec{n}} - \hat{\vec{n}}\\
+-\vec{m} &amp;= \mathbf{M}\hat{\vec{n}} - \mathbf{I}\hat{\vec{n}} \\
+-\vec{m} &amp; = (\mathbf{M} - \mathbf{I})\hat{\vec{n}}\\
+-(\mathbf{M} - \mathbf{I})^{-1}\vec{m} &amp; = \hat{\vec{n}}
+\end{aligned}
+\]</div>
+<p>and the deviation from this equilibrium, <span class="arithmatex">\(\vec{\delta}(t) = \vec{n}(t) - \hat{\vec{n}}\)</span>, obeys</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\vec{\delta}(t+1) &amp;= \vec{n}(t+1) - \hat{\vec{n}}\\
+&amp;= \mathbf{M}\vec{n}(t) + \vec{m} - \hat{\vec{n}}\\
+&amp;= \mathbf{M}(\vec{\delta}(t) + \hat{\vec{n}}) + \vec{m} - \hat{\vec{n}}\\
+&amp;= \mathbf{M}\vec{\delta}(t) + \mathbf{M}\hat{\vec{n}} - \mathbf{I}\hat{\vec{n}}  + \vec{m}\\
+&amp;= \mathbf{M}\vec{\delta}(t) + (\mathbf{M} - \mathbf{I})\hat{\vec{n}}  + \vec{m}\\
+&amp;= \mathbf{M}\vec{\delta}(t) - \vec{m}  + \vec{m}\\
+&amp;= \mathbf{M}\vec{\delta}(t).
+\end{aligned}
+\]</div>
+<p>This is (multivariate) exponential growth, which can be solved by brute force iteration,</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\vec{\delta}(t) &amp;= \mathbf{M}\vec{\delta}(t-1)\\
+&amp;= \mathbf{M}\mathbf{M}\vec{\delta}(t-2)\\
+ &amp;= \mathbf{M}^2\vec{\delta}(t-2)\\
+&amp;\vdots\\
+&amp;= \mathbf{M}^t\vec{\delta}(0).
+\end{aligned}
+\]</div>
+<p>Great! We now have the general solution,</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\vec{\delta}(t) &amp;= \mathbf{M}^t\vec{\delta}(0)\\
+\vec{n}(t) - \hat{\vec{n}} &amp;= \mathbf{M}^t(\vec{n}(0) - \hat{\vec{n}})\\
+\vec{n}(t) &amp;= \mathbf{M}^t(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}.
+\end{aligned}
+\]</div>
+<p>The trouble is that it will generally be hard to compute <span class="arithmatex">\(\mathbf{M}^t\)</span> (if you don't believe me, try calculating <span class="arithmatex">\(\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}^3\)</span>).</p>
+<p>Now imagine that there existed an invertible matrix <span class="arithmatex">\(\mathbf{A}\)</span> and a diagonal matrix <span class="arithmatex">\(\mathbf{D}\)</span> that satisfied <span class="arithmatex">\(\mathbf{M} \mathbf{A} = \mathbf{A} \mathbf{D}\)</span>. Then</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbf{M} \mathbf{A} &amp;= \mathbf{A} \mathbf{D}\\
+\mathbf{M} \mathbf{A}\mathbf{A}^{-1} &amp;= \mathbf{A} \mathbf{D}\mathbf{A}^{-1}\\  
+\mathbf{M} &amp;= \mathbf{A} \mathbf{D} \mathbf{A}^{-1}
+\end{aligned}
+\]</div>
+<p>and</p>
+<div class="arithmatex">\[
+\begin{aligned} 
+\vec{n}(t) &amp;= \mathbf{M}^t(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}\\
+&amp;= (\mathbf{A}\mathbf{D}\mathbf{A}^{-1})^t(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}\\
+&amp;= (\mathbf{A}\mathbf{D}\mathbf{A}^{-1})
+(\mathbf{A}\mathbf{D}\mathbf{A}^{-1}) \cdots
+(\mathbf{A}\mathbf{D}\mathbf{A}^{-1})
+(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}\\
+&amp;= \mathbf{A}\mathbf{D}(\mathbf{A}^{-1}
+\mathbf{A})\mathbf{D}(\mathbf{A}^{-1}\mathbf{A}) \cdots
+(\mathbf{A}^{-1}\mathbf{A})\mathbf{D}\mathbf{A}^{-1}
+(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}\\ 
+&amp;= \mathbf{A}\mathbf{D}^t\mathbf{A}^{-1}
+(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}}. 
+\end{aligned}
+\]</div>
+<p>This is much easier to calculate because <span class="arithmatex">\(\mathbf{D}^t\)</span> is just <span class="arithmatex">\(\mathbf{D}\)</span> with each of the diagonal elements to the power <span class="arithmatex">\(t\)</span>. It also hints at a way to approximate longer-term dynamics and determine the stability of an equilibrium -- as we will see later.</p>
 <div class="admonition note">
-<p class="admonition-title">Taylor Series</p>
-<p>Any function <span class="arithmatex">\(f(x)\)</span> can be written as an infinite series of derivatives evaluated at <span class="arithmatex">\(x=a\)</span></p>
+<p class="admonition-title">Continuous time</p>
+<p>A similar analysis can be done in continuous time. If we start with </p>
 <div class="arithmatex">\[
-f(x) = \sum_{k = 0}^{\infty}\frac{f^{(k)}(a)}{k!}(x-a)^k
+\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n} + \vec{m},
 \]</div>
-<p>where <span class="arithmatex">\(f^{(k)}(a)\)</span> is the <span class="arithmatex">\(k^{\mathrm{th}}\)</span> derivative of the function with respect to <span class="arithmatex">\(x\)</span>, evaluated at point <span class="arithmatex">\(a\)</span>. (See section P1.3 in the text for more information).</p>
+<p>then the general solution is</p>
+<div class="arithmatex">\[
+\vec{n}(t) = \mathbf{A}\exp(\mathbf{D}t)\mathbf{A}^{-1}(\vec{n}(0) - \hat{\vec{n}}) + \hat{\vec{n}},
+\]</div>
+<p>where <span class="arithmatex">\(\hat{\vec{n}}=-\mathbf{M}^{-1}\vec{m}\)</span> and </p>
+<div class="arithmatex">\[
+\exp(\mathbf{D}t) = \begin{pmatrix}
+\exp(\lambda_1 t) &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; \exp(\lambda_2 t) &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+0 &amp; \cdots &amp; 0 &amp; \exp(\lambda_n t).
+\end{pmatrix}
+\]</div>
 </div>
-<p>In this case we want to write <span class="arithmatex">\(f(\hat{x} + \epsilon)\)</span> as a Taylor Series evaluated at the equilibrium, <span class="arithmatex">\(\hat{x} + \epsilon = \hat{x}\)</span></p>
+<p>Now how do we find <span class="arithmatex">\(\mathbf{A}\)</span> and <span class="arithmatex">\(\mathbf{D}\)</span>? We need <span class="arithmatex">\(\mathbf{M} \mathbf{A} = \mathbf{A} \mathbf{D}\)</span>. Writing <span class="arithmatex">\(\mathbf{A}\)</span> in terms of its column vectors, <span class="arithmatex">\(\mathbf{A} = \begin{pmatrix} \vec{v}_1 &amp; \vec{v}_2 \end{pmatrix}\)</span>, and denoting the diagonal elements of <span class="arithmatex">\(\mathbf{D}\)</span> as <span class="arithmatex">\(\lambda_i\)</span>, we can unpack the equation in terms of column vectors,</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\frac{\mathrm{d}(\hat{x} + \epsilon)}{\mathrm{d}t} &amp;= f(\hat{x} + \epsilon)\\
-&amp;= f(\hat{x}) + f^{(1)}(\hat{x})(\hat{x} + \epsilon - \hat{x}) + \frac{f^{(2)}(\hat{x})}{2}(\hat{x} + \epsilon - \hat{x})^2 + \cdots\\
-&amp;= f(\hat{x}) + f^{(1)}(\hat{x})\epsilon + \frac{f^{(2)}(\hat{x})}{2}\epsilon^2 + \cdots\\
+\mathbf{M} \mathbf{A} &amp;= \mathbf{A} \mathbf{D}\\
+\mathbf{M} \begin{pmatrix} \vec{v}_1 &amp; \vec{v}_2 \end{pmatrix} &amp;= \begin{pmatrix} \vec{v}_1 &amp; \vec{v}_2 \end{pmatrix} \begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}\\  
+\begin{pmatrix} \mathbf{M}\vec{v}_1 &amp; \mathbf{M}\vec{v}_2 \end{pmatrix} &amp;= \begin{pmatrix} \lambda_1\vec{v}_1 &amp; \lambda_2\vec{v}_2 \end{pmatrix}.  
 \end{aligned}
 \]</div>
-<p>Now, to work with this infinite series we will make an assumption, that we are very the equilibrium, meaning the deviation is small, <span class="arithmatex">\(\epsilon&lt;&lt;1\)</span>. This means that <span class="arithmatex">\(\epsilon^2\)</span> is even smaller, and <span class="arithmatex">\(\epsilon^3\)</span> even smaller than that, and so on. By considering small <span class="arithmatex">\(\epsilon\)</span> we can therefore cut-off our infinite series by ignoring any term with <span class="arithmatex">\(\epsilon\)</span> to a power greater than 1. This is called a "first order" Taylor series approximation of <span class="arithmatex">\(f\)</span> around <span class="arithmatex">\(\epsilon=0\)</span>. This assumption is what limits us to determining only <em>local</em> stability. Global stability would require us to consider large deviations from the equilibrium as well, which is not possible for even mildly complicated functions, <span class="arithmatex">\(f\)</span>.</p>
-<p>OK, so making this assumption of small <span class="arithmatex">\(\epsilon\)</span> we have</p>
+<p>So to find <span class="arithmatex">\(\mathbf{A}\)</span> and <span class="arithmatex">\(\mathbf{D}\)</span> we need to solve <span class="arithmatex">\(\mathbf{M}\vec{v}_i = \lambda_i\vec{v}_i\)</span>. The solutions to this equation are called <strong>eigenvalues</strong> (<span class="arithmatex">\(\lambda_i\)</span>) and their associated right <strong>eigenvectors</strong> (<span class="arithmatex">\(\vec{v}_i\)</span>). </p>
+<p><span id='section2'></span></p>
+<h2 id="2-finding-eigenvalues">2. Finding eigenvalues</h2>
+<hr>
+
+<p>To find the eigenvalues of a matrix, first notice that if we try to use linear algebra to solve for a right eigenvector, <span class="arithmatex">\(\vec{v}\)</span>, we find</p>
+<div class="arithmatex">\[
+\begin{aligned} 
+\mathbf{M}\vec{v} &amp;= \lambda\vec{v}\\
+\mathbf{M}\vec{v} - \lambda\vec{v} &amp;= \vec{0}\\
+\mathbf{M}\vec{v} - \lambda\mathbf{I}\vec{v} &amp;= \vec{0} \\
+(\mathbf{M} - \lambda\mathbf{I})\vec{v} &amp;= \vec{0}\\
+\vec{v} &amp;= (\mathbf{M} - \lambda\mathbf{I})^{-1}\vec{0} \\
+\vec{v} &amp;= \vec{0}.
+\end{aligned}
+\]</div>
+<p>But if <span class="arithmatex">\(\vec{v} = \vec{0}\)</span> then <span class="arithmatex">\(\mathbf{A}\)</span> is not invertible. This contradiction implies that we did something wrong in our calculations. The only place we made any assumptions was in our last step, where we assumed <span class="arithmatex">\((\mathbf{M} - \lambda\mathbf{I})\)</span> was invertible. We then conclude that <span class="arithmatex">\((\mathbf{M} - \lambda\mathbf{I})\)</span> is non-invertible and therefore must have a determinant of zero, <span class="arithmatex">\(|\mathbf{M} - \lambda\mathbf{I}|=0\)</span>. </p>
+<p>Interestingly, this last equation, <span class="arithmatex">\(|\mathbf{M} - \lambda\mathbf{I}|=0\)</span>, gives us a way to solve for the eigenvalues, <span class="arithmatex">\(\lambda\)</span>, without knowing the eigenvectors, <span class="arithmatex">\(\vec{v}\)</span>. The determinant of the <span class="arithmatex">\(n\times n\)</span> matrix <span class="arithmatex">\((\mathbf{M} - \lambda\mathbf{I})\)</span> is an <span class="arithmatex">\(n^{th}\)</span> degree polynomial in <span class="arithmatex">\(\lambda\)</span>, which is called the <strong>characteristic polynomial</strong> of <span class="arithmatex">\(\mathbf{M}\)</span>. Setting this polynomial equal to zero and solving for <span class="arithmatex">\(\lambda\)</span> gives the <span class="arithmatex">\(n\)</span> eigenvalues of <span class="arithmatex">\(\mathbf{M}\)</span>: <span class="arithmatex">\(\lambda_1,\lambda_2,...,\lambda_n\)</span>.</p>
+<p>For example, in the <span class="arithmatex">\(n=2\)</span> case we have</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\frac{\mathrm{d}(\hat{x} + \epsilon)}{\mathrm{d}t} &amp;= f(\hat{x}) + f^{(1)}(\hat{x})\epsilon\\
+\mathbf{M} - \lambda \mathbf{I} &amp;= \begin{pmatrix} m_{11} &amp; m_{12} \\ m_{21} &amp; m_{22} \end{pmatrix} - \lambda \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\\
+&amp;= \begin{pmatrix} m_{11} &amp; m_{12} \\ m_{21} &amp; m_{22} \end{pmatrix} -  \begin{pmatrix} \lambda &amp; 0 \\ 0 &amp; \lambda \end{pmatrix}\\
+&amp;= \begin{pmatrix} m_{11} - \lambda &amp; m_{12} \\ m_{21} &amp; m_{22} - \lambda \end{pmatrix}
 \end{aligned}
 \]</div>
-<p>Since <span class="arithmatex">\(\hat{x}\)</span> is an equilibrium, <span class="arithmatex">\(f(\hat{x})\)</span> equals zero, leaving just <span class="arithmatex">\(f^{(1)}(\hat{x})\epsilon\)</span> on the right-hand side.</p>
-<p>Furthermore, the left-hand side can be expanded and simplified (<span class="arithmatex">\(\hat{x}\)</span> is a constant that does not change in time)</p>
+<p>so that the characteristic polynomial is</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\frac{\mathrm{d}(\hat{x}+\epsilon)}{\mathrm{d}t} &amp;= \frac{\mathrm{d}\hat{x}}{\mathrm{d}t} + \frac{\mathrm{d}\epsilon}{\mathrm{d}t}\\
-&amp;= \frac{\mathrm{d}\epsilon} {\mathrm{d}t}
+|\mathbf{M} - \lambda \mathbf{I} | =&amp; (m_{11}-\lambda)(m_{22}-\lambda)-m_{21} m_{12}\\
+=&amp;\lambda^2 - (m_{11}+m_{22})\lambda + (m_{11}m_{22}-m_{21}m_{12})\\
+=&amp;\lambda^2 - \mathrm{Tr}(\mathbf{M})\lambda + \mathrm{Det}(\mathbf{M}),
 \end{aligned}
 \]</div>
-<p>Combining the above, the deviation from the equilibrium will change over time at a rate</p>
+<p>where we've introduced the <strong>trace</strong> of a matrix, <span class="arithmatex">\(\mathrm{Tr}(\mathbf{M})\)</span>, which is the sum of the diagonal elements.</p>
+<p>Setting this polynomial equal to zero, the two solutions can be found using the quadratic formula</p>
 <div class="arithmatex">\[
-\frac{\mathrm{d} \epsilon}{\mathrm{d}t} = f^{(1)}(\hat{x}) \epsilon
+\lambda = \frac{\mathrm{Tr}(\mathbf{M}) \pm \sqrt{\mathrm{Tr}(\mathbf{M})^2 - 4\mathrm{Det}(\mathbf{M})}}{2}.
 \]</div>
-<p>This is the same as exponential growth with growth rate <span class="arithmatex">\(r=f^{(1)}(\hat{x})\)</span>.</p>
-<p>The deviation will therefore</p>
-<ul>
-<li>grow if <span class="arithmatex">\(f^{(1)}(\hat{x})&gt;0\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> unstable</li>
-<li>shrink if <span class="arithmatex">\(f^{(1)}(\hat{x})&lt;0\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> locally stable</li>
-</ul>
-<p>Stability in continuous time therefore requires the slope of the differential equation to be negative at the equilibrium, <span class="arithmatex">\(f^{(1)}(\hat{x}) = \left.\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\mathrm{d}x}{\mathrm{d}t}\right)\right|_{x=\hat{x}} &lt; 0\)</span>.</p>
-<h3 id="eg-logistic-growth">E.g., logistic growth</h3>
-<p>Let's again look at the model of logistic growth in continuous time, where</p>
+<p>Finding the determinant of <span class="arithmatex">\((\mathbf{M} - \lambda\mathbf{I})\)</span> becomes trickier for larger matrices, but we've already learned some helpful properties of determinants that come in handy.</p>
+<p>For instance, the eigenvalues of a diagonal or triangular matrix are simply the diagonal elements,</p>
 <div class="arithmatex">\[
-f(n) = \frac{\mathrm{d}n}{\mathrm{d}t} = rn \left(1 - \frac{n}{K}\right)
+\begin{aligned}
+|\mathbf{M} - \lambda \mathbf{I}|
+&amp;= \begin{vmatrix} m_{11} - \lambda &amp; 0 &amp; 0 \\ m_{21} &amp; m_{22} - \lambda &amp; 0 \\ m_{31} &amp; m_{32} &amp; m_{33} - \lambda \end{vmatrix}\\
+&amp;= (m_{11} - \lambda) (m_{22} - \lambda) (m_{33} - \lambda).
+\end{aligned}
 \]</div>
-<p>The derivative of <span class="arithmatex">\(f\)</span> with respect to <span class="arithmatex">\(n\)</span> is</p>
+<p>Similarly, the eigenvalues of a block-diagonal or block-triangular matrix are the eigenvalues of the submatrices along the diagonal,</p>
 <div class="arithmatex">\[
-f'(n) = r - 2 r\frac{n}{K}
+\begin{aligned}
+|\mathbf{M} - \lambda \mathbf{I}| &amp;= \begin{vmatrix} \begin{pmatrix} m_{11} - \lambda &amp; 0 \\ m_{21} &amp; m_{22} - \lambda \end{pmatrix} &amp; \begin{pmatrix} 0 \\ 0 \end{pmatrix} \\ \begin{pmatrix} m_{31} &amp; m_{32} \end{pmatrix} &amp; \begin{pmatrix} m_{33} - \lambda \end{pmatrix} \end{vmatrix}\\
+ &amp;= \begin{vmatrix} m_{11} - \lambda &amp; 0 \\ m_{21} &amp; m_{22} - \lambda \end{vmatrix} \begin{vmatrix} m_{33} - \lambda \end{vmatrix}\\
+&amp;= (m_{11} - \lambda) (m_{22} - \lambda) (m_{33} - \lambda).
+\end{aligned}
 \]</div>
-<p>Plugging in <span class="arithmatex">\(n=K\)</span> gives</p>
-<div class="arithmatex">\[
-f'(K) = r - 2 r = -r
-\]</div>
-<p>This implies that <span class="arithmatex">\(r&gt;0\)</span> causes local stability of <span class="arithmatex">\(\hat{n}=K\)</span>. We can check this is consistent with a graphical analysis, below.</p>
-<pre data-executable="true" data-language="python">
-def f(n,r,k):
-    'differential equation for logistic growth'
-    return n*r*(1-n/k)
-
-def plot_logistic_de(r,k,ax=None):
-    'plot differential equation for logistic growth as function of n'
-    xs = np.linspace(0,k*1.5,100) #n values
-    if ax == None:
-        fig, ax = plt.subplots() 
-    # 0 line
-    ax.plot(xs, [0 for _ in xs], color='black', linestyle='--')
-    # differential equation
-    ax.plot(xs, [f(x,r,k) for x in xs], color='black')
-    #aesthetics
-    ax.set_xlabel('$n$')
-    ax.set_ylabel('$dn/dt$')
-    ax.set_title('$r=$%.1f'%r)
-    return ax
-</pre>
-
-<pre data-executable="true" data-language="python">
-plot_logistic_de(r=0.5, k=1000)
-plt.show()
-plot_logistic_de(r=-0.5, k=1000)
-plt.show()
-</pre>
-
-<p><img alt="png" src="../lecture-08_files/lecture-08_11_0.png" /></p>
-<p><img alt="png" src="../lecture-08_files/lecture-08_11_1.png" /></p>
 <p><span id='section3'></span></p>
-<h2 id="3-local-stability-analysis-in-discrete-time-one-variable-models">3. Local stability analysis in discrete-time one-variable models</h2>
+<h2 id="3-finding-eigenvectors">3. Finding eigenvectors</h2>
 <hr>
 
-<p>In discrete time we instead work with a recursion equation, <span class="arithmatex">\(x(t+1) = f(x(t))\)</span>.</p>
-<p>Again, consider a system that is a small distance from the equilibrium at time <span class="arithmatex">\(t\)</span>: <span class="arithmatex">\(x(t) = \hat{x} + \epsilon(t)\)</span>.</p>
-<p>At time <span class="arithmatex">\(t+1\)</span>, the population will be at <span class="arithmatex">\(x(t+1) = \hat{x} + \epsilon(t+1) = f(\hat{x} + \epsilon(t))\)</span>.</p>
-<p>Taking the Taylor Series of <span class="arithmatex">\(f(\hat{x} + \epsilon(t))\)</span> around <span class="arithmatex">\(\epsilon(t)=0\)</span> and truncating to first order (under our assumption of small <span class="arithmatex">\(\epsilon\)</span>) we have</p>
+<p>Now that we can find an eigenvalue, how do we find its associated eigenvectors?</p>
+<p>We know we can't solve <span class="arithmatex">\(\mathbf{M}\vec{v} = \lambda \vec{v}\)</span> for <span class="arithmatex">\(\vec{v}\)</span> with linear algebra because <span class="arithmatex">\((\mathbf{M} - \lambda\mathbf{I})\)</span> is singular. Instead we need to write out the system of equations represented by <span class="arithmatex">\(\mathbf{M}\vec{v} = \lambda \vec{v}\)</span> and solve for one variable after another.</p>
+<p>For example, for a <span class="arithmatex">\(2 \times 2\)</span> matrix <span class="arithmatex">\(\mathbf{M}\)</span> with eigenvalues <span class="arithmatex">\(\lambda_1\)</span> and <span class="arithmatex">\(\lambda_2\)</span> we know that a right eigenvector associated with <span class="arithmatex">\(\lambda_1\)</span>, <span class="arithmatex">\(\vec{v}_1\)</span>, must solve</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\hat{x} + \epsilon(t+1) &amp;= f(\hat{x} + \epsilon(t))\\
-&amp;= f(\hat{x}) + f^{(1)}(\hat{x})(\hat{x} + \epsilon(t) - \hat{x})\\
-&amp;= f(\hat{x}) + f^{(1)}(\hat{x})\epsilon(t)
+\mathbf{M}\vec{v}_1 &amp;= \lambda_1 \vec{v}_1\\
+\begin{pmatrix}
+  m_{11} &amp; m_{12} \\
+  m_{21} &amp; m_{22}
+\end{pmatrix}
+\begin{pmatrix}
+  v_1 \\
+  v_2
+\end{pmatrix} &amp;= \lambda_1
+\begin{pmatrix}
+  v_1 \\
+  v_2
+\end{pmatrix}.
 \end{aligned}
 \]</div>
-<p>We know that <span class="arithmatex">\(f(\hat{x}) = \hat{x}\)</span> because <span class="arithmatex">\(\hat{x}\)</span> is an equilibrium, which implies</p>
-<div class="arithmatex">\[
-\epsilon(t+1) = f^{(1)}(\hat{x})\epsilon(t)
-\]</div>
-<p>This is the recursion for exponential growth, with reproductive factor <span class="arithmatex">\(\lambda = f^{(1)}(\hat{x})\)</span>. </p>
-<p>Based on our knowledge of discrete-time exponential growth, we therefore know that the deviation from equilibrium will:</p>
-<ul>
-<li>
-<p>move from one side of the equilibrium to the other (i.e., oscillate) if <span class="arithmatex">\(\lambda\)</span> is negative</p>
-<ul>
-<li>grow if <span class="arithmatex">\(\lambda&lt;-1\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> unstable</li>
-<li>shrink if <span class="arithmatex">\(-1&lt;\lambda&lt;0\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> locally stable</li>
-</ul>
-</li>
-<li>
-<p>stay on the same side of the equilibrium (i.e., not oscillate) if <span class="arithmatex">\(\lambda\)</span> is positive</p>
-<ul>
-<li>shrink if <span class="arithmatex">\(0&lt;\lambda&lt;1\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> locally stable</li>
-<li>grow if <span class="arithmatex">\(1&lt;\lambda\)</span> <span class="arithmatex">\(\implies\hat{x}\)</span> unstable</li>
-</ul>
-</li>
-</ul>
-<p>Local stability in discrete time therefore requires the slope of the recursion to be between -1 and 1 at the equilibrium, <span class="arithmatex">\(-1&lt;f^{(1)}(\hat{x})=\left.\frac{\mathrm{d}x_{t+1}}{\mathrm{d}x_t}\right|_{x_t=\hat x}&lt;1\)</span>.</p>
-<h3 id="eg-logistic-growth_1">E.g., logistic growth</h3>
-<p>To see how this works, let's look at the logistic growth model in discrete time. Here the recursion is</p>
-<div class="arithmatex">\[
-f(n) = n \left(1 + r\left(1 - \frac{n}{K}\right)\right)
-\]</div>
-<p>We first take the derivative of <span class="arithmatex">\(f\)</span> with respect to <span class="arithmatex">\(n\)</span></p>
-<div class="arithmatex">\[
-f'(n) = 1 + r - 2 r \frac{n}{K}
-\]</div>
-<p>Then we plug in the equilirbium value of interest, <span class="arithmatex">\(n=K\)</span></p>
+<p>Carrying out the matrix multiplication, we can write down a system of equations corresponding the the rows,</p>
 <div class="arithmatex">\[
 \begin{aligned}
-f'(K) &amp;= 1 + r - 2 r \\
-&amp;= 1 - r
+m_{11} v_1 + m_{12} v_2 &amp;= \lambda_1 v_1 \\
+m_{21} v_1 + m_{22} v_2 &amp;= \lambda_1 v_2.
 \end{aligned}
 \]</div>
-<p>This will be negative when <span class="arithmatex">\(r &gt; 1\)</span>, creating oscillations.</p>
-<p>The equilibrium will be stable when <span class="arithmatex">\(-1 &lt; 1 - r &lt; 1 \implies 0 &lt; r &lt; 2\)</span>.</p>
-<p>This is consistent with what we've seen in cob-web plots, as below.</p>
+<p>This system of equations determines the elements of the right eigenvector, <span class="arithmatex">\(\vec{v}_1\)</span>, associated with <span class="arithmatex">\(\lambda_1\)</span>.</p>
+<p>Note from <span class="arithmatex">\(\mathbf{M}\vec{v} = \lambda \vec{v}\)</span> that we can multiply <span class="arithmatex">\(\vec{v}\)</span> by any constant and that will also be a solution. This means there are an infinite number of eigenvectors associated with an eigenvalue and we can set one of the elements to an arbitrary value. A typical choice is to set the first entry equal to one, <span class="arithmatex">\(v_1 = 1\)</span>.</p>
+<p>Now we have just one unknown, <span class="arithmatex">\(v_2\)</span>, so we can choose either of the equations above to solve for <span class="arithmatex">\(v_2\)</span>. We pick the first, giving</p>
+<div class="arithmatex">\[
+\begin{aligned}
+m_{11} v_1 + m_{12} v_2 &amp;= \lambda_1 v_1 \\
+m_{11} 1 + m_{12} v_2 &amp;= \lambda_1 1 \\
+v_2 &amp;= (\lambda_1 - m_{11}) / m_{12}.
+\end{aligned}
+\]</div>
+<p>We therefore have right eigenvector <span class="arithmatex">\(\vec{v}_1 =  \begin{pmatrix} 1 \\ (\lambda_1 - m_{11})/m_{12} \end{pmatrix}\)</span> associated with the eigenvalue <span class="arithmatex">\(\lambda_1\)</span>. </p>
+<p>Because we've done this quite generally, we also now know that the right eigenvector associated with the second eigenvalue, <span class="arithmatex">\(\lambda_2\)</span>, is <span class="arithmatex">\(\vec{v}_2 = \begin{pmatrix} 1 \\ (\lambda_2 - m_{11})/m_{12} \end{pmatrix}\)</span>.</p>
+<p>Dependence of the eigenvectors on <span class="arithmatex">\(m_{21}\)</span> and <span class="arithmatex">\(m_{22}\)</span> will come through the eigenvalues, <span class="arithmatex">\(\lambda_i\)</span>.</p>
+<p><span id='section4'></span></p>
+<h2 id="4-motivation-revisited">4. Motivation revisited</h2>
+<hr>
+
+<p>Now let's return to our motivating example of birds on islands. And let's imagine we have good estimates of the parameter values (after years of tough fieldwork!): <span class="arithmatex">\(m_{12}=m_{21}=0.1\)</span>, <span class="arithmatex">\(b_1=b_2=0.2\)</span>, <span class="arithmatex">\(d_1=d_2=0.3\)</span>, <span class="arithmatex">\(m_1=10\)</span>, and <span class="arithmatex">\(m_2=5\)</span>. To derive the general solution, giving the number of birds on the two islands in year <span class="arithmatex">\(t\)</span>, we first derive the eigenvalues and eigenvectors of <span class="arithmatex">\(\mathbf{M}\)</span>. Using the techniques above we find that the eigenvalues are <span class="arithmatex">\(\lambda_1=0.672\)</span> and <span class="arithmatex">\(\lambda_2=0.84\)</span>. The associated right eigenvectors are <span class="arithmatex">\(\vec{v}_1=\begin{pmatrix} 1 \\ 1 \end{pmatrix}\)</span> and <span class="arithmatex">\(\vec{v}_2=\begin{pmatrix} 1 \\ -1 \end{pmatrix}\)</span>. We therefore have </p>
+<div class="arithmatex">\[
+\mathbf{D} = \begin{pmatrix} 0.672 &amp; 0 \\ 0 &amp; 0.84 \end{pmatrix}
+\]</div>
+<p>and </p>
+<div class="arithmatex">\[
+\mathbf{A} = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}.
+\]</div>
+<p>This year's census of the islands tells us that there are currently 100 birds on island 1 and 50 on island 2. Taking this as the starting point, <span class="arithmatex">\(\vec{n}(0) = \begin{pmatrix} 100 \\ 50 \end{pmatrix}\)</span>, we can use our general solution to predict the number of birds on the two islands over time. Below we plot the predicted number of birds on the two islands over the next 50 years.</p>
 <pre data-executable="true" data-language="python">
-# logistic growth recursion
-def f(nt,r,k):
-    return nt * (1 + r * (1 - nt / k))
+m12, m21, b1, b2, d1, d2, m1, m2 = 0.1, 0.1, 0.2, 0.2, 0.3, 0.3, 10, 5 #parameter values
+t = symbols('t')
 
-# Build cobweb plotting function
-def cobweb_logistic(n0, r, k, max=np.inf):
-    t, nnow, nnext = 0, n0, 0 #initial conditions
-    while t < max:
-        yield nnow, nnext #current value of n(t) and n(t+1)
-        nnext = f(nnow,r,k)
-        yield nnow, nnext #current value of n(t) and n(t+1)
-        nnow = nnext #update n(t)
-        t += 1 #update t
+# general solution
+from sympy import *
+M = Matrix([[(1-m21)*(1+b1)*(1-d1), m12*(1+b1)*(1-d1)], #matrix
+            [m21*(1+b2)*(1-d2), (1-m12)*(1+b2)*(1-d2)]])
+A, D = M.diagonalize() #quick way to get matrix of right eigenvectors (A) and eigenvalues (D)
+n0 = Matrix([100,50]) #note this is made into a column vector automatically
+m = Matrix([m1,m2])
+nhat = -(M - eye(2)).inv()*m
+nt = A*D**t*A.inv()*(n0-nhat) + nhat #general solution
 
-# Plot
-def plot_logistic_with_cobweb(r, k, n0, ncobs=10, ax=None):
-    # Plot the curves (add an additional curve past equilibrium to show stability)
-    xs = np.linspace(0,k*1.5,100) #x values
-    if ax == None:
-        fig, ax = plt.subplots() 
-    #1:1 line
-    ax.plot(xs, xs, color='black', linestyle='dashed')
-    # recursion
-    ax.plot(xs, [f(x,r,k) for x in xs], color='black')
-    # cobweb
-    cobweb = np.array([i for i in cobweb_logistic(n0, r, k, ncobs)])
-    plt.plot(cobweb[:,0], cobweb[:,1], color='blue')
-    #aesthetics
-    ax.set_ylim(0,None)
-    ax.set_xlim(0,None)
-    ax.set_xlabel('$n_t$')
-    ax.set_ylabel('$n_{t+1}$')
-    ax.set_title('$r=$%.1f'%r)
-    return ax
-</pre>
-
-<pre data-executable="true" data-language="python">
-plot_logistic_with_cobweb(r=0.5, k=1000, n0=900)
-plot_logistic_with_cobweb(r=1.5, k=1000, n0=900)
-plot_logistic_with_cobweb(r=2.5, k=1000, n0=900)
+# plot
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+for j in range(2): #for each island
+    ax.plot([nt.subs(t,i)[j] for i in range(50)], label='island %d'%(j+1), marker=".")
+ax.legend()
+ax.set_xlabel('years from now')
+ax.set_ylabel('number of birds')
+ax.set_ylim(0,None)
 plt.show()
 </pre>
 
-<p><img alt="png" src="../lecture-08_files/lecture-08_15_0.png" /></p>
-<p><img alt="png" src="../lecture-08_files/lecture-08_15_1.png" /></p>
-<p><img alt="png" src="../lecture-08_files/lecture-08_15_2.png" /></p>
-<p><span id='section4'></span></p>
-<h2 id="4-summary">4. Summary</h2>
+<p><img alt="png" src="../lecture-08_files/lecture-08_5_0.png" /></p>
+<p><span id='section5'></span></p>
+<h2 id="5-summary">5. Summary</h2>
 <hr>
 
-<p>Local stability analysis for continuous- and discrete-time models with one variable:</p>
-<ol>
-<li>take the derivative of the differential equation or recursion with respect to the variable, <span class="arithmatex">\(f^{(1)}(x)\)</span></li>
-<li>plug in the equilibrium value of the variable, <span class="arithmatex">\(f^{(1)}(\hat x)\)</span></li>
-<li>determine the sign (and magnitude in discrete-time)</li>
-</ol>
+<p>To summarize,  </p>
+<ul>
+<li>for any system of linear recursion equations, <span class="arithmatex">\(\vec{x}(t+1) = \mathbf{M}\vec{x}(t) + \vec{m}\)</span>, we can write the general solution as <span class="arithmatex">\(\vec{x}(t) = \mathbf{A}\mathbf{D}^t\mathbf{A}^{-1}(\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}},\)</span> where <span class="arithmatex">\(\hat{\vec{x}}=-(\mathbf{M} - \mathbf{I})^{-1}\vec{m}\)</span> is the equilibrium, <span class="arithmatex">\(\mathbf{A}\)</span> is a matrix with right eigenvectors as columns, and <span class="arithmatex">\(\mathbf{D}\)</span> is a diagonal matrix with eigenvalues along the diagonal</li>
+<li>similarly, for any system of linear differential equations, <span class="arithmatex">\(\mathrm{d}\vec{x}/\mathrm{d}t = \mathbf{M}\vec{x} + \vec{m}\)</span>, we can write the general solution as <span class="arithmatex">\(\vec{x}(t) = \mathbf{A}\exp(\mathbf{D}t)\mathbf{A}^{-1}(\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}},\)</span> where <span class="arithmatex">\(\hat{\vec{x}}=-\mathbf{M}^{-1}\vec{m}\)</span> is the equilibrium, <span class="arithmatex">\(\mathbf{A}\)</span> is a matrix with right eigenvectors as columns, and <span class="arithmatex">\(\mathbf{D}\)</span> is a diagonal matrix with eigenvalues along the diagonal</li>
+<li>the eigenvalues, <span class="arithmatex">\(\lambda\)</span>, are found by solving <span class="arithmatex">\(|\mathbf{M} - \lambda\mathbf{I}|=0\)</span></li>
+<li>the right eigenvectors, <span class="arithmatex">\(\vec{v}\)</span>, are found by solving the equations given by <span class="arithmatex">\(\mathbf{M}\vec{v}=\lambda\vec{v}\)</span></li>
+</ul>
+<p>Practice problems from the text book: P2.12-P2.14, 9.1-9.3.</p>
+<pre data-executable="true" data-language="python">
+
+</pre>
 
 
 
