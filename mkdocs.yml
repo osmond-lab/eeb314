@@ -61,9 +61,9 @@ plugins:
 nav:
   - Overview: index.md
   - Syllabus: 
+    - Course structure: syllabus/course_structure.md
     - Instructors: syllabus/instructors.md
     - When and where: syllabus/when_and_where.md
-    - Course structure: syllabus/course_structure.md
     - Textbook: syllabus/textbook.md
 #    - Assignments: syllabus/assignments.md
     - Final Project: syllabus/final_project.md
@@ -80,7 +80,7 @@ nav:
     - Lecture 6: lectures/lecture-06.md
     - Lecture 7: lectures/lecture-07.md
     - Lecture 8: lectures/lecture-08.md
-#    - Lecture 9: lectures/lecture-09.md
+    - Lecture 9: lectures/lecture-09.md
 #    - Lecture 10: lectures/lecture-10.md
 #    - Lecture 11: lectures/lecture-11.md
 #    - Lecture 12: lectures/lecture-12.md

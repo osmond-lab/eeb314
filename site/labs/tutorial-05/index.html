@@ -224,7 +224,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../syllabus/instructors/" class="md-tabs__link">
+        <a href="../../syllabus/course_structure/" class="md-tabs__link">
           
   
   
@@ -399,6 +399,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Course structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../syllabus/instructors/" class="md-nav__link">
         
   
@@ -428,29 +451,6 @@
   
   <span class="md-ellipsis">
     When and where
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../syllabus/course_structure/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Course structure
     
   </span>
   
@@ -821,6 +821,29 @@
   
   <span class="md-ellipsis">
     Lecture 8
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/lecture-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 9
     
   </span>
   
@@ -1239,11 +1262,15 @@
 0 &amp; 0 &amp; \cdots &amp; 0\\  
 \end{pmatrix}.
 \]</div>
-<p>We can therefore approximate <span class="arithmatex">\(\vec{x}(t)\)</span> after a sufficient amount of time as,</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that this does not work if more than one eigenvalue share the largest absolute value.</p>
+</div>
+<p>We can therefore approximate <span class="arithmatex">\(\vec{x}(t)\)</span> after a sufficient amount of time as</p>
 <div class="arithmatex">\[
 \begin{aligned}
 \tilde{\vec{x}}(t) &amp;= \mathbf{A}\tilde{\mathbf{D}}^t\mathbf{A}^{-1}(\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}}\\
-&amp;= \lambda_1^t \vec{v}_1 \vec{u}_1 (\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}}
+&amp;= \lambda_1^t \vec{v}_1 \vec{u}_1 (\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}},
 \end{aligned}
 \]</div>
 <p>where <span class="arithmatex">\(\vec{v}_1\)</span> is the right eigenvector associated with the leading eigenvalue (the first column of <span class="arithmatex">\(\mathbf{A}\)</span>) and <span class="arithmatex">\(\vec{u}_1\)</span> is the left eigenvector associated with the leading eigenvalue, <span class="arithmatex">\(\lambda_1\)</span> (the first row of <span class="arithmatex">\(\mathbf{A}^{-1}\)</span>).</p>
@@ -1280,9 +1307,6 @@
 \end{align}
 \]</div>
 <p>Writing this in matrix form, <span class="arithmatex">\(\mathrm{d}\vec{n}/\mathrm{d}t = \mathbf{M}\vec{n} + \vec{m}\)</span>, determine <span class="arithmatex">\(\mathbf{M}\)</span> and <span class="arithmatex">\(\vec{m}\)</span>. Determine the eigenvalues (and associated eigenvectors if you have time). Is the equilibrium stable? </p>
-<pre data-executable="true" data-language="python">
-
-</pre>
 
 
 

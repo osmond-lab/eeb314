@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 9: General solutions (univariate)
+# Lecture 13: Complex eigenvalues
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,128 +26,178 @@
 
 ## Lecture overview
 
-1. [General solutions](#section1)
-2. [Linear models in discrete time](#section2)
-3. [Nonlinear models in discrete time](#section3)
-4. [Linear models in continuous time](#section4)
-5. [Nonlinear models in continuous time](#section5)
-6. [Summary](#section6)
+1. [Complex eigenvalues](#section1)
+2. [Example](#section2)
+3. [Summary](#section3)
 
 <span id='section1'></span>
-## 1. General solutions
+## 1. Complex eigenvalues
 <hr>
 
-Last week we learned how to find **equilibria** and determine their **local stability** in models with one variable (univariate).
+### Discrete time
 
-Those analyses describe the *long-term dynamics* of our models, i.e., what we expect after a long time has passed.
-
-This week we’ll look at some simple cases where we can describe the *entire* dynamics, including the short-term, by solving for the variable as a function of time, $x_t = f(t)$ 
-
-This is called a **general solution**.
-
-<span id='section2'></span>
-## 2. Linear models in discrete time
-<hr>
-
-With a single variable, $x$, in discrete time all **linear models** can be written 
+We now know that the general solution of a system of linear recursion equations, $\vec{x}(t+1) = \mathbf{M}\vec{x}(t) + \vec{m}$, can be written 
 
 $$
-x_{t+1} = a x_t + b
-$$
+\vec{x}(t) = \mathbf{A}\mathbf{D}^t\mathbf{A}^{-1}(\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}},
+$$ 
 
-There are two cases that we will consider separately: 1) $b = 0$ and 2) $b \neq 0$.
+where $\hat{\vec{x}}=-(\mathbf{M} - \mathbf{I})^{-1}\vec{m}$ is the equilibrium, $\mathbf{A}$ is a matrix with right eigenvectors as columns, and $\mathbf{D}$ is a diagonal matrix with eigenvalues along the diagonal.
 
-### Brute force iteration
-
-When $b = 0$ we can use **brute force iteration**
+The dynamics over time therefore critically depend on $\mathbf{D}^t$,
 
 $$
-\begin{aligned}
-x_t &= a x_{t-1}\\
-&= a a x_{t-2}\\
-&= a a a x_{t-3}\\ 
-&\vdots\\
-&= a\cdots a x_0\\
-&= a^t x_0
-\end{aligned}
-$$   
+\mathbf{D}^t =  
+\begin{pmatrix} 
+\lambda_1^t & 0 & \cdots & 0\\
+0 & \lambda_2^t & \cdots & 0\\
+\vdots & \vdots & \vdots & \vdots\\ 
+0 & 0 & \cdots & \lambda_n^t\\  
+\end{pmatrix},
+$$
 
-This is the general solution for exponential growth in discrete time, with reproductive factor $a$. We can see that our variable will oscillate around the equilibrium ($\hat{x}=0$) if $a<0$ and will either approach the equilibrium ($|a|<1$) or depart from it ($|a|>1$), consistent with our local stability analysis. See this for yourself by playing with the value of $a$ in the plot below.  
+and therefore on the eigenvalues, $\lambda$, of $\mathbf{M}$. For example, for $\vec{x}(t)$ to converge to the equilibrium, $\hat{\vec{x}}$, need all $|\lambda|<1$.
+
+We also now know how to find the eigenvalues of $\mathbf{M}$, by solving $|\mathbf{M}-\lambda\mathbf{I}|=0$ for $\lambda$. For example, when $\mathbf{M}$ is a 2x2 matrix $|\mathbf{M}-\lambda\mathbf{I}|$ is a quadratic polynomial in $\lambda$ and the solutions can be written in terms of the trace and determinant of $\mathbf{M}$,
+
+$$
+\lambda = \frac{\mathrm{Tr}(\mathbf{M}) \pm \sqrt{\mathrm{Tr}(\mathbf{M})^2 - 4\mathrm{Det}(\mathbf{M})}}{2}.
+$$
+
+Now, notice that if $\mathrm{Tr}(\mathbf{M})^2 < 4\mathrm{Det}(\mathbf{M})$ we need to take the square of a negative number. This implies that the eigenvalues will be **complex**, i.e., that they will involve the **imaginary number** $i = \sqrt{-1}$. In particular, when $\mathrm{Tr}(\mathbf{M})^2 < 4\mathrm{Det}(\mathbf{M})$ we can write the square root as
+
+$$
+\begin{align}
+\sqrt{\mathrm{Tr}(\mathbf{M})^2 - 4\mathrm{Det}(\mathbf{M})}
+&= \sqrt{(4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2)(-1)}\\
+&= \sqrt{4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2}\sqrt{-1}\\
+&= \sqrt{4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2}i,
+\end{align}
+$$
+
+where $\sqrt{4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2}$ is a **real** number (i.e., not complex). Letting $\mathrm{Tr}(\mathbf{M})/2=A$ and $\sqrt{4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2}/2=B$, the two eigenvalues can then be written as $\lambda=A\pm Bi$. Two numbers that take this form are called **complex conjugates**.
+
+We can think of a complex number as a vector on the **complex plane**, a two-dimensional space with the real part, $A$, on the x-axis and the imaginary part, $B$, on the y-axis. The length of our vector is $R=\sqrt{A^2+B^2}$ and the angle of our vector (from the vector that points directly right along the x-axis) is $\theta = \arctan(B/A)$. Using basic geometric rules we then have $A=R\cos(\theta)$ and $B=R\sin(\theta)$. We can therefore write our complex eigenvalue as $\lambda = R(\cos(\theta) + \sin(\theta)i) = R\exp(\theta i)$, where the last step used what is known as Euler's equation.
 
 
 <pre data-executable="true" data-language="python">
 import matplotlib.pyplot as plt
-a, x0 = 0.99, 10 #define parameter values and initial condition
-ts = range(1000) #time values
-xs = [a**t * x0 for t in ts] #variable values from general solution
-plt.scatter(ts, xs) #plot discretely
-plt.ylabel('$x(t)$')
-plt.xlabel('$t$')
+import math
+from matplotlib.patches import Arc
+
+A,B = 1,1 #real and imaginary parts
+
+fig, ax = plt.subplots()
+
+ax.arrow(0,0,A,B, head_width=0.05, color='black', length_includes_head=True) #eigenvalue as vector in complex plane
+
+dx = 0.05
+ax.plot([0-dx/2,A-dx/2],[0+dx,B+dx],marker='o',c='b')
+ax.text(A/2,B/2+3*dx,r'$R$',rotation=math.atan(B/A)*180/math.pi,c='b',fontsize=15,ha='center',va='center')
+
+ax.plot([0,A],[0,0],marker='o',c='r')
+ax.text(A/2,0+dx,r'$A=R \cos(\theta)$',c='r',fontsize=15,ha='center',va='center')
+
+ax.plot([A,A],[0,B],marker='o',c='g')
+ax.text(A+dx,B/2,r'$B=R \sin(\theta)$',c='g',fontsize=15,ha='center',va='center',rotation=90)
+
+ax.set_xlabel('real part, $A$')
+ax.set_ylabel('imaginary part, $B$')
+ax.set_xlim(-dx,A+2*dx)
+ax.set_ylim(-dx,B+2*dx)
+
+dx=A/4
+ax.plot([0,dx],[0,0],c='orange')
+ax.add_patch(Arc((0,0), width=2*dx, height=2*dx, theta1=0, theta2=math.atan(B/A)*180/math.pi, edgecolor='orange'))
+ax.text(dx/2,dx/6,r'$\theta$',fontsize=15,c='orange')
+
 plt.show()
 </pre>
 
 
     
-![png](lecture-09_files/lecture-09_3_0.png)
+![png](lecture-09_files/lecture-09_2_0.png)
     
 
 
-### Solving affine models
-
-When $b \neq 0$ (which gives us what is called an **affine model**) we need to use a **transformation**, much like we did when determining local stability.
-
-**Step 1**: Solve for the equilibrium
+Now to see how a complex eigenvalue affects the dynamics of our system, consider what happens to that element of $\mathbf{D}^t$ as time proceeds, 
 
 $$
 \begin{aligned}
-\hat{x} &= a \hat{x} + b \\
-\hat{x} &= \frac{b}{1 - a}
+\lambda^t &= (A + Bi)^t\\
+&= (\cos(\theta) + \sin(\theta)i)^t\\
+&= (R\exp(i \theta))^t\\
+&= R^t\exp(i \theta t)\\
+&= R^t(\cos(\theta t) + \sin(\theta t)i).
 \end{aligned}
 $$
 
-!!! note
-   
-    Note that if $a=1$ there is no equilibrium for $b\neq0$, and instead you can use brute force iteration to show that $x_t = x_0 + b t$.
+Two key implications emerge: 
 
-**Step 2**: Define $\delta_t = x_t - \hat{x}$, the deviation of our variable from the equilibrium (this is our transformation).
+- $\cos(\theta t) + \sin(\theta t)i$ implies oscillatory dynamics (cycles)
+- $\lambda^t$ will shrink with time when $R<1$ and therefore stability in discrete time requires $A^2 + B^2<1$, i.e., the imaginary part, $B$, influences stability
 
-**Step 3**: Write the recursion equation for the transformed variable
+### Continuous time
+
+In continuous time we need to consider $\exp(\lambda t)$ rather than $\lambda^t$,
 
 $$
 \begin{aligned}
-\delta_{t+1} &= x_{t+1} - \hat{x} \\
-&= a x_t + b - \hat{x} \\
-&= a(\delta_t + \hat{x}) + b - \hat{x}\\
-&= a \left(\delta_t + \frac{b}{1 - a}\right) + b - \frac{b}{1 - a}\\
-&= a \delta_t
+\exp(\lambda t) &= \exp((A + Bi)t)\\
+&= \exp(At + Bti)\\
+&= \exp(At)\exp(Bti)\\
+&= \exp(At)(\cos(Bt) + \sin(Bt)i).
 \end{aligned}
 $$
 
-**Step 4**: This is the same recursion we derived above for $x$ when $b=0$. So the general solution for the transformed variable is $\delta_t = a^t \delta_0$.
+Two key implications emerge: 
 
-**Step 5**: Reverse transform back to $x_t$
+- $\cos(B t) + \sin(B t)i$ implies oscillatory dynamics (cycles)
+- $\exp(\lambda t)$ will shrink with time when $A<0$ and therefore stability in continuous time only depends on the sign of the real part, $A$
 
-$$
-\begin{aligned}
-x_t &= \delta_t + \hat{x}\\
-&= a^t \delta_0 + \hat{x}\\
-&= a^t (x_0 - \hat{x}) + \hat{x}\\
-&= a^t x_0 + (1 - a^t)\hat{x}
-\end{aligned}
-$$
+In the 2x2 case there is a shortcut to determine stability in continuous time (a special case of the Routh-Hurwitz stability criteria), regardless of whether the eigenvalues are complex. It comes from the fact that the two eigenvalues (given by the quadratic equation above) sum to $\mathrm{Tr}(\mathbf{M})$ and multiply to $\mathrm{Det}(\mathbf{M})$ (give this a check if you want). So
 
-This says that our variable moves from $x_0$ towards/away from $\hat{x}$ by a factor $a$ per time step. Note that if $b=0$ then $\hat{x}=0$ and this reduces to what we derived above, $x_t=a^t x_0$.
+- $\mathrm{Tr}(\mathbf{M})<0$ and $\mathrm{Det}(\mathbf{M})>0$ implies both eigenvalues are negative (stability)
+- $\mathrm{Tr}(\mathbf{M})>0$ and $\mathrm{Det}(\mathbf{M})>0$ implies both eigenvalues are positive (unstable)
+- $\mathrm{Det}(\mathbf{M})<0$ implies the eigenvalues have opposite sign (unstable)
 
-Below we plot the general solution for a given value of $a$ and $b$ from a number of different intitial conditions. Try playing with the values of $a$ and $b$ and observe the different dynamics.
+Combining this with the fact that we will get oscillations when $\mathrm{Tr}(\mathbf{M})^2 < 4\mathrm{Det}(\mathbf{M})$, we can summarize the dynamics in the following plot. If there are ocillations we call the equilibrium a focus, otherwise it is a node.
 
 
 <pre data-executable="true" data-language="python">
-a, b, x0 = 0.99, 1, 10 #define parameter values and initial condition
-ts = range(1000) #time values
-xs = [a**t * x0 + (1-a**t)*b/(1-a) for t in ts] #variable values from general solution
-plt.scatter(ts, xs) #plot discretely
-plt.ylabel('$x(t)$')
-plt.xlabel('$t$')
+import matplotlib.pyplot as plt
+import numpy as np
+
+xs = np.linspace(-1,1,100)
+fig, ax = plt.subplots()
+
+ax.plot(xs, [x**2/4 for x in xs])
+
+ax.set_xlim(-1,1)
+ax.set_ylim(-1/4,1/4)
+
+ax.text(0,1/4,r'$\mathrm{Det}(\mathbf{M})$',ha='center',fontsize=14)
+ax.text(1,0,r'$\mathrm{Tr}(\mathbf{M})$',va='center',fontsize=14)
+ax.text(1,1/4,r'$\mathrm{Det}(\mathbf{M}) = \mathrm{Tr}(\mathbf{M})^2/4$',va='center',fontsize=12, color=plt.cm.tab10(0))
+ax.text(1/2,-1/8,'unstable',ha='center',fontsize=12)
+ax.text(-1/2,-1/8,'unstable',ha='center',fontsize=12)
+ax.text(2/5,1/8,'unstable focus',ha='center',fontsize=12)
+ax.text(-2/5,1/8,'stable focus',ha='center',fontsize=12)
+ax.text(4/5,1/16,'unstable node',ha='center',fontsize=12)
+ax.text(-4/5,1/16,'stable node',ha='center',fontsize=12)
+
+# set the x-spine (see below for more info on `set_position`)
+ax.spines['left'].set_position('zero')
+ax.set_xticks([])
+# turn off the right spine/ticks
+ax.spines['right'].set_color('none')
+ax.set_yticks([])
+# set the y-spine
+ax.spines['bottom'].set_position('zero')
+# turn off the top spine/ticks
+ax.spines['top'].set_color('none')
+ax.xaxis.tick_bottom()
+
 plt.show()
 </pre>
 
@@ -157,44 +207,65 @@ plt.show()
     
 
 
-<span id='section3'></span>
-## 3. Nonlinear models in discrete time
+<span id='section2'></span>
+## 2. Example
 <hr>
 
-Unfortunately there is no recipe to solve **nonlinear models** in discrete time, even with one variable.
-  
-In fact, most of the time there is no general solution.
+To see more concretely how complex eigenvalues appear and affect the dynamics of our models, let's consider a model of sexual selection in continuous time. We will model the mean value of a male trait, $\bar{z}$, such as the length of a birds tail, and the mean value of female preference for that trait, $\bar{p}$ (if $\bar{p}>0$ females tend to prefer larger male traits, if $\bar{p}<0$ females tend to prefer smaller male traits). We assume the optimal male trait value in the absence of sexual selection is $\theta$, i.e., natural selection always pushes $\bar{z}$ towards $\theta$ (we'll take $\theta=0$, meaning $\bar{z}$ is measured relative to the optimum). We assume female choice is costly, i.e., natural selection always pushes $\bar{p}$ towards 0. Finally we will assume that male traits and female preference share some genetic basis, meaning that they will covary (e.g., there may be some alleles that increase the trait value when in males and increase the preference when in females, causing positive covariance). This covariance means that a change in the male trait will cause a change in female preference, and vice-versa.
 
-To get a sense of why that might be, remember the chaos of logistic growth!
+We can describe the dynamics of $\bar{z}$ and $\bar{p}$ with a system of linear differential equations,
+
+$$
+\begin{align}
+\frac{\mathrm{d}\bar{z}}{\mathrm{d}t} &= G_z (a \bar{p} - c \bar{z}) - B b \bar{p}\\
+\frac{\mathrm{d}\bar{p}}{\mathrm{d}t} &= B (a \bar{p} - c \bar{z}) - G_p b \bar{p},
+\end{align}
+$$
+
+where $G_z$ and $G_p$ are the amounts of genetic variation in male traits and female preference (this is the "fuel" of evolution, so the rates of evolution are proportional to these variances), $B$ is the covariance between male traits and female preference, $a$ is the strength of sexual selection, and $c$ and $b$ are the strengths of natural selection on male traits and female preference.
+
+This is a linear multivariate model whose dynamics are determined by the matrix 
+
+$$
+\mathbf{M} = \begin{pmatrix} -G_zc & G_za - Bb \\ -Bc & Ba - G_pb \end{pmatrix}.
+$$ 
+
+The trace and determinant are
+
+$$
+\begin{aligned}
+\mathrm{Tr}(\mathbf{M})&=-G_zc + Ba - G_pb\\
+\mathrm{Det}(\mathbf{M})&=-G_zc(Ba - G_pb)-(G_za - Bb)(-Bc)\\
+&=bc(G_pG_z-B^2).
+\end{aligned}
+$$ 
+
+Stability requires $\mathrm{Tr}(\mathbf{M})<0$ and $\mathrm{Det}(\mathbf{M})>0$. We have complex eigenvalues, and therefore cycling, whenever $\mathrm{Tr}(\mathbf{M})^2 < 4\mathrm{Det}(\mathbf{M})$.
+
+Below we plot the dynamics when the equilibrium is a stable focus, meaning the oscillations decay to the equilibrium over time.
+
+Biologically, this cycling occurs because initially the mean male trait is positive but there is no mean female preference. This implies that both natural and sexual selection favour smaller male traits, causing the mean to decline. But because of a correlated response, female preference also declines, favouring male traits less than 0. Eventually female preference becomes too costly and begins to increase back toward zero. This causes a correlated increase in the male trait, and so on. 
 
 
 <pre data-executable="true" data-language="python">
-import numpy as np
+Gz, Gp, B, a, b, c, z0, p0, tmax = 0.15, 0.8, 0.32, 0.95, 0.3, 0.45, 1, 0, 1000 #parameter values
 
-# Generator for logistic growth
-def n(n0, r, k, max=np.inf):
-    t, nt = 0, n0
-    while t < max:
-        yield nt
-        t, nt = t + 1, nt + r * nt * (1 - nt / k)
+# general solution
+from sympy import *
+M = Matrix([[-Gz*c, Gz*a-b*B],
+            [-B*c, -Gp*b+a*B]])
+A, D = M.diagonalize() #quick way to get matrix of right eigenvectors (A) and eigenvalues (D)
+n0 = Matrix([z0,p0]) #note this is made into a column vector automatically
+nt = A*exp(D*t)*A.inv()*n0 #general solution
 
-# Sample the periodicity of the oscillations by taking unique values after reaching carrying capacity
-def log_map(r, n0=900, k=1000):    
-    return np.unique([nt for t, nt in enumerate(n(n0, r, k, max=75)) if t > 30])
-
-# Compute the logistic map for different growth rates in discrete time
-r, Nr = np.array([]), np.array([])
-for i in np.linspace(1.5, 3, 1000):
-    nl = log_map(i)
-    r = np.hstack((r, [i for _ in range(len(nl))]))
-    Nr = np.hstack((Nr, nl))
-    
-# Plot the logistic map on a black background
+# plot
+import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
-ax.patch.set_facecolor('black')
-ax.scatter(r, Nr, s=0.075, color='white')
-ax.set_xlabel('intrinsic growth rate, $r$')
-ax.set_ylabel('population size, $n$')
+ax.plot([re(nt.subs(t,i)[0]) for i in range(tmax)], label='male trait') #need to remove the imaginary part because of numerical error
+ax.plot([re(nt.subs(t,i)[1]) for i in range(tmax)], label='female preference')
+ax.legend()
+ax.set_xlabel('time')
+ax.set_ylabel('value')
 plt.show()
 </pre>
 
@@ -204,261 +275,11 @@ plt.show()
     
 
 
-### Solving with transformations 
-
-Sometimes, however, you can find a **transformation** that works.
-  
-For example, with haploid selection we have
-
-$$
-p_{t+1} = \frac{W_A p_t}{W_A p_t + W_a q_t}
-$$
-
-Brute force iteration will create a giant mess.
-
-But what about if we let $f_t = p_t/q_t$?
-
-Noting that $q_{t+1} = 1 - p_{t+1} = (W_a p_t)/(W_A p_t + W_a q_t)$ we have
-
-$$
-\begin{aligned}
-f_{t+1} &= \frac{p_{t+1}}{q_{t+1}}\\
-&= \frac{W_A p_t}{W_a q_t}\\
-&= \frac{W_A}{W_a} f_t
-\end{aligned}
-$$
-
-This implies that $f_t = (W_A/W_a)^t f_0$!
-
-Converting back to $p_t$ we see
-
-$$
-p_t = \frac{f_t}{1-f_t} = \frac{W_A^t p_0}{W_A^t p_0 + W_a^t q_0}
-$$
-
-### Solving with conceptualization
-
-An alternative way to derive this general solution is to think about ("conceptualize") the $A$ and $a$ alleles as two competing populations that each grow exponentially according to their fitness
-
-$$
-\begin{aligned}
-n_A(t) &= W_A^t n_A(0)\\
-n_a(t) &= W_a^t n_a(0)   
-\end{aligned}
-$$
-
-Then the frequency of allele $A$ at time $t$ is
-
-$$
-p_t = \frac{n_A(t)}{n_A(t) + n_a(t)} = \frac{W_A^t n_A(0)}{W_A^t n_A(0) + W_a^t n_a(0)}
-$$
-
-Dividing numerator and denominator by the total initial population size $n_A(0) + n_a(0)$
-
-$$
-p_t = \frac{W_A^t p_0}{W_A^t p_0 + W_a^t q_0}
-$$
-
-Below we plot this general solution for a given $W_A$, $W_a$, and $p_0$.
-
-
-<pre data-executable="true" data-language="python">
-WA, Wa, p0 = 1.1, 1, 0.01 #define parameter values and initial condition
-ts = range(100) #time values
-ps = [(WA**t * p0)/(WA**t * p0 + Wa**t * (1-p0)) for t in ts] #variable values from general solution
-plt.scatter(ts, ps) #plot discretely
-plt.ylabel('allele frequency, $p(t)$')
-plt.xlabel('generation, $t$')
-plt.show()
-</pre>
-
-
-    
-![png](lecture-09_files/lecture-09_10_0.png)
-    
-
-
-<span id='section4'></span>
-## 4. Linear models in continuous time
+<span id='section3'></span>
+## 3. Summary
 <hr>
 
-In continuous time, a linear differential equation of one variable can be written
+- complex eigenvalues, $\lambda = A + Bi$, indicate oscillatory dynamics
+- the imaginary part, $B$, influences stability in discrete time but not continuous time
 
-$$
-\frac{\mathrm{d}x}{\mathrm{d}t} = a x + b
-$$
-
-Let's first look at the case where $b=0$.
-
-### Separation of variables
-
-Here we can use a method called **seperation of variables**.
-
-That is, our differential equation can be written $\mathrm{d}x/\mathrm{d}t = f(x) g(t)$, i.e., we can separate the variables $x$ and $t$.
-
-We can then re-write the equation as  $\mathrm{d}x/f(x) = g(t)\mathrm{d}t$ and take the indefinite integral of both sides.
-
-In our case we have $f(x)=a x$ and $g(t)=1$ so
-
-$$
-\begin{aligned}
-\int \frac{\mathrm{d}x}{a x} &= \int \mathrm{d}t \\
-\frac{\ln(x)}{a} + c_1 &= t + c_2\\
-\ln(x) &= a t + c \; \text{(where } c = c_2 - c_1\text{)}\\
-x_t &= e^{a t} e^{a c}
-\end{aligned}
-$$
-
-Plugging in $t=0$ we have $x_0 = e^{a c}$ and so our general solution is
-
-$$
-x_t = x_0 e^{at}
-$$
-
-This is the general solution for exponential growth in continuous time with growth rate $a$. We see that variable will either converge on ($a<0$) or depart from ($a>0$) the equilibrium ($\hat x=0$), consistent with our local stability analysis. 
-
-
-<pre data-executable="true" data-language="python">
-import matplotlib.pyplot as plt
-a, x0 = 0.01, 10 #define parameter values and initial condition
-ts = range(1000) #time values
-xs = [exp(a*t) * x0 for t in ts] #variable values from general solution
-plt.plot(ts, xs) #plot continuously
-plt.ylabel('$x(t)$')
-plt.xlabel('$t$')
-plt.show()
-</pre>
-
-
-    
-![png](lecture-09_files/lecture-09_13_0.png)
-    
-
-
-### Using transformations
-
-Now let's consider the case where $b\neq0$.
-  
-This can also be solved by the method of separation of variables but let's do 
-it with a transformation, like we did in discrete time.
-
-**Step 1**: Solve for the equilibrium, 
-
-$$
-\begin{aligned}
-0 &= a \hat{x} + b\\
-\hat{x} &= -b/a
-\end{aligned}
-$$
-
-**Step 2**: Define $\delta = x - \hat{x}$ as the deviation of the variable from equilibrium.
-
-**Step 3**: Derive the differential equation for $\delta$
-
-$$
-\begin{aligned}
-\frac{\mathrm{d}\delta}{\mathrm{d}t} &= \frac{\mathrm{d}(x - \hat{x})}{\mathrm{d}t}\\
-&= \frac{\mathrm{d}x}{\mathrm{d}t} - \frac{\mathrm{d}\hat{x}}{\mathrm{d}t}\\
-&= \frac{\mathrm{d}x}{\mathrm{d}t}\\
-&= a x + b\\
-&= a (\delta + \hat{x}) + b\\
-&= a(\delta + -b/a) + b\\
-&= a \delta
-\end{aligned}
-$$
-
-**Step 4**: This is the same differential equation we had above for $x$ when $b=0$. The general solution is therefore $\delta$ is $\delta_t = \delta_0 e^{a t}$.
-    
-**Step 5**: Replace $\delta$ with $x - \hat{x}$ to back transform to our original variable
-
-$$
-x_t = e^{a t} x_0 + (1 - e^{a t})\hat{x}
-$$
-
-Similar to the discrete case (but without the oscillations), this tells us there is an exponential approach to ($a<0$) or departure from ($a>0$) the equilibrium, $\hat{x}$.
-
-Below we plot this general solution for given values of $a$ and $b$ and a range of initial conditions, $x_0$.
-
-
-<pre data-executable="true" data-language="python">
-a, b, x0 = -0.01, 1, 10 #define parameter values and initial condition
-ts = range(1000) #time values
-xs = [exp(a*t) * x0 + (1-exp(a*t))*(-b/a) for t in ts] #variable values from general solution
-plt.plot(ts, xs) #plot continuously
-plt.ylabel('$x(t)$')
-plt.xlabel('$t$')
-plt.show()
-</pre>
-
-
-    
-![png](lecture-09_files/lecture-09_15_0.png)
-    
-
-
-<span id='section5'></span>
-## 5. Nonlinear models in continuous time
-<hr>
-
-Some nonlinear differential equations can also be solved. But there is no general recipe.
-
-### Separation of variables
-
-Sometimes separation of variables works, as in the case of logistic growth and haploid selection (which are equivalent in form in continuous-time!).
-
-$$
-\begin{aligned}
-\frac{\mathrm{d}p}{\mathrm{d}t} &= s p (1-p)\\
-\frac{\mathrm{d}p}{s p (1-p)} &= \mathrm{d}t\\
-\left(\frac{1}{s p} + \frac{1/s}{1-p}\right) \mathrm{d}p &= \mathrm{d}t \;\text{(method of partial fractions, rule A.19 in the text)}\\
-\int \frac{1}{s p} \mathrm{d}p + \int \frac{1}{s(1-p)} \mathrm{d}p &= \int \mathrm{d}t\\
-\ln(p)/s - \ln(1 - p)/s + c_1 &= t + c_2 \\
-\ln\left(\frac{p}{1-p}\right) &= s t + s c \; \text{(where } c = c_2 - c_1\text{)}\\
-\frac{p}{1-p} &= e^{st} e^{sc}
-\end{aligned}
-$$
-
-Plugging in $t=0$ we have $p_0/(1-p_0) = e^{sc}$. Then solving this linear equation for $p$
-
-$$
-p_t = \frac{e^{st} p_0}{1 - p_0 + e^{st} p_0}
-$$
-
-This shows essentially the same dynamics as haploid selection in discrete time.
-
-
-<pre data-executable="true" data-language="python">
-s, p0 = 0.1, 0.01 #define parameter values and initial condition
-ts = range(100) #time values
-ps = [(exp(s*t) * p0)/(1 - p0 + exp(s*t)*p0) for t in ts] #variable values from general solution
-plt.plot(ts, ps) #plot continuously
-plt.ylabel('allele frequency, $p(t)$')
-plt.xlabel('generation, $t$')
-plt.show()
-</pre>
-
-
-    
-![png](lecture-09_files/lecture-09_18_0.png)
-    
-
-
-### Alternative methods
-  
-Separation of variables does not always work as it may not be possible to solve the integrals.
-
-However, separation of variables is not the only method.
-
-Box 6.2 in the text describes how to solve three forms of differential equations that are not amenable to separation of variables (ie, that cannot be written like $\mathrm{d}x/\mathrm{d}t = f(x) g(t)$).
-
-<span id='section6'></span>
-## 6. Summary
-<hr>
-
-Today we've covered how to find the **general solution** for some **univariate** models.
-
-We now have three methods to analyze univariate models:
-
-- **numerical** and **graphical** analyses (for particular parameter values)
-- finding **equilibria** and determining their **local stability** (general long-term dynamics)
-- finding the **general solution** (general short- and long-term dynamics)
+Practice problems from the textbook: 7.1-11

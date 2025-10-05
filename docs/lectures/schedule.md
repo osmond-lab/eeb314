@@ -13,7 +13,7 @@ Under construction for Fall 2025 edition. Lectures will be updated as we go.
 | 6 | [Representing linear multivariate models with vectors and matrices](lecture-06.md) | P2.1-P2.4 (14p.) |
 | 7 | [Finding equilibria in linear multivariate models](lecture-07.md) | P2.5-P2.7 (9p.) |
 | 8 | [General solutions for linear multivariate models](lecture-08.md) | P2.8-P2.9 (13p.), 9.1-9.2 (18p.) |
-| 9 | General solutions (linear multivariate) II |  |
+| 9 | [Complex eigenvalues](lecture-09.md) | 7.3.3 (11p.), Box 8.2, Box 9.1, Box 9.2 |
 | 10 | Demography | Chapter 10 (37p.) |
 | - | Test | | 
 | 11 | Numerical and graphical techniques (multivariate) | 4.4-4.5 (12p.) |

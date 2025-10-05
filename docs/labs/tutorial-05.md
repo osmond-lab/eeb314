@@ -58,12 +58,16 @@ $$
 \end{pmatrix}.
 $$
 
-We can therefore approximate $\vec{x}(t)$ after a sufficient amount of time as,
+!!! warning
+
+    Note that this does not work if more than one eigenvalue share the largest absolute value.
+
+We can therefore approximate $\vec{x}(t)$ after a sufficient amount of time as
 
 $$
 \begin{aligned}
 \tilde{\vec{x}}(t) &= \mathbf{A}\tilde{\mathbf{D}}^t\mathbf{A}^{-1}(\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}}\\
-&= \lambda_1^t \vec{v}_1 \vec{u}_1 (\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}}
+&= \lambda_1^t \vec{v}_1 \vec{u}_1 (\vec{x}(0)-\hat{\vec{x}}) + \hat{\vec{x}},
 \end{aligned}
 $$
 
@@ -111,8 +115,3 @@ $$
 $$
 
 Writing this in matrix form, $\mathrm{d}\vec{n}/\mathrm{d}t = \mathbf{M}\vec{n} + \vec{m}$, determine $\mathbf{M}$ and $\vec{m}$. Determine the eigenvalues (and associated eigenvectors if you have time). Is the equilibrium stable? 
-
-
-<pre data-executable="true" data-language="python">
-
-</pre>
