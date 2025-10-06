@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 13: Complex eigenvalues
+# Lecture 9: Complex eigenvalues
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -77,7 +77,7 @@ $$
 
 where $\sqrt{4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2}$ is a **real** number (i.e., not complex). Letting $\mathrm{Tr}(\mathbf{M})/2=A$ and $\sqrt{4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2}/2=B$, the two eigenvalues can then be written as $\lambda=A\pm Bi$. Two numbers that take this form are called **complex conjugates**.
 
-We can think of a complex number as a vector on the **complex plane**, a two-dimensional space with the real part, $A$, on the x-axis and the imaginary part, $B$, on the y-axis. The length of our vector is $R=\sqrt{A^2+B^2}$ and the angle of our vector (from the vector that points directly right along the x-axis) is $\theta = \arctan(B/A)$. Using basic geometric rules we then have $A=R\cos(\theta)$ and $B=R\sin(\theta)$. We can therefore write our complex eigenvalue as $\lambda = R(\cos(\theta) + \sin(\theta)i) = R\exp(\theta i)$, where the last step used what is known as Euler's equation.
+We can think of a complex number as a vector on the **complex plane**, a two-dimensional space with the real part, $A$, on the x-axis and the imaginary part, $B$, on the y-axis. The length of our vector is $R=\sqrt{A^2+B^2}$ and the angle of our vector (from the vector that points directly right along the x-axis) is $\theta = \arctan(B/A)$. Using basic geometric rules we then have $A=R\cos(\theta)$ and $B=R\sin(\theta)$. We can therefore write our complex eigenvalue as $\lambda = R(\cos(\theta) + \sin(\theta)i) = R\exp(\theta i)$, where the last step we used a fascinating identity known as Euler's equation.
 
 
 <pre data-executable="true" data-language="python">
@@ -93,7 +93,7 @@ ax.arrow(0,0,A,B, head_width=0.05, color='black', length_includes_head=True) #ei
 
 dx = 0.05
 ax.plot([0-dx/2,A-dx/2],[0+dx,B+dx],marker='o',c='b')
-ax.text(A/2,B/2+3*dx,r'$R$',rotation=math.atan(B/A)*180/math.pi,c='b',fontsize=15,ha='center',va='center')
+ax.text(A/2,B/2+3*dx,r'$R = \sqrt{A^2 + B^2}$',rotation=math.atan(B/A)*180/math.pi-8,c='b',fontsize=15,ha='center',va='center')
 
 ax.plot([0,A],[0,0],marker='o',c='r')
 ax.text(A/2,0+dx,r'$A=R \cos(\theta)$',c='r',fontsize=15,ha='center',va='center')
@@ -125,7 +125,7 @@ Now to see how a complex eigenvalue affects the dynamics of our system, consider
 $$
 \begin{aligned}
 \lambda^t &= (A + Bi)^t\\
-&= (\cos(\theta) + \sin(\theta)i)^t\\
+&= (R(\cos(\theta) + \sin(\theta)i))^t\\
 &= (R\exp(i \theta))^t\\
 &= R^t\exp(i \theta t)\\
 &= R^t(\cos(\theta t) + \sin(\theta t)i).
@@ -222,7 +222,7 @@ $$
 \end{align}
 $$
 
-where $G_z$ and $G_p$ are the amounts of genetic variation in male traits and female preference (this is the "fuel" of evolution, so the rates of evolution are proportional to these variances), $B$ is the covariance between male traits and female preference, $a$ is the strength of sexual selection, and $c$ and $b$ are the strengths of natural selection on male traits and female preference.
+where $G_z$ and $G_p$ are the amounts of genetic variation in male traits and female preference (this is the "fuel" of evolution, so the rates of evolution are proportional to these variances), $B$ is the genetic covariance between male traits and female preference, $a$ is the strength of sexual selection, and $c$ and $b$ are the strengths of natural selection on male traits and female preference.
 
 This is a linear multivariate model whose dynamics are determined by the matrix 
 
@@ -240,11 +240,11 @@ $$
 \end{aligned}
 $$ 
 
-Stability requires $\mathrm{Tr}(\mathbf{M})<0$ and $\mathrm{Det}(\mathbf{M})>0$. We have complex eigenvalues, and therefore cycling, whenever $\mathrm{Tr}(\mathbf{M})^2 < 4\mathrm{Det}(\mathbf{M})$.
+The Routh-Hurwitz criteria tell us that stability requires $\mathrm{Tr}(\mathbf{M})<0$ and $\mathrm{Det}(\mathbf{M})>0$. We are guaranteed the latter by the properties of variances and covariances. We have complex eigenvalues, and therefore cycling, whenever $\mathrm{Tr}(\mathbf{M})^2 < 4\mathrm{Det}(\mathbf{M})$.
 
 Below we plot the dynamics when the equilibrium is a stable focus, meaning the oscillations decay to the equilibrium over time.
 
-Biologically, this cycling occurs because initially the mean male trait is positive but there is no mean female preference. This implies that both natural and sexual selection favour smaller male traits, causing the mean to decline. But because of a correlated response, female preference also declines, favouring male traits less than 0. Eventually female preference becomes too costly and begins to increase back toward zero. This causes a correlated increase in the male trait, and so on. 
+Biologically, this cycling occurs because initially the mean male trait is positive but there is no mean female preference. This implies that both natural and sexual selection favour smaller male traits, causing the mean to decline. But because of a correlated response, female preference also declines, favouring male traits less than 0. Eventually female preference becomes too costly and begins to increase back toward zero. This causes a correlated increase in the male trait, and so on. The cycling decays to the equilibrium when $\mathrm{Tr}(\mathbf{M})<0$. This condition, $G_zc + G_pb > Ba$, means that the strength of evolution by natural selection pushing the traits to 0 is greater than the strength of indirect evolution by sexual selection exaggerating female preference. When, on the other hand, we have $\mathrm{Tr}(\mathbf{M})>0$, the indirect response of female preference to sexual selection on males leads to continued exaggeration, causing what is called "runaway" selection.
 
 
 <pre data-executable="true" data-language="python">
