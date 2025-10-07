@@ -1,0 +1,125 @@
+/* Modifies the paragraph text */
+.md-typeset p {
+    font-family: 'Helvetica';
+    font-weight: 400;
+    font-size: 1em;
+}
+
+/*Modifies the logo and title dimensions in the header*/
+.md-logo img {
+  margin-top: 0.4em;
+}
+
+.md-header__button {
+  height: 5em;
+}
+
+/* Modifies the H1 titles in main text */
+.md-typeset h1 {
+    font-family: 'Crimson Pro';
+    font-weight: 400;
+    font-size: 2.5em;
+    /* margin-bottom: 0.6em; */
+}
+
+/* Modifies the H2 titles in main text */
+.md-typeset h2 {
+    font-family: 'Crimson Pro';
+    font-weight: 400;
+    font-size: 2em;
+}
+
+/* Modifies the upper left text next to favicon */
+.md-ellipsis {
+    font-family: 'Helvetica';
+    font-weight: 300;
+    font-size: 1.1em;
+}
+
+/* Modifies the footer coloring */
+.md-footer {
+	background-color: white;
+}
+
+.md-footer-meta {
+	background-color: white;
+}
+
+.md-copyright {
+	color: grey;
+	font-size: 0.7em;
+}
+
+.md-copyright a {
+	color: rgba(82, 109, 119, 0.7) !important;
+}
+
+/* Styling of interactive embedded python cells */
+.thebe-activate {
+  font-size: 0.8em;
+}
+
+.thebe-activate-button {
+  pointer-events: all !important; 
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 1em;
+  /*background-color: rgba(0,0,0,0.05);*/
+} 
+
+.thebe-activate-button:hover {
+  background-color: rgba(0,0,0,0.2);
+}
+
+.thebe-status.thebe-status-mounted {
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 1em;
+}
+
+.thebe-status-stub {
+  text-transform: capitalize !important;
+}
+
+.inrow {
+  width: 100%;
+  display: flex;
+  align: left;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.thebelab-button {
+  color: rgba(0,0,0,0.8);
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  box-sizing: border-box;
+}
+
+.thebelab-button:hover {
+  background-color: rgba(0,0,0,0.2);
+  text-decoration: underline;
+}
+
+
+/* Custom admonitions */
+:root {
+  --md-admonition-icon--contact-info: url('/images/socials/contact.svg')
+}
+.md-typeset .admonition.contact-info,
+.md-typeset details.contact-info {
+  border-color: rgb(143, 0, 11);  
+}
+.md-typeset .contact-info > .admonition-title,
+.md-typeset .contact-info > summary {
+  background-color: rgba(82, 109, 119, 0.1);
+  border-color: rgb(143, 0, 11);
+}
+.md-typeset .contact-info > .admonition-title::before,
+.md-typeset .contact-info > summary::before {
+  background-color: rgb(82, 109, 119);
+  -webkit-mask-image: var(--md-admonition-icon--contact-info);
+          mask-image: var(--md-admonition-icon--contact-info);
+}
