@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 10: Linear algebra I
+# Lecture 10: Demography
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,135 +26,183 @@
 
 ## Lecture overview
 
-1. [Motivation](#section1)
-2. [What are vectors?](#section2)
-3. [What is a matrix?](#section3)
-4. [Vector and matrix operations](#section4)
+1. [Demography](#section1)
+2. [Stage-structure](#section2)
+3. [Age-structure](#section3)
+4. [Summary](#section4)
 
 <span id='section1'></span>
-## 1. Motivation
+## 1. Demography
 <hr>
 
-Until now, we have been dealing with problems in a single variable changing over time.
-  
-Often, dynamical systems involve more than one variable (ie, they are **multivariate**). For instance, we may be interested in how the numbers of two species change as they interact (e.g., compete) with one another.
+We're now going to use what we've learned about linear multivariate models to describe the dynamics of a population that is composed of different types of individuals. This area of research is called **demography**. 
 
-As a simple example with more than one variable, consider a model tracking the number of birds on two islands. Let the number of birds on island 1 be $n_1$ and let the number of birds on island 2 be $n_2$. We assume the birds migrate between the islands at per capita rates $m_{12}$ and $m_{21}$, the birds on each island give birth at per capita rates $b_1$ and $b_2$, the birds on each island die at per capita rates $d_1$ and $d_2$, and new birds arrive on each island at rates $m_1$ and $m_2$. This is captured in the following flow diagram
+We'll just consider discrete-time linear models here and consider closed populations, so that the number of individuals of each type in the next timestep is
+
+$$
+\vec{n}(t+1) = \mathbf{M}\vec{n}(t),
+$$
+
+where $\mathbf{M}$ describes the transitions from one type to another.
+
+The general solution can be written in terms of the eigenvalues ($\mathbf{D}$) and eigenvectors ($\mathbf{A}$),
+
+$$
+\vec{n}(t) = \mathbf{A}\mathbf{D}^t\mathbf{A}^{-1}\vec{n}(0).
+$$
+
+As the eigenvalues and eigenvectors are often unobtainable when there are many types of individuals (without specifying parameter values), we often rely on the long-term approximation,
+
+$$
+\vec{n}(t) \approx \lambda_1^t \vec{v}_1 \vec{u}_1 \vec{n}(0).
+$$
+
+!!! note
+
+    The long-term approximation, $\vec{n}(t) = \lambda_1^t \vec{v}_1 \vec{u}_1 \vec{n}(0)$, is valid as long as the leading eigenvalue, $\lambda_1$, is
+
+    - real (no cycles in long-term)
+    - positive (no oscillations to negative numbers!)
+    - larger than all other eigenvalues (so that we can ignore the other eigenvalues/vectors)
+
+    Fortunately *we are guaranteed all these conditions in our demographic models* since all entries of $\mathbf{M}$ are non-negative and all entries of $\mathbf{M}^t$ are positive for some value of $t$. (This follows from something called the **Perron-Frobenius Theorem**.)
+
+For this we just need to know the leading eigenvalue ($\lambda_1$) and the corresponding right ($\vec{v}_1$) and left ($\vec{u}_1$) eigenvectors, respectively. (Remember that we have scaled the eigenvectors such that $\vec{u}_1\vec{v}_1=1$.)
+
+These three components ($\lambda_1$, $\vec{v}_1$, $\vec{u}_1$) are the key demographic quantities that we will investigate:
+
+- $\lambda_1$ is the **long-term population growth rate**
+- $\vec{v}_1$ describes the **stable stage-distribution**
+- $\vec{u}_1$ describes the relative **reproductive values** of each stage
+
+The most general demographic model is called **stage-structure**: we consider some finite number of discrete stages that an individual can be in and we use an abitrary matrix of transitions between stages (a **projection matrix**), $\mathbf{M}$, to project how the population size and composition changes over time.
+
+A common special case is **age-structure**: here we define the stages as the number of time steps an individual has been alive for, which leads to a simpler projection matrix (called a **Leslie matrix**) because individuals either transition to the next stage or die.
+
+<span id='section2'></span>
+## 2. Stage-structure
+<hr>
+
+Consider an arbitrary stage-structured population. The long term approximation for its dynamics is $\vec{n}(t) \approx \lambda_1^t \vec{v}_1 \vec{u}_1 \vec{n}(0).$ 
+
+!!! question 
+
+    If we wanted to increase the total population size in the future and we could add one individual to any stage, which stage should it be?
+
+We want to know what entry of $\vec{n}(0)$ to add one to to maximize $\vec{n}(t) \approx \lambda^t \vec{v}_1 \vec{u}_1 \vec{n}(0)$. Adding individuals will not affect the long-term growth rate ($\lambda_1$) or the stable-stage distribution ($\vec{v}_1$). We can therefore only increase $\vec{u}_1\vec{n}(0) = u_1 n_1(0) + u_2 n_2(0) + ... + u_m n_m(0)$. And so we add 1 to the stage with the largest reproductive value, $u_i$.
+
+!!! question
+
+    If we wanted to increase the long-term population growth rate and we could increase any parameter a little bit, which parameter should it be?
+
+We want to know how increasing a given parameter of the model, $z$, changes the long-term growth rate, $\mathrm{d}\lambda_1/\mathrm{d}z$, which we call the **sensitivity** of $\lambda_1$ to $z$. Unfortunately $\lambda_1$ is typically a relatively complicated expression, if attainable at all. Instead, we start with the definition of eigenvalues and eigenvectors to find
+
+$$
+\begin{aligned}
+\mathbf{M} \vec{v}_1 &= \lambda_1 \vec{v}_1 \\
+\vec{u}_1 \mathbf{M} \vec{v}_1 &= \vec{u}_1 \lambda_1 \vec{v}_1 \\
+\frac{\mathrm{d}}{\mathrm{d}z} \left(\vec{u}_1 \mathbf{M} \vec{v}_1 \right)&= \frac{\mathrm{d}}{\mathrm{d}z} \left(\vec{u}_1 \lambda_1 \vec{v}_1 \right)\\
+\frac{\mathrm{d}\vec{u}_1}{\mathrm{d}z} \mathbf{M} \vec{v}_1 + \vec{u}_1 \frac{\mathrm{d}\mathbf{M}}{\mathrm{d}z} \vec{v}_1 + \vec{u}_1 \mathbf{M} \frac{\mathrm{d}\vec{v}_1}{\mathrm{d}z} &= \frac{\mathrm{d}\vec{u}_1}{\mathrm{d}z} \lambda_1 \vec{v}_1 + \vec{u}_1 \frac{\mathrm{d}\lambda_1}{\mathrm{d}z} \vec{v}_1 + \vec{u}_1 \lambda_1 \frac{\mathrm{d}\vec{v}_1}{\mathrm{d}z}\\
+\vec{u}_1 \frac{\mathrm{d}\mathbf{M}}{\mathrm{d}z} \vec{v}_1 &= \vec{u}_1 \frac{\mathrm{d}\lambda_1}{\mathrm{d}z} \vec{v}_1 \\
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}z} &= \frac{\vec{u}_1 \frac{\mathrm{d}\mathbf{M}}{\mathrm{d}z} \vec{v}_1}{\vec{u}_1 \vec{v}_1}.
+\end{aligned}$$
+
+This helps because we only have to take the derivative of $\mathbf{M}$. Unfortunately the righthand side is still going to be too complicated to understand in general but we can quickly evaluate the eigenvectors and the derivative of $\mathbf{M}$ at some given parameter values.
+
+### Example: North Atlantic right whale
+
+Let's consider an example. North Atlantic [right whales](https://en.wikipedia.org/wiki/Right_whale) were hunted to near extinction in the 1800s and early 1900s, after which their population size is thought to have *slowly* recovered (there are less than 400 now, and unfortunately [appear to be in decline again](https://www.fisheries.noaa.gov/species/north-atlantic-right-whale#overview)). Because of their long life span, over which survival and reproductive rates vary enormously, a stage-structured model is very appropriate. Below we draw a flow diagram representing all the transitions between calves, sexually immature individuals, sexually mature individuals, and actively reproducing individuals.
 
 <center>
 ```mermaid
 graph LR;
-    A1((n1)) --b1 n1--> A1;
-    B1[ ] --m1--> A1;
-    A1 --d1 n1--> C1[ ];
-
-    A2((n2)) --b2 n2--> A2;
-    B2[ ] --m2--> A2;
-    A2 --d2 n2--> C2[ ];
-
-    A1 --m12 n1--> A2;
-    A2 --m21 n2--> A1;
-
-    style B1 height:0px;
-    style C1 height:0px;
-    style B2 height:0px;
-    style C2 height:0px;
-```   
+    C((Calves)) --sIC nC--> I((Immature));
+    I --sII nI--> I;
+    I --sMI nI--> M((Mature));
+    I --sRI nI--> R((Reproductive));
+    M --sMM nM--> M;
+    M --sRM nM--> R;
+    R --sRR nR--> R;
+    R --sMR nR--> M;
+    R --b nR--> C;
+```     
 </center>
+
+Converting this flow diagram into a system of recursion equations, $\vec{n}(t+1) = \mathbf{M}\vec{n}(t)$, the projection matrix is
+
+$$
+\mathbf{M} =
+\begin{pmatrix}
+0 & 0 & 0 & b \\
+s_{IC} & s_{II} & 0 & 0\\
+0 & s_{MI} & s_{MM} & s_{MR} \\
+0 & s_{RI} & s_{RM} & s_{RR}
+\end{pmatrix}.
+$$
+  
+If we now plug in some estimated parameter values from the literature ($b=0.3$, $s_{IC}=0.92$, $s_{II}=0.86$, $s_{MI}=0.08$, $s_{MM}=0.8$, $s_{MR}=0.88$, $s_{RI}=0.02$, $s_{RM}=0.19$, $s_{RR}=0$) we can numerically calculate the three key demographic quantities (see the code below),
+
+$$
+\begin{aligned}
+&\lambda_1 \approx 1.003 \\
+&\vec{v}_1 \approx \begin{pmatrix} 0.04 \\ 0.23 \\ 0.61 \\ 0.12\end{pmatrix} \\
+&\vec{u}_1 \approx \begin{pmatrix} 0.69 & 0.76 & 1.07 & 1.15 \end{pmatrix}.
+\end{aligned}
+$$
+
+These quantities tells us, for example, that in the long-run the population is predicted to grow ($\lambda_1>1$), the majority of individuals are expected to be mature (the second last entry in $\vec{v}_1$ is the largest), and mature and reproductive individuals are expected to have much higher reproductive values than calves and immature individuals (the last two entries in $\vec{u}_1$ are much larger than the first two). 
+
+!!! note "Caveat"
     
-The rate of change in $n_1$ and $n_2$ are then described by the following system of differential equations
+    The parameter values above were estimated before the current population decline -- changes in climate and human behaviour, eg boat traffic and fishing, have presumably altered the parameter values, making the predictions less accurate. For example, the increased incidence of entanglement in fishing nets has likely decreased survival rates to the point that the population is now expected to decline. See [here](https://www.fisheries.noaa.gov/species/north-atlantic-right-whale#overview) for more info.
 
-$$
-\begin{aligned}
-\frac{\mathrm{d}n_1}{\mathrm{d}t} &= (b_1 - d_1 - m_{12})n_1 + m_{21} n_2 + m_1 \\
-\frac{\mathrm{d}n_1}{\mathrm{d}t} &= m_{12} n_1 + (b_2 - d_2 - m_{21})n_2 + m_1
-\end{aligned}
-$$
-
-These equations are linear functions of the variables (i.e., they contain only constant multiples of $n_1$ and $n_2$ and nothing more complicated such as $x^2$ or $e^x$).
-
-Linear systems of equations like these can also be written in **matrix form**
-
-$$
-\begin{aligned}
-\begin{pmatrix} \frac{\mathrm{d}n_1}{\mathrm{d}t} \\ \frac{\mathrm{d}n_2}{\mathrm{d}t} \end{pmatrix} 
-&= \begin{pmatrix} b_1 - d_1 - m_{12} & m_{21} \\ m_{12} & b_2 - d_2 - m_{21} \end{pmatrix}
-\begin{pmatrix} n_1 \\ n_2 \end{pmatrix} 
-+ \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}\\
-\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} &= \mathbf{M}\vec{n} + \vec{m}
-\end{aligned}
-$$
-
-Not only is this a nice compact expression, there are rules of linear algebra that can help us conveniently solve this (and any other) set of linear equations.
-
-So let's get to know these rules.
-
-<span id='section2'></span>
-## 2. What are vectors?
-<hr>
-
-**Vectors** are lists of elements (elements being numbers, parameters, functions, or variables).
-
-A **column vector** has elements arranged from top to bottom
-
-$$
-\begin{equation*}
-\begin{pmatrix}
-  5 \\
-  2
-\end{pmatrix},
-\begin{pmatrix}
-  1 \\
-  5 \\
-  9 \\
-  7
-\end{pmatrix},
-\begin{pmatrix}
-  x \\
-  y
-\end{pmatrix},
-\begin{pmatrix}
-  x \\
-  y \\
-  z
-\end{pmatrix},
-\begin{pmatrix}
-  x_1 \\
-  x_2 \\
-  \vdots \\
-  x_n
-\end{pmatrix}
-\end{equation*}
-$$
-
-A **row vector** has elements arranged from left to right
-
-$$
-\begin{pmatrix}5 & 2\end{pmatrix}, \begin{pmatrix} 1 & 5 & 9 & 7\end{pmatrix}, \begin{pmatrix} x & y \end{pmatrix}, \begin{pmatrix} x & y & z\end{pmatrix}, \begin{pmatrix} x_1 & x_2 & \cdots & x_n \end{pmatrix}
-$$
-
-We will indicate vectors by placing an arrow on top of the symbol
-
-$$
-\vec{x} = \begin{pmatrix} x_1 & x_2 & \cdots & x_n \end{pmatrix}
-$$
-
-The number of elements in the vector indicates its **dimension**, $n$.
-
-For example, the row vector $\begin{pmatrix}x & y\end{pmatrix}$ has dimension $n=2$.
-
-You can represent a vector as an arrow in $n$ dimensions, connecting the origin
-with a point whose coordinates are given by elements in the vector. For example, the vector $\vec{v} = \begin{pmatrix} 1\\2\end{pmatrix}$ can be depicted as below
+Below we plot the general solution and long-term approximation. Note the quick convergence.
 
 
 <pre data-executable="true" data-language="python">
-import matplotlib.pyplot as plt #import plotting library
+b,sic,sii,smi,smm,smr,sri,srm,srr = 0.3,0.92,0.86,0.08,0.8,0.88,0.02,0.19,0 #parameter values
 
-plt.arrow(0, 0, #starting x and y values of arrow
-          1, 2, #change in x and y 
-          head_width=0.1, color='black') #aesthetics
-plt.xlim(0,2.5) #set bounds on x axis
-plt.ylim(0,2.5) #set bounds on y axis
+import numpy as np
+
+M = np.array([[0,0,0,b], #projection matrix
+              [sic,sii,0,0],
+              [0,smi,smm,smr],
+              [0,sri,srm,srr]])
+
+# calculate
+eigs = np.linalg.eig(M) #eigenvalues and right eigenvectors
+ix = np.argmax(np.abs(eigs[0])) #which is leading eigenvalue
+l1 = eigs[0][ix] #leading eigenvalue
+v1 = eigs[1][:,ix] #leading right eigenvector
+v1 = v1/np.sum(v1) #normalized to sum to 1
+us = np.linalg.inv(eigs[1]) #left eigenvectors
+u1 = us[ix] #leading left eigenvalue
+u1 = u1/np.dot(u1,v1) #normalized so u1*v1=1
+
+n0 = np.array([50,50,50,50]) #initial state
+
+def ntfull(t):
+    '''full projection'''
+    return np.dot(np.linalg.matrix_power(M,t), n0)
+
+def ntapp(t):
+    '''long term approximation'''
+    return l1**t * v1 * np.dot(u1, n0)
+
+# plot
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+labels = ['calves','immature','mature','reproductive']
+colors = plt.get_cmap('tab10')
+for i,j in enumerate(range(len(M))): #for each stage
+    ax.plot([ntfull(t)[j] for t in range(100)], color=colors(i), label=labels[i])
+    ax.plot([ntapp(t)[j] for t in range(100)], color=colors(i), linestyle='--') #long-term approx
+
+ax.legend()
+ax.set_xlabel('years')
+ax.set_ylabel('number of whales')
 plt.show()
 </pre>
 
@@ -164,394 +212,199 @@ plt.show()
     
 
 
+Let's now return to our two questions. 
+
+!!! question 
+
+    If we wanted to increase the total population size in the future and we could add one individual to any stage, which stage should it be?
+
+The reproductive values for these whales are $\vec{u}_1 \approx \begin{pmatrix} 0.69 & 0.76 & 1.07 & 1.15 \end{pmatrix}$. To maximize population size we should add an individual with the largest reproductive value: a reproductively active individual. This is perhaps not surprising since reproductively active individuals are the only individuals that produce offspring and if we introduced an individual in an earlier stage there is some chance that they would die before becoming reproductively active.
+
+!!! question
+
+    If we wanted to increase the long-term population growth rate and we could increase any parameter a little bit, which parameter should it be?
+
+Below we differentiate $\mathbf{M}$ with respect to each parameter, $\frac{\mathrm{d}\mathbf{M}}{\mathrm{d}z}$, and then numerically calculate the sensitivities, $\frac{\vec{u}_1 \frac{\mathrm{d}\mathbf{M}}{\mathrm{d}z} \vec{v}_1}{\vec{u}_1 \vec{v}_1}$, at the current parameter estimates. We see that increasing the fraction of mature individuals that survive to become reproductively active, $s_{RM}$, has the largest effect. This makes good sense because increasing $s_{RM}$ increases the rate at which the most populous stage (from $\vec{v}_1$) transitions to the stage with the highest reproductive value (from $\vec{u}_1$).
+
+
+<pre data-executable="true" data-language="python">
+import numpy as np
+from sympy import *
+import matplotlib.pyplot as plt
+
+# differentiate M symbolically
+b,sic,sii,smi,smm,smr,sri,srm,srr = symbols('b,s_ic,s_ii,s_mi,s_mm,s_mr,s_ri,s_rm,s_rr')
+M = Matrix([[0,0,0,b], #projection matrix
+            [sic,sii,0,0],
+            [0,smi,smm,smr],
+            [0,sri,srm,srr]])
+dMdzs = [diff(M,z) for z in [b,sic,sii,smi,smm,smr,sri,srm,srr]] #derivatives of M with respect to parameters
+
+# numerically get eigenvectors
+param_vals = {'b':0.3,'s_ic':0.92,'s_ii':0.86,'s_mi':0.08,'s_mm':0.8,'s_mr':0.88,'s_ri':0.02,'s_rm':0.19,'s_rr':0} #parameter values
+numeric_M = np.array(M.subs(param_vals),dtype=float)
+eigs = np.linalg.eig(numeric_M) #eigenvalues and right eigenvectors
+ix = np.argmax(np.abs(eigs[0])) #which is leading eigenvalue
+v1 = eigs[1][:,ix] #leading right eigenvector
+v1 = v1/np.sum(v1) #normalized to sum to 1
+us = np.linalg.inv(eigs[1]) #left eigenvectors
+u1 = us[ix] #leading left eigenvalue
+u1 = u1/np.dot(u1,v1) #normalized so u1*v1=1
+
+# change in leading eigenvalue with increase in each parameter
+dl1dzs = [np.matmul(np.matmul(u1,dMdz),v1)/np.matmul(u1,v1) for dMdz in dMdzs] 
+
+# plot
+plt.bar(['$b$','$S_{IC}$','$S_{II}$','$S_{MI}$','$S_{MM}$','$S_{MR}$','$S_{RI}$','$S_{RM}$','$S_{RR}$'],dl1dzs)
+plt.xlabel('parameter, $z$')
+plt.ylabel('sensitivity, $d\lambda_1/dz$')
+plt.show()
+</pre>
+
+
+    
+![png](lecture-10_files/lecture-10_5_0.png)
+    
+
+
 <span id='section3'></span>
-## 3. What is a matrix?
+## 3. Age-structure
 <hr>
 
-An $m \times n$ **matrix** has $m$ rows and $n$ columns
+Now let's look at the special case of **age-structure**. Here individuals in stage $i$ at time $t$ can only contribute to stage $i+1$ (survival) and stage $1$ (reproduction) at time $t+1$.
+
+<center>
+```mermaid
+graph LR;
+    1((1)) --p1 n1--> 2((2));    
+    1 --m1 n1--> 1;
+    2 --p2 n2--> 3((3));
+    2 --m2 n2--> 1;    
+    3 --p3 n4--> 4((4));
+    3 --m3 n3--> 1;
+    4 --m4 n4--> 1;
+```      
+</center>
+    
+Because of this, the projection matrix is simpler in the sense that it contains more zeros and has non-zero entries in very specific places,
 
 $$
-\begin{equation*}
+\mathbf{L} = 
+\begin{pmatrix}  
+m_1 & m_2 & m_3 & \cdots & m_d \\
+p_1 & 0 & 0 & \cdots & 0 \\
+0 & p_2 & 0 & \cdots & 0 \\
+\vdots &  & \vdots &  & \vdots \\  
+0 & \cdots & 0 & p_{d-1} & 0\\
+\end{pmatrix}.
+$$
+
+We call this a **Leslie matrix** and often denote it with $\mathbf{L}$. The first row contains the fecundities of each age group, $m_i$, while the entries immediately below the diagonal give the fraction of individuals that survive each age group, $p_i$.
+
+Because of the structure of the Leslie matrix, many expressions are now simpler. For example, the characteristic polynomial, $\mathrm{Det}(\mathbf{L}-\mathbf{I}\lambda)=0$, which we use to get the eigenvalues, can be calculated using the first row. After rearranging we get what is known as the **Euler-Lotka equation**,
+
+$$
+1 = \sum_{i=1}^{d} \frac{l_i m_i}{\lambda^i},
+$$
+
+where $l_1 = 1$, $l_i = p_1 p_2 \cdots p_{i-1}$ is the fraction of individuals that survive from birth to age $i$ and $d$ is the number of ages (ie, $\mathbf{L}$ is a $d\times d$ matrix). Given the $l_i$ and $m_i$ we can use this equation to find the long-term population growth rate, $\lambda_1$.
+
+### Example: stickleback
+
+For example, let's look at a model of [stickleback](https://en.wikipedia.org/wiki/Stickleback), a small fish. We assume stickleback do not live more than 4 years and estimate the Leslie matrix as
+
+$$
+\mathbf{L} = 
 \begin{pmatrix}
-  x_{11}  & x_{12} & \cdots & x_{1n}\\
-  x_{21}  & x_{22} & \cdots & x_{2n}\\
-  \vdots & \vdots &        & \vdots\\
-  x_{m1}  & x_{m2} & \cdots & x_{mn}\\
-\end{pmatrix},
-\begin{pmatrix}
-  a & b \\
-  c & d
-\end{pmatrix},
-\begin{pmatrix}
-  75 & 67 \\
-  66 & 34 \\
-  12 & 14
-\end{pmatrix},
-\begin{pmatrix}
-  1 & 0 & 0 \\
-  0 & 1 & 0 \\
-  0 & 0 & 1
-\end{pmatrix}
-\end{equation*}
+2 & 3 & 4 & 4\\
+0.6 & 0 & 0 & 0 \\
+0 & 0.3 & 0 & 0 \\
+0 & 0 & 0.1 & 0
+\end{pmatrix}.
 $$
 
-We will indicate matrices by bolding the symbol (and using capital letters)
+The Euler-Lotka equation is then
 
 $$
-\mathbf{X} = \begin{pmatrix}
-  x_{11}  & x_{12} & \cdots & x_{1n}\\
-  x_{21}  & x_{22} & \cdots & x_{2n}\\
-  \vdots & \vdots &        & \vdots\\
-  x_{m1}  & x_{m2} & \cdots & x_{mn}\\
-\end{pmatrix}
+\begin{aligned}
+1 &= \sum_{i=1}^{4} \frac{l_i m_i}{\lambda^i}\\
+1 &= \frac{l_1 m_1}{\lambda} + \frac{l_2 m_2}{\lambda^2} + \frac{l_3 m_3}{\lambda^3} + \frac{l_4 m_4}{\lambda^4}\\
+1 &= \frac{2}{\lambda} + \frac{1.8}{\lambda^2} + \frac{0.72}{\lambda^3} + \frac{0.072}{\lambda^4}. 
+\end{aligned}
 $$
 
-A matrix with an equal number of rows and columns, $m=n$, is a **square matrix**.
-  
-A matrix with zeros everywhere except along the diagonal is called a **diagonal matrix**
-  
-$$
-\begin{pmatrix}
-  a & 0 & 0 \\
-  0 & b & 0 \\
-  0 & 0 & c
-\end{pmatrix}
-$$
-   
-And a special case of this with 1s along the diagonal is called the **identity matrix**
+This can be numerically solved to give our four eigenvalues: $\lambda\approx2.75, -0.3 \pm 0.3i, -0.14$. The long-term growth rate is the eigenvalue with the largest absolute value, $\lambda_1=2.75$.
 
-$$
-\begin{pmatrix}
-  1 & 0 & 0 \\
-  0 & 1 & 0 \\
-  0 & 0 & 1
-\end{pmatrix}
-$$
-  
-A matrix with all zeros below the diagonal is called an **upper trianglular matrix**
+Below we plot the general solution and long-term approximation. As expected based on $\lambda_1=2.75$, the population grows very quickly (note the log scale on the y-axis).
 
-$$
-\begin{pmatrix}
-  a & b & c \\
-  0 & d & e \\
-  0 & 0 & f
-\end{pmatrix}
-$$
-  
-A matrix with all zeros above the diagonal is called an **lower trianglular matrix**
 
-$$
-\begin{pmatrix}
-  a & 0 & 0 \\
-  b & d & 0 \\
-  c & e & f
-\end{pmatrix}
-$$
+<pre data-executable="true" data-language="python">
+m1,m2,m3,m4,p1,p2,p3 = 2,3,4,4,0.6,0.3,0.1 #parameter values
 
-It is sometimes useful to chop a matrix up into multiple blocks, creating a **block matrix**
+import numpy as np
 
-$$
-\begin{pmatrix}
-  a & b & c \\
-  d & e & f \\
-  g & h & i
-\end{pmatrix}
-= 
-\begin{pmatrix}
-  \mathbf{A} & \mathbf{B} \\
-  \mathbf{C} & \mathbf{D}
-\end{pmatrix}
-$$
+M = np.array([[m1,m2,m3,m4], #projection matrix
+              [p1,0,0,0],
+              [0,p2,0,0],
+              [0,0,p3,0]])
 
-where $\mathbf{A}=\begin{pmatrix} a & b \\ d & e\end{pmatrix}$, $\mathbf{B}=\begin{pmatrix} c\\ f\end{pmatrix}$, $\mathbf{C}=\begin{pmatrix} g & h \end{pmatrix}$, and $\mathbf{D}=\begin{pmatrix} i\end{pmatrix}$.
+# calculate
+eigs = np.linalg.eig(M) #eigenvalues and right eigenvectors
+ix = np.argmax(np.abs(eigs[0])) #which is leading eigenvalue
+l1 = eigs[0][ix] #leading eigenvalue
+v1 = eigs[1][:,ix] #leading right eigenvector
+v1 = v1/np.sum(v1) #normalized to sum to 1
+us = np.linalg.inv(eigs[1]) #left eigenvectors
+u1 = us[ix] #leading left eigenvalue
+u1 = u1/np.dot(u1,v1) #normalized so u1*v1=1
 
-This is especially helpful when the block form has off-diagonal submatrices consisting of all zeros.
+n0 = np.array([25,25,25,25]) #initial state
 
-For instance, when $\mathbf{B}=\begin{pmatrix} 0\\0\end{pmatrix}$ or $\mathbf{C}=\begin{pmatrix} 0 & 0 \end{pmatrix}$, we have a **block triangular matrix**.
+def ntfull(t):
+    '''full projection'''
+    return np.dot(np.linalg.matrix_power(M,t), n0)
 
-And when $\mathbf{B}=\begin{pmatrix} 0\\0\end{pmatrix}$ and $\mathbf{C}=\begin{pmatrix} 0 & 0 \end{pmatrix}$, 
-we have a **block diagonal matrix**.
+def ntapp(t):
+    '''long term approximation'''
+    return l1**t * v1 * np.dot(u1, n0)
 
-Finally, it is sometimes useful to **transpose** a matrix, which exchanges the rows and columns (an element in row $i$ column $j$ moves to row $j$ column $i$)
+# plot
+import matplotlib.pyplot as plt
 
-$$
-\begin{pmatrix}
-  a_1 & a_2 & a_3 \\
-  b_1 & b_2 & b_3
-\end{pmatrix}^\intercal
-= 
-\begin{pmatrix}
-  a_1 & b_1  \\
-  a_2 & b_2  \\
-  a_3 & b_3
-\end{pmatrix}
-$$
+fig, ax = plt.subplots()
 
-Like vectors, matrices have a graphical/geometrical interpretation: they stretch and rotate vectors (as we will see shortly).
+labels = ['age 1','age 2','age 3','age 4']
+colors = plt.get_cmap('tab10')
+for i,j in enumerate(range(len(M))): #for each stage
+    ax.plot([ntfull(t)[j] for t in range(10)], color=colors(i), label=labels[i])
+    ax.plot([ntapp(t)[j] for t in range(10)], color=colors(i), linestyle='--') #long-term approx
+
+ax.legend()
+ax.set_xlabel('years')
+ax.set_ylabel('number of stickleback')
+ax.set_yscale('log')
+plt.show()
+</pre>
+
+    /Users/mmosmond/.virtualenvs/eeb430/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:1298: ComplexWarning: Casting complex values to real discards the imaginary part
+      return np.asarray(x, float)
+
+
+
+    
+![png](lecture-10_files/lecture-10_7_1.png)
+    
+
 
 <span id='section4'></span>
-## 4. Vector and matrix operations
+## 4. Summary
 <hr>
 
-### Addition
-
-Vector and matrix **addition** (and subtraction) is straightforward, entry-by-entry:
-
-$$
-\begin{equation*}
-\begin{pmatrix}
-  a \\
-  b
-\end{pmatrix}
-+
-\begin{pmatrix}
-  c \\
-  d
-\end{pmatrix}
-=
-\begin{pmatrix}
-  a+c \\
-  b+d
-\end{pmatrix}
-\end{equation*}
-$$
-
-$$
-\begin{equation*}
-\begin{pmatrix}
-  a & b \\
-  c & d
-\end{pmatrix}
-+
-\begin{pmatrix}
-  e & f \\
-  g & h
-\end{pmatrix}
-=
-\begin{pmatrix}
-  a+e & b+f \\
-  c+g & d+h
-\end{pmatrix}
-\end{equation*}
-$$
-
-!!! warning 
-
-    The vectors or matrices added together must have the same dimension!
-    
-Geometrically, adding vectors is like placing the second vector at the end of the first. Below we add the black and red vectors together to get the blue vector.
-
-
-<pre data-executable="true" data-language="python">
-import matplotlib.pyplot as plt #import plotting library
-
-v1 = [1,2] #vector 1
-v2 = [1,0] #vector 2
-v12 = [i+j for i,j in zip(v1,v2)] #sum of the two vectors
-
-#first vector
-plt.arrow(0, 0, #starting x and y values of arrow
-          v1[0], v1[1], #change in x and y 
-          head_width=0.1, color='black') #aesthetics
-
-#second vector placed at the end of first vector
-plt.arrow(v1[0], v1[1], #starting x and y values of arrow
-          v2[0], v2[1], #change in x and y 
-          head_width=0.1, color='red') #aesthetics
-
-#sum of the vectors
-plt.arrow(0, 0, #starting x and y values of arrow
-          v12[0], v12[1], #change in x and y 
-          head_width=0.1, color='blue') #aesthetics
-
-plt.xlim(0,2.5) #set bounds on x axis
-plt.ylim(0,2.5) #set bounds on y axis
-plt.show()
-</pre>
-
-
-    
-![png](lecture-10_files/lecture-10_6_0.png)
-    
-
-
-### Multiplication
-
-Vector and matrix **multiplication** by a scalar (which may be a constant, a variable, or a function, but not a matrix or a vector) is also straightforward, we just multiply every element by the scalar:
-
-$$
-\begin{equation*}
-\alpha *
-\begin{pmatrix}
-  a \\
-  b
-\end{pmatrix}
-=
-\begin{pmatrix}
-  \alpha a \\
-  \alpha b
-\end{pmatrix}
-\end{equation*}
-$$
-
-$$
-\begin{equation*}
-\alpha *
-\begin{pmatrix}
-  a & b\\
-  c & d
-\end{pmatrix}
-=
-\begin{pmatrix}
-  \alpha a & \alpha b\\
-  \alpha c & \alpha d
-\end{pmatrix}
-\end{equation*}
-$$
-
-Geometrically, multiplying by a scalar stretches (if $\alpha>1$) or compresses (if $\alpha<1$) a vector. Below we multiply the black vector by $1/2$ to get the red vector.
-
-
-<pre data-executable="true" data-language="python">
-import matplotlib.pyplot as plt #import plotting library
-
-v1 = [1,2] #vector 1
-alpha = 1/2 #scalar
-v2 = [i*alpha for i in v1] #multiplication by a scalar
-
-#original vector
-plt.arrow(0, 0, #starting x and y values of arrow
-          v1[0], v1[1], #change in x and y 
-          head_width=0.1, color='black') #aesthetics
-
-#stretched vector
-plt.arrow(0, 0, #starting x and y values of arrow
-          v2[0], v2[1], #change in x and y 
-          head_width=0.1, color='red') #aesthetics
-
-plt.xlim(0,2.5) #set bounds on x axis
-plt.ylim(0,2.5) #set bounds on y axis
-plt.show()
-</pre>
-
-
-    
-![png](lecture-10_files/lecture-10_8_0.png)
-    
-
-
-Multiplying vectors and matrices together is a bit trickier, but is based on the fact that a row vector times a column vector is equal to the sum of the products of their respective entries
-
-$$
-\begin{equation*}
-\begin{pmatrix} a & b & c \end{pmatrix}
-\begin{pmatrix}
-  x \\
-  y \\
-  z
-\end{pmatrix}
-= ax + by + cz
-\end{equation*}
-$$
-
-This is referred to as the **dot product**. (There are other types of products for vectors and matrices, which we won't cover in this class.)
-
-To multiply a matrix by a vector, this procedure is repeated first for the first row of the matrix, then for the second row of the matrix, etc:
-
-$$
-\begin{equation*}
-\begin{pmatrix}
-  a & b & c \\
-  d & e & f \\
-  g & h & i
-\end{pmatrix}
-\begin{pmatrix}
-  x \\
-  y \\
-  z
-\end{pmatrix}
-=
-\begin{pmatrix}
-  ax + by + cz \\
-  dx + ey + fz \\
-  gx + hy + iz \\
-\end{pmatrix}
-\end{equation*}
-$$
-
-Geometrically, multiplying a vector by a matrix stretches and rotates a vector. Below we multiply the black vector my a matrix to get the red vector.
-
-
-<pre data-executable="true" data-language="python">
-import matplotlib.pyplot as plt #import plotting library
-from sympy import *
-
-v = Matrix([[2],[1]]) #column vector
-M = Matrix([[1,-1],[1,1/4]]) #matrix
-u = M*v
-
-#original vector
-plt.arrow(0, 0, #starting x and y values of arrow
-          float(v[0]), float(v[1]), #change in x and y 
-          head_width=0.1, color='black') #aesthetics
-
-#stretched and rotated vector
-plt.arrow(0, 0, #starting x and y values of arrow
-          float(u[0]), float(u[1]), #change in x and y 
-          head_width=0.1, color='red') #aesthetics
-
-plt.xlim(0,2.5) #set bounds on x axis
-plt.ylim(0,2.5) #set bounds on y axis
-plt.show()
-</pre>
-
-
-    
-![png](lecture-10_files/lecture-10_10_0.png)
-    
-
-
-To multiply a matrix by a matrix, this procedure is then repeated first for the first column of the second matrix and then for the second column of the second matrix, etc:
-
-$$
-\begin{equation*}
-\begin{pmatrix}
-  a & b \\
-  c & d
-\end{pmatrix}
-\begin{pmatrix}
-  e & f \\
-  g & h
-\end{pmatrix}
-=
-\begin{pmatrix}
-  ae + bg & af + bh \\
-  ce + dg & cf + dh
-\end{pmatrix}
-\end{equation*}
-$$
-
-!!! warning 
-
-    An $m \times n$ matrix (or vector) $\mathbf{A}$ can be multiplied on the right by $\mathbf{B}$ *only* if $\mathbf{B}$ is an $n \times p$ matrix (or vector). The resulting matrix (or vector) will then be $m \times p$.
-
-As opposed to basic algebra, matrix multiplication is *not* commutative. That is, $\mathbf{AB}$ does not generally equal $\mathbf{BA}$.
-
-This means that if we want to multiply both sides of an equation, e.g., $\mathbf{AB} = \mathbf{C}$, by $\mathbf{D}$, we need to do so on the same side, $\mathbf{ABD} = \mathbf{CD}$ or $\mathbf{DAB} = \mathbf{DC}$. We therefore often need to specify that we are multiplying by a matrix "on the left" or "on the right".
-
-On the other hand, matrix multiplication does satisfy the following laws:
-
-- $(\mathbf{AB})\mathbf{C} = \mathbf{A}(\mathbf{BC})$ (associative law)
-- $\mathbf{A}(\mathbf{B+C}) = \mathbf{AB}+\mathbf{AC}$ (distributive law)
-- $(\mathbf{A}+\mathbf{B})\mathbf{C} = \mathbf{AC}+\mathbf{BC}$ (distributive law)
-- $\alpha(\mathbf{AB}) = (\alpha\mathbf{A})\mathbf{B} = \mathbf{A}(\alpha\mathbf{B}) = (\mathbf{A}\mathbf{B})\alpha$ (commutative law for scalars)
-
-Multiplication between the identity matrix and any vector, $\vec{v}$, or square matrix, $\mathbf{M}$, has no effect (it is like a "1" in normal algebra)
-
-$$
-\mathbf{I}\vec{v}=\vec{v}
-$$
-
-$$
-\mathbf{I}\mathbf{M}=\mathbf{M}\mathbf{I}=\mathbf{M}
-$$
+- linear multivariate models can describe the **demography** of a population composed of multiple types of individuals (stages or ages)
+- in this case the terms in the long-term approximation are
+    - $\lambda_1$:  **long-term population growth rate**
+    - $\vec{v}_1$: the **stable stage-distribution**
+    - $\vec{u}_1$: the relative **reproductive values** of each (st)age
+- adding individuals with larger reproductive value increases future population size more
+- the effect of each parameter on the long-term growth rate (its **sensitivity**) can be calculated as $\frac{\mathrm{d}\lambda_1}{\mathrm{d}z} = \frac{\vec{u}_1 \frac{\mathrm{d}\mathbf{M}}{\mathrm{d}z} \vec{v}_1}{\vec{u}_1 \vec{v}_1}$
+- with age-structure the projection matrix $\mathbf{M}$ takes a special form (Leslie matrix) allowing the eigenvalues to be found with the Euler-Lotka equation, $1 = \sum_{i=1}^{d} \frac{l_i m_i}{\lambda^i}$
