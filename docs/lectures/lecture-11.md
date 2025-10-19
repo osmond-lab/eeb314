@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 11: Linear algebra II
+# Lecture 11: Equilibria (nonlinear multivariate)
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,260 +26,241 @@
 
 ## Lecture overview
 
-1. [Matrix operations](#section1)
-2. [Solving systems of linear equations](#section2)
+1. [Continuous time](#section1)
+2. [Discrete time](#section2)
+5. [Summary](#section3)
+
+Now that we've covered linear multivariate models, we turn our attention to the more complex, and more common, nonlinear multivariate models.
+
+Let's start by learning how to find equilibria.
 
 <span id='section1'></span>
-## 1. Matrix operations
+## 1. Continuous time
 <hr>
 
-### Trace
-
-The **trace** of a matrix is the sum of the diagonal elements
-
-$$
-\mathrm{Tr}\left(
-\begin{pmatrix}
-  a & b & c \\
-  d & e & f \\
-  g & h & i \\
-\end{pmatrix}\right)
-=
-a + e + i   
-$$
-
-### Determinant
-
-The **determinant** of a $2 \times 2$ matrix is:
-
-$$
-\begin{equation*}
-\text{Det}\left(
-\begin{pmatrix}
-  a & b \\
-  c & d
-\end{pmatrix}\right)
-=
-\begin{vmatrix}
-  a & b\\
-  c & d
-\end{vmatrix}
-=ad-bc
-\end{equation*}
-$$
-
-!!! note
-
-    You should remember how to calculate the determinant of a 2x2 matrix.
-
-The **determinant** of an $n \times n$ matrix can be obtained by working along the first row, multiplying the first element of the first row by the determinant of the matrix created by deleting the first row and first column *minus* the second element of the first row times the determinant of the matrix created by deleting the first row and second column *plus* the third element... and so on
-
-$$
-\begin{vmatrix}
-\mathbf{M}
-\end{vmatrix}
-= \sum_{j=1}^n (-1)^{j+1} m_{1j}
-\begin{vmatrix}
-\mathbf{M}_{1j}
-\end{vmatrix}
-$$
-
-where $m_{ij}$ is the element in the $i^{\mathrm{th}}$ row and $j^{\mathrm{th}}$ column and $\mathbf{M}_{ij}$ is the matrix $\mathbf{M}$ with the $i^{\mathrm{th}}$ row and the $j^{\mathrm{th}}$ column deleted.
-
-More generally, we can move along any row $i$
-
-$$
-|\mathbf{M}| = (-1)^{i+1}\sum_{j=1}^{n}(-1)^{j+1}m_{ij}  |\mathbf{M_{ij}}|
-$$
-
-or any column $j$
-
-$$
-|\mathbf{M}| = (-1)^{j+1}\sum_{i=1}^{n}(-1)^{i+1}m_{ij}  |\mathbf{M_{ij}}|
-$$
-
-A few useful rules emerge from this:
-
-- The determinant of a matrix is the same as the determinant of its transpose, $|\mathbf{M}| = |\mathbf{M}^\intercal|$
-- The determinant of a diagonal or triangular matrix is the product of the diagonal elements, $|\mathbf{M}| = \prod_{i=1}^n m_{ii} = m_{11}m_{22}\cdots m_{nn}$
-- The determinant of a block-diagonal or -triangular matrix is the product of the determinants of the diagonal submatrices
-
-It also suggests that rows or columns with lots of zeros are very helpful when calculating the determinant, for example
+In general, if we have $n$ variables, $x_1, x_2, ..., x_n$, we can write any continuous time model like
 
 $$
 \begin{aligned}
-\begin{vmatrix}
-  m_{11} & 0 & 0 \\
-  m_{21} & m_{22} & m_{23} \\
-  m_{31} & m_{32} & m_{33} \\
-\end{vmatrix}
-= 
-m_{11} 
-\begin{vmatrix}
-  m_{22} & m_{23} \\
-  m_{32} & m_{33} \\
-\end{vmatrix}\\
+\frac{\mathrm{d}x_1}{\mathrm{d}t} &=  f_1(x_1, x_2, ..., x_n)\\
+\frac{\mathrm{d}x_2}{\mathrm{d}t} &=  f_2(x_1, x_2, ..., x_n)\\
+&\vdots\\
+\frac{\mathrm{d}x_n}{\mathrm{d}t} &=  f_n(x_1, x_2, ..., x_n).  
 \end{aligned}
 $$
 
-And why would we want to calculate the determinant of a matrix? 
+If any of these variables interact with one another we do not have a linear system of equations. This prevents us from writing the system of equations in matrix form with a matrix composed only of parameters. And this generally prevents us from solving for equilibrium with linear algebra. To find the equilibria, $\hat{x}_1,\hat{x}_2, ..., \hat{x}_n$, we instead set all these equations to 0 and solve for one variable at a time. 
 
-Well, when the determinant is zero, $|\mathbf{M}|=0$, it means that the rows are not linearly independent, that is, some row $\vec{r}_k$ can be written as $a_1 \vec{r}_1 + \cdots + a_{k-1} \vec{r}_{k-1} + a_{k+1} \vec{r}_{k+1} + \cdots + a_n \vec{r}_n$, where the $a_i$ are scalars. 
+### Example: epidemiology (the spread of infectious disease)
 
-As a result, when we multiply a vector by a matrix with a determinant of zero we lose some information, and therefore cannot reverse the operation (as we will see when we discuss **inverses**). This is analagous to mutliplying by 0 in normal algebra -- if we multiply a bunch of different numbers by zero we have no way of knowing what the original numbers were.
+Consider a population composed of $S$ susceptible individuals and $I$ infected individuals. We assume new susceptible individuals arrive at rate $\theta$ via immigration and existing susceptibles die at per capita rate $d$. We assume infected individuals die at an elevated per capita rate $d+v$ and recover at per capita rate $\gamma$. So far this is a linear (affine) model. Finally, we assume susceptibles become infected at rate $\beta S I$. This is the non-linear part.
 
-Geometrically, mutliplying multiple vectors by a matrix whose deteriminant is zero causes them to fall along a line. Below we multiply the two black vectors by a matrix whose determinant is zero to get the two red vectors, which line on the same line.
+We can describe this with the following flow diagram.
+
+<center>
+```mermaid
+graph LR;
+    A[ ] --theta--> S((S));
+    S --beta S I--> I((I));
+    S --d S--> B[ ];    
+    I --"(d + v) I"--> C[ ];
+    I --gamma I--> S;
+    style A height:0px;
+    style B height:0px;
+    style C height:0px;
+```   
+</center>
+
+The corresponding system of differential equations is
+
+$$\begin{aligned}
+\frac{\mathrm{d}S}{\mathrm{d}t} &= \theta - \beta S I - d S + \gamma I \\
+\frac{\mathrm{d}I}{\mathrm{d}t} &= \beta S I - (d + v) I - \gamma I.
+\end{aligned}$$
+
+At equilibrium both derivatives are equal to zero, 
+
+$$\begin{aligned}
+0 &= \theta - \beta \hat{S} \hat{I} - d \hat{S} + \gamma \hat{I} \\
+0 &= \beta \hat{S} \hat{I} - (d + v) \hat{I} - \gamma \hat{I} .
+\end{aligned}$$
+
+To be systematic, we could start with the first equation and solve for the first variable, $\hat{S}$, in terms of the remaining variables, $\hat{I}$. We could then sub that expression for $\hat{S}$ into the second equation, which would then be an equation for $\hat{I}$ alone. After solving for $\hat{I}$ we could then sub that solution into $\hat{S}$ and be done. But through experience we notice that there is an easier approach. 
+
+Because the second equation is proportional to $\hat{I}$ we immediately know $\hat{I}=0$ is one potential equilibrium point. For this to work we also need the first equation to be zero. Subbing in $\hat{I}=0$ to that first equation and solving for $\hat{S}$ gives $\hat{S}=\theta/d$. One equilibrium is therefore
+
+$$\begin{aligned}
+\hat{S} &= \theta/d \\
+\hat{I} &= 0,
+\end{aligned}$$
+
+which we call the "disease-free" equilibrium. At this equilibrium there is no disease ($\hat{I}=0$) and the number of susceptibles is determined by the balance between immigration and disease-independent death ($\hat{S}=\theta/d$). This is always biologically valid (given the parameters are positive, which we can assume given the description of the model above).
+
+Now, there may be more than one equilibrium because this is a non-linear model. Returning to the second equation, after factoring out $\hat{I}$ we are left with $0 = \beta \hat{S} - (d + v + \gamma)$, implying $\hat{S} = (d + v + \gamma)/\beta$. Plugging this into the first equation and solving for $\hat{I}$ we see that a second equilibrium is
+
+$$\begin{aligned}
+\hat{S} &= (d + v + \gamma)/\beta \\
+\hat{I} &= \frac{\theta - d(d + v + \gamma)/\beta}{d+v},
+\end{aligned}$$
+
+which we call the "endemic equilibrium". This equilibrium is only biologically valid when the numerator of $\hat{I}$ is non-negative which can be rearranged as $\beta\theta/d \geq d + v + \gamma$. When this is an equality the endemic equilbrium reduces to the disease-free equilibrium. 
+
+We can visualize these equilibria by plotting the nullclines on the phase plane. The equilibria are where the nullclines of the two variables intersect.
+
+The nullcline for $S$ is
+
+$$\begin{aligned}
+0 &= \theta - \beta S I - d S + \gamma I \\
+\beta S I - \gamma I &= \theta - d S \\
+(\beta S - \gamma) I &= \theta - d S \\
+I &= \frac{\theta - d S}{(\beta S - \gamma)},
+\end{aligned}$$
+
+which is undefined at $S=\gamma/\beta$ (in the plot below the nullcline takes on negative $S$ values when $S$ is less than this, so we'll plot only it for $S$ values above this).
+
+The nullclines for $I$ are 
+
+$$\begin{aligned}
+0 &= \beta S I - (d + v) I - \gamma I \\
+\text{implying} \; I &= 0 \;\text{and} \\
+0 &= \beta S - (d + v) - \gamma \\
+S &= \frac{d + v + \gamma}{\beta}. 
+\end{aligned}$$
 
 
 <pre data-executable="true" data-language="python">
-matplotlib.pyplot as plt #import plotting library
+import matplotlib.pyplot as plt
 from sympy import *
+import numpy as np
 
-v1 = Matrix([[2],[1]]) #column vector 1
-v2 = Matrix([[1],[1]]) #column vector 2
-M = Matrix([[1/2,1],[1,2]]) #matrix with determinant of zero
+# define the variables
+S, I = symbols('S, I')
 
-#original vectors
-for v in [v1,v2]:
-    plt.arrow(0, 0, #starting x and y values of arrow
-              float(v[0]), float(v[1]), #change in x and y 
-              head_width=0.1, color='black') #aesthetics
+# Choose the parameter values
+d, v = 0.1, 0.7
+gamma = 0.1
+beta = 0.005
+theta = 50
 
-#stretched and rotated vectors
-for v in [M*v1,M*v2]:
-    plt.arrow(0, 0, #starting x and y values of arrow
-              float(v[0]), float(v[1]), #change in x and y 
-              head_width=0.1, color='red') #aesthetics
+# plot range
+Smin = gamma/beta + 1
+Smax = 550
+Imax = 60
+Ss = np.linspace(Smin,Smax,100)
+Is = np.linspace(0,Imax,100)
 
-plt.xlim(0,5) #set bounds on x axis
-plt.ylim(0,5) #set bounds on y axis
+# plot nullclines
+Snull = (theta-d*S)/(beta*S-gamma)
+Inull0 = 0
+Inull1 = (d+v+gamma)/beta
+plt.plot(Ss, [Snull.subs(S,i) for i in Ss], label='$S$ nullclines')
+plt.plot(Ss, [Inull0 for i in Ss], label='$I$ nullclines')
+plt.plot([Inull1 for i in Is], Is, color=plt.cm.tab10(1))
+
+# plot equilibria
+eqS = [theta/d,(d+v+gamma)/beta]
+eqI = [0,(theta - d*(d+v+gamma)/beta)/(d+v)]
+plt.scatter(eqS,eqI,c='k',zorder=5, label='equilibria')
+
+plt.xlabel('number of susceptibles, $S$')
+plt.ylabel('number of infecteds, $I$')
+plt.xlim(Smin,Smax)
+plt.ylim(-1,Imax)
+plt.legend()
 plt.show()
 </pre>
 
 
     
-![png](lecture-11_files/lecture-11_2_0.png)
+![png](lecture-11_files/lecture-11_3_0.png)
     
 
 
-### Inverse
-
-In the last lecture we discussed matrix addition/subtraction and multiplication. We did not yet discuss division. In fact, for matrices, there is no such thing as division! The analogy is the **inverse**.
-
-A square $m\times m$ matrix $\mathbf{M}$ is **invertible** if it may be multiplied by another matrix to get the identity matrix.  We call this second matrix, $\mathbf{M}^{-1}$ the **inverse** of the first
-
-$$
-\mathbf{M}\mathbf{M}^{-1} = \mathbf{I} = \mathbf{M}^{-1}\mathbf{M}
-$$
-
-Geometrically, the inverse reverses the stretching and rotating that the original matrix does to a vector
-
-$$\mathbf{M}^{-1}(\mathbf{M}\vec{v}) = (\mathbf{M}^{-1}\mathbf{M})\vec{v} = \mathbf{I}\vec{v} = \vec{v}$$
-
-There are rules to find the inverse of a matrix (when it is invertible). For a 2x2 matrix we do the following
-
-$$
-\begin{align}
-\mathbf{M}^{-1} 
-=&\begin{pmatrix}
-  a & b \\
-  c & d
-\end{pmatrix}^{-1}\\
-&=\frac{1}{\mathrm{Det}(\mathbf{M})}
-\begin{pmatrix}
-  d  & -b \\
-  -c & a
-\end{pmatrix}\\
-&=
-\begin{pmatrix}
-  \frac{d}{ad-bc}  & \frac{-b}{ad-bc} \\
-  \frac{-c}{ad-bc} & \frac{a}{ad-bc}
-\end{pmatrix}
-\end{align}
-$$
-
-!!! note
-
-    Remember how to take the inverse of a 2x2 matrix.
-
-!!! warning
-
-    As you can see from the 2x2 case above, when the determinant is zero no inverse exists (and this is true for any square matrix). We therefore call a matrix whose determinant is zero **non-invertible** or **singular**. You can connect this fact back to the previous lecture, where we saw that mutliplying vectors by a matrix whose determinant is zero caused them to collapse upon one another, losing information. The fact that a matrix whose determinant is zero has no inverse means that we cannot reverse the original matrix multiplication, just like we can't reverse mutliplication by zero in normal algebra.
-
-Larger matrices are more difficult to invert, except if they are diagonal, in which case we simply invert each of the diagonal elements
-
-$$
-\mathbf{M}^{-1} = 
-\begin{pmatrix}
-1/m_{11} & 0 & \cdots & 0\\
-0 & 1/m_{22} & \cdots & 0\\
-\vdots & \vdots & \vdots & \vdots\\
-0 & 0 & \cdots & 1/m_{nn}\\
-\end{pmatrix}
-$$
-
 <span id='section2'></span>
-## 2. Solving systems of linear equations
+## 2. Discrete time
 <hr>
 
-With all this linear algebra knowledge in hand, let's use it!
-  
-Let's return to our model for the number of birds on two islands
-
-<center>
-```mermaid
-graph LR;
-    A1((n1)) --b1 n1--> A1;
-    B1[ ] --m1--> A1;
-    A1 --d1 n1--> C1[ ];
-
-    A2((n2)) --b2 n2--> A2;
-    B2[ ] --m2--> A2;
-    A2 --d2 n2--> C2[ ];
-
-    A1 --m12 n1--> A2;
-    A2 --m21 n2--> A1;
-
-    style B1 height:0px;
-    style C1 height:0px;
-    style B2 height:0px;
-    style C2 height:0px;
-```   
-</center>
+In discrete time our system of equations is
 
 $$
 \begin{aligned}
-\begin{pmatrix} \frac{\mathrm{d}n_1}{\mathrm{d}t} \\ \frac{\mathrm{d}n_2}{\mathrm{d}t} \end{pmatrix} 
-&= \begin{pmatrix} b_1 - d_1 - m_{12} & m_{21} \\ m_{12} & b_2 - d_2 - m_{21} \end{pmatrix}
-\begin{pmatrix} n_1 \\ n_2 \end{pmatrix} 
-+ \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}\\
-\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} &= \mathbf{M}\vec{n} + \vec{m}
+x_1(t+1) &=  f_1(x_1(t), x_2(t), ..., x_n(t))\\
+x_2(t+1) &=  f_2(x_1(t), x_2(t), ..., x_n(t))\\
+&\vdots\\
+x_n(t+1) &=  f_n(x_1(t), x_2(t), ..., x_n(t)).
 \end{aligned}
 $$
 
-The equilibria, $\hat{\vec{n}}$, are then found by setting $\frac{\mathrm{d}\vec{n}}{\mathrm{d}t}=0$, subtracting $\vec{m}$ from both sides, and multiplying by the inverse matrix $\mathbf{M}^{-1}$ on the left
+Now the equilibria are found by setting all $x_i(t+1) = x_i(t) = \hat{x}_i$ and solving for the $\hat{x}_i$ one at a time.
 
-$$
-\begin{align*}
-0 &= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
--\vec{m} &= \mathbf{M}\hat{\vec{n}}\\
--\mathbf{M}^{-1}\vec{m} &= \mathbf{M}^{-1}\mathbf{M}\hat{\vec{n}}\\
--\mathbf{M}^{-1}\vec{m} &= \hat{\vec{n}}
-\end{align*}
-$$
+### Example: Density-dependent natural selection
 
-We can write the left hand side in terms of our parameters by calculating the inverse of this 2x2 matrix and multiplying by the vector
+We previously derived and analyzed an equation for allele frequency change under haploid selection, where the fitness of the two alleles, $A$ and $a$, where constants. Here we explore what happens when the fitness of each allele depends on the number of individuals. We refer to this scenario as density-dependent natural selection. 
 
-$$
-\begin{align}
-\hat{\vec{n}} 
-&=-\mathbf{M}^{-1}\vec{m}\\
-&=-\frac{1}{|\mathbf{M}|}
-\begin{pmatrix} b_2 - d_2 - m_{21} & -m_{21} \\ -m_{12} & b_1 - d_1 - m_{12} \end{pmatrix}
-\begin{pmatrix} m_1 \\ m_2 \end{pmatrix}\\
-&= -\frac{1}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \begin{pmatrix} (b_2 - d_2 - m_{21})m_1 -m_{21}m_2 \\ -m_{12}m_1 + (b_1 - d_1 - m_{12})m_2 \end{pmatrix}\\
-&= \begin{pmatrix} -\frac{(b_2 - d_2 - m_{21})m_1 -m_{21}m_2}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \\ -\frac{-m_{12}m_1 + (b_1 - d_1 - m_{12})m_2}{(b_1 - d_1 - m_{12})(b_2 - d_2 - m_{21})-m_{21}m_{12}} \end{pmatrix}
-\end{align}
-$$
+Let $p$ be the frequency of allele $A$ and $N=N_A+N_a$ be the total number of individuals in the population. Let the absolute fitness of allele $i$ be $W_i(N)$, a function of population size.  Then the allele frequency and population size in the next generation are
 
-Ta-da! Using linear algebra we solved for both equilibria, $\hat{n}_1$ and $\hat{n}_2$, with a single equation. In future lectures we'll see how we can use linear algebra to calculate the local stability and derive general solutions.
+$$\begin{aligned}
+p(t+1) &= \frac{W_A(N(t))}{\bar{W}(N(t),p(t))}p(t)\\
+N(t+1) &= W_A(N(t))N_A(t) + W_a(N(t))N_a(t) = \bar{W}(N(t),p(t))N(t),
+\end{aligned}$$
+
+where $\bar{W}(N(t),p(t)) = W_A(N(t))p(t) + W_a(N(t))(1-p(t))$ is the population mean fitness. 
+
+To be concrete about density-dependence, let the fitness of each type decline exponentially from $1+r$ with population size at rate $\alpha_i$, $W_i(N(t)) = (1+r)\exp(-\alpha_i N(t))$.
+
+Let's start our search for equilibria with the allele frequency equation,
+
+$$\begin{aligned}
+\hat{p} &= \frac{W_A(\hat{N})}{\bar{W}(\hat{N},\hat{p})}\hat{p}.
+\end{aligned}$$
+
+We see that $\hat{p}=0$ satsifies this. Otherwise we can divide both sides by $\hat{p}$,
+
+$$\begin{aligned}
+1 &= \frac{W_A(\hat{N})}{\bar{W}(\hat{N},\hat{p})} \\
+\bar{W}(\hat{N},\hat{p}) &= W_A(\hat{N}) \\
+W_A(\hat{N})\hat{p} + W_a(\hat{N})(1-\hat{p}) &= W_A(\hat{N}) \\
+W_a(\hat{N})(1-\hat{p}) &= W_A(\hat{N})(1-\hat{p}).
+\end{aligned}$$
+
+We see that $\hat{p}=1$ satisfies this. Otherwise we can divide both sides by $1-\hat{p}$,
+
+$$\begin{aligned}
+W_a(\hat{N}) &= W_A(\hat{N}) \\
+(1+r)\exp(-\alpha_a \hat{N}) &= (1+r)\exp(-\alpha_A \hat{N}) \\
+\alpha_a \hat{N} &= \alpha_A \hat{N}.
+\end{aligned}$$
+
+Unless the two alleles have equal fitness at any population size, $\alpha_A=\alpha_a$, (which we'll ignore) this is only satisfied if the population is extinct, $\hat{N}=0$, in which case we don't care about the allele frequency.
+
+OK, so if the population is not extinct we have either $\hat{p}=0$ or $\hat{p}=1$, aligning with out density-independent analysis earlier in the course. But now what do these equilibrium allele frequencies mean for equilibrium population size? 
+
+When $\hat{p}=0$ we have  
+
+$$\begin{aligned}
+\hat{N} &= W_a(\hat{N}) \hat{N} \\
+1 &= W_a(\hat{N}) \\
+1 &= (1+r)\exp(-\alpha_a \hat{N}) \\
+\exp(\alpha_a \hat{N}) &= (1+r)\\
+\alpha_a \hat{N} &= \ln(1+r)\\
+\hat{N} &= \ln(1+r)/\alpha_a.
+\end{aligned}$$
+
+Similarly, when $\hat{p}=1$ we have $\hat{N} = \ln(1+r)/\alpha_A$.
+
+To summarize, there are three equilibria in this model of density-dependent haploid selection:
+
+- extinction, $\hat{N}=0$ (and any allele frequency, which is irrelevant)
+- fixation of $a$, $\hat{p}=0$, and the associated equilibrium population size, $\hat{N}=\ln(1+r)/\alpha_a$
+- fixation of $A$, $\hat{p}=1$, and the associated equilibrium population size, $\hat{N}=\ln(1+r)/\alpha_A$  
+
+<span id='section3'></span>
+## 3. Summary
+<hr>
+
+We find equilibria of nonlinear multivariate models by either 1) setting the differential equations to zero or 2) the variables in the next time step equal to the variables in the current time step and then solving for the variables one by one.
+
+Two important things to note about nonlinear models (multivariate or not):
+
+- there can be more than one equilibrium
+- we can't always solve for all (or any) equilibria 
