@@ -263,4 +263,6 @@ We find equilibria of nonlinear multivariate models by either 1) setting the dif
 Two important things to note about nonlinear models (multivariate or not):
 
 - there can be more than one equilibrium
-- we can't always solve for all (or any) equilibria 
+- we can't always solve for all (or any) equilibria
+
+Practice questions from the textbook: 8.2, 8.3, 8.4a-b, 8.5a-b, 8.6a, 8.7a, 8.8a, 8.10a, 8.11a, 8.12a 
