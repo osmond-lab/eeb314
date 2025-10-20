@@ -11,7 +11,7 @@ You'll do the final project in two parts.
 	- Describe your model in words (ie, the main assumptions) and explain the main structure with a diagram (eg, flow or life cycle diagram) 
 	- Write down the equations that you will analyze
 	- Describe what your analysis might reveal (ie, your hypothesis) 
-	- Max 2 pages 
+	- Max 500 words (not counting diagrams and equations) 
 	- [Example](final_project/partI_example.md)
 
 - [x] Part 2 
@@ -21,7 +21,7 @@ You'll do the final project in two parts.
 	- Analyze your model 
 	- Explain how the results address your original question
 	- Suggest how the model could be improved or extended
-	- Max 4 pages (not including any code that you used, which can be included as a link or additional file)
+	- Max 2000 words (not counting diagrams, equations, and supplementary Jupyter notebooks)
 	- [Example](final_project/partII_example.md)
 
 !!! tip 
