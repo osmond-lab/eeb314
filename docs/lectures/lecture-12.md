@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 12: Linear algebra III
+# Lecture 12: Stability (nonlinear multivariate)
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,301 +26,316 @@
 
 ## Lecture overview
 
-1. [What are eigenvalues and eigenvectors?](#section1)
-2. [Why should be care about eigenvalues and eigenvectors?](#section2)
-3. [Finding eigenvalues](#section3)
-4. [Finding eigenvectors](#section4)
+1. [Continuous time](#section1)
+2. [Discrete time](#section2)
+5. [Summary](#section3)
+
+Now that we know how to find equilibria in nonlinear multivariate models, let's see how to determine if they're stable.
 
 <span id='section1'></span>
-## 1. What are eigenvalues and eigenvectors?
+## 1. Continuous time
 <hr>
 
-A number $\lambda$ is an **eigenvalue** of matrix $\textbf{M}$ if there exists a non-zero vector, $\vec{v}$, that satisfies
+In general, if we have $n$ interacting variables, $x_1, x_2, ..., x_n$, we can write any continuous time model like
 
 $$
-\mathbf{M} \vec{v} = \lambda \vec{v}
+\begin{aligned}
+\frac{\mathrm{d}x_1}{\mathrm{d}t} &=  f_1(x_1, x_2, ..., x_n)\\
+\frac{\mathrm{d}x_2}{\mathrm{d}t} &=  f_2(x_1, x_2, ..., x_n)\\
+&\vdots\\
+\frac{\mathrm{d}x_n}{\mathrm{d}t} &=  f_n(x_1, x_2, ..., x_n).
+\end{aligned}
 $$
 
-Every non-zero vector $\vec{v}$ satisfying this equation is a **right eigenvector** of $\mathbf{M}$ associated with eigenvalue $\lambda$.
+If we then want to find the equilibria, $\hat{x}_1,\hat{x}_2, ..., \hat{x}_n$, we set all these equations to 0 and solve for one variable at a time. Let's assume we've already done this and now want to know when an equilibrium is stable.
 
-Every non-zero vector $\vec{u}$ satisfying
+In the linear multivariate case we determined stability with the eigenvalues of a matrix $\textbf{M}$ of parameters. Unfortunately we can not generally write a system of nonlinear equations in matrix form with a matrix composed only of parameters. In order to use what we've learned about eigenvalues and eigenvectors we're first going to have to **linearize** the system so that the corresponding matrices do not contain variables.
+
+As we saw in nonlinear univariate models, one useful way to linearize a system is to measure the system relative to equilibrium, $\epsilon = x - \hat{x}$. Then assuming that the deviation from equilibrium, $\epsilon$, is small, we used a Taylor series expansion to approximate the nonlinear system with a linear system. To do that with multivariate models we'll need to take a Taylor series expansion of a multivariate function.
+
+??? note "Taylor series expansion of a multivariate function"
+
+    Taking the series of $f$ around $x_1=a_1$, $x_2=a_2$, ..., $x_n=a_n$ gives
+
+    $$
+    \begin{aligned}
+    f(x_1, x_2, ..., x_n) &= f(a_1, a_2, ..., a_n)\\ 
+    &+ \sum_{i=1}^{n} \left( \frac{\partial f}{\partial x_i} \bigg|_{x_1=a_1, x_2=a_2, ..., x_n=a_n} \right) (x_i - a_i)\\
+    &+ \sum_{i=1}^{n}\sum_{j=1}^n \left( \frac{\partial f}{\partial x_i \partial x_j} \bigg|_{x_1=a_1, x_2=a_2, ..., x_n=a_n} \right) (x_i - a_i)(x_j - a_j)\\
+    &+ \cdots
+    \end{aligned}
+    $$
+    
+    where $\frac{\partial f}{\partial x_i}$ is the "partial derivative" of $f$ with respect to $x_i$, meaning that we treat all the other variables as constants when taking the derivative. Considering only the first two terms gives a linear approximation.
+
+So let $\epsilon_i = x_i - \hat{x}_i$ be the deviation of variable $x_i$ from its equilibrium value, $\hat{x}_i$, and write a system of equations describing the change in the deviations for all of our variables,
 
 $$
-\vec{u}\mathbf{M} = \lambda \vec{u}
+\begin{aligned}
+\frac{\mathrm{d}\epsilon_1}{\mathrm{d}t} &=  f_1(x_1, x_2, ..., x_n)\\
+\frac{\mathrm{d}\epsilon_2}{\mathrm{d}t} &=  f_2(x_1, x_2, ..., x_n)\\
+&\vdots\\
+\frac{\mathrm{d}\epsilon_n}{\mathrm{d}t} &=  f_n(x_1, x_2, ..., x_n).  
+\end{aligned}
 $$
 
-is a **left eigenvector** of $\mathbf{M}$ associated with eigenvalue $\lambda$.
+We can take a Taylor series around $x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n$ to get a linear approximation of our system near the equilibrium,
+
+$$
+\begin{aligned}
+\frac{\mathrm{d}\epsilon_1}{\mathrm{d}t} &\approx  f_1(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) + \sum_{i=1}^{n} \left( \frac{\partial f_1}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i)\\
+\frac{\mathrm{d}\epsilon_2}{\mathrm{d}t} &\approx  f_2(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) + \sum_{i=1}^{n} \left( \frac{\partial f_2}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i)\\
+&\vdots\\
+\frac{\mathrm{d}\epsilon_n}{\mathrm{d}t} &\approx  f_n(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) + \sum_{i=1}^{n} \left( \frac{\partial f_n}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i).
+\end{aligned}
+$$
+
+And then note that all $f_i(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n)=0$ by definition of a equilibrium, leaving
+
+$$
+\begin{aligned}
+\frac{\mathrm{d}\epsilon_1}{\mathrm{d}t} &\approx \sum_{i=1}^{n} \left( \frac{\partial f_1}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i)\\
+\frac{\mathrm{d}\epsilon_2}{\mathrm{d}t} &\approx \sum_{i=1}^{n} \left( \frac{\partial f_2}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i)\\
+&\vdots\\
+\frac{\mathrm{d}\epsilon_n}{\mathrm{d}t} &\approx  \sum_{i=1}^{n} \left( \frac{\partial f_n}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i).
+\end{aligned}
+$$
+
+Each of the partial derivatives $\frac{\partial f_i}{\partial x_j}$ is evaluated at the equilibrium, so these are constants. And $x_i - \hat{x}_i = \epsilon_i$. So we now have a linear system,
+
+$$
+\begin{aligned}
+\frac{\mathrm{d}\epsilon_1}{\mathrm{d}t} &\approx \sum_{i=1}^{n} \left( \frac{\partial f_1}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i\\
+\frac{\mathrm{d}\epsilon_2}{\mathrm{d}t} &\approx \sum_{i=1}^{n} \left( \frac{\partial f_2}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i\\
+&\vdots\\
+\frac{\mathrm{d}\epsilon_n}{\mathrm{d}t} &\approx  \sum_{i=1}^{n} \left( \frac{\partial f_n}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i,
+\end{aligned}
+$$
+
+which we can write in matrix form
+
+$$
+\begin{aligned}
+\begin{pmatrix} \frac{\mathrm{d}\epsilon_1}{\mathrm{d}t} \\ \frac{\mathrm{d}\epsilon_2}{\mathrm{d}t} \\ \vdots \\ \frac{\mathrm{d}\epsilon_n}{\mathrm{d}t} \end{pmatrix}
+=
+\begin{pmatrix}
+\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n}\\
+\frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n}\\
+\vdots & \vdots & \vdots & \vdots \\
+\frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \cdots & \frac{\partial f_n}{\partial x_n}
+\end{pmatrix}_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n}
+\begin{pmatrix} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{pmatrix}.
+\end{aligned}
+$$
+
+The matrix of first derivatives is called the **Jacobian**,
+
+$$
+\mathbf{J} = 
+\begin{pmatrix}
+\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n}\\
+\frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n}\\
+\vdots & \vdots & \vdots & \vdots \\
+\frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \cdots & \frac{\partial f_n}{\partial x_n}
+\end{pmatrix}.
+$$
+
+If any of the equations, $f_i$, are nonlinear then $\textbf{J}$ depends on the variables. To determine **local stability** we find the eigenvalues of the Jacobian evaluated at an equilibrium.
+
+### Example: epidemiology
+
+Let's return to our model of disease spread from the previous lecture. The rate of change in the number of susceptibles and infecteds is
+
+$$\begin{aligned}
+\frac{\mathrm{d}S}{\mathrm{d}t} &= \theta - \beta S I - d S + \gamma I \\
+\frac{\mathrm{d}I}{\mathrm{d}t} &= \beta S I - (d + v) I - \gamma I. 
+\end{aligned}$$
+
+We found two equilibria, the diease-free equilibrium,
+
+$$\begin{aligned}
+\hat{S} &= \theta/d \\
+\hat{I} &= 0,
+\end{aligned}$$
+
+which is always valid, and the endemic equilirbium,
+
+$$\begin{aligned}
+\hat{S} &= (d + v + \gamma)/\beta \\
+\hat{I} &= \frac{\theta - d(d + v + \gamma)/\beta}{d+v},
+\end{aligned}$$
+
+which is valid when $\beta\theta/d - (d + v + \gamma)>0$.
+
+Now when are these stable? 
+
+We first calculate the Jacobian,
+
+$$\begin{aligned}
+\mathbf{J} 
+&= 
+\begin{pmatrix}
+\frac{\partial}{\partial S}\left(\frac{\mathrm{d}S}{\mathrm{d}t}\right) & \frac{\partial}{\partial I}\left(\frac{\mathrm{d}S}{\mathrm{d}t}\right) \\
+\frac{\partial}{\partial S}\left(\frac{\mathrm{d}I}{\mathrm{d}t}\right) & \frac{\partial}{\partial I}\left(\frac{\mathrm{d}I}{\mathrm{d}t}\right)
+\end{pmatrix}\\
+&=
+\begin{pmatrix}
+-d-\beta I & -\beta S+\gamma \\
+\beta I & \beta S-(d+v+\gamma)
+\end{pmatrix}.
+\end{aligned}$$
+
+We can now determine the local stability of an equilibrium by evaluating the Jacobian at that equilibrium and calculating the eigenvalues. 
+
+Let's do that first for the simpler disease-free equilibrium. Plugging $\hat{S}$ and $\hat{I}$ into the Jacobian gives 
+
+$$\begin{aligned}
+\mathbf{J}_\mathrm{disease-free} 
+&= 
+\begin{pmatrix}
+-d & -\beta \theta/d+\gamma \\
+0 & \beta \theta/d-(d+v+\gamma)
+\end{pmatrix}.
+\end{aligned}$$
+
+This is an upper triangular matrix, so the eigenvalues are just the diagonal elements, $\lambda = -d, \beta\theta/d-(d+v+\gamma)$. Because all the parameters are rates they are all non-negative, and therefore the only eigenvalue that can have a positive real part (and therefore cause instability) is $\lambda=\beta\theta/d-(d+v+\gamma)$. The equilibrium is unstable when this is positive, $\beta\theta/d-(d+v+\gamma)>0$. Because this equilibrium has no infected individuals, instability in this case means the infected individuals will increase in number from rare -- ie, the disease can invade. 
+
+We can rearrange the instability condition to get a little more intuition. The disease can invade whenever
+
+$$\begin{aligned}
+\beta\theta/d - (d+v+\gamma)& > 0 \\
+\beta\theta/d &> d+v+\gamma \\
+\frac{\beta\theta/d}{d+v+\gamma} &> 1.
+\end{aligned}$$
+
+The numerator is $\beta$ times the number of susceptibles at the disease-free equilibrium, $\hat{S}=\theta/d$. This is the rate that a rare disease infects new individuals. The denominator is the rate at which the disease is removed from the population. Therefore a rare disease that infects faster than it is removed can spread. This ratio, in our case $\frac{\beta\theta/d}{d+v+\gamma}$, turns out to be the expected number of new infections per infection when the disease is rare. This is termed $R_0$, which is a very key epidemiological quantity (you may remember estimates of $R_0$ in the news from a certain recent virus...).
+
+Now for the endemic equilibrium. Plugging these values into the Jacobian and simplifying gives
+
+$$\begin{aligned}
+\mathbf{J}_\mathrm{endemic} 
+&= 
+\begin{pmatrix}
+-\frac{\beta \theta - d \gamma}{d+v} & -(d+v) \\
+\frac{\beta \theta - d (d+v+\gamma)}{d+v} & 0
+\end{pmatrix}
+\end{aligned}$$
+
+Here, instead of calculating the eigenvalues explicitly, we can use the **Routh-Hurwitz stability criteria** for a 2x2 matrix, a negative trace and positive determinant. The determinant is $\beta \theta - d (d+v+\gamma)$. For this to be positive we need $\beta \theta/d > (d+v+\gamma)$, which was the instability condition on the disease-free equilibrium ($R_0>1$). The trace is $-\frac{\beta \theta - d \gamma}{d+v}$. For this to be negative we need $\beta \theta/d > \gamma$, which is guaranteed if the determinant is positive. So in conclusion, the endemic equilibrium is valid and stable whenever the disease can invade, $R_0>1$.
 
 <span id='section2'></span>
-## 2. Why should we care about eigenvalues and eigenvectors?
-<hr> 
-
-Let's say $\mathbf{M}$ describes the dynamics of our biological variables, $\vec{n}$, which might be the numbers of different types of individuals or the frequency of alleles at different loci, and for concreteness let's just say we are working in discrete time, $\vec{n}(t+1) = \mathbf{M} \vec{n}(t)$ (but similar arguments hold for continuous time). 
-
-Now notice that if our system, $\vec{n}(t)$, ever approaches a right eigenvalue, $\vec{v}$, the dynamics reduce to simple exponential growth $\vec{n}(t+1) = \mathbf{M} \vec{n}(t) = \mathbf{M} \vec{v} = \lambda \vec{v}$ at rate $\lambda$ in direction $\vec{v}$. In other words, the eigenvalues describe the rate at which our system grows or shrinks along their associated eigenvectors.
-
-More generally, even when $\vec{n}$ is not near a right eigenvector, the right eigenvectors provide a new coordinate system in which the dynamics of our system are easier to understand. 
-
-To see this, let's take $\mathbf{M} = \begin{pmatrix} 1 & 1 \\ 1/2 & 3/2 \end{pmatrix}$. The eigenvalues of $\mathbf{M}$ are $\lambda_1 = 2$ and $\lambda_2 = 1/2$. The right eigenvectors associated with these two eigenvalues are $\vec{v}_1 = \begin{pmatrix} 1 \\ -1/2 \end{pmatrix}$ and $\vec{v}_2 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$, respectively. 
-
-The right eigenvectors are plotted as red vectors in the plot below. The initial state of the sytem, $\vec{n}(0)$, is given by the blue vector. Thinking of the eigenvectors as a new coordinate system for our dynamics, we draw dashed gray lines that are parallel to the two eigenvectors, connecting $\vec{n}(0)$ to the two eigenvectors. Where these dashed gray lines intersect the eigenvalues indicates the value of $\vec{n}(0)$ in the new coordinate system. 
-
-To calculate the state of the system in the next time step, $\vec{n}(1) = \mathbf{M}\vec{n}(0)$, we can then simply multiply the values of $\vec{n}(0)$ in the new coordinate system by the eigenvalues. In this example, we multiply the distance of $\vec{n}(0)$ along the first eigenvector by $\lambda_1$ and the distance of $\vec{n}(0)$ along the second eigenvector by $\lambda_2$, which gives $\vec{n}(1)$ in orange. We can continue doing this to calculate $\vec{n}(2)$ (plotted in green), and so on...
-
-Not only do the right eigenvectors define a more convenient coordinate system for our dynamics, you may also notice in the plot below that the system approaches one of the eigenvectors, suggesting that the long-term dynamics of the system can be predicted based on only one of the eigenvalues and it's associated right eigenvector (a fact we will later prove). 
-
-
-<pre data-executable="true" data-language="python">
-import numpy as np
-import matplotlib.pyplot as plt
-
-# define objects
-M = np.array([[1,1],[1/2,3/2]]) #matrix
-e1, e2 = np.linalg.eigvals(M) #eigenvalues
-vs = np.linalg.eig(M)[1] #eigenvectors
-v1 = vs[:,0]; v1 = v1/v1[0] #first eigenvector normalized by first entry
-v2 = vs[:,1]; v2 = v2/v2[0] #second eigenvector normalized by first entry
-
-n0 = np.array([2/3,1/4]) #initial values of our variables
-n1 = M @ n0 #n1 = M*n0
-n2 = M @ n1 #n2 = M*n1
-
-# plot
-xmin,xmax = -0.1,1.5 #x limits
-ymin,ymax = -1,1.5 #y limits
-fig, ax = plt.subplots()
-
-# plot the eigenvectors
-for i,v in enumerate([v1,v2]):
-    ax.plot([0,v[0]], # x values
-            [0,v[1]], # y values
-            c='r',
-            label='eigenvector $v_{%d}$'%(i+1)) #aesthetics
-    
-# plot the state of the system
-for i,n in enumerate([n0,n1,n2]):
-    ax.plot([0,n[0]],
-            [0,n[1]],
-           label='$n(%d)$'%i)
-    # parallel lines
-    for a,b in [[v1,v2],[v2,v1]]:
-        yshift = n[1] - a[1]/a[0] * n[0]
-        xshift = yshift/(b[1]/b[0]-a[1]/a[0])
-        yshift = xshift * b[1]/b[0]
-        ax.plot([0 + xshift, n[0]],
-                [0 + yshift, n[1]],
-                c='gray', ls='--', alpha=0.5)
-
-# aesthetics
-ax.axis('off') #remove frame
-ax.plot([0,0],[ymin,ymax], c='k') #x axis
-ax.plot([xmin,xmax],[0,0], c='k') # yaxis
-ax.legend()
-
-plt.show()
-</pre>
-
-
-    
-![png](lecture-12_files/lecture-12_3_0.png)
-    
-
-
-<span id='section3'></span>
-## 3. Finding eigenvalues
+## 2. Discrete time
 <hr>
-
-To find the eigenvalues, first notice that if we try to use linear algebra to solve for the right eigenvector, $\vec{v}$, we find
-
-$$
-\begin{aligned} 
-\mathbf{M}\vec{v} &= \lambda\vec{v}\\
-\mathbf{M}\vec{v} - \lambda\vec{v} &= \vec{0}\\
-\mathbf{M}\vec{v} - \lambda\mathbf{I}\vec{v} &= \vec{0} \\
-(\mathbf{M} - \lambda\mathbf{I})\vec{v} &= \vec{0}\\
-\vec{v} &= (\mathbf{M} - \lambda\mathbf{I})^{-1}\vec{0} \\
-\vec{v} &= \vec{0}
-\end{aligned}
-$$
-
-where $\mathbf{I}$ is the identity matrix and $\vec{0}$ is a vector of zeros.
-
-But above we've said that $\vec{v}$ is a *non-zero* vector! This is a contradiction.
-
-This contradiction implies that we did something wrong in our calculations. The only place we made any assumptions was in our last step, where we assumed $(\mathbf{M} - \lambda\mathbf{I})$ was invertible.
-
-We then conclude that $(\mathbf{M} - \lambda\mathbf{I})$ is non-invertible and therefore must have a determinant of zero, $|\mathbf{M} - \lambda\mathbf{I}|=0$. Interestingly, this last equation, $|\mathbf{M} - \lambda\mathbf{I}|=0$, gives us a way to solve for the eigenvalues, $\lambda$, without knowing the eigenvectors, $\vec{v}$!
-
-The determinant of the $n\times n$ matrix $(\mathbf{M} - \lambda\mathbf{I})$ is an $n^{th}$ degree polynomial in $\lambda$, which is called the **characteristic polynomial** of $\mathbf{M}$. Setting this polynomial equal to zero and solving for $\lambda$ gives the $n$ eigenvalues of $\mathbf{M}$: $\lambda_1,\lambda_2,...,\lambda_n$.
-
-For example, in the $n=2$ case we have
-
-$$
-\begin{aligned}
-\mathbf{M} - \lambda \mathbf{I} &= \begin{pmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \end{pmatrix} - \lambda \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\\
-&= \begin{pmatrix} m_{11} & m_{12} \\ m_{21} & m_{22} \end{pmatrix} -  \begin{pmatrix} \lambda & 0 \\ 0 & \lambda \end{pmatrix}\\
-&= \begin{pmatrix} m_{11} - \lambda & m_{12} \\ m_{21} & m_{22} - \lambda \end{pmatrix}
-\end{aligned}
-$$
-
-so that the characteristic polynomial is
-
-$$
-\begin{aligned}
-|\mathbf{M} - \lambda \mathbf{I} | =& (m_{11}-\lambda)(m_{22}-\lambda)-m_{21} m_{12}\\
-=&\lambda^2 - (m_{11}+m_{22})\lambda + (m_{11}m_{22}-m_{21}m_{12})\\
-=&\lambda^2 - \mathrm{Tr}(\mathbf{M})\lambda + \mathrm{Det}(\mathbf{M})
-\end{aligned}
-$$
-
-Setting this polynomial equal to zero, the two solutions can be found using the quadratic formula
-
-$$
-\lambda = \frac{\mathrm{Tr}(\mathbf{M}) \pm \sqrt{\mathrm{Tr}(\mathbf{M})^2 - 4\mathrm{Det}(\mathbf{M})}}{2}
-$$
-
-Note that this shows that even a 2x2 matrix composed of all real numbers can have **complex** eigenvalues if the value within the square root is negative, $\mathrm{Tr}(\mathbf{M})^2 - 4\mathrm{Det}(\mathbf{M}) < 0$.
 
 !!! note
 
-    A complex number has the form $A + B i$, where $A$ and $B$ are real numbers and $i=\sqrt{-1}$. We call $A$ the "real part" and $B$ the "imaginary part". See Box 7.3 in the text for more fun facts.
+    The short version of this section is that we can do the same thing in discrete time -- local stability is determined by the eigenvalues of the Jacobian, where the functions in that Jacobian are now our recursions, $x_i(t+1) = f_i(x_1(t), x_2(t), ..., x_n(t))$.
 
-For example, $\mathbf{M} = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}$ has $\mathrm{Tr}(\mathbf{M}) = 2$ and $\mathrm{Det}(\mathbf{M}) = 2$, so that the eigenvalues are $\lambda = 1 \pm \sqrt{-1} = 1 \pm i$.
-
-We will see in future lectures that complex eigenvalues indicate some cycling in the dynamics of our system.
-
-The $n=2$ example shows another interesting fact. When $\mathrm{Det}(\mathbf{M})=0$ one of the eigenvalues is 0 (and this holds for larger $n$ too). As we discussed in Lecture 11, if $\mathrm{Det}(\mathbf{M})=0$ then multiplying a vector by $\mathbf{M}$ causes a loss of information (like multiplying by 0 in normal algebra). This can now be understood based on the geometric argument presented above: if one of the eigenvalues is zero then the state of the system immediately goes to zero in new coordinate system defined by the right eigenvectors.  
-
-Finding the determinant of $(\mathbf{M} - \lambda\mathbf{I})$ becomes trickier for larger matrices, but there are some helpful properties of determinants that come in handy (see Lecture 11).
-
-For instance, the eigenvalues of a diagonal or triangular matrix are simply the diagonal elements
+We can do something very similar for nonlinear multivariate models in discrete time
 
 $$
 \begin{aligned}
-|\mathbf{M} - \lambda \mathbf{I}|
-&= \begin{vmatrix} m_{11} - \lambda & 0 & 0 \\ m_{21} & m_{22} - \lambda & 0 \\ m_{31} & m_{32} & m_{33} - \lambda \end{vmatrix}\\
-&= (m_{11} - \lambda) (m_{22} - \lambda) (m_{33} - \lambda)
+x_1(t+1) &=  f_1(x_1(t), x_2(t), ..., x_n(t))\\
+x_2(t+1) &=  f_2(x_1(t), x_2(t), ..., x_n(t))\\
+&\vdots\\
+x_n(t+1) &=  f_n(x_1(t), x_2(t), ..., x_n(t)).
 \end{aligned}
 $$
 
-Similarly, the eigenvalues of a block-diagonal or block-triangular matrix are the eigenvalues of the submatrices along the diagonal
+Now the equilibria are found by setting all $x_i(t+1) = x_i(t) = \hat{x}_i$ and solving for the $\hat{x}_i$ one at a time. Let's assume we've done this.
+
+To linearize the system around an equilibrium we again measure the system in terms of deviation from the equilibrium, $\epsilon_i(t) = x_i(t) - \hat{x}_i$, giving
 
 $$
 \begin{aligned}
-\mathbf{M} - \lambda \mathbf{I} &= \begin{pmatrix} \begin{pmatrix} m_{11} - \lambda & 0 \\ m_{21} & m_{22} - \lambda \end{pmatrix} & \begin{pmatrix} 0 \\ 0 \end{pmatrix} \\ \begin{pmatrix} m_{31} & m_{32} \end{pmatrix} & \begin{pmatrix} m_{33} - \lambda \end{pmatrix} \end{pmatrix}\\
-|\mathbf{M} - \lambda \mathbf{I}| &= \begin{vmatrix} m_{11} - \lambda & 0 \\ m_{21} & m_{22} - \lambda \end{vmatrix} \begin{vmatrix} m_{33} - \lambda \end{vmatrix}\\
-&= (m_{11} - \lambda) (m_{22} - \lambda) (m_{33} - \lambda)
+\epsilon_1(t+1) &=  f_1(x_1(t), x_2(t), ..., x_n(t)) - \hat{x}_1\\
+\epsilon_2(t+1) &=  f_2(x_1(t), x_2(t), ..., x_n(t)) - \hat{x}_1\\
+&\vdots\\
+\epsilon_n(t+1) &=  f_n(x_1(t), x_2(t), ..., x_n(t)) - \hat{x}_1.
 \end{aligned}
 $$
 
-<span id='section4'></span>
-## 4. Finding eigenvectors
+Then taking the Taylor series of each $f_i$ around $x_1(t) = \hat{x}_1, ..., x_n(t) = \hat{x}_n$ we can approximate our system near the equilibrium as
+
+$$
+\begin{aligned}
+  \epsilon_1(t+1) &=  f_1(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n)  + \sum_{i=1}^{n} \left( \frac{\partial f_1}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i(t) - \hat{x}_i) - \hat{x}_1\\
+  \epsilon_2(t+1) &=  f_2(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) + \sum_{i=1}^{n} \left( \frac{\partial f_2}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i(t) - \hat{x}_i) - \hat{x}_2\\
+  &\vdots\\
+  \epsilon_n(t+1) &=  f_n(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) + \sum_{i=1}^{n} \left( \frac{\partial f_n}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i(t) - \hat{x}_i) - \hat{x}_n.
+  \end{aligned}
+$$
+
+Noting that $f_i(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) = \hat{x}_i$ and $x_i(t) - \hat{x}_i = \epsilon_i(t)$ we have a linear system,
+
+$$
+\begin{aligned}
+  \epsilon_1(t+1) &= \sum_{i=1}^{n} \left( \frac{\partial f_1}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i(t)\\
+  \epsilon_2(t+1) &= \sum_{i=1}^{n} \left( \frac{\partial f_2}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i(t)\\
+  &\vdots\\
+  \epsilon_n(t+1) &= \sum_{i=1}^{n} \left( \frac{\partial f_n}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i(t),
+  \end{aligned}
+$$
+
+which can be written in matrix form
+
+$$
+\begin{aligned}
+\begin{pmatrix} \epsilon_1(t+1) \\ \epsilon_2(t+1) \\ \vdots \\ \epsilon_n(t+1) \end{pmatrix}
+=
+\begin{pmatrix}
+\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n}\\
+\frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n}\\
+\vdots & \vdots & \vdots & \vdots \\
+\frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \cdots & \frac{\partial f_n}{\partial x_n}
+\end{pmatrix}_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n}
+\begin{pmatrix} \epsilon_1(t) \\ \epsilon_2(t) \\ \vdots \\ \epsilon_n(t) \end{pmatrix}.
+\end{aligned}
+$$
+
+As in continuous time, the dynamics near an equilibrium are described by the **Jacobian** matrix,
+
+$$
+\mathbf{J} = 
+\begin{pmatrix}
+\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n}\\
+\frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n}\\
+\vdots & \vdots & \vdots & \vdots \\
+\frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \cdots & \frac{\partial f_n}{\partial x_n}.
+\end{pmatrix}
+$$
+
+We assess the **local stability** of an equilibrium by evaluating the Jacobian at that equilibrium and finding the eigenvalues.
+
+!!! note "to-do"
+
+    Give density-dependent natural selection example. For now see pages 320-322 in the textbook.
+
+
+<span id='section3'></span>
+## 3. Summary
 <hr>
 
-Now that we can find an eigenvalue, how do we find its eigenvectors?
+We can determine the stability of nonlinear multivariate models with the eigenvalues of the Jacobian evaluated at an equilibrium. The recipe is
+ 
+- Find the equilibrium of interest, $\hat{x}_1, \hat{x}_2, ... \hat{x}_n$
+- Calculate the Jacobian, $\mathbf{J}$
+- Evaluate the Jacobian at the equilibrium of interest, $\mathbf{J}_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n}$
+- Calculate the characteristic polynomial $|\mathbf{J}_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} - \lambda\mathbf{I}|$ 
+- Set the characteristic polynomial equal to 0 and solve for the $n$ eigenvalues, $\lambda$
+  
+!!! info "Stability reminder"
 
-As we said above, if $\vec{v}$ is a right eigenvector of the matrix $\mathbf{M}$ corresponding to the eigenvalue $\lambda$, it satisfies
+    **Continuous time**
 
-$$
-\mathbf{M}\vec{v} = \lambda \vec{v}
-$$
+    - the leading eigenvalue is the one with the **largest real part**
+    - if the leading eigenvalue has a **negative real part** the equilibrium is stable
+    - if any eigenvalue has a non-zero complex part there will be cycling
 
-We would like to use linear algebra to solve for $\vec{v}$ from $\mathbf{M}\vec{v} = \lambda \vec{v}$, as we attempted above, but we can't since $(\mathbf{M} - \lambda\mathbf{I})$ is non-invertible.
+    **Discrete time**
 
-Instead we need to write out the system of equations represented by $\mathbf{M}\vec{v} = \lambda \vec{v}$ and solve for one variable after another.
+    - the leading eigenvalue is the one with the **largest absolute value**
+    - if the leading eigenvalue has an **absolute value less than one** the equilibrium is stable
+    - if any eigenvalue has a non-zero complex part there will be cycling
 
-For example, for a $2 \times 2$ matrix $\mathbf{M}$ with eigenvalues $\lambda_1$ and $\lambda_2$ we know that a right eigenvector $\vec{v}_1$ associated with $\lambda_1$ must solve
-
-$$
-\begin{aligned}
-\mathbf{M}\vec{v}_1 &= \lambda_1 \vec{v}_1\\
-\begin{pmatrix}
-  m_{11} & m_{12} \\
-  m_{21} & m_{22}
-\end{pmatrix}
-\begin{pmatrix}
-  v_1 \\
-  v_2
-\end{pmatrix} &= \lambda_1
-\begin{pmatrix}
-  v_1 \\
-  v_2
-\end{pmatrix}
-\end{aligned}
-$$
-
-Carrying out the matrix multiplication, we can write down a system of equations corresponding the the rows
-
-$$
-\begin{aligned}
-m_{11} v_1 + m_{12} v_2 &= \lambda_1 v_1 \\
-m_{21} v_1 + m_{22} v_2 &= \lambda_1 v_2
-\end{aligned}
-$$
-
-This system of equations determines the elements of the right eigenvector, $\vec{v}_1$, associated with $\lambda_1$.
-
-Note from the matrix form above that we can multiply $\vec{v}_1 = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$ by any constant and that will also be a solution. This means there are an infinite number of eigenvectors associated with an eigenvalue and we can set one of the elements to an arbitrary value. A typical choice is to set the first entry equal to one, $v_1 = 1$.
-
-Now we have just one unknown, $v_2$, so we can choose either of the equations above to solve for $v_2$. We pick the first, giving
-
-$$
-\begin{aligned}
-m_{11} v_1 + m_{12} v_2 &= \lambda_1 v_1 \\
-m_{11} 1 + m_{12} v_2 &= \lambda_1 1 \\
-v_2 &= (\lambda_1 - m_{11}) / m_{12}
-\end{aligned}
-$$
-
-We therefore have right eigenvector $\vec{v}_1 =  \begin{pmatrix} 1 \\ (\lambda_1 - m_{11})/m_{12} \end{pmatrix}$ associated with the eigenvalue $\lambda_1$. 
-
-Because we've done this quite generally, we also now know that the right eigenvector associated with the second eigenvalue, $\lambda_2$, is $\vec{v}_2 = \begin{pmatrix} 1 \\ (\lambda_2 - m_{11})/m_{12} \end{pmatrix}$.
-
-Solving for the left eigenvectors is done following the same method. For eigenvalue $\lambda_1$ we want to find the vector $\vec{u}_1$ that solves
-
-$$
-\begin{aligned}
-\vec{u}_1\mathbf{M} &= \lambda_1 \vec{u}_1\\
-\begin{pmatrix}
-  u_1 & u_2
-\end{pmatrix}
-\begin{pmatrix}
-  m_{11} & m_{12} \\
-  m_{21} & m_{22}
-\end{pmatrix}
- &= \lambda_1
-\begin{pmatrix}
-  u_1 & u_2
-\end{pmatrix}
-\end{aligned}
-$$
-
-The system of equations is
-
-$$
-\begin{aligned}
-u_1 m_{11} + u_2 m_{21} &= \lambda_1 u_1 \\
-u_1 m_{12} + u_2 m_{22} &= \lambda_1 u_2
-\end{aligned}
-$$
-
-Once again we can set the first element to any value, say $u_1 = 1$, and use one of the equations to solve for the second element
-
-$$
-\begin{aligned}
-1 m_{11} + u_2 m_{21} &= \lambda_1 1 \\
-u_2 m_{21} &= \lambda_1 - m_{11} \\
-u_2 &= (\lambda_1 - m_{11})/m_{21} \\
-\end{aligned}
-$$
-
-So the left eigenvector associated with eigenvalue $\lambda_1$ is $\vec{u}_1 = \begin{pmatrix} 1 & (\lambda_1 - m_{11})/m_{21} \end{pmatrix}$.
-
-Again, because we've done this quite generally, we know that the left eigenvector associated with $\lambda_2$ is $\vec{u}_2 = \begin{pmatrix} 1 & (\lambda_2 - m_{11})/m_{21} \end{pmatrix}$.
-
-If you'd like practice finding eigenvalues and eigenvectors, try finding the eigenvalues and eigenvectors of the matrix given in section 2, $\mathbf{M} = \begin{pmatrix} 1 & 1 \\ 1/2 & 3/2 \end{pmatrix}$.
-
-
-<pre data-executable="true" data-language="python">
-
-</pre>
+Practice questions from the textbook: 8.1, 8.4, 8.5, 8.6, 8.7, 8.8, 8.12.

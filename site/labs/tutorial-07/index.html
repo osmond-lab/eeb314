@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../tutorial-01/">
+        <link rel="prev" href="../tutorial-06/">
       
       
-        <link rel="next" href="../tutorial-03/">
+        <link rel="next" href="../../acknowledgements/">
       
       
       <link rel="icon" href="../../images/favicon_non_transparent.svg">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Tutorial 2 - Mathematical modelling in ecology and evolution (EEB314)</title>
+        <title>Tutorial 7 - Mathematical modelling in ecology and evolution (EEB314)</title>
       
     
     
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorial-2-solving-for-equilibria" class="md-skip">
+        <a href="#tutorial-7-lotka-volterra-competition" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tutorial 2
+              Tutorial 7
             
           </span>
         </div>
@@ -1026,32 +1026,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Tutorial 2
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../tutorial-02/" class="md-nav__link">
         
   
   
@@ -1062,44 +1040,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#logistic-growth" class="md-nav__link">
-    <span class="md-ellipsis">
-      Logistic growth
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      Problem
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1201,10 +1141,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../tutorial-07/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Tutorial 7
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1215,6 +1177,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1276,9 +1276,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#logistic-growth" class="md-nav__link">
+  <a href="#model" class="md-nav__link">
     <span class="md-ellipsis">
-      Logistic growth
+      Model
     </span>
   </a>
   
@@ -1322,7 +1322,7 @@
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
-<h1 id="tutorial-2-solving-for-equilibria">Tutorial 2: Solving for equilibria</h1>
+<h1 id="tutorial-7-lotka-volterra-competition">Tutorial 7: Lotka-Volterra competition</h1>
 <hr style="margin-bottom: 0em;">
 <center>
 <div class="inrow">
@@ -1333,126 +1333,60 @@
 </center>
 <hr style="margin-top: 0em;">
 
-<p>Let's get more familiar with solving for equilibria using a model of population growth.</p>
-<h2 id="logistic-growth">Logistic growth</h2>
-<p>Our model for exponential growth in discrete time was <span class="arithmatex">\(n(t+1) = R n(t)\)</span>. When we plotted this over time for <span class="arithmatex">\(R&gt;1\)</span> we saw the population size increase quickly without bound. This is obviously quite unrealistic, eventually competition between individuals will slow and prevent population growth. To model this we make the reproductive factor <span class="arithmatex">\(R\)</span> a function of the current population size <span class="arithmatex">\(n(t)\)</span> and, in the simplest case, assume <span class="arithmatex">\(R\)</span> declines linearly with <span class="arithmatex">\(n(t)\)</span>, </p>
-<div class="arithmatex">\[R(n(t)) = 1 + r\left(1 - \frac{n(t)}{K}\right).\]</div>
-<p>We call <span class="arithmatex">\(r\)</span> the <strong>intrinsic growth rate</strong> (ie, growth rate when rare) and <span class="arithmatex">\(K\)</span> the <strong>carrying capacity</strong>. </p>
-<p>Below we plot the reproductive factor as a function of <span class="arithmatex">\(n(t)\)</span> for a few different values of <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(K\)</span>.</p>
+<h2 id="model">Model</h2>
+<p>As we saw in Tutorial 4, competition between two species can be modelled with the two-species Lotka-Volterra model, which is an extension of logistic growth to two species,</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}n_1}{\mathrm{d}t} = n_1 r_1 \left(1 - \frac{n_1 + \alpha_{12}n_2}{K_1}\right)
+\]</div>
+<div class="arithmatex">\[
+\frac{\mathrm{d}n_2}{\mathrm{d}t} = n_2 r_2 \left(1 - \frac{n_2 + \alpha_{21}n_1}{K_2}\right).
+\]</div>
+<p>Here <span class="arithmatex">\(n_i\)</span> is the number of individuals of species <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(r_i\)</span> is the intrinsic growth rate of species <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(K_i\)</span> is the carrying capacity of species <span class="arithmatex">\(i\)</span>, and <span class="arithmatex">\(\alpha_{ij}\)</span> is the competitive effect an individual of species <span class="arithmatex">\(j\)</span> has on an individual of species <span class="arithmatex">\(i\)</span>. Assume all parameters are positive.</p>
+<p>In Tutorial 4 we solved for the nullclines, which are plotted below.</p>
 <pre data-executable="true" data-language="python">
 import matplotlib.pyplot as plt
-import numpy as np
-
-# Reproductive factor for logistic growth
-def logistic_discrete(nt, r, K):
-    '''reproductive factor in discrete logistic model with growth rate r and carrying capacity k'''
-    return 1 + r * (1 - nt/K) 
-
-# Compare a few different growth rates and carrying capacities
-fig, ax = plt.subplots()
-for r, K in zip([1, 2, 1], [100, 100, 50]): #for each pair of r and K values
-    nt = np.linspace(0, 200) #for a range of population sizes from 0 to 200
-    R = logistic_discrete(nt, r, K) #calculate the reproductive factor
-    ax.plot(nt, R, label=f"r = {r}, K = {K}") #and plot
-
-ax.plot(nt, [1 for i in nt], '--', color='gray') #1 line for reference
-ax.set_xlabel('Population size, $n(t)$')
-ax.set_ylabel('Reproductive factor, $R$')
-ax.legend(frameon=False)
-plt.ylim(0,None)
-plt.show()
-</pre>
-
-<p><img alt="png" src="../tutorial-02_files/tutorial-02_2_0.png" /></p>
-<p>Our recursion equation is now</p>
-<div class="arithmatex">\[n(t+1) = \left(1 + r\left(1-\frac{n(t)}{K}\right)\right)n(t).\]</div>
-<p>This is the recursion equation for <strong>logistic growth</strong>.</p>
-<p>This recursion is a <strong>non-linear</strong> function of <span class="arithmatex">\(n(t)\)</span> (non-linear means that there is a term in the equation where the term is taken to some power other than 1; here if we expand out the recursion we get a <span class="arithmatex">\(n(t)^2\)</span> term). This reflects the fact that logistic growth models an interaction between individuals (competition).</p>
-<p>To get a better sense of the model let's make a cob-web plot for <span class="arithmatex">\(K=1000\)</span> and <span class="arithmatex">\(r=0.5\)</span>:</p>
-<pre data-executable="true" data-language="python">
 from sympy import *
 import numpy as np
-import matplotlib.pyplot as plt
 
-r, K = 0.5, 1000 #choose parameter values
-n = symbols('n') #define our variable n(t)
+# variables
+n1, n2 = symbols('n1, n2')
 
-# Write out sympy equation
-f = n*(1 + r*(1 - n/K)) #the recursion equation
+# parameter values
+r1, r2 = 0.5, 0.5
+k1, k2 = 1000, 1000
+a12, a21 = 0.5, 0.5
 
-# Compute function over a set of points in [0,2K] by 'lambdifying' sympy equation
-x = np.linspace(0,2*K,100)
-fy = lambdify(n, f)(x)
+# differential equations
+dn1 = r1 * n1 * (1 - (n1 + a12 * n2) / k1)
+dn2 = r2 * n2 * (1 - (n2 + a21 * n1) / k2)
 
-# Build function for generating figure
-def plot_n(x,fy):
-    fig, ax = plt.subplots()
-    ax.plot(x, fy, color='black') #n_{t+1} as function of n_t
-    ax.plot(x, x, color='black', linestyle='--') #1:1 line for reference
-    ax.set_xlim(0,2*K)
-    ax.set_ylim(0,2*K)
-    ax.set_xlabel("population size at $t$, $n_t$")
-    ax.set_ylabel("population size at $t+1$, $n_{t+1}$")
-    return ax
+# find nullclines
+nullcline_1 = solve(Eq(dn1, 0),n1)
+nullcline_2 = solve(Eq(dn2, 0),n2)
 
-# Plot figure
-ax = plot_n(x,fy)
+fig, ax = plt.subplots()
 
-# make generator
-def nt(n0, r, K, max=oo):
-    t, nnow, nnext = 0, n0, 0 #initial conditions
-    while t < max:
-        yield nnow, nnext #current value of n(t) and n(t+1)
-        nnext = nnow*(1 + r*(1 - nnow/K)) #update n(t+1)
-        yield nnow, nnext #current value of n(t) and n(t+1)
-        nnow = nnext #update n(t)
-        t += 1 #update t
+nmax = 2000
+xrange, yrange = np.linspace(0, nmax, 100), np.linspace(0, nmax, 100)
+for cline in nullcline_1:
+    ax.plot([cline.subs(n2,i) for i in yrange], yrange, color=plt.cm.tab10(0), label='$n_1$')
+for cline in nullcline_2:
+    ax.plot(xrange, [cline.subs(n1,i) for i in xrange], color=plt.cm.tab10(1), label='$n_2$')
 
-# Initialize generator
-nts = nt(n0=100, r=r, K=K, max=10)
-
-# Compute x,y pairs by iterating through generator
-ns = np.array([[x,y] for x,y in nts])
-
-# Plot 'cobwebs'
-ax.plot(ns[:,0], ns[:,1])
-
-ax.set_title('r=%s'%r)
-
+plt.xlabel('$n_1$')
+plt.ylabel('$n_2$')
+plt.legend()
 plt.show()
 </pre>
 
-<p><img alt="png" src="../tutorial-02_files/tutorial-02_4_0.png" /></p>
-<p>We see population size move towards an internal equilibrium. Things are not so straightforward when we increase <span class="arithmatex">\(r\)</span>!</p>
-<pre data-executable="true" data-language="python">
-r,K = 2.7,1000 #choose parameter values
-n = symbols('n') #define our variable n(t)
-
-# Write out sympy equation
-f = n*(1 + r*(1 - n/K)) #the recursion equation
-
-# Compute function over a set of points in [0,2K] by 'lambdifying' sympy equation
-x = np.linspace(0,2*K,100)
-fy = lambdify(n, f)(x)
-
-# Plot figure
-ax = plot_n(x,fy)
-
-# Initialize generator
-nts = nt(n0=100, r=r, K=K, max=10)
-
-# Compute x,y pairs by iterating through generator
-ns = np.array([[x,y] for x,y in nts])
-
-# Plot 'cobwebs'
-ax.plot(ns[:,0], ns[:,1],)
-
-plt.show()
-</pre>
-
-<p><img alt="png" src="../tutorial-02_files/tutorial-02_6_0.png" /></p>
+<p><img alt="png" src="../tutorial-07_files/tutorial-07_2_0.png" /></p>
 <h2 id="problem">Problem</h2>
-<p>Solve for the equilibria, <span class="arithmatex">\(\hat n\)</span>. Check this is consistent with the plots above.</p>
+<p>Solve for the four equilibria. When are they biologically valid?</p>
+<p>Derive the Jacobian.</p>
+<p>Determine the conditions for local stability for each of the three equilibria where at least one species is extinct.</p>
+<pre data-executable="true" data-language="python">
+
+</pre>
 
 
 

@@ -17,7 +17,7 @@ Under construction for Fall 2025 edition. Lectures will be updated as we go.
 | 10 | [Demography](lecture-10.md) | Chapter 10 (37p.) |
 | - | Test | | 
 | 11 | [Equilibria (nonlinear multivariate)](lecture-11.md) | Chapter 8 (37p.) |
-| 12 | Stability (nonlinear multivariate) | Chapter 8 (37p.) |
+| 12 | [Stability (nonlinear multivariate)](lecture-12.md) | Chapter 8 (37p.) |
 | 13 | | |
 | 14 | | |
 | - | Test | | 

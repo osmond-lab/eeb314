@@ -264,7 +264,7 @@ $$
 \end{pmatrix}
 $$
   
-A matrix with all zeros below the diagonal is called an **upper trianglular matrix**
+A matrix with all zeros below the diagonal is called an **upper triangular matrix**
 
 $$
 \begin{pmatrix}
@@ -274,7 +274,7 @@ $$
 \end{pmatrix}
 $$
   
-A matrix with all zeros above the diagonal is called an **lower trianglular matrix**
+A matrix with all zeros above the diagonal is called an **lower triangular matrix**
 
 $$
 \begin{pmatrix}
