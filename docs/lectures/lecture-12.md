@@ -328,14 +328,17 @@ We can determine the stability of nonlinear multivariate models with the eigenva
 
     **Continuous time**
 
-    - the leading eigenvalue is the one with the **largest real part**
-    - if the leading eigenvalue has a **negative real part** the equilibrium is stable
-    - if any eigenvalue has a non-zero complex part there will be cycling
+    - if all eigenvalues have a **negative real part** the equilibrium is stable
+    - if any eigenvalue has a non-zero imaginary part there will be cycling
 
     **Discrete time**
 
-    - the leading eigenvalue is the one with the **largest absolute value**
-    - if the leading eigenvalue has an **absolute value less than one** the equilibrium is stable
-    - if any eigenvalue has a non-zero complex part there will be cycling
+    - if all eigenvalues have an **absolute value less than one** the equilibrium is stable
+    - if any eigenvalue has a non-zero imaginary part there will be cycling
 
 Practice questions from the textbook: 8.1, 8.4, 8.5, 8.6, 8.7, 8.8, 8.12.
+
+
+<pre data-executable="true" data-language="python">
+
+</pre>
