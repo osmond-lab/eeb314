@@ -13,7 +13,7 @@ Under construction for Fall 2025 edition. Labs will be updated as we go.
 | 6 | [Linear multivariate practice](tutorial-06.md) | [Demography](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-06.ipynb) | 
 |  |  | | 
 | 7 | [Lotka-Volterra competition I](tutorial-07.md) | [Lotka-Volterra competition II](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-07.ipynb)| 
-| 8 | [Rosenzweig-MacArthur predator-prey model I](tutorial-08.md) | [Rosenzweig-MacArthur predator-preymodel II](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-08.ipynb) |
+| 8 | [Rosenzweig-MacArthur predator-prey model I](tutorial-08.md) | [Rosenzweig-MacArthur predator-prey model II](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-08.ipynb) |
 |  |  | |
 | 9 | tbd | tbd |
 | 10 | tbd | tbd |
