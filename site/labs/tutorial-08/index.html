@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../tutorial-02/">
+        <link rel="prev" href="../tutorial-07/">
       
       
-        <link rel="next" href="../tutorial-04/">
+        <link rel="next" href="../../acknowledgements/">
       
       
       <link rel="icon" href="../../images/favicon_non_transparent.svg">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Tutorial 3 - Mathematical modelling in ecology and evolution (EEB314)</title>
+        <title>Tutorial 8 - Mathematical modelling in ecology and evolution (EEB314)</title>
       
     
     
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorial-3-determining-local-stability" class="md-skip">
+        <a href="#tutorial-8-rosenzweig-macarthur-predator-prey-model" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tutorial 3
+              Tutorial 8
             
           </span>
         </div>
@@ -1072,32 +1072,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Tutorial 3
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../tutorial-03/" class="md-nav__link">
         
   
   
@@ -1108,44 +1086,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#logistic-growth-in-discrete-time" class="md-nav__link">
-    <span class="md-ellipsis">
-      Logistic growth in discrete time
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      Problem
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1247,10 +1187,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../tutorial-08/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Tutorial 8
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1261,6 +1223,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1322,9 +1322,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#logistic-growth-in-discrete-time" class="md-nav__link">
+  <a href="#model" class="md-nav__link">
     <span class="md-ellipsis">
-      Logistic growth in discrete time
+      Model
     </span>
   </a>
   
@@ -1368,7 +1368,7 @@
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
-<h1 id="tutorial-3-determining-local-stability">Tutorial 3: Determining local stability</h1>
+<h1 id="tutorial-8-rosenzweig-macarthur-predator-prey-model">Tutorial 8: Rosenzweig-MacArthur predator-prey model</h1>
 <hr style="margin-bottom: 0em;">
 <center>
 <div class="inrow">
@@ -1379,93 +1379,15 @@
 </center>
 <hr style="margin-top: 0em;">
 
-<p>Let's get more familiar with determining local stability using logistic population growth.</p>
-<h3 id="logistic-growth-in-discrete-time">Logistic growth in discrete time</h3>
-<p>A reminder that the recursion is</p>
-<div class="arithmatex">\[
-n(t+1) = \left(1 + r\left(1-\frac{n(t)}{K}\right)\right)n(t),
-\]</div>
-<p>where <span class="arithmatex">\(r\)</span> is the intrinsic growth rate and <span class="arithmatex">\(K\)</span> the carrying capacity.</p>
-<p>We can define the right-hand side as <span class="arithmatex">\(f(n)\)</span> for convenience,</p>
-<div class="arithmatex">\[
-f(n) = n \left(1 + r\left(1 - \frac{n}{K}\right)\right).
-\]</div>
-<p>We first take the derivative of <span class="arithmatex">\(f\)</span> with respect to <span class="arithmatex">\(n\)</span></p>
-<div class="arithmatex">\[
-f'(n) = 1 + r - 2 r \frac{n}{K}
-\]</div>
-<p>Then we plug in the equilirbium value of interest, <span class="arithmatex">\(n=K\)</span></p>
-<div class="arithmatex">\[
-\begin{aligned}
-f'(K) &amp;= 1 + r - 2 r \\
-&amp;= 1 - r
-\end{aligned}
-\]</div>
-<p>This will be negative when <span class="arithmatex">\(r &gt; 1\)</span>, creating oscillations.</p>
-<p>The equilibrium will be stable when <span class="arithmatex">\(-1 &lt; 1 - r &lt; 1 \implies 0 &lt; r &lt; 2\)</span>.</p>
-<p>This is consistent with what we've seen in cob-web plots, which you can verify by playing with the parameter values at the top of the code below.</p>
-<pre data-executable="true" data-language="python">
-from sympy import *
-import numpy as np
-import matplotlib.pyplot as plt
-
-# parameter values
-r = 0.5 #growth rate
-K = 1000 #carrying capacity
-
-# Write out sympy equation
-n = symbols('n') #define our variable n(t)
-f = n*(1 + r*(1 - n/K)) #the recursion equation
-
-# Compute function over a set of points in [0,2K] by 'lambdifying' sympy equation
-x = np.linspace(0,2*K,100)
-fy = lambdify(n, f)(x)
-
-# Build function for generating figure
-def plot_n(x,fy):
-    fig, ax = plt.subplots()
-    ax.plot(x, fy, color='black') #n_{t+1} as function of n_t
-    ax.plot(x, x, color='black', linestyle='--') #1:1 line for reference
-    ax.set_xlim(0,2*K)
-    ax.set_ylim(0,2*K)
-    ax.set_xlabel("population size at $t$, $n(t)$")
-    ax.set_ylabel("population size at $t+1$, $n(t+1)$")
-    return ax
-
-# Plot figure
-ax = plot_n(x,fy)
-
-# make generator
-def nt(n0, r, K, max=oo):
-    t, nnow, nnext = 0, n0, 0 #initial conditions
-    while t < max:
-        yield nnow, nnext #current value of n(t) and n(t+1)
-        nnext = nnow*(1 + r*(1 - nnow/K)) #update n(t+1)
-        yield nnow, nnext #current value of n(t) and n(t+1)
-        nnow = nnext #update n(t)
-        t += 1 #update t
-
-# Initialize generator
-nts = nt(n0=100, r=r, K=K, max=10)
-
-# Compute x,y pairs by iterating through generator
-ns = np.array([[x,y] for x,y in nts])
-
-# Plot 'cobwebs'
-ax.plot(ns[:,0], ns[:,1])
-
-ax.set_title('r=%s'%r)
-
-plt.show()
-</pre>
-
-<p><img alt="png" src="../tutorial-03_files/tutorial-03_2_0.png" /></p>
+<h2 id="model">Model</h2>
+<p>The Rosenzweig-MacArthur predator-prey model assumes that the density of prey, <span class="arithmatex">\(N\)</span>, grows logistically in the absence of predators, with per capita growth rate <span class="arithmatex">\(r\)</span> and carrying capacity <span class="arithmatex">\(k\)</span>. Predators, with density <span class="arithmatex">\(P\)</span>, consume prey at a per prey per predator rate of <span class="arithmatex">\(a/(1+b N)\)</span>. The form of this per capita consumption rate implies that the rate of prey eaten per predator asymptotes to <span class="arithmatex">\(a/b\)</span> as <span class="arithmatex">\(N\)</span> gets large; essentially, we assume it takes some time for a predator to eat a prey, limiting the rate prey are consumed even when there are many of them. Finally, we assume each consumed prey is converted into a fraction <span class="arithmatex">\(c\)</span> new predators (i.e., consuming <span class="arithmatex">\(1/c\)</span> prey is required to make a new predator), and that predators die at per capita rate <span class="arithmatex">\(d\)</span>. Putting all this together in a continuous-time model we have</p>
+<p><span class="arithmatex">\(\frac{\mathrm{d}N}{\mathrm{d}t} = r N (1 - N / k) - \frac{a}{1 + b N} N P\)</span></p>
+<p><span class="arithmatex">\(\frac{\mathrm{d}P}{\mathrm{d}t} = c\frac{a}{1 + b N} N P - d P\)</span>.</p>
+<p>Based on the model description we can assume all parameters are positive.</p>
 <h2 id="problem">Problem</h2>
-<p>In continuous time the logistic growth model is </p>
-<div class="arithmatex">\[
-\frac{\mathrm{d}n}{\mathrm{d}t} = n r \left(1 - \frac{n}{K}\right).
-\]</div>
-<p>What are the equilibria and when are they stable? How do these answers differ in continuous vs discrete time?</p>
+<p>Solve for the three equilibria. When are they biologically valid?</p>
+<p>Determine the conditions for local stability for each equilibria, assuming they are biologically valid. (Hint: use the Routh-Hurwtiz criteria.)</p>
+<p>Show that the equilibrium with both species present is unstable when the prey's carrying capacity is large enough, <span class="arithmatex">\(k&gt;\frac{ac+bd}{b(ac-bd)}\)</span>. (Hint: use the trace.) This is called the paradox of enrichment, because enriching the resources available for prey (increasing <span class="arithmatex">\(k\)</span>) might be (naively) expected to lead to more prey and hence more stable predator-prey coexistence.</p>
 
 
 
