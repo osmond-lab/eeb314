@@ -19,7 +19,7 @@ Under construction for Fall 2025 edition. Lectures will be updated as we go.
 | 11 | [Equilibria (nonlinear multivariate)](lecture-11.md) | 8.1-8.3 (37p.) |
 | 12 | [Stability (nonlinear multivariate)](lecture-12.md) | 8.1-8.3 (37p.) |
 | 13 | [Multi-locus population genetics](lecture-13.md)| 8.3 (9p.) |
-| 14 | | |
+| 14 | Competition for resources [(Question 2 from 2021 final)](../syllabus/previous_tests.md)| - |
 | 15 | | |
 | - | Test | | 
 | 16 | Evolutionary invasion analysis I | 12.1-12.4 (30p.) |
