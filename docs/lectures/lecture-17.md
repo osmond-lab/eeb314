@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 17: Multi-locus population genetics
+# Lecture 17: Evolutionary invasion analysis II
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,136 +26,197 @@
 
 ## Lecture overview
 
-1. [Multi-locus population genetics](#section1)
+1. [Evolutionarily stable strategies](#section1)
+2. [Evolutionary convergence](#section2)
+3. [Pairwise invasibility plots](#section3)
+4. [Summary](#section4)
+
+Let's pick up from the last lecture, where we've derived invasion fitness $\lambda(z_m,z)$, the selection gradient, and an evolutionary singular strategy $z^*$. 
+
+When is this singular strategy stable?
 
 <span id='section1'></span>
-## 1. Multi-locus population genetics
+## 1. Evolutionarily stable strategies
 <hr>
 
-In [Lecture 15](lecture-15.md) we learned how to find equilibria and determine their stability in nonlinear multivariate models. In [Lecture 16](lecture-16.md) we looked at a continuous-time example from epidemiology. Here, we'll extend the discrete-time dipliod selection model of [Lecture 4](lecture-04.md) to multiple loci (see Section 8.3 in the text). 
+An evolutionarily singular strategy, $\hat{z}$, will only be an **evolutionarily stable strategy** (ESS), $z^*$, if it cannot be invaded.
 
-Genomes contain many loci -- what new dynamics arise when we model more than one locus? Here we look at the simplest multi-locus model, with two loci each with two alleles. Let's denote the loci with letters, $A$ and $B$, and the alleles at each with numbers, $1$ and $2$. This gives a total of $2^2=4$ haploid genotypes, which we'll give frequencies $x_1$ to $x_4$ like so
-
-| genotype | frequency |
-| :------: | :-------: |
-| $A_1B_1$ |   $x_1$   |
-| $A_1B_2$ |   $x_2$   |
-| $A_2B_1$ |   $x_3$   |
-| $A_2B_2$ |   $x_4$   | 
-    
-with the constraint that the total frequency sums to one, $x_1+x_2+x_3+x_4 = 1$.
-
-To determine how these frequencies change from one generation to the next, let's first determine the order of events in a life-cycle diagram
-
-<center>
-```mermaid
-graph LR;
-    A((census)) --> B((gamete union));
-    B --> C((selection));
-    C --> D((meiosis));    
-    D --> A;
-```   
-</center>
-
-In words, we'll census the population in the gamete (haploid) phase while selection happens in the diploid phase.
-
-Next, to consider how the frequencies change through this life cyle, let's construct a life-cycle (mating) table. To do this, we need to consider what happens during meiosis when there are multiple loci. 
-
-In the 1-locus models we analyzed earlier, meiosis meant Mendelian segregation: each allele is present in 1/2 of the gametes. Here, with 2 loci, things are slightly more complicated and we need to consider **recombination**. Every meiosis there is a chance, $r$, of an odd number of crossover events between the two loci ($r$ will increase with the distance between the loci). When this happens the pairing of the alleles at loci A and B get swapped. This only has an effect in diploid individuals that are heterozygous at both loci ("double heterozygotes"), here $A_1B_1$ x $A_2B_2$ and $A_1B_2$ x $A_2B_1$. Every time these individuals go through meiosis the original pairings are kept with probability $1-r$ and the alternative pairings are created with probability $r$. 
-
-We can now fill in the following table
-
-| union | frequency | frequency after selection | gamete frequency after meiosis ($A_1B_1$, $A_1B_2$, $A_2B_1$, $A_2B_2$) |
-| :---: | :-------: | :-----------------------: | :----------------------------: |
-| $A_1B_1$ x $A_1B_1$ | $x_1^2$ | $x_1^2 w_{11}/\bar{w}$ | 1, 0, 0, 0 | 
-| $A_1B_1$ x $A_1B_2$ | $2x_1x_2$ | $2x_1x_2 w_{12}/\bar{w}$ | 1/2, 1/2, 0, 0 | 
-| $A_1B_1$ x $A_2B_1$ | $2x_1x_3$ | $2x_1x_3 w_{13}/\bar{w}$ | 1/2, 0, 1/2, 0 | 
-| $A_1B_1$ x $A_2B_2$ | $2x_1x_4$ | $2x_1x_4 w_{14}/\bar{w}$ | $(1-r)/2$, $r/2$, $r/2$, $(1-r)/2$ | 
-| $A_1B_2$ x $A_1B_2$ | $x_2^2$ | $x_2^2 w_{22}/\bar{w}$ | 0, 1, 0, 0 | 
-| $A_1B_2$ x $A_2B_1$ | $2x_2x_3$ | $2x_2x_3 w_{23}/\bar{w}$ | $r/2$, $(1-r)/2$, $(1-r)/2$, $r/2$ | 
-| $A_1B_2$ x $A_2B_2$ | $2x_2x_4$ | $2x_2x_4 w_{24}/\bar{w}$ | 0, 1/2, 0, 1/2 | 
-| $A_2B_1$ x $A_2B_1$ | $x_3^2$ | $x_3^2 w_{33}/\bar{w}$ | 0, 0, 1, 0 | 
-| $A_2B_1$ x $A_2B_2$ | $2x_3x_4$ | $2x_3x_4 w_{34}/\bar{w}$ | 0, 0, 1/2, 1/2 | 
-| $A_2B_2$ x $A_2B_2$ | $x_4^2$ | $x_4^2 w_{44}/\bar{w}$ | 0, 0, 0, 1 |
-
-where $w_{ij}=w_{ji}$ is the fitness of the diploid that is composed of haploid genotypes $i$ and $j$ and $\bar{w}$ is the population mean fitness, which is the sum of the frequencies after selection.
-
-We can build the recursion equations from this table by multiplying the frequency after selection by the gamete frequency after meiosis. For example, the frequency of $A_1B_1$ in the next generation is found by multiplying the first entry in the final column by the frequency after selection and summing this up over rows, giving
-
-$$\begin{align}
-x_1(t+1) 
-&= x_1(t)^2 w_{11}/\bar{w} + x_1(t)x_2(t) w_{12}/\bar{w} + x_1(t)x_3(t) w_{13}/\bar{w} + (1-r)x_1(t)x_4(t) w_{14}/\bar{w} + r x_2(t)x_3(t) w_{23}/\bar{w}\\
-&= x_1(t) (x_1(t) w_{11}/\bar{w} + x_2(t) w_{12}/\bar{w} + x_3(t) w_{13}/\bar{w} + x_4(t) w_{14}/\bar{w}) - r(x_1(t)x_4(t) w_{14}/\bar{w} - x_2(t)x_3(t) w_{23}/\bar{w})\\
-&= x_1(t) \sum_{i=1}^{4} x_i(t) w_{1i}/\bar{w} - r D^*
-\end{align}$$
-
-where $D^*=x_1(t)x_4(t) w_{14}/\bar{w} - x_2(t)x_3(t) w_{23}/\bar{w}$ is called **linkage disequilibrium** (the asterisk differentiates it from the same quantity measured prior to selection, $D=x_1(t)x_4(t) - x_2(t)x_3(t)$). Linkage disequilibrium is an important term in population genetics that measures the deviation of the association of alleles at two loci from that expected by chance under random assortment. For example, when $A_1$ pairs with $B_1$ more often than expected by chance then $x_1(t)x_4(t) > x_2(t)x_3(t)$ and $D>0$. 
-
-The remaining equations are created in the same way, giving
-
-$$\begin{align}
-x_2(t+1) &= x_2(t) \sum_{i=1}^{4} x_i(t) w_{2i}/\bar{w} + r D^* \\
-x_3(t+1) &= x_3(t) \sum_{i=1}^{4} x_i(t) w_{3i}/\bar{w} + r D^* \\
-x_4(t+1) &= x_4(t) \sum_{i=1}^{4} x_i(t) w_{4i}/\bar{w} - r D^* \\
-\end{align}$$
-
-Now we have a system of recursion equations to work with. This system is nonlinear and four dimensional, which makes things relatively complex. For instance, it is impossible to find all the equilibria analytically. Here we'll not worry about that and just deal with a particularly simple equilibrium where $A_1B_1$ is fixed, $\hat{x}_1=1$ and $\hat{x}_2=\hat{x}_3=\hat{x}_4=0$. This implies $\bar{w}=w_{11}$.
-
-To determine the stability of this equilbrium we need to calculate the Jacobian
+Global evolutionary stability will be impossible to prove for most models and so we often focus on *local* stability, which requires that $\lambda(z_m,z)|_{z=\hat{z}}$ is concave at $z_m=\hat{z}$ (i.e., $\hat{z}$ is a local fitness maximum),
 
 $$
-\mathbf{J} = 
-\begin{pmatrix}
-\frac{\partial x_1(t+1)}{\partial x_1(t)} & \frac{\partial x_1(t+1)}{\partial x_2(t)} & \frac{\partial x_1(t+1)}{\partial x_3(t)} & \frac{\partial x_1(t+1)}{\partial x_4(t)}\\
-\frac{\partial x_2(t+1)}{\partial x_1(t)} & \frac{\partial x_2(t+1)}{\partial x_2(t)} & \frac{\partial x_2(t+1)}{\partial x_3(t)} & \frac{\partial x_2(t+1)}{\partial x_4(t)}\\
-\frac{\partial x_3(t+1)}{\partial x_1(t)} & \frac{\partial x_3(t+1)}{\partial x_2(t)} & \frac{\partial x_3(t+1)}{\partial x_3(t)} & \frac{\partial x_3(t+1)}{\partial x_4(t)}\\
-\frac{\partial x_4(t+1)}{\partial x_1(t)} & \frac{\partial x_4(t+1)}{\partial x_2(t)} & \frac{\partial x_4(t+1)}{\partial x_3(t)} & \frac{\partial x_4(t+1)}{\partial x_4(t)}\\
-\end{pmatrix}
+\frac{\partial^2 \lambda}{\partial z_m^2}\bigg|_{z_m=\hat{z}, z=\hat{z}} < 0
 $$
 
-(we omit writing out the derivatives for brevity) and then evaluate it at the focal equilibrium, $\mathbf{J}_{x_1=1,x_2=x_3=x_4=0}$. Local stability of the focal equilibrium is determined by the eigenvalues of this matrix, which are
+!!! note "The evolution of dispersal"
 
-$$\begin{aligned}
-\lambda_1 &= 0 \\
-\lambda_2 &= w_{12}/w_{11} \\
-\lambda_3 &= w_{13}/w_{11} \\
-\lambda_4 &= (1-r)w_{14}/w_{11} 
-\end{aligned}$$
+    The second derivative of invasion fitness with respect to the mutant trait value evalulated at the singular strategy is
 
-The first eigenvalue, $\lambda_1 = 0$, indicates that there is an axis along which or system does not change. This is due to the fact that the frequencies always sum to one, $x_1+x_2+x_3+x_4=1$. We therefore effectively have a three dimensional model, e.g., we could just track $x_1$, $x_2$, and $x_3$ because we know that $x_4 = 1 - x_1-x_2-x_3$.
+    $$
+    \frac{\partial^2 \lambda}{\partial d_m^2}\Big|_{d_m=d=\hat{d}} = -2(1-c)(1+c)^2
+    $$
 
-The second and third eigenvalues, $\lambda_2 = w_{12}/w_{11}$ and $\lambda_3 = w_{13}/w_{11}$, are analogous to what we found in the 1 locus (univariate) case. Remembering that stability in discrete time requires that the eigenvalues are less than 1 in absolute value, we can interpret these eigenvalues as saying that the $B_2$ allele can invade (instability) when it has higher fitness than the $B_1$ allele ($w_{12}>w_{11}$) and the $A_2$ can invade when it has higher fitness than the $A_1$ allele ($w_{13}>w_{11}$). 
+    Because $0<c<1$ this is always negative, which means the singular strategy is always evolutionarily stable.
 
-The fourth eigenvalue, $\lambda_4 = (1-r)w_{14}/w_{11}$, is the new part, which depends on recombination. Interestingly, here, even if $A_2B_2$ has higher fitness than $A_1B_1$, meaning $w_{14}>w_{11}$, it is possible that the $A_2B_2$ genotype cannot invade. This is because, for a rare $A_2B_2$ genotype, every generation it pairs with the common $A_1B_1$ genotype and therefore gets broken apart into $A_1B_2$ and $A_2B_1$ by recombination with probability $r$. In other words, recombination can hinder the spread of an adaptive combination of alleles. This is epitiomized by the scenario where having a single "2" allele is deleterious $w_{12}<w_{11}$ and $w_{13}<w_{11}$ (making $\lambda_2<1$ and $\lambda_3<1$) but having two "2" alleles is beneficial, $w_{14}>w_{11}$. Such a scenario is called a **fitness valley** because of the plot below
+<span id='section2'></span>
+## 2. Evolutionary convergence
+<hr>
+
+There is one more characteristic of evolutionarily singular strategies that we care about, and
+that is whether evolution actually leads to that strategy or not. For evolution to move the trait value towards a singular strategy, $\hat{z}$, we need evolution to increase the trait value when it is less than $\hat{z}$ and decrease the trait value when it is greater than $\hat{z}$. In other words, we need the selection gradient $\frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z}$ to decrease as we move through $z=\hat{z}$
+
+$$
+\frac{\mathrm{d}}{\mathrm{d} z}\left( \frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z} \right)_{z=\hat{z}} < 0
+$$
+
+Singular strategies that satisfy this criteria are said to be **convergence stable**. 
+
+Interestingly, not all evolutionarily stable strategies are convergence stable and not all convergence stable singular strategies are evolutionarily stable! Evolutionarily stable strategies that are not convergence stable are called **Garden of Eden strategies**. Singular strategies that are convergence stable but not evolutionarily stable are called **evolutionary branching points**. The latter are of particular interest because the system evolves towards a state where multiple strategies can invade and coexist, leading to diversification.
+
+!!! note "The evolution of dispersal"
+
+    The derivative of the selection gradient evaluated at the singular strategy is
+
+    $$
+    \frac{\mathrm{d}}{\mathrm{d} d}\left( \frac{\partial \lambda}{\partial d_m}\Big|_{d_m=d} \right)_{d=\hat{d}} = -(1-c)(1+c)^3
+    $$
+
+    Because $0<c<1$ this is always negative, which means the singular strategy is always convergence stable.
+
+<span id='section3'></span>
+## 3. Pairwise invasibility plots
+<hr>
+
+A helpful way to visualize the two types of stability of an evolutionarily singular strategy is called a **pairwise invasibility plot** (PIP). In this plot we have the resident trait value $z$ on the x-axis, the mutant trait value $z_m$ on the y-axis, and we color in the regions where the mutant can invade, $\lambda(z_m,z)>1$.
+
+The four types of evolutionarily singular strategies $\hat{z}$ are then represented by the following PIPs
 
 
 <pre data-executable="true" data-language="python">
-import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import pyplot as plt
 
-w11=1
-w12=0.9
-w13=0.8
-w14=1.1
+# dummy invasion fitness
+def inv(x, y, slope, z=1):
+    if y < x:
+      if y > slope * x:
+        return z
+    if y > x:
+      if y < slope * x:
+        return z
+    return 1-z
 
-fig,ax=plt.subplots()
+# evaluate
+def compute_pip(slope=-2,z=1,xmin=-2,xmax=2,steps=100):
+    xs = np.linspace(xmin,xmax,steps)
+    X,Y = np.meshgrid(xs,xs) # X and Y values
+    # store the invasion success in a matrix
+    PIP = []
+    for y in xs:
+      row = []
+      for x in xs:
+        row.append(inv(x,y,slope,z))
+      PIP.append(row)
+    return X,Y,PIP
 
-ax.plot([0,1,2],[w11,w12,w14],marker='o')
-ax.plot([0,1,2],[w11,w13,w14],marker='o')
-ax.text(0,w11,r'$A_1B_1$',va='bottom')
-ax.text(1,w12,r'$A_1B_2$',va='top')
-ax.text(1,w13,r'$A_2B_1$',va='top')
-ax.text(2,w14,r'$A_2B_2$',va='bottom',ha='right')
+# plot
+def plotfun(X,Y,Z,slope=1,ax=None):
+    if ax==None:
+      fig, ax=plt.subplots(1,1,figsize=(5,5))
+    ax.contourf(X,Y,Z, colors=['white','black','blue','black'])
+    ax.plot(X[0],X[0],'k',lw=5)
+    ax.plot(X[0],X[0]*slope,'k',lw=5)
+    ax.set_xlim(min(X[0]),max(X[0]))
+    ax.set_ylim(min(X[0]),max(X[0]))
+    ax.set_xlabel('resident trait value $z$')
+    ax.set_ylabel('mutant trait value $z_m$')
+    ax.set_xticks([])
+    ax.set_yticks([])
 
-ax.set_ylabel('fitness')
-ax.set_xlabel('number of "2" alleles')
-ax.set_xticks([0,1,2])
-plt.show()
+fig, axs = plt.subplots(2,2,figsize=(10,10))
+X,Y,Z = compute_pip(slope=-4,z=1)
+plotfun(X,Y,Z,slope=-4,ax=axs[0][0])
+axs[0][0].set_title('evolutionarily stable',fontsize=14)
+axs[0][1].text(2.1,0,'convergence stable',fontsize=14,rotation=270,verticalalignment='center')
+X,Y,Z = compute_pip(slope=4,z=0)
+plotfun(X,Y,Z,slope=4,ax=axs[0][1])
+axs[0][1].set_title('evolutionarily unstable',fontsize=14)
+X,Y,Z = compute_pip(slope=4,z=1)
+plotfun(X,Y,Z,slope=4,ax=axs[1][0])
+axs[1][1].text(2.1,0,'convergence unstable',fontsize=14,rotation=270,verticalalignment='center')
+X,Y,Z = compute_pip(slope=-4,z=0)
+plotfun(X,Y,Z,slope=-4,ax=axs[1][1])
 </pre>
 
 
     
-![png](lecture-17_files/lecture-17_2_0.png)
+![png](lecture-17_files/lecture-17_10_0.png)
     
 
 
-Here we've seen how recombination can slow the spread of the optimal genotype, $A_2B_2$, potentially preventing fitness-valley crossing. There is also, however, a constructive aspect of recombination, not explored in this simple model: when the deleterious genotypes $A_1B_2$ and $A_2B_1$ are both present, there is a chance that they pair and recombine, giving rise to the optimal genotype $A_2B_2$. The role of recombination in fitness-valley crossing is therefore a relatively interesting and complex problem.
+We can read a PIP by choosing a resident trait value (a point on the x-axis) and looking to see what mutant trait values can invade it (blue regions in that vertical slice). Choose one of the possible invading trait values and set this to be the new resident trait value. Continue indefinitely. 
+
+When we assume mutants have trait values close to the resident, we restrict ourselves to moving along the 1:1 line. Then, we move to the right when there is blue directly above the 1:1 line but not below and we move to the left when there is blue directly below the 1:1 line but not above. Where there is blue directly above and below the 1:1 we are at a singular strategy that is a fitness minimum (it can be invaded in both directions). Where there is white directly above and below the 1:1 we are at a singular strategy that is a fitness maximum (it can't be invaded in either direction).
+
+Try reading each of the plots above. Prove to yourself that the top left has a convergence stable evolutionarily stable strategy, the top right has a branching point, the bottom left has a has a Garden of Eden, and the bottom right has an invasible repellor (a fitness minimum that is not convergence stable).
+
+!!! note "The evolution of dispersal"
+
+    In our model of the evolution of dispersal, the singular strategy is always evolutionarily and convgence stable, and the PIP is below.
+
+
+<pre data-executable="true" data-language="python">
+import numpy as np
+from matplotlib import pyplot as plt
+
+# invasion fitness
+def inv_fun(dm,d,c):
+    invasionfitness = (1-dm)/(1-dm + d*(1-c)) + (dm*(1-c))/(1-d + d*(1-c))
+    if invasionfitness>1:
+        return 1 # return 1 if mutant invades
+    return 0 # return 0 if mutant does not invade
+
+# evaluate
+def compute_pip(c=0.5,dmin=0.01,dmax=0.99,steps=100):
+    ds = np.linspace(dmin,dmax,steps)
+    X,Y = np.meshgrid(ds,ds) # X and Y values
+    # store the invasion success in a matrix
+    PIP = []
+    for dm in ds:
+      row = []
+      for d in ds:
+        row.append(inv_fun(dm,d,c))
+      PIP.append(row)
+    return X,Y,PIP
+
+# plot
+def plotfun(X,Y,Z):
+    fig, ax = plt.subplots(1,1,figsize=(5,5))
+    ax.set_xlabel('$d$')
+    ax.set_ylabel('$d_m$')
+    ax.contourf(X,Y,Z, colors=['white','black','blue','black'])
+    ax.plot(X[0],X[0],'k',lw=5)
+
+X,Y,Z=compute_pip()
+plotfun(X,Y,Z)
+</pre>
+
+
+    
+![png](lecture-17_files/lecture-17_13_0.png)
+    
+
+
+<span id='section4'></span>
+## 4. Summary
+<hr>
+
+- An evolutionary singular strategy is an evolutionary stable strategy (cannot be invaded by small mutations) if $\frac{\partial^2 \lambda}{\partial z_m^2}\bigg|_{z_m=\hat{z}, z=\hat{z}} < 0$
+- An evolutionary singular strategy is convergence stable (i.e., evolution converges to it, at least locally) if $\frac{\mathrm{d}}{\mathrm{d} z}\left( \frac{\partial \lambda}{\partial z_m}\Big|_{z_m=z} \right)_{z=\hat{z}} < 0$
+- We can summarize the evolutionary and convergence stability of evolutionary singular strategies with pairwise invasibility plots
+
+Practice questions from the textbook: 12.3-8
+
+
+<pre data-executable="true" data-language="python">
+
+</pre>
