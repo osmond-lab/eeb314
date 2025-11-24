@@ -34,4 +34,9 @@
 
 This lecture hasn't been typset yet. Please see section 12.4 of the textbook for details in the meantime.
 
-Practice questions from the textbook: 12.9-10
+Practice questions from the textbook: 12.9-10, 12.18-19
+
+
+<pre data-executable="true" data-language="python">
+
+</pre>

@@ -29,8 +29,9 @@
 1. [Model](#section1)
 2. [Resident equilibrium](#section2)
 3. [Mutant invasion](#section3)
+4. [Summary](#section4)
 
-So far we've considered invasion into an unstructured population, i.e., there is just one type of resident and one type of mutant. We can extend this analysis to consider structured populations, age- or spatial-structure for example. The general approach is the same: find a stable resident equilibria and evaluate the Jacobian at that equilibrium to determine the mutant's invasion fitness. The only difference is that our Jacobian is no longer a 2x2 matrix. 
+So far we've considered the invasion of a mutant whose dynamics is described by a single equation (e.g., $\mathrm{d}I_m/\mathrm{d}t$ in the previous lecture). We can extend this analysis to consider structured populations of mutants, e.g., age- or spatial-structure. The general approach is the same: find a stable resident equilibria and evaluate the Jacobian at that equilibrium to determine the mutant's invasion fitness. The only difference is that the submatrix describing the mutant's invasion is no longer 1x1, meaning the invasion fitness (eigenvalues) can be a little more complicated.
 
 Below we will demonstrate the general method with a specific example: the evolution of dominance. The motivating observation is that many deleterious alleles are recessive, meaning the wild-type allele partially shields a heterozygote individual from selection. There are many examples in humans, such as sickle cell anemia and cystic fibrosis. In these examples the fitness of heterozygous individuals is indistinguishable from those without any deleterious mutations. Could the dominance of a wild-type allele over a deleterious allele be the result of adaptive evolution? To ask this question we perform an evolutionary invasion analysis on a population with genetic structure. This type of model is often referred to as a **modifier model** within the field of population genetics.
 
@@ -38,7 +39,7 @@ Below we will demonstrate the general method with a specific example: the evolut
 ## 1. Model
 <hr>
 
-The model is an extension of the 2-locus model we developed in lecture 17 to include mutation. We consider two loci each with two alleles. At one locus we have alleles $A_1$ and $A_2$. We'll treat $A_1$ as the wild-type allele and $A_2$ as the deleterious allele and refer to this $A$ locus as the selected locus. At the other locus we have alleles $B_1$ and $B_2$. We'll treat $B_1$ as the resident allele and $B_2$ as the mutant (modifier) and refer to this $B$ locus as the modifier locus. The analysis will determine when $B_2$ can invade. 
+The model is an extension of the 2-locus model we developed in lecture 13 to include mutation. We consider two loci each with two alleles. At one locus we have alleles $A_1$ and $A_2$. We'll treat $A_1$ as the wild-type allele and $A_2$ as the deleterious allele and refer to this $A$ locus as the selected locus. At the other locus we have alleles $B_1$ and $B_2$. We'll treat $B_1$ as the resident allele and $B_2$ as the mutant (modifier) and refer to this $B$ locus as the modifier locus. The analysis will determine when $B_2$ can invade. 
 
 We consider diploid selection. Let the relative fitness of any individual with $A_1 A_1$ be 1 and the relative fitness of any individual with $A_2 A_2$ be $1-s$, with $0<s<1$. The relative fitnesses of the $A_1 A_2$ heterozygotes are affected by their genotype at the $B$ locus:
 
@@ -125,7 +126,7 @@ $$
 \lambda^2 - \mathrm{Tr}(\mathbf{J}_\mathrm{mut}) \lambda + \mathrm{Det}(\mathbf{J}_\mathrm{mut}) = 0.
 $$
 
-Now, given that $\lambda$ is the invasion fitness of a mutant with dominance coefficient $h_{12}$ in a resident population with dominance coefficient $h_{11}=1/2$, the selection gradient is $\frac{\partial\lambda}{\partial h_{12}}|_{h_{12}=1/2}$. The trick is that we can get the selection gradient directly from the equation above without solving for invasion fitness. To make the dependence on $h_{12}$ clear and simplify the notation, write $\lambda=\lambda(h_{12})$, $-\mathrm{Tr}(\mathbf{J}_\mathrm{mut})=a(h_{12})$, and $\mathrm{Det}(\mathbf{J}_\mathrm{mut})=b(h_{12})$. We can then differentiate the equation above with respect to $h_{12}$ and rearrange for the selection gradient (this is called implicit differentiation),
+Now, given that $\lambda$ is the invasion fitness of a mutant with dominance coefficient $h_{12}$ in a resident population with dominance coefficient $h_{11}=1/2$, the selection gradient is $\frac{\partial\lambda}{\partial h_{12}}|_{h_{12}=1/2}$. The trick is that we can get the selection gradient directly from the equation above without solving for invasion fitness. To make the dependence on $h_{12}$ clear and simplify the notation, write $\lambda=\lambda(h_{12})$, $-\mathrm{Tr}(\mathbf{J}_\mathrm{mut})=a(h_{12})$, and $\mathrm{Det}(\mathbf{J}_\mathrm{mut})=b(h_{12})$. We can then differentiate the equation above with respect to $h_{12}$ and rearrange for the selection gradient,
 
 $$
 \begin{align}
@@ -141,10 +142,22 @@ We then evaluate at $h_{12}=1/2$, which is where the mutant is equivalent to the
 $$
 \begin{align}
 \left.\frac{\partial \lambda}{\partial h_{12}}\right|_{h_{12}=1/2} &= - \left(\frac{\frac{\partial a}{\partial h_{12}}\lambda(h_{12}) + \frac{\partial b}{\partial h_{12}}}{2\lambda(h_{12})+a(h_{12})}\right)_{h_{12}=1/2} \\
-\left.\frac{\partial \lambda}{\partial h_{12}}\right|_{h_{12}=1/2} &= - \left(\frac{\left.\frac{\partial a}{\partial h_{12}}\right|_{h_{12}=1/2}\lambda(1/2) + \left.\frac{\partial b}{\partial h_{12}}\right|_{h_{12}=1/2}}{2\lambda(1/2)+a(1/2)}\right) \\
-\left.\frac{\partial \lambda}{\partial h_{12}}\right|_{h_{12}=1/2} &= - \left(\frac{\left.\frac{\partial a}{\partial h_{12}}\right|_{h_{12}=1/2} + \left.\frac{\partial b}{\partial h_{12}}\right|_{h_{12}=1/2}}{2+a(1/2)}\right) \\
-\left.\frac{\partial \lambda}{\partial h_{12}}\right|_{h_{12}=1/2} &= - \frac{2(4r + s(1-2r))(s(1+\mu)-2\mu)\mu}{s(s(1+\mu) - 2\mu + r(2-s)(1-\mu^2))}.
+ &= - \left(\frac{\left.\frac{\partial a}{\partial h_{12}}\right|_{h_{12}=1/2}\lambda(1/2) + \left.\frac{\partial b}{\partial h_{12}}\right|_{h_{12}=1/2}}{2\lambda(1/2)+a(1/2)}\right) \\
+ &= - \left(\frac{\left.\frac{\partial a}{\partial h_{12}}\right|_{h_{12}=1/2} + \left.\frac{\partial b}{\partial h_{12}}\right|_{h_{12}=1/2}}{2+a(1/2)}\right) \\
+ &= - \frac{2(4r + s(1-2r))(s(1+\mu)-2\mu)\mu}{s(s(1+\mu) - 2\mu + r(2-s)(1-\mu^2))}.
 \end{align}
 $$
 
-Given biological validity, $\mu<(1+\mu)s/2$, this is always negative (recall that $r\leq 1/2$). Therefore there is always selection to reduce the dominance coefficient, $h$. This means that selection could be responsible for making deleterious mutations recesive! However, there is a massive caveat. While the selection gradient is negative it is also proportional to $\mu$, which is tiny. This means that selection for recessive deleterious mutations is exceptionaly weak and so is easily overwhelmed by other forces (eg, genetic drift, migration, etc). The biological reason for such weak selection is that selection only acts on the variation that is present, and deleterious mutations are very rare at mutation-selection balance, $\mu/((1+\mu)s/2)$.  
+Given biological validity, $\mu<(1+\mu)s/2$, this is always negative (recall that $r\leq 1/2$). Therefore there is always selection to reduce the dominance coefficient, $h$. This means that selection could be responsible for making deleterious mutations recessive! However, there is a massive caveat. While the selection gradient is negative it is also proportional to $\mu$, which is tiny. This means that selection for recessive deleterious mutations is exceptionaly weak and so is easily overwhelmed by other forces (eg, genetic drift, migration, etc). The biological reason for such weak selection is that selection only acts on the variation that is present, and deleterious mutations are very rare at mutation-selection balance, $\mu/((1+\mu)s/2)$.  
+
+<span id='section4'></span>
+## 4. Summary
+<hr>
+
+- We can perform evolutionary invasion analysis in structured populations, e.g., here the mutant (modifier) allele can be paired with the advantageous or deleterious allele, meaing we have multiple equations describing the mutant's invasion. In this case the invasion fitness is determined by the eigenvalues of the mutant portion of the Jacobian, $\mathbf{J}_\mathrm{mut}$
+
+- We can find the selection gradient without first solving for the invasion fitness by differentiating the characteristic polynomial of $\mathbf{J}_\mathrm{mut}$
+
+- Selection favours masking deleterious mutations, but this selection is extremely weak
+
+Practice questions from the textbook: 12.11, 12.13, 12.15a-c, 12.17

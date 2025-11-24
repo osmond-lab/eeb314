@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../lecture-18/">
+      
+      
+        <link rel="next" href="../../labs/schedule/">
       
       
       <link rel="icon" href="../../images/favicon_non_transparent.svg">
@@ -236,10 +240,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../schedule/" class="md-tabs__link">
           
   
@@ -581,24 +587,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -611,7 +622,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Lectures
@@ -1032,6 +1043,116 @@
 
               
             
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lecture 19
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 19
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lecture overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-resident-equilibrium" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Resident equilibrium
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mutant-invasion" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Mutant invasion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1401,6 +1522,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Summary
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1446,14 +1576,15 @@
 <li><a href="#section1">Model</a></li>
 <li><a href="#section2">Resident equilibrium</a></li>
 <li><a href="#section3">Mutant invasion</a></li>
+<li><a href="#section4">Summary</a></li>
 </ol>
-<p>So far we've considered invasion into an unstructured population, i.e., there is just one type of resident and one type of mutant. We can extend this analysis to consider structured populations, age- or spatial-structure for example. The general approach is the same: find a stable resident equilibria and evaluate the Jacobian at that equilibrium to determine the mutant's invasion fitness. The only difference is that our Jacobian is no longer a 2x2 matrix. </p>
+<p>So far we've considered the invasion of a mutant whose dynamics is described by a single equation (e.g., <span class="arithmatex">\(\mathrm{d}I_m/\mathrm{d}t\)</span> in the previous lecture). We can extend this analysis to consider structured populations of mutants, e.g., age- or spatial-structure. The general approach is the same: find a stable resident equilibria and evaluate the Jacobian at that equilibrium to determine the mutant's invasion fitness. The only difference is that the submatrix describing the mutant's invasion is no longer 1x1, meaning the invasion fitness (eigenvalues) can be a little more complicated.</p>
 <p>Below we will demonstrate the general method with a specific example: the evolution of dominance. The motivating observation is that many deleterious alleles are recessive, meaning the wild-type allele partially shields a heterozygote individual from selection. There are many examples in humans, such as sickle cell anemia and cystic fibrosis. In these examples the fitness of heterozygous individuals is indistinguishable from those without any deleterious mutations. Could the dominance of a wild-type allele over a deleterious allele be the result of adaptive evolution? To ask this question we perform an evolutionary invasion analysis on a population with genetic structure. This type of model is often referred to as a <strong>modifier model</strong> within the field of population genetics.</p>
 <p><span id='section1'></span></p>
 <h2 id="1-model">1. Model</h2>
 <hr>
 
-<p>The model is an extension of the 2-locus model we developed in lecture 17 to include mutation. We consider two loci each with two alleles. At one locus we have alleles <span class="arithmatex">\(A_1\)</span> and <span class="arithmatex">\(A_2\)</span>. We'll treat <span class="arithmatex">\(A_1\)</span> as the wild-type allele and <span class="arithmatex">\(A_2\)</span> as the deleterious allele and refer to this <span class="arithmatex">\(A\)</span> locus as the selected locus. At the other locus we have alleles <span class="arithmatex">\(B_1\)</span> and <span class="arithmatex">\(B_2\)</span>. We'll treat <span class="arithmatex">\(B_1\)</span> as the resident allele and <span class="arithmatex">\(B_2\)</span> as the mutant (modifier) and refer to this <span class="arithmatex">\(B\)</span> locus as the modifier locus. The analysis will determine when <span class="arithmatex">\(B_2\)</span> can invade. </p>
+<p>The model is an extension of the 2-locus model we developed in lecture 13 to include mutation. We consider two loci each with two alleles. At one locus we have alleles <span class="arithmatex">\(A_1\)</span> and <span class="arithmatex">\(A_2\)</span>. We'll treat <span class="arithmatex">\(A_1\)</span> as the wild-type allele and <span class="arithmatex">\(A_2\)</span> as the deleterious allele and refer to this <span class="arithmatex">\(A\)</span> locus as the selected locus. At the other locus we have alleles <span class="arithmatex">\(B_1\)</span> and <span class="arithmatex">\(B_2\)</span>. We'll treat <span class="arithmatex">\(B_1\)</span> as the resident allele and <span class="arithmatex">\(B_2\)</span> as the mutant (modifier) and refer to this <span class="arithmatex">\(B\)</span> locus as the modifier locus. The analysis will determine when <span class="arithmatex">\(B_2\)</span> can invade. </p>
 <p>We consider diploid selection. Let the relative fitness of any individual with <span class="arithmatex">\(A_1 A_1\)</span> be 1 and the relative fitness of any individual with <span class="arithmatex">\(A_2 A_2\)</span> be <span class="arithmatex">\(1-s\)</span>, with <span class="arithmatex">\(0&lt;s&lt;1\)</span>. The relative fitnesses of the <span class="arithmatex">\(A_1 A_2\)</span> heterozygotes are affected by their genotype at the <span class="arithmatex">\(B\)</span> locus:</p>
 <table>
 <thead>
@@ -1554,7 +1685,7 @@ x_4(t+1) &amp;= x4' + \mu x_2'.
 <div class="arithmatex">\[
 \lambda^2 - \mathrm{Tr}(\mathbf{J}_\mathrm{mut}) \lambda + \mathrm{Det}(\mathbf{J}_\mathrm{mut}) = 0.
 \]</div>
-<p>Now, given that <span class="arithmatex">\(\lambda\)</span> is the invasion fitness of a mutant with dominance coefficient <span class="arithmatex">\(h_{12}\)</span> in a resident population with dominance coefficient <span class="arithmatex">\(h_{11}=1/2\)</span>, the selection gradient is <span class="arithmatex">\(\frac{\partial\lambda}{\partial h_{12}}|_{h_{12}=1/2}\)</span>. The trick is that we can get the selection gradient directly from the equation above without solving for invasion fitness. To make the dependence on <span class="arithmatex">\(h_{12}\)</span> clear and simplify the notation, write <span class="arithmatex">\(\lambda=\lambda(h_{12})\)</span>, <span class="arithmatex">\(-\mathrm{Tr}(\mathbf{J}_\mathrm{mut})=a(h_{12})\)</span>, and <span class="arithmatex">\(\mathrm{Det}(\mathbf{J}_\mathrm{mut})=b(h_{12})\)</span>. We can then differentiate the equation above with respect to <span class="arithmatex">\(h_{12}\)</span> and rearrange for the selection gradient (this is called implicit differentiation),</p>
+<p>Now, given that <span class="arithmatex">\(\lambda\)</span> is the invasion fitness of a mutant with dominance coefficient <span class="arithmatex">\(h_{12}\)</span> in a resident population with dominance coefficient <span class="arithmatex">\(h_{11}=1/2\)</span>, the selection gradient is <span class="arithmatex">\(\frac{\partial\lambda}{\partial h_{12}}|_{h_{12}=1/2}\)</span>. The trick is that we can get the selection gradient directly from the equation above without solving for invasion fitness. To make the dependence on <span class="arithmatex">\(h_{12}\)</span> clear and simplify the notation, write <span class="arithmatex">\(\lambda=\lambda(h_{12})\)</span>, <span class="arithmatex">\(-\mathrm{Tr}(\mathbf{J}_\mathrm{mut})=a(h_{12})\)</span>, and <span class="arithmatex">\(\mathrm{Det}(\mathbf{J}_\mathrm{mut})=b(h_{12})\)</span>. We can then differentiate the equation above with respect to <span class="arithmatex">\(h_{12}\)</span> and rearrange for the selection gradient,</p>
 <div class="arithmatex">\[
 \begin{align}
 \frac{\partial \lambda^2}{\partial h_{12}} + \frac{\partial a}{\partial h_{12}} \lambda(h_{12}) + a(h_{12}) \frac{\partial \lambda}{\partial h_{12}} + \frac{\partial b}{\partial h_{12}} &amp;= 0 \\
@@ -1567,12 +1698,28 @@ x_4(t+1) &amp;= x4' + \mu x_2'.
 <div class="arithmatex">\[
 \begin{align}
 \left.\frac{\partial \lambda}{\partial h_{12}}\right|_{h_{12}=1/2} &amp;= - \left(\frac{\frac{\partial a}{\partial h_{12}}\lambda(h_{12}) + \frac{\partial b}{\partial h_{12}}}{2\lambda(h_{12})+a(h_{12})}\right)_{h_{12}=1/2} \\
-\left.\frac{\partial \lambda}{\partial h_{12}}\right|_{h_{12}=1/2} &amp;= - \left(\frac{\left.\frac{\partial a}{\partial h_{12}}\right|_{h_{12}=1/2}\lambda(1/2) + \left.\frac{\partial b}{\partial h_{12}}\right|_{h_{12}=1/2}}{2\lambda(1/2)+a(1/2)}\right) \\
-\left.\frac{\partial \lambda}{\partial h_{12}}\right|_{h_{12}=1/2} &amp;= - \left(\frac{\left.\frac{\partial a}{\partial h_{12}}\right|_{h_{12}=1/2} + \left.\frac{\partial b}{\partial h_{12}}\right|_{h_{12}=1/2}}{2+a(1/2)}\right) \\
-\left.\frac{\partial \lambda}{\partial h_{12}}\right|_{h_{12}=1/2} &amp;= - \frac{2(4r + s(1-2r))(s(1+\mu)-2\mu)\mu}{s(s(1+\mu) - 2\mu + r(2-s)(1-\mu^2))}.
+ &amp;= - \left(\frac{\left.\frac{\partial a}{\partial h_{12}}\right|_{h_{12}=1/2}\lambda(1/2) + \left.\frac{\partial b}{\partial h_{12}}\right|_{h_{12}=1/2}}{2\lambda(1/2)+a(1/2)}\right) \\
+ &amp;= - \left(\frac{\left.\frac{\partial a}{\partial h_{12}}\right|_{h_{12}=1/2} + \left.\frac{\partial b}{\partial h_{12}}\right|_{h_{12}=1/2}}{2+a(1/2)}\right) \\
+ &amp;= - \frac{2(4r + s(1-2r))(s(1+\mu)-2\mu)\mu}{s(s(1+\mu) - 2\mu + r(2-s)(1-\mu^2))}.
 \end{align}
 \]</div>
-<p>Given biological validity, <span class="arithmatex">\(\mu&lt;(1+\mu)s/2\)</span>, this is always negative (recall that <span class="arithmatex">\(r\leq 1/2\)</span>). Therefore there is always selection to reduce the dominance coefficient, <span class="arithmatex">\(h\)</span>. This means that selection could be responsible for making deleterious mutations recesive! However, there is a massive caveat. While the selection gradient is negative it is also proportional to <span class="arithmatex">\(\mu\)</span>, which is tiny. This means that selection for recessive deleterious mutations is exceptionaly weak and so is easily overwhelmed by other forces (eg, genetic drift, migration, etc). The biological reason for such weak selection is that selection only acts on the variation that is present, and deleterious mutations are very rare at mutation-selection balance, <span class="arithmatex">\(\mu/((1+\mu)s/2)\)</span>.  </p>
+<p>Given biological validity, <span class="arithmatex">\(\mu&lt;(1+\mu)s/2\)</span>, this is always negative (recall that <span class="arithmatex">\(r\leq 1/2\)</span>). Therefore there is always selection to reduce the dominance coefficient, <span class="arithmatex">\(h\)</span>. This means that selection could be responsible for making deleterious mutations recessive! However, there is a massive caveat. While the selection gradient is negative it is also proportional to <span class="arithmatex">\(\mu\)</span>, which is tiny. This means that selection for recessive deleterious mutations is exceptionaly weak and so is easily overwhelmed by other forces (eg, genetic drift, migration, etc). The biological reason for such weak selection is that selection only acts on the variation that is present, and deleterious mutations are very rare at mutation-selection balance, <span class="arithmatex">\(\mu/((1+\mu)s/2)\)</span>.  </p>
+<p><span id='section4'></span></p>
+<h2 id="4-summary">4. Summary</h2>
+<hr>
+
+<ul>
+<li>
+<p>We can perform evolutionary invasion analysis in structured populations, e.g., here the mutant (modifier) allele can be paired with the advantageous or deleterious allele, meaing we have multiple equations describing the mutant's invasion. In this case the invasion fitness is determined by the eigenvalues of the mutant portion of the Jacobian, <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span></p>
+</li>
+<li>
+<p>We can find the selection gradient without first solving for the invasion fitness by differentiating the characteristic polynomial of <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span></p>
+</li>
+<li>
+<p>Selection favours masking deleterious mutations, but this selection is extremely weak</p>
+</li>
+</ul>
+<p>Practice questions from the textbook: 12.11, 12.13, 12.15a-c, 12.17</p>
 
 
 
