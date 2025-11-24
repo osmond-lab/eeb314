@@ -12,6 +12,12 @@ Covers lectures 6-10 and tutorials 4-6.
 
 - [2025](exam_files/test2_2025.pdf), [solutions](exam_files/test2_2025_solns.pdf)
 
+## Test 3
+
+Covers lectures 11-15 and tutorials 7-8.
+
+- [2025](exam_files/test3_2025.pdf), [solutions](exam_files/test3_2025_solns.pdf)
+
 ## Previous midterms
 
 Roughly covers univariate lectures and labs.
