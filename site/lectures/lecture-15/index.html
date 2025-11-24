@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../lecture-13/">
+      
+      
+        <link rel="next" href="../lecture-16/">
       
       
       <link rel="icon" href="../../images/favicon_non_transparent.svg">
@@ -81,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lecture-15-equilibria-and-stability-nonlinear-multivariate" class="md-skip">
+        <a href="#lecture-15-the-evolution-of-ploidy" class="md-skip">
           Skip to content
         </a>
       
@@ -236,10 +240,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../schedule/" class="md-tabs__link">
           
   
@@ -581,24 +587,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -611,7 +622,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Lectures
@@ -944,6 +955,89 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lecture 15
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 15
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lecture overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
@@ -976,6 +1070,29 @@
   
   <span class="md-ellipsis">
     Lecture 17
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lecture 18
     
   </span>
   
@@ -1329,27 +1446,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-continuous-time" class="md-nav__link">
+  <a href="#1-summary" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Continuous time
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-discrete-time" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Discrete time
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Summary
+      1. Summary
     </span>
   </a>
   
@@ -1384,7 +1483,7 @@
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
-<h1 id="lecture-15-equilibria-and-stability-nonlinear-multivariate">Lecture 15: Equilibria and stability (nonlinear multivariate)</h1>
+<h1 id="lecture-15-the-evolution-of-ploidy">Lecture 15: The evolution of ploidy</h1>
 <hr style="margin-bottom: 0em;">
 <center>
 <div class="inrow">
@@ -1397,206 +1496,17 @@
 
 <h2 id="lecture-overview">Lecture overview</h2>
 <ol>
-<li><a href="#section1">Continuous time</a></li>
-<li><a href="#section2">Discrete time</a></li>
-<li><a href="#section3">Summary</a></li>
+<li><a href="#section1">Summary</a></li>
 </ol>
-<p>Now that we've covered linear multivariate models, we turn our attention to the most common type of model: one with multiple <em>interacting</em> variables.</p>
-<p>For example, a model of the number of susceptible, <span class="arithmatex">\(S\)</span>, and infected, <span class="arithmatex">\(I\)</span>, individuals often includes the interaction between these two variables, <span class="arithmatex">\(SI\)</span>, describing the rate at which these two classes of individuals meet one another (and potentially spread disease). </p>
-<p>Similarly, models of predator, <span class="arithmatex">\(P\)</span>, and prey, <span class="arithmatex">\(N\)</span>, abundance often include terms like <span class="arithmatex">\(NP\)</span> describing the rate at which predators encounter prey (and potentially eat them).</p>
-<p>Let's first see how to deal with these models in general and then apply those techniques to specific circumstances like those mentioned above (in the next two lectures).</p>
 <p><span id='section1'></span></p>
-<h2 id="1-continuous-time">1. Continuous time</h2>
+<h2 id="1-summary">1. Summary</h2>
 <hr>
 
-<p>In general, if we have <span class="arithmatex">\(n\)</span> interacting variables, <span class="arithmatex">\(x_1, x_2, ..., x_n\)</span>, we can write any continuous time model like</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\frac{\mathrm{d}x_1}{\mathrm{d}t} &amp;=  f_1(x_1, x_2, ..., x_n)\\
-\frac{\mathrm{d}x_2}{\mathrm{d}t} &amp;=  f_2(x_1, x_2, ..., x_n)\\
-&amp;\vdots\\
-\frac{\mathrm{d}x_n}{\mathrm{d}t} &amp;=  f_n(x_1, x_2, ..., x_n)  
-\end{aligned}
-\]</div>
-<p>If we then want to find the equilibria, <span class="arithmatex">\(\hat{x}_1,\hat{x}_2, ..., \hat{x}_n\)</span>, we set all these equations to 0 and solve for one variable at a time (note that solving for the equilibrium is not always possible in nonlinear models!).</p>
-<p>Now note that we can no longer write this system of equations in matrix form with a matrix composed only of parameters.</p>
-<p>In order to use what we've learned about eigenvalues and eigenvectors we're first going to have to <strong>linearize</strong> the system so that the corresponding matrices do not contain variables.</p>
-<p>As we saw in nonlinear univariate models, one useful way to linearize a system is to measure the system relative to equilibrium, <span class="arithmatex">\(\epsilon = n - \hat{n}\)</span>.</p>
-<p>Then assuming that the deviation from equilibrium, <span class="arithmatex">\(\epsilon\)</span>, is small, we used a Taylor series expansion to approximate the nonlinear system with a linear system.</p>
-<p>To do that with multivariate models we'll need to know how to take a Taylor series expansion of multivariate functions</p>
-<div class="admonition note">
-<p class="admonition-title">Taylor series expansion of a multivariate function</p>
-<p>Taking the series of <span class="arithmatex">\(f\)</span> around <span class="arithmatex">\(x_1=a_1\)</span>, <span class="arithmatex">\(x_2=a_2\)</span>, ..., <span class="arithmatex">\(x_n=a_n\)</span> gives</p>
-<div class="arithmatex">\[
-\begin{aligned}
-f(x_1, x_2, ..., x_n) &amp;= f(a_1, a_2, ..., a_n)\\ 
-&amp;+ \sum_{i=1}^{n} \left( \frac{\partial f}{\partial x_i} \bigg|_{x_1=a_1, x_2=a_2, ..., x_n=a_n} \right) (x_i - a_i)\\
-&amp;+ \sum_{i=1}^{n}\sum_{j=1}^n \left( \frac{\partial f}{\partial x_i \partial x_j} \bigg|_{x_1=a_1, x_2=a_2, ..., x_n=a_n} \right) (x_i - a_i)(x_j - a_j)\\
-&amp;+ \cdots
-\end{aligned}
-\]</div>
-<p>where <span class="arithmatex">\(\frac{\partial f}{\partial x_i}\)</span> is the "partial derivative" of <span class="arithmatex">\(f\)</span> with respect to <span class="arithmatex">\(x_i\)</span>, meaning that we treat all the other variables as constants when taking the derivative. </p>
-</div>
-<p>Then when the difference between each variable and its value, <span class="arithmatex">\(x_i-a_i\)</span>, is small enough we can ignore all the terms with a <span class="arithmatex">\((x_i-a_i)(x_j-a_j)\)</span>, and we are left with a <strong>linear</strong> approximation of <span class="arithmatex">\(f\)</span>.</p>
-<p>So let <span class="arithmatex">\(\epsilon_i = x_i - \hat{x}_i\)</span> be the deviation of variable <span class="arithmatex">\(x_i\)</span> from its equilibrium value, <span class="arithmatex">\(\hat{x}_i\)</span>.</p>
-<p>Then we can write a system of equations describing the change in the deviations for all of our variables</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\frac{\mathrm{d}\epsilon_1}{\mathrm{d}t} &amp;=  f_1(x_1, x_2, ..., x_n)\\
-\frac{\mathrm{d}\epsilon_2}{\mathrm{d}t} &amp;=  f_2(x_1, x_2, ..., x_n)\\
-&amp;\vdots\\
-\frac{\mathrm{d}\epsilon_n}{\mathrm{d}t} &amp;=  f_n(x_1, x_2, ..., x_n)  
-\end{aligned}
-\]</div>
-<p>And then we can take a Taylor series around <span class="arithmatex">\(x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n\)</span> to get a linear approximation of our system near the equilibrium</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\frac{\mathrm{d}\epsilon_1}{\mathrm{d}t} &amp;\approx  f_1(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) + \sum_{i=1}^{n} \left( \frac{\partial f_1}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i)\\
-\frac{\mathrm{d}\epsilon_2}{\mathrm{d}t} &amp;\approx  f_2(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) + \sum_{i=1}^{n} \left( \frac{\partial f_2}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i)\\
-&amp;\vdots\\
-\frac{\mathrm{d}\epsilon_n}{\mathrm{d}t} &amp;\approx  f_n(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) + \sum_{i=1}^{n} \left( \frac{\partial f_n}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i)
-\end{aligned}
-\]</div>
-<p>And then note that all <span class="arithmatex">\(f_i(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n)=0\)</span> by definition of a equilibrium, leaving</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\frac{\mathrm{d}\epsilon_1}{\mathrm{d}t} &amp;\approx \sum_{i=1}^{n} \left( \frac{\partial f_1}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i)\\
-\frac{\mathrm{d}\epsilon_2}{\mathrm{d}t} &amp;\approx \sum_{i=1}^{n} \left( \frac{\partial f_2}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i)\\
-&amp;\vdots\\
-\frac{\mathrm{d}\epsilon_n}{\mathrm{d}t} &amp;\approx  \sum_{i=1}^{n} \left( \frac{\partial f_n}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i - \hat{x}_i)
-\end{aligned}
-\]</div>
-<p>Each of the partial derivatives <span class="arithmatex">\(\frac{\partial f_i}{\partial x_j}\)</span> is evaluated at the equilibrium, so these are constants. And <span class="arithmatex">\(x_i - \hat{x}_i = \epsilon_i\)</span>. So we now have a linear system</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\frac{\mathrm{d}\epsilon_1}{\mathrm{d}t} &amp;\approx \sum_{i=1}^{n} \left( \frac{\partial f_1}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i\\
-\frac{\mathrm{d}\epsilon_2}{\mathrm{d}t} &amp;\approx \sum_{i=1}^{n} \left( \frac{\partial f_2}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i\\
-&amp;\vdots\\
-\frac{\mathrm{d}\epsilon_n}{\mathrm{d}t} &amp;\approx  \sum_{i=1}^{n} \left( \frac{\partial f_n}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i
-\end{aligned}
-\]</div>
-<p>We can now write our approximate system around the equilibrium in matrix form</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\begin{pmatrix} \frac{\mathrm{d}\epsilon_1}{\mathrm{d}t} \\ \frac{\mathrm{d}\epsilon_2}{\mathrm{d}t} \\ \vdots \\ \frac{\mathrm{d}\epsilon_n}{\mathrm{d}t} \end{pmatrix}
-=
-\begin{pmatrix}
-\frac{\partial f_1}{\partial x_1} &amp; \frac{\partial f_1}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_1}{\partial x_n}\\
-\frac{\partial f_2}{\partial x_1} &amp; \frac{\partial f_2}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_2}{\partial x_n}\\
-\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
-\frac{\partial f_n}{\partial x_1} &amp; \frac{\partial f_n}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_n}{\partial x_n}
-\end{pmatrix}_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n}
-\begin{pmatrix} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{pmatrix}
-\end{aligned}
-\]</div>
-<p>This is a special matrix called the <strong>Jacobian</strong></p>
-<div class="arithmatex">\[
-\mathbf{J} = 
-\begin{pmatrix}
-\frac{\partial f_1}{\partial x_1} &amp; \frac{\partial f_1}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_1}{\partial x_n}\\
-\frac{\partial f_2}{\partial x_1} &amp; \frac{\partial f_2}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_2}{\partial x_n}\\
-\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
-\frac{\partial f_n}{\partial x_1} &amp; \frac{\partial f_n}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_n}{\partial x_n}
-\end{pmatrix}
-\]</div>
-<p>And now that we have a linear system around an equilibrium, we can assess its <strong>local stability</strong> just as we did with linear multivariate models (see <a href="#section3">Summary</a>).</p>
-<p><span id='section2'></span></p>
-<h2 id="2-discrete-time">2. Discrete time</h2>
-<hr>
+<p>This lecture hasn't been typset yet. Please see section 8.4 of the textbook for details in the meantime.</p>
+<p>Practice questions from the textbook: 8.9</p>
+<pre data-executable="true" data-language="python">
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The short version of this section is that we can do the same thing in discrete time -- local stability is determined by the eigenvalues of the Jacobian, where the functions in that Jacobian are now our recursions, <span class="arithmatex">\(x_i(t+1) = f_i(x_1(t), x_2(t), ..., x_n(t))\)</span>.</p>
-</div>
-<p>We can do something very similar for nonlinear multivariate models in discrete time</p>
-<div class="arithmatex">\[
-\begin{aligned}
-x_1(t+1) &amp;=  f_1(x_1(t), x_2(t), ..., x_n(t))\\
-x_2(t+1) &amp;=  f_2(x_1(t), x_2(t), ..., x_n(t))\\
-&amp;\vdots\\
-x_n(t+1) &amp;=  f_n(x_1(t), x_2(t), ..., x_n(t))\\
-\end{aligned}
-\]</div>
-<p>Now the equilibria are found by setting all <span class="arithmatex">\(x_i(t+1) = x_i(t) = \hat{x}_i\)</span> and solving for the <span class="arithmatex">\(\hat{x}_i\)</span> one at a time.</p>
-<p>To linearize the system around an equilibrium we again measure the system in terms of deviation from the equilibrium, <span class="arithmatex">\(\epsilon_i(t) = x_i(t) - \hat{x}_i\)</span>, giving</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\epsilon_1(t+1) &amp;=  f_1(x_1(t), x_2(t), ..., x_n(t)) - \hat{x}_1\\
-\epsilon_2(t+1) &amp;=  f_2(x_1(t), x_2(t), ..., x_n(t)) - \hat{x}_1\\
-&amp;\vdots\\
-\epsilon_n(t+1) &amp;=  f_n(x_1(t), x_2(t), ..., x_n(t)) - \hat{x}_1\\
-\end{aligned}
-\]</div>
-<p>Then taking the Taylor series of each <span class="arithmatex">\(f_i\)</span> around <span class="arithmatex">\(x_1(t) = \hat{x}_1, ..., x_n(t) = \hat{x}_n\)</span> we can approximate our system near the equilibrium as</p>
-<div class="arithmatex">\[
-\begin{aligned}
-  \epsilon_1(t+1) &amp;=  f_1(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n)  + \sum_{i=1}^{n} \left( \frac{\partial f_1}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i(t) - \hat{x}_i) - \hat{x}_1\\
-  \epsilon_2(t+1) &amp;=  f_2(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) + \sum_{i=1}^{n} \left( \frac{\partial f_2}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i(t) - \hat{x}_i) - \hat{x}_2\\
-  &amp;\vdots\\
-  \epsilon_n(t+1) &amp;=  f_n(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) + \sum_{i=1}^{n} \left( \frac{\partial f_n}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) (x_i(t) - \hat{x}_i) - \hat{x}_n\\
-  \end{aligned}
-\]</div>
-<p>And noting that <span class="arithmatex">\(f_i(\hat{x}_1, \hat{x}_2, ..., \hat{x}_n) = \hat{x}_i\)</span> and <span class="arithmatex">\(x_i(t) - \hat{x}_i = \epsilon_i(t)\)</span> we have</p>
-<div class="arithmatex">\[
-\begin{aligned}
-  \epsilon_1(t+1) &amp;= \sum_{i=1}^{n} \left( \frac{\partial f_1}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i(t)\\
-  \epsilon_2(t+1) &amp;= \sum_{i=1}^{n} \left( \frac{\partial f_2}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i(t)\\
-  &amp;\vdots\\
-  \epsilon_n(t+1) &amp;= \sum_{i=1}^{n} \left( \frac{\partial f_n}{\partial x_i} \bigg|_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} \right) \epsilon_i(t)\\
-  \end{aligned}
-\]</div>
-<p>We can therefore write our approximation around the equilibrium in matrix form</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\begin{pmatrix} \epsilon_1(t+1) \\ \epsilon_2(t+1) \\ \vdots \\ \epsilon_n(t+1) \end{pmatrix}
-=
-\begin{pmatrix}
-\frac{\partial f_1}{\partial x_1} &amp; \frac{\partial f_1}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_1}{\partial x_n}\\
-\frac{\partial f_2}{\partial x_1} &amp; \frac{\partial f_2}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_2}{\partial x_n}\\
-\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
-\frac{\partial f_n}{\partial x_1} &amp; \frac{\partial f_n}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_n}{\partial x_n}
-\end{pmatrix}_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n}
-\begin{pmatrix} \epsilon_1(t) \\ \epsilon_2(t) \\ \vdots \\ \epsilon_n(t) \end{pmatrix}
-\end{aligned}
-\]</div>
-<p>As in continuous time, the dynamics are described by the <strong>Jacobian</strong> matrix</p>
-<div class="arithmatex">\[
-\mathbf{J} = 
-\begin{pmatrix}
-\frac{\partial f_1}{\partial x_1} &amp; \frac{\partial f_1}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_1}{\partial x_n}\\
-\frac{\partial f_2}{\partial x_1} &amp; \frac{\partial f_2}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_2}{\partial x_n}\\
-\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
-\frac{\partial f_n}{\partial x_1} &amp; \frac{\partial f_n}{\partial x_2} &amp; \cdots &amp; \frac{\partial f_n}{\partial x_n}
-\end{pmatrix}
-\]</div>
-<p>We therefore assess the <strong>local stability</strong> of an equilibrium by evaluating the Jacobian at that equilibrium and finding the eigenvalues (see <a href="#section3">Summary</a>).</p>
-<p><span id='section3'></span></p>
-<h2 id="3-summary">3. Summary</h2>
-<hr>
-
-<p>We can determine the stability of nonlinear multivariate models with the eigenvalues of the Jacobian evaluated at an equilibrium. The recipe is</p>
-<ul>
-<li>Find the equilibrium of interest, <span class="arithmatex">\(\hat{x}_1, \hat{x}_2, ... \hat{x}_n\)</span></li>
-<li>Calculate the Jacobian, <span class="arithmatex">\(\mathbf{J}\)</span></li>
-<li>Evaluate the Jacobian at the equilibrium of interest, <span class="arithmatex">\(\mathbf{J}_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n}\)</span></li>
-<li>Calculate the characteristic polynomial <span class="arithmatex">\(|\mathbf{J}_{x_1=\hat{x}_1, x_2=\hat{x}_2, ..., x_n=\hat{x}_n} - \lambda\mathbf{I}|\)</span> </li>
-<li>Set the characteristic polynomial equal to 0 and solve for the <span class="arithmatex">\(n\)</span> eigenvalues, <span class="arithmatex">\(\lambda\)</span></li>
-</ul>
-<div class="admonition info">
-<p class="admonition-title">Stability reminder</p>
-<p><strong>Continuous time</strong></p>
-<ul>
-<li>the leading eigenvalue is the one with the <strong>largest real part</strong></li>
-<li>if the leading eigenvalue has a <strong>negative real part</strong> the equilibrium is stable</li>
-<li>if any eigenvalue has a non-zero complex part there will be cycling</li>
-</ul>
-<p><strong>Discrete time</strong></p>
-<ul>
-<li>the leading eigenvalue is the one with the <strong>largest absolute value</strong></li>
-<li>if the leading eigenvalue has an <strong>absolute value less than one</strong> the equilibrium is stable</li>
-<li>if any eigenvalue has a non-zero complex part there will be cycling</li>
-</ul>
-</div>
+</pre>
 
 
 

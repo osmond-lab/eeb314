@@ -21,10 +21,10 @@ Under construction for Fall 2025 edition. Lectures will be updated as we go.
 | 12 | [Stability (nonlinear multivariate)](lecture-12.md) | 8.1-8.3 (37p.) |
 | 13 | [Multi-locus population genetics](lecture-13.md)| 8.3 (9p.) |
 | 14 | Competition for resources | [Question 2 from 2021 final](../syllabus/previous_tests.md) |
-| 15 | Evolution of ploidy | 8.4 (7p.) |
+| 15 | [The evolution of ploidy](lecture-15.md) | 8.4 (7p.) |
 |    | **Section 4: Evolutionary invasion analysis** |
 | 16 | [Evolutionary invasion analysis I](lecture-16.md) | 12.1-12.3.4 (14p.) |
 | 17 | [Evolutionary invasion analysis II](lecture-17.md) | 12.3.4-12.3.5, Box 12.4 (7p.) |
-| 18 | The evolution of virulence | 12.4 (6p.) |
+| 18 | [The evolution of virulence](lecture-18.md) | 12.4 (6p.) |
 | 19 | The evolution of dominance | 12.5 (17p.) |
 | 20 | TBD | | 
