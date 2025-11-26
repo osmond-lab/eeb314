@@ -1607,7 +1607,7 @@
 <h2 id="1-model">1. Model</h2>
 <hr>
 
-<p>The model is an extension of the 2-locus model we developed in lecture 13 to include mutation. We consider two loci each with two alleles. At one locus we have alleles <span class="arithmatex">\(A_1\)</span> and <span class="arithmatex">\(A_2\)</span>. We'll treat <span class="arithmatex">\(A_1\)</span> as the wild-type allele and <span class="arithmatex">\(A_2\)</span> as the deleterious allele and refer to this <span class="arithmatex">\(A\)</span> locus as the selected locus. At the other locus we have alleles <span class="arithmatex">\(B_1\)</span> and <span class="arithmatex">\(B_2\)</span>. We'll treat <span class="arithmatex">\(B_1\)</span> as the resident allele and <span class="arithmatex">\(B_2\)</span> as the mutant (modifier) and refer to this <span class="arithmatex">\(B\)</span> locus as the modifier locus. The analysis will determine when <span class="arithmatex">\(B_2\)</span> can invade. </p>
+<p>The model is an extension of the 2-locus model we developed in lecture 13 to include mutation (see also lecture 15). We consider two loci each with two alleles. At one locus we have alleles <span class="arithmatex">\(A_1\)</span> and <span class="arithmatex">\(A_2\)</span>. We'll treat <span class="arithmatex">\(A_1\)</span> as the wild-type allele and <span class="arithmatex">\(A_2\)</span> as the deleterious allele and refer to this <span class="arithmatex">\(A\)</span> locus as the selected locus. At the other locus we have alleles <span class="arithmatex">\(B_1\)</span> and <span class="arithmatex">\(B_2\)</span>. We'll treat <span class="arithmatex">\(B_1\)</span> as the resident allele and <span class="arithmatex">\(B_2\)</span> as the mutant (modifier) and refer to this <span class="arithmatex">\(B\)</span> locus as the modifier locus. The analysis will determine when <span class="arithmatex">\(B_2\)</span> can invade. </p>
 <p>We consider diploid selection. Let the relative fitness of any individual with <span class="arithmatex">\(A_1 A_1\)</span> be 1 and the relative fitness of any individual with <span class="arithmatex">\(A_2 A_2\)</span> be <span class="arithmatex">\(1-s\)</span>, with <span class="arithmatex">\(0&lt;s&lt;1\)</span>. The relative fitnesses of the <span class="arithmatex">\(A_1 A_2\)</span> heterozygotes are affected by their genotype at the <span class="arithmatex">\(B\)</span> locus:</p>
 <table>
 <thead>
@@ -1668,7 +1668,7 @@
     D --&gt; E((mutation));
     E --&gt; A</code></pre>
 </center></p>
-<p>After selection but before mutation the frequencies are as they were in lecture 17,</p>
+<p>After selection but before mutation the frequencies are as they were in lecture 13,</p>
 <div class="arithmatex">\[\begin{align}
 x_1' &amp;= x_1(t) \sum_{i=1}^{4} x_i(t) w_{1i}/\bar{w} - r D^* \\
 x_2' &amp;= x_2(t) \sum_{i=1}^{4} x_i(t) w_{2i}/\bar{w} + r D^* \\
@@ -1687,7 +1687,7 @@ x_4(t+1) &amp;= x4' + \mu x_2'.
 <h2 id="2-resident-equilibrium">2. Resident equilibrium</h2>
 <hr>
 
-<p>We cannot find all equilibria of this system of nonlinear equations, but we can find some. Here we are most interested in the "resident" equilibrium where there are no <span class="arithmatex">\(B_2\)</span> alleles, <span class="arithmatex">\(\hat{x}_2=\hat{x}_4=0\)</span>, which reduces us back to a one locus model. We'll also take <span class="arithmatex">\(h_{11}=1/2\)</span> for simplicity, meaning that the resident <span class="arithmatex">\(B_1\)</span> allele makes the <span class="arithmatex">\(A\)</span> locus additive. Then there is a relatively simple resident equilibrium, </p>
+<p>We cannot find all equilibria of this system of nonlinear equations, but we can find some. Here we are most interested in the "resident" equilibrium where there are no <span class="arithmatex">\(B_2\)</span> alleles, <span class="arithmatex">\(\hat{x}_2=\hat{x}_4=0\)</span>, which reduces us back to a one locus (A) model. We'll also take <span class="arithmatex">\(h_{11}=1/2\)</span> for simplicity, meaning that the resident <span class="arithmatex">\(B_1\)</span> allele makes the <span class="arithmatex">\(A\)</span> locus additive. Then there is a relatively simple resident equilibrium, </p>
 <div class="arithmatex">\[
 \begin{align}
 \hat{x}_1 = 1 - \frac{\mu}{(1+\mu)s/2} \\
@@ -1701,17 +1701,17 @@ x_4(t+1) &amp;= x4' + \mu x_2'.
 
 <p>To evaluate the stability of this equilibrium we use the Jacobian evaluated at the resident equilibrium. Because we have 4 equations this is a 4x4 matrix. But if we arrange the equations in the following order, <span class="arithmatex">\(x_1(t+1), x_3(t+1), x_2(t+1), x_4(t+1)\)</span>, then the Jacobian at the resident equilibrium can be written as an upper triangular block matrix, </p>
 <div class="arithmatex">\[
-\mathbf{J}|_{x_1=\hat{x}_1,x_3=\hat{x}_3,x_3=x_4=0} = \begin{bmatrix} \mathbf{J}_\mathrm{res} &amp; \mathbf{V} \\ \mathbf{0} &amp; \mathbf{J}_\mathrm{mut}\end{bmatrix}.
+\mathbf{J}|_{x_1=\hat{x}_1,x_3=\hat{x}_3,x_2=x_4=0} = \begin{bmatrix} \mathbf{J}_\mathrm{res} &amp; \mathbf{V} \\ \mathbf{0} &amp; \mathbf{J}_\mathrm{mut}\end{bmatrix}.
 \]</div>
 <p>Here <span class="arithmatex">\(\mathbf{J}_\mathrm{res}\)</span> describes the stability of the resident equilibrium in the absence of any <span class="arithmatex">\(B_2\)</span> alleles and <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span> describes the stability of the resident equilibrium in the face of rare <span class="arithmatex">\(B_2\)</span> alleles. One can show that the eigenvalues of <span class="arithmatex">\(\mathbf{J}_\mathrm{res}\)</span> are always less than 1 when the resident equilibrium is valid, guaranteeing stability. </p>
-<p>We want to know whether <span class="arithmatex">\(B_2\)</span> alleles can invade the resident equilibrium. This is determined by the leading eigenvalue of <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span>, which we call the invasion fitness. Unfortunately the eigenvalues are a little complicated, but we can make some progress with a little trick. The equation for the eigenvalues of <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span> is </p>
+<p>We want to know whether <span class="arithmatex">\(B_2\)</span> alleles can invade the resident equilibrium. In this case of a structured mutant population, invasion fitness is the leading eigenvalue of <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span>. Unfortunately the eigenvalues are a little complicated, but we can make some progress with a little trick. The equation for the eigenvalues of <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span> is </p>
 <div class="arithmatex">\[
 \lambda^2 - \mathrm{Tr}(\mathbf{J}_\mathrm{mut}) \lambda + \mathrm{Det}(\mathbf{J}_\mathrm{mut}) = 0.
 \]</div>
 <p>Now, given that <span class="arithmatex">\(\lambda\)</span> is the invasion fitness of a mutant with dominance coefficient <span class="arithmatex">\(h_{12}\)</span> in a resident population with dominance coefficient <span class="arithmatex">\(h_{11}=1/2\)</span>, the selection gradient is <span class="arithmatex">\(\frac{\partial\lambda}{\partial h_{12}}|_{h_{12}=1/2}\)</span>. The trick is that we can get the selection gradient directly from the equation above without solving for invasion fitness. To make the dependence on <span class="arithmatex">\(h_{12}\)</span> clear and simplify the notation, write <span class="arithmatex">\(\lambda=\lambda(h_{12})\)</span>, <span class="arithmatex">\(-\mathrm{Tr}(\mathbf{J}_\mathrm{mut})=a(h_{12})\)</span>, and <span class="arithmatex">\(\mathrm{Det}(\mathbf{J}_\mathrm{mut})=b(h_{12})\)</span>. We can then differentiate the equation above with respect to <span class="arithmatex">\(h_{12}\)</span> and rearrange for the selection gradient,</p>
 <div class="arithmatex">\[
 \begin{align}
-\frac{\partial \lambda^2}{\partial h_{12}} + \frac{\partial a}{\partial h_{12}} \lambda(h_{12}) + a(h_{12}) \frac{\partial \lambda}{\partial h_{12}} + \frac{\partial b}{\partial h_{12}} &amp;= 0 \\
+\frac{\partial}{\partial h_{12}} \left( \lambda(h_{12})^2 + a(h_{12}) \lambda(h_{12}) + b(h_{12}) \right) &amp;= 0 \\
 2\lambda(h_{12})\frac{\partial \lambda}{\partial h_{12}} + \frac{\partial a}{\partial h_{12}} \lambda(h_{12}) + a(h_{12}) \frac{\partial \lambda}{\partial h_{12}} + \frac{\partial b}{\partial h_{12}} &amp;= 0 \\
 \frac{\partial \lambda}{\partial h_{12}}(2\lambda(h_{12}) + a(h_{12})) &amp;= - \frac{\partial a}{\partial h_{12}} \lambda(h_{12}) - \frac{\partial b}{\partial h_{12}} \\
 \frac{\partial \lambda}{\partial h_{12}} &amp;= - \frac{\frac{\partial a}{\partial h_{12}} \lambda(h_{12}) + \frac{\partial b}{\partial h_{12}}}{2\lambda(h_{12}) + a(h_{12})}

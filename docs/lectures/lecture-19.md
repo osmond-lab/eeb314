@@ -39,7 +39,7 @@ Below we will demonstrate the general method with a specific example: the evolut
 ## 1. Model
 <hr>
 
-The model is an extension of the 2-locus model we developed in lecture 13 to include mutation. We consider two loci each with two alleles. At one locus we have alleles $A_1$ and $A_2$. We'll treat $A_1$ as the wild-type allele and $A_2$ as the deleterious allele and refer to this $A$ locus as the selected locus. At the other locus we have alleles $B_1$ and $B_2$. We'll treat $B_1$ as the resident allele and $B_2$ as the mutant (modifier) and refer to this $B$ locus as the modifier locus. The analysis will determine when $B_2$ can invade. 
+The model is an extension of the 2-locus model we developed in lecture 13 to include mutation (see also lecture 15). We consider two loci each with two alleles. At one locus we have alleles $A_1$ and $A_2$. We'll treat $A_1$ as the wild-type allele and $A_2$ as the deleterious allele and refer to this $A$ locus as the selected locus. At the other locus we have alleles $B_1$ and $B_2$. We'll treat $B_1$ as the resident allele and $B_2$ as the mutant (modifier) and refer to this $B$ locus as the modifier locus. The analysis will determine when $B_2$ can invade. 
 
 We consider diploid selection. Let the relative fitness of any individual with $A_1 A_1$ be 1 and the relative fitness of any individual with $A_2 A_2$ be $1-s$, with $0<s<1$. The relative fitnesses of the $A_1 A_2$ heterozygotes are affected by their genotype at the $B$ locus:
 
@@ -73,7 +73,7 @@ graph LR;
 ```   
 </center>
 
-After selection but before mutation the frequencies are as they were in lecture 17,
+After selection but before mutation the frequencies are as they were in lecture 13,
 
 $$\begin{align}
 x_1' &= x_1(t) \sum_{i=1}^{4} x_i(t) w_{1i}/\bar{w} - r D^* \\
@@ -97,7 +97,7 @@ x_4(t+1) &= x4' + \mu x_2'.
 ## 2. Resident equilibrium
 <hr>
 
-We cannot find all equilibria of this system of nonlinear equations, but we can find some. Here we are most interested in the "resident" equilibrium where there are no $B_2$ alleles, $\hat{x}_2=\hat{x}_4=0$, which reduces us back to a one locus model. We'll also take $h_{11}=1/2$ for simplicity, meaning that the resident $B_1$ allele makes the $A$ locus additive. Then there is a relatively simple resident equilibrium, 
+We cannot find all equilibria of this system of nonlinear equations, but we can find some. Here we are most interested in the "resident" equilibrium where there are no $B_2$ alleles, $\hat{x}_2=\hat{x}_4=0$, which reduces us back to a one locus (A) model. We'll also take $h_{11}=1/2$ for simplicity, meaning that the resident $B_1$ allele makes the $A$ locus additive. Then there is a relatively simple resident equilibrium, 
 
 $$
 \begin{align}
@@ -115,12 +115,12 @@ which says that the deleterious $A_2$ allele is maintained at a balance between 
 To evaluate the stability of this equilibrium we use the Jacobian evaluated at the resident equilibrium. Because we have 4 equations this is a 4x4 matrix. But if we arrange the equations in the following order, $x_1(t+1), x_3(t+1), x_2(t+1), x_4(t+1)$, then the Jacobian at the resident equilibrium can be written as an upper triangular block matrix, 
 
 $$
-\mathbf{J}|_{x_1=\hat{x}_1,x_3=\hat{x}_3,x_3=x_4=0} = \begin{bmatrix} \mathbf{J}_\mathrm{res} & \mathbf{V} \\ \mathbf{0} & \mathbf{J}_\mathrm{mut}\end{bmatrix}.
+\mathbf{J}|_{x_1=\hat{x}_1,x_3=\hat{x}_3,x_2=x_4=0} = \begin{bmatrix} \mathbf{J}_\mathrm{res} & \mathbf{V} \\ \mathbf{0} & \mathbf{J}_\mathrm{mut}\end{bmatrix}.
 $$
 
 Here $\mathbf{J}_\mathrm{res}$ describes the stability of the resident equilibrium in the absence of any $B_2$ alleles and $\mathbf{J}_\mathrm{mut}$ describes the stability of the resident equilibrium in the face of rare $B_2$ alleles. One can show that the eigenvalues of $\mathbf{J}_\mathrm{res}$ are always less than 1 when the resident equilibrium is valid, guaranteeing stability. 
 
-We want to know whether $B_2$ alleles can invade the resident equilibrium. This is determined by the leading eigenvalue of $\mathbf{J}_\mathrm{mut}$, which we call the invasion fitness. Unfortunately the eigenvalues are a little complicated, but we can make some progress with a little trick. The equation for the eigenvalues of $\mathbf{J}_\mathrm{mut}$ is 
+We want to know whether $B_2$ alleles can invade the resident equilibrium. In this case of a structured mutant population, invasion fitness is the leading eigenvalue of $\mathbf{J}_\mathrm{mut}$. Unfortunately the eigenvalues are a little complicated, but we can make some progress with a little trick. The equation for the eigenvalues of $\mathbf{J}_\mathrm{mut}$ is 
 
 $$
 \lambda^2 - \mathrm{Tr}(\mathbf{J}_\mathrm{mut}) \lambda + \mathrm{Det}(\mathbf{J}_\mathrm{mut}) = 0.
@@ -130,7 +130,7 @@ Now, given that $\lambda$ is the invasion fitness of a mutant with dominance coe
 
 $$
 \begin{align}
-\frac{\partial \lambda^2}{\partial h_{12}} + \frac{\partial a}{\partial h_{12}} \lambda(h_{12}) + a(h_{12}) \frac{\partial \lambda}{\partial h_{12}} + \frac{\partial b}{\partial h_{12}} &= 0 \\
+\frac{\partial}{\partial h_{12}} \left( \lambda(h_{12})^2 + a(h_{12}) \lambda(h_{12}) + b(h_{12}) \right) &= 0 \\
 2\lambda(h_{12})\frac{\partial \lambda}{\partial h_{12}} + \frac{\partial a}{\partial h_{12}} \lambda(h_{12}) + a(h_{12}) \frac{\partial \lambda}{\partial h_{12}} + \frac{\partial b}{\partial h_{12}} &= 0 \\
 \frac{\partial \lambda}{\partial h_{12}}(2\lambda(h_{12}) + a(h_{12})) &= - \frac{\partial a}{\partial h_{12}} \lambda(h_{12}) - \frac{\partial b}{\partial h_{12}} \\
 \frac{\partial \lambda}{\partial h_{12}} &= - \frac{\frac{\partial a}{\partial h_{12}} \lambda(h_{12}) + \frac{\partial b}{\partial h_{12}}}{2\lambda(h_{12}) + a(h_{12})}

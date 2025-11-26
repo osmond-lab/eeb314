@@ -1616,28 +1616,28 @@ n_m(t+1) &amp;= n_m(t) R_m(n(t), n_m(t), z, z_m).
 \begin{aligned}
 \mathbf{J} &amp;= 
 \begin{pmatrix}
-\frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)} &amp; \frac{\mathrm{d}n(t+1)}{\mathrm{d}n_m(t)} \\
-\frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n(t)} &amp; \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)} 
+\frac{\partial n(t+1)}{\partial n(t)} &amp; \frac{\partial n(t+1)}{\partial n_m(t)} \\
+\frac{\partial n_m(t+1)}{\mathrm{d}n(t)} &amp; \frac{\partial n_m(t+1)}{\partial n_m(t)} 
 \end{pmatrix}.
 \end{aligned}
 \]</div>
 <p>Now consider some non-zero resident equilibrium, <span class="arithmatex">\(\hat{n}&gt;0\)</span>, without the mutant, <span class="arithmatex">\(\hat{n}_m=0\)</span>.
-Given the resident does not continually produce mutants, <span class="arithmatex">\(\frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n(t)}\big|_{n_m=0}=0\)</span>,
+Given the resident does not continually produce mutants, <span class="arithmatex">\(\frac{\partial n_m(t+1)}{\partial n(t)}\big|_{n_m=0}=0\)</span>,
 the Jacobian evaluated at this equilibrium simplifies to</p>
 <div class="arithmatex">\[
 \begin{aligned}
 \mathbf{J}\big|_{n_m=0,n=\hat{n}} &amp;= 
 \begin{pmatrix}
-\frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)} &amp; \frac{\mathrm{d}n(t+1)}{\mathrm{d}n_m(t)} \\
-0 &amp; \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)} 
+\frac{\partial n(t+1)}{\partial n(t)} &amp; \frac{\partial n(t+1)}{\partial n_m(t)} \\
+0 &amp; \frac{\partial n_m(t+1)}{\partial n_m(t)} 
 \end{pmatrix}_{n_m=0,n=\hat{n}}.
 \end{aligned}
 \]</div>
 <p>We can immediately see that the two eigenvalues of this upper triangular matrix are</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\lambda_1 &amp;= \frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)}\bigg|_{n_m=0,n=\hat{n}}\\
-\lambda_2 &amp;= \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)}\bigg|_{n_m=0,n=\hat{n}}.
+\lambda_1 &amp;= \frac{\partial n(t+1)}{\partial n(t)}\bigg|_{n_m=0,n=\hat{n}}\\
+\lambda_2 &amp;= \frac{\partial n_m(t+1)}{\partial n_m(t)}\bigg|_{n_m=0,n=\hat{n}}.
 \end{aligned}
 \]</div>
 <p>The first, <span class="arithmatex">\(\lambda_1\)</span>, determines whether the resident equilibrium, <span class="arithmatex">\(\hat{n}&gt;0\)</span>, is stable in the absence of mutants. We'll take <span class="arithmatex">\(0 &lt; \lambda_1 &lt; 1\)</span> as a given (i.e., we're only interested in stable resident equilibria, we can disregard the others).</p>
@@ -1677,8 +1677,8 @@ n_m(t+1) &amp;= n(t) (1-p_{rr}) + n_m(t) p_{mm} + (S - n(t) - n_m(t)) (1-p_{re})
 <p>We determine the stability of this equilibrium with the Jacobian. From the general analysis above we know how to calculate the two eigenvalues,</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\lambda_1 &amp;= \frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)}\bigg|_{n_m=0,n=S} = 0\\
-\lambda_2 &amp;= \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)}\bigg|_{n_m=0,n=S} = \frac{S(1-d_m) - d_m(1-c)}{S(1-d_m) + Sd(1-c) - d_m(1-c)} + \frac{Sd_m(1-c)}{S(1-d) + d(1-c)(S-1)}.
+\lambda_1 &amp;= \frac{\partial n(t+1)}{\partial n(t)}\bigg|_{n_m=0,n=S} = 0\\
+\lambda_2 &amp;= \frac{\partial n_m(t+1)}{\partial n_m(t)}\bigg|_{n_m=0,n=S} = \frac{S(1-d_m) - d_m(1-c)}{S(1-d_m) + Sd(1-c) - d_m(1-c)} + \frac{Sd_m(1-c)}{S(1-d) + d(1-c)(S-1)}.
 \end{aligned}
 \]</div>
 <p>The first eigenvalue is less than 1 in absolute value, meaning the resident equilibrium is stable. </p>
@@ -1768,8 +1768,8 @@ plt.show()
 <ul>
 <li>For a given stable resident strategy we can derive the invasion fitness of a mutant, <span class="arithmatex">\(\lambda(z_m,z)\)</span>.</li>
 <li>In simpler models we can determine which mutants can invade from examining <span class="arithmatex">\(\lambda(z_m,z)&gt;1\)</span> (discrete time) or <span class="arithmatex">\(\lambda(z_m,z)&gt;0\)</span> (continuous time)</li>
-<li>More generally, we can determine the direction of evolution by small mutations from the selection gradient, <span class="arithmatex">\(\left.\frac{\mathrm{d}\lambda}{\mathrm{d}z_m}\right|_{z_m=z}\)</span></li>
-<li>Evolutionary singular strategies <span class="arithmatex">\(\hat z\)</span> are trait values where there is no selection, <span class="arithmatex">\(\left.\frac{\mathrm{d}\lambda}{\mathrm{d}z_m}\right|_{z_m=\hat z}=0\)</span></li>
+<li>More generally, we can determine the direction of evolution by small mutations from the selection gradient, <span class="arithmatex">\(\left.\frac{\partial \lambda}{\partial z_m}\right|_{z_m=z}\)</span></li>
+<li>Evolutionary singular strategies <span class="arithmatex">\(\hat z\)</span> are trait values where there is no selection, <span class="arithmatex">\(\left.\frac{\partial \lambda}{\partial z_m}\right|_{z_m=\hat z}=0\)</span></li>
 <li>The stability of singular strategies will be examined in the next lecture</li>
 </ul>
 <p>Practice questions from the textbook: 12.1-2.</p>

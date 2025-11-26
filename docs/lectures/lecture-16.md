@@ -71,22 +71,22 @@ $$
 \begin{aligned}
 \mathbf{J} &= 
 \begin{pmatrix}
-\frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)} & \frac{\mathrm{d}n(t+1)}{\mathrm{d}n_m(t)} \\
-\frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n(t)} & \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)} 
+\frac{\partial n(t+1)}{\partial n(t)} & \frac{\partial n(t+1)}{\partial n_m(t)} \\
+\frac{\partial n_m(t+1)}{\mathrm{d}n(t)} & \frac{\partial n_m(t+1)}{\partial n_m(t)} 
 \end{pmatrix}.
 \end{aligned}
 $$
 
 Now consider some non-zero resident equilibrium, $\hat{n}>0$, without the mutant, $\hat{n}_m=0$.
-Given the resident does not continually produce mutants, $\frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n(t)}\big|_{n_m=0}=0$,
+Given the resident does not continually produce mutants, $\frac{\partial n_m(t+1)}{\partial n(t)}\big|_{n_m=0}=0$,
 the Jacobian evaluated at this equilibrium simplifies to
 
 $$
 \begin{aligned}
 \mathbf{J}\big|_{n_m=0,n=\hat{n}} &= 
 \begin{pmatrix}
-\frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)} & \frac{\mathrm{d}n(t+1)}{\mathrm{d}n_m(t)} \\
-0 & \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)} 
+\frac{\partial n(t+1)}{\partial n(t)} & \frac{\partial n(t+1)}{\partial n_m(t)} \\
+0 & \frac{\partial n_m(t+1)}{\partial n_m(t)} 
 \end{pmatrix}_{n_m=0,n=\hat{n}}.
 \end{aligned}
 $$
@@ -95,8 +95,8 @@ We can immediately see that the two eigenvalues of this upper triangular matrix 
 
 $$
 \begin{aligned}
-\lambda_1 &= \frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)}\bigg|_{n_m=0,n=\hat{n}}\\
-\lambda_2 &= \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)}\bigg|_{n_m=0,n=\hat{n}}.
+\lambda_1 &= \frac{\partial n(t+1)}{\partial n(t)}\bigg|_{n_m=0,n=\hat{n}}\\
+\lambda_2 &= \frac{\partial n_m(t+1)}{\partial n_m(t)}\bigg|_{n_m=0,n=\hat{n}}.
 \end{aligned}
 $$
 
@@ -151,8 +151,8 @@ In some simple cases we might be able to use the invasion criterium, $\lambda(z_
 
     $$
     \begin{aligned}
-    \lambda_1 &= \frac{\mathrm{d}n(t+1)}{\mathrm{d}n(t)}\bigg|_{n_m=0,n=S} = 0\\
-    \lambda_2 &= \frac{\mathrm{d}n_m(t+1)}{\mathrm{d}n_m(t)}\bigg|_{n_m=0,n=S} = \frac{S(1-d_m) - d_m(1-c)}{S(1-d_m) + Sd(1-c) - d_m(1-c)} + \frac{Sd_m(1-c)}{S(1-d) + d(1-c)(S-1)}.
+    \lambda_1 &= \frac{\partial n(t+1)}{\partial n(t)}\bigg|_{n_m=0,n=S} = 0\\
+    \lambda_2 &= \frac{\partial n_m(t+1)}{\partial n_m(t)}\bigg|_{n_m=0,n=S} = \frac{S(1-d_m) - d_m(1-c)}{S(1-d_m) + Sd(1-c) - d_m(1-c)} + \frac{Sd_m(1-c)}{S(1-d) + d(1-c)(S-1)}.
     \end{aligned}
     $$
 
@@ -273,8 +273,8 @@ plt.show()
 
 - For a given stable resident strategy we can derive the invasion fitness of a mutant, $\lambda(z_m,z)$.
 - In simpler models we can determine which mutants can invade from examining $\lambda(z_m,z)>1$ (discrete time) or $\lambda(z_m,z)>0$ (continuous time)
-- More generally, we can determine the direction of evolution by small mutations from the selection gradient, $\left.\frac{\mathrm{d}\lambda}{\mathrm{d}z_m}\right|_{z_m=z}$
-- Evolutionary singular strategies $\hat z$ are trait values where there is no selection, $\left.\frac{\mathrm{d}\lambda}{\mathrm{d}z_m}\right|_{z_m=\hat z}=0$
+- More generally, we can determine the direction of evolution by small mutations from the selection gradient, $\left.\frac{\partial \lambda}{\partial z_m}\right|_{z_m=z}$
+- Evolutionary singular strategies $\hat z$ are trait values where there is no selection, $\left.\frac{\partial \lambda}{\partial z_m}\right|_{z_m=\hat z}=0$
 - The stability of singular strategies will be examined in the next lecture
 
 Practice questions from the textbook: 12.1-2.
