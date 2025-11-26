@@ -1,7 +1,5 @@
 # Schedule
 
-Under construction for Fall 2025 edition. Labs will be updated as we go.
-
 | Lab | Tutorial | Coding exercise |
 | ---------- | ----- | ----- |
 |   | **Section 1: univariate models** | |

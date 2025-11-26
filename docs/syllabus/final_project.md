@@ -21,7 +21,8 @@ You'll do the final project in two parts.
 	- Analyze your model 
 	- Explain how the results address your original question
 	- Suggest how the model could be improved or extended
-	- Max 2000 words (not counting diagrams, equations, and supplementary Jupyter notebooks)
+    - Diagrams and supplementary Jupyter notebooks welcome but not required
+	- Max 2000 words (not counting equations, diagrams, and supplementary Jupyter notebooks)
 	- [Example](final_project/partII_example.md)
 
 !!! tip 

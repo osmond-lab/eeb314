@@ -8,9 +8,10 @@ Mathematics is central to science because it provides a rigorous way to go from 
 - [x] interpret a model: translate mathematical expressions back into biological meaning
 
 ## Weekly tasks
-- [x] read text
 - [x] attend two lectures
 - [x] attend one lab
+- [x] do (some) practice problems listed at end of lectures
+- [x] read assigned portions of the text when needed
 
 ## Grading scheme
 - in-class tests: 4 x 20%

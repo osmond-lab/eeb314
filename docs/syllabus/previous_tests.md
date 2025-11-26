@@ -2,21 +2,25 @@
 
 ## Test 1
 
-Covers lectures 1-5 and tutorials 1-3.
+Covers lectures 1-5 and tutorials 1-3 (univariate).
 
 - [2025](exam_files/test1_2025.pdf), [solutions](exam_files/test1_2025_solns.pdf)
 
 ## Test 2
 
-Covers lectures 6-10 and tutorials 4-6.
+Covers lectures 6-10 and tutorials 4-6 (linear multivariate).
 
 - [2025](exam_files/test2_2025.pdf), [solutions](exam_files/test2_2025_solns.pdf)
 
 ## Test 3
 
-Covers lectures 11-15 and tutorials 7-8.
+Covers lectures 11-15 and tutorials 7-8 (nonlinear multivariate).
 
 - [2025](exam_files/test3_2025.pdf), [solutions](exam_files/test3_2025_solns.pdf)
+
+## Test 4
+
+Covers lectures 16-20 and tutorials 9-10 (evolutionary invasion analysis).
 
 ## Previous midterms
 

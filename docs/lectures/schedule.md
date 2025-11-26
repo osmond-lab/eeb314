@@ -1,7 +1,5 @@
 # Schedule
 
-Under construction for Fall 2025 edition. Lectures will be updated as we go.
-
 | Lecture | Topic | Background reading |
 | ------- | ----- | ------- |
 |   | **Section 1: univariate models** | |
@@ -27,4 +25,4 @@ Under construction for Fall 2025 edition. Lectures will be updated as we go.
 | 17 | [Evolutionary invasion analysis II](lecture-17.md) | 12.3.4-12.3.5, Box 12.4 (7p.) |
 | 18 | [The evolution of virulence](lecture-18.md) | 12.4 (6p.) |
 | 19 | [The evolution of dominance](lecture-19.md) | 12.5 (17p.) |
-| 20 | TBD | | 
+| 20 | Review session | | 
