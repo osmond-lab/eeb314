@@ -17,6 +17,6 @@ Under construction for Fall 2025 edition. Labs will be updated as we go.
 | 8 | [Rosenzweig-MacArthur predator-prey model I](tutorial-08.md) | [Rosenzweig-MacArthur predator-prey model II](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-08.ipynb) |
 |   | **Section 4: evolutionary invasion analysis** | |
 | 9 | [Competitive diversification I](tutorial-09.md) | [Competitive diversification II](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fosmond-lab%2Feeb314&branch=master&urlpath=lab%2Ftree%2Feeb314%2Fnotebooks%2Flabs%2Flab-09.ipynb) |
-| 10 | tbd | tbd |
+| 10 | [Superinfection and viral co-existence](tutorial-10.md) | - |
 
 The links for the coding part of the labs are for students at the University of Toronto. They are also all available to view and download [here](https://github.com/osmond-lab/eeb314/tree/master/notebooks/labs).
