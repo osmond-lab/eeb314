@@ -1,0 +1,2204 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Lecture 14 - Mathematical modelling in ecology and evolution (EEB314)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+  
+  
+    
+      
+      
+      
+    
+  
+  
+  <style>:root{.md-tag{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M5.5%207A1.5%201.5%200%200%201%204%205.5%201.5%201.5%200%200%201%205.5%204%201.5%201.5%200%200%201%207%205.5%201.5%201.5%200%200%201%205.5%207m15.91%204.58-9-9C12.05%202.22%2011.55%202%2011%202H4c-1.11%200-2%20.89-2%202v7c0%20.55.22%201.05.59%201.41l8.99%209c.37.36.87.59%201.42.59s1.05-.23%201.41-.59l7-7c.37-.36.59-.86.59-1.41%200-.56-.23-1.06-.59-1.42%22/%3E%3C/svg%3E');}}</style>
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-14-demography" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Mathematical modelling in ecology and evolution (EEB314)" class="md-header__button md-logo" aria-label="Mathematical modelling in ecology and evolution (EEB314)" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mathematical modelling in ecology and evolution (EEB314)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 14
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../syllabus/course_structure/" class="md-tabs__link">
+          
+  
+  
+  Syllabus
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../schedule/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../labs/schedule/" class="md-tabs__link">
+          
+  
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../acknowledgements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Acknowledgements
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Mathematical modelling in ecology and evolution (EEB314)" class="md-nav__button md-logo" aria-label="Mathematical modelling in ecology and evolution (EEB314)" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    Mathematical modelling in ecology and evolution (EEB314)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syllabus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Syllabus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instructors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    When and where
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/previous_tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 17
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 20
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acknowledgements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-demography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Demography
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-stage-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Stage-structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Stage-structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-north-atlantic-right-whale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: North Atlantic right whale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-age-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Age-structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Age-structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-stickleback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: stickleback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
+<h1 id="lecture-14-demography">Lecture 14: Demography</h1>
+<hr style="margin-bottom: 0em;">
+<center>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+</center>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Demography</a></li>
+<li><a href="#section2">Stage-structure</a></li>
+<li><a href="#section3">Age-structure</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-demography">1. Demography</h2>
+<hr>
+
+<p>We're now going to use what we've learned about <strong>linear multivariate models</strong> to describe the dynamics of a single population that is composed of different types of individuals. This area of research is called <strong>demography</strong>. We'll just consider discrete-time models here.</p>
+<p>In the last lecture we saw that for any discrete-time linear multivariate model</p>
+<div class="arithmatex">\[
+\vec{n}(t+1) = \mathbf{M}\vec{n}(t)
+\]</div>
+<p>we can compute the general solution</p>
+<div class="arithmatex">\[
+\vec{n}(t) = \mathbf{M}^t\vec{n}(0)
+\]</div>
+<p>or, more conveniently, in terms of the eigenvalues (<span class="arithmatex">\(\mathbf{D}\)</span>) and eigenvectors (<span class="arithmatex">\(\mathbf{A}\)</span>)</p>
+<div class="arithmatex">\[
+\vec{n}(t) = \mathbf{A}\mathbf{D}^t\mathbf{A}^{-1}\vec{n}(0
+)
+\]</div>
+<p>Despite this progress, the eigenvalues and eigenvectors are often unobtainable (without specifying parameter values), leaving us to rely on the long-term approximation</p>
+<div class="arithmatex">\[
+\vec{n}(t) = \lambda_1^t \vec{v}_1 \vec{u}_1 \vec{n}(0)
+\]</div>
+<p>For this we just need to know the leading eigenvalue (<span class="arithmatex">\(\lambda_1\)</span>) and the corresponding right (<span class="arithmatex">\(\vec{v}_1\)</span>) and left (<span class="arithmatex">\(\vec{u}_1\)</span>) eigenvectors, respectively. (Remember that we have scaled the eigenvectors such that <span class="arithmatex">\(\vec{u}_1\vec{v}_1=1\)</span>.)</p>
+<p>These three components (<span class="arithmatex">\(\lambda_1\)</span>, <span class="arithmatex">\(\vec{v}_1\)</span>, <span class="arithmatex">\(\vec{u}_1\)</span>) are the key demographic quantities that we will investigate</p>
+<ul>
+<li><span class="arithmatex">\(\lambda_1\)</span> is the <strong>long-term population growth rate</strong></li>
+<li><span class="arithmatex">\(\vec{v}_1\)</span> describes the <strong>stable stage-distribution</strong></li>
+<li><span class="arithmatex">\(\vec{u}_1\)</span> describes the relative <strong>reproductive values</strong> of each stage</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The long-term approximation, <span class="arithmatex">\(\vec{n}(t) = \lambda_1^t \vec{v}_1 \vec{u}_1 \vec{n}(0)\)</span>, is valid as long as the leading eigenvalue, <span class="arithmatex">\(\lambda_1\)</span>, is</p>
+<ul>
+<li>real (no cycles in long-term)</li>
+<li>positive (no oscillations to negative numbers!)</li>
+<li>larger than all other eigenvalues (so that we can ignore the other eigenvalues/vectors)</li>
+</ul>
+<p>Fortunately <em>we are guaranteed all these conditions in our demographic models</em> since all entries of <span class="arithmatex">\(\mathbf{M}\)</span> are non-negative and all entries of <span class="arithmatex">\(\mathbf{M}^t\)</span> are positive for some value of <span class="arithmatex">\(t\)</span>. (This follows from something called the <strong>Perron-Frobenius Theorem</strong>.)</p>
+</div>
+<p>The most general demographic model is called <strong>stage-structure</strong>: we consider some finite number of discrete stages that an individual can be in and we use an abitrary matrix of transition rates between stages (a <strong>projection matrix</strong>), <span class="arithmatex">\(\mathbf{M}\)</span>, to project how the population size and composition changes over time.</p>
+<p>A common special case is <strong>age-structure</strong>: here we define the stages as the number of time steps an individual has been alive for, which leads to a simpler projection matrix (called a <strong>Leslie matrix</strong>) because individuals always transition to the next stage (or die).</p>
+<p><span id='section2'></span></p>
+<h2 id="2-stage-structure">2. Stage-structure</h2>
+<hr>
+
+<h3 id="example-north-atlantic-right-whale">Example: North Atlantic right whale</h3>
+<p>Let's consider an example (from 10.2 in the text). North Atlantic <a href="https://en.wikipedia.org/wiki/Right_whale">right whales</a> were hunted to near extinction in the 1800s and early 1900s, after which their population size is thought to have <em>slowly</em> recovered (there are less than 400 now, and unfortunately <a href="https://www.fisheries.noaa.gov/species/north-atlantic-right-whale#overview">appear to be in decline again</a>). Because of their long life span, over which survival and reproductive rates vary enormously, a stage-structured model is very appropriate. Below we draw a flow diagram representing all the transitions between calves, sexually immature individuals, sexually mature individuals, and actively reproducing individuals.</p>
+<center>
+<pre class="mermaid"><code>graph LR;
+    C((Calves)) --sIC nC--&gt; I((Immature));
+
+    I --sII nI--&gt; I;
+    I --sMI nI--&gt; M((Mature));
+    I --sRI nI--&gt; R((Reproductive));
+
+    M --sMM nM--&gt; M;
+    M --sRM nM--&gt; R;
+
+    R --sRR nR--&gt; R;
+    R --sMR nR--&gt; M;
+    R --b nR--&gt; C;</code></pre>
+</center>
+
+<p>Converting this flow diagram into a system of recursion equations, <span class="arithmatex">\(\vec{n}(t+1) = \mathbf{M}\vec{n}(t)\)</span>, the projection matrix is</p>
+<div class="arithmatex">\[
+\mathbf{M} =
+\begin{pmatrix}
+0 &amp; 0 &amp; 0 &amp; b \\
+s_{IC} &amp; s_{II} &amp; 0 &amp; 0\\
+0 &amp; s_{MI} &amp; s_{MM} &amp; s_{MR} \\
+0 &amp; s_{RI} &amp; s_{RM} &amp; s_{RR}
+\end{pmatrix}
+\]</div>
+<p>If we now plug in some estimated parameter values from the literature (<span class="arithmatex">\(b=0.3\)</span>, <span class="arithmatex">\(s_{IC}=0.92\)</span>, <span class="arithmatex">\(s_{II}=0.86\)</span>, <span class="arithmatex">\(s_{MI}=0.08\)</span>, <span class="arithmatex">\(s_{MM}=0.8\)</span>, <span class="arithmatex">\(s_{MR}=0.88\)</span>, <span class="arithmatex">\(s_{RI}=0.02\)</span>, <span class="arithmatex">\(s_{RM}=0.19\)</span>, <span class="arithmatex">\(s_{RR}=0\)</span>) we can numerically calculate the three key demographic quantities</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp;\lambda_1 \approx 1.003 \\
+&amp;\vec{v}_1 \approx \begin{pmatrix} 0.04 \\ 0.23 \\ 0.61 \\ 0.12\end{pmatrix} \\
+&amp;\vec{u}_1 \approx \begin{pmatrix} 0.69 &amp; 0.76 &amp; 1.07 &amp; 1.15 \end{pmatrix}
+\end{aligned}
+\]</div>
+<p>These quantitives tells us, for example, that in the long-run the population is predicted to grow (<span class="arithmatex">\(\lambda_1&gt;1\)</span>), the majority of individuals are expected to be mature (the second last entry in <span class="arithmatex">\(\vec{v}_1\)</span> is the largest), and mature and reproductive individuals are expected to have much higher reproductive values than calves and immature individuals (the last two entries in <span class="arithmatex">\(\vec{u}_1\)</span> are much larger than the first two). </p>
+<div class="admonition note">
+<p class="admonition-title">Caveat</p>
+<p>The parameter values above were estimated before the current population decline -- changes in climate and human behaviour, eg boat traffic and fishing, have presumably altered the parameter values, making the predictions less accurate. For example, the increased incidence of entanglement in fishing nets has likely decreased survival rates to the point that the population is now expected to decline. See <a href="https://www.fisheries.noaa.gov/species/north-atlantic-right-whale#overview">here</a> for more info.</p>
+</div>
+<p>We can now answer an important conservation question: </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>If we wanted to increase the total population size in the future and we could add one individual to any stage, which stage should it be?</p>
+</div>
+<p>We want to know what entry of <span class="arithmatex">\(\vec{n}(0)\)</span> to add 1 to to maximize <span class="arithmatex">\(\vec{n}(t) \approx \lambda^t \vec{v}_1 \vec{u}_1 \vec{n}(0)\)</span>. This will not affect the long-term growth rate (<span class="arithmatex">\(\lambda_1\)</span>) or the stable-stage distribution (<span class="arithmatex">\(\vec{v}_1\)</span>). We can therefore only increase <span class="arithmatex">\(\vec{u}_1\vec{n}(0) = u_1 n_1(0) + u_2 n_2(0) + ... + u_m n_m(0)\)</span>. And so we add 1 to the stage with the largest reproductive value, <span class="arithmatex">\(u_i\)</span>.</p>
+<p>So for these whales, where the reproductive values are <span class="arithmatex">\(\vec{u}_1 \approx \begin{pmatrix} 0.69 &amp; 0.76 &amp; 1.07 &amp; 1.15 \end{pmatrix}\)</span>, we should add a reproductively active individual. This is perhaps not surprising since those are the only individuals that produce offspring and if we introduced an individual in an earlier stage there is some chance that they would die before becoming reproductively active.</p>
+<p>One other question we might now consider is:</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>If we wanted to increase the long-term population growth rate and we could increase any parameter a little bit, which parameter should it be?</p>
+</div>
+<p>One way to answer this is to numerically calculate the long-term population growth rate, <span class="arithmatex">\(\lambda_1\)</span>, for a range of values of one parameter, <span class="arithmatex">\(z\)</span> (e.g., we might take <span class="arithmatex">\(z=b\)</span>, the fecundity of reproductive individuals).</p>
+<p>Or, we could try to analytically compute the rate of change in the leading eigenvalue with respect to <span class="arithmatex">\(z\)</span>, <span class="arithmatex">\(\mathrm{d}\lambda_1/\mathrm{d}z\)</span>, while considering <span class="arithmatex">\(\mathbf{M}\)</span>, <span class="arithmatex">\(\lambda_1\)</span>, <span class="arithmatex">\(\vec{v}_1\)</span>, and <span class="arithmatex">\(\vec{u}_1\)</span> to be functions of <span class="arithmatex">\(z\)</span>. </p>
+<p>Since <span class="arithmatex">\(\mathbf{M}\vec{v}_1 = \lambda_1 \vec{v}_1\)</span> and <span class="arithmatex">\(\vec{u}_1\mathbf{M} = \vec{u}_1\lambda_1\)</span> we have</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbf{M} \vec{v}_1 &amp;= \lambda_1 \vec{v}_1 \\
+\vec{u}_1 \mathbf{M} \vec{v}_1 &amp;= \vec{u}_1 \lambda_1 \vec{v}_1 \\
+\frac{\mathrm{d}}{\mathrm{d}z} \left(\vec{u}_1 \mathbf{M} \vec{v}_1 \right)&amp;= \frac{\mathrm{d}}{\mathrm{d}z} \left(\vec{u}_1 \lambda_1 \vec{v}_1 \right)\\
+\frac{\mathrm{d}\vec{u}_1}{\mathrm{d}z} \mathbf{M} \vec{v}_1 + \vec{u}_1 \frac{\mathrm{d}\mathbf{M}}{\mathrm{d}z} \vec{v}_1 + \vec{u}_1 \mathbf{M} \frac{\mathrm{d}\vec{v}_1}{\mathrm{d}z} &amp;= \frac{\mathrm{d}\vec{u}_1}{\mathrm{d}z} \lambda_1 \vec{v}_1 + \vec{u}_1 \frac{\mathrm{d}\lambda_1}{\mathrm{d}z} \vec{v}_1 + \vec{u}_1 \lambda_1 \frac{\mathrm{d}\vec{v}_1}{\mathrm{d}z}\\
+\vec{u}_1 \frac{\mathrm{d}\mathbf{M}}{\mathrm{d}z} \vec{v}_1 &amp;= \vec{u}_1 \frac{\mathrm{d}\lambda_1}{\mathrm{d}z} \vec{v}_1 \\
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}z} &amp;= \frac{\vec{u}_1 \frac{\mathrm{d}\mathbf{M}}{\mathrm{d}z} \vec{v}_1}{\vec{u}_1 \vec{v}_1}
+\end{aligned}\]</div>
+<p>We call <span class="arithmatex">\(\mathrm{d}\lambda_1/\mathrm{d}z\)</span> the <strong>sensitivity</strong> of <span class="arithmatex">\(\lambda_1\)</span> to <span class="arithmatex">\(z\)</span>.</p>
+<p>This expression will be too complicated to understand in general in most cases, but we can evaluate at some particular value <span class="arithmatex">\(z^*\)</span> (e.g., at the current estimate) to see how the growth rate changes as <span class="arithmatex">\(z\)</span> increases from that value</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}z} \bigg|_{z=z^*} = \frac{\vec{u}_1 \left(\frac{\mathrm{d}\mathbf{M}}{\mathrm{d}z} \big|_{z=z^*} \right) \vec{v}_1}{\vec{u}_1 \vec{v}_1}
+\]</div>
+<p>Returning to our question, we want to know which parameter, <span class="arithmatex">\(z\)</span>, gives the largest value of <span class="arithmatex">\(\frac{\mathrm{d}\lambda_1}{\mathrm{d}z} \big|_{z=z^*}\)</span>.</p>
+<p>For these whales we can calculate <span class="arithmatex">\(\frac{\mathrm{d}\lambda_1}{\mathrm{d}z} \big|_{z=z^*}\)</span> for each parameter <span class="arithmatex">\(z\)</span> (ie, for each entry in <span class="arithmatex">\(\mathbf{M}\)</span>) evaluated at it's current value <span class="arithmatex">\(z^*\)</span>. Doing that calculation we see that increasing the fraction of mature individuals that survive to become reproductively active, <span class="arithmatex">\(s_{RM}\)</span>, has the largest effect. This makes good sense because increasing <span class="arithmatex">\(s_{RM}\)</span> increases the rate at which the most populous stage (from <span class="arithmatex">\(\vec{v}_1\)</span>) transitions to the stage with the highest reproductive value (from <span class="arithmatex">\(\vec{u}_1\)</span>).</p>
+<p>And finally, we can ask</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What are the predicted numbers of individuals in each stage over time?</p>
+</div>
+<p>Here we simply plot the general solution (solid) and compare with the long-term approximation (dashed) out of interest. We see that the full solution very quickly converges to the long-term solution in this case. </p>
+<pre data-executable="true" data-language="python">
+b,sic,sii,smi,smm,smr,sri,srm,srr = 0.3,0.92,0.86,0.08,0.8,0.88,0.02,0.19,0 #parameter values
+
+import numpy as np
+
+M = np.array([[0,0,0,b], #projection matrix
+              [sic,sii,0,0],
+              [0,smi,smm,smr],
+              [0,sri,srm,srr]])
+
+# calculate
+eigs = np.linalg.eig(M) #eigenvalues and right eigenvectors
+ix = np.argmax(np.abs(eigs[0])) #which is leading eigenvalue
+l1 = eigs[0][ix] #leading eigenvalue
+v1 = eigs[1][:,ix] #leading right eigenvector
+v1 = v1/np.sum(v1) #normalized to sum to 1
+us = np.linalg.inv(eigs[1]) #left eigenvectors
+u1 = us[ix] #leading left eigenvalue
+u1 = u1/np.dot(u1,v1) #normalized so u1*v1=1
+
+n0 = np.array([50,50,50,50]) #initial state
+
+def ntfull(t):
+    '''full projection'''
+    return np.dot(np.linalg.matrix_power(M,t), n0)
+
+def ntapp(t):
+    '''long term approximation'''
+    return l1**t * v1 * np.dot(u1, n0)
+
+# plot
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+labels = ['calves','immature','mature','reproductive']
+colors = plt.get_cmap('tab10')
+for i,j in enumerate(range(len(M))): #for each stage
+    ax.plot([ntfull(t)[j] for t in range(100)], color=colors(i), label=labels[i])
+    ax.plot([ntapp(t)[j] for t in range(100)], color=colors(i), linestyle='--') #long-term approx
+
+ax.legend()
+ax.set_xlabel('years')
+ax.set_ylabel('number of whales')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-14_files/lecture-14_4_0.png" /></p>
+<p><span id='section3'></span></p>
+<h2 id="3-age-structure">3. Age-structure</h2>
+<hr>
+
+<p>Now let's look at the special case of <strong>age-structure</strong>.</p>
+<p>Here individuals in stage <span class="arithmatex">\(i\)</span> at time <span class="arithmatex">\(t\)</span> can only contribute to stage <span class="arithmatex">\(i+1\)</span> (survival) and stage <span class="arithmatex">\(1\)</span> (reproduction) at time <span class="arithmatex">\(t+1\)</span>.</p>
+<center>
+<pre class="mermaid"><code>graph LR;
+    1((1)) --p1 n1--&gt; 2((2));    
+    1 --m1 n1--&gt; 1;
+    2 --p2 n2--&gt; 3((3));
+    2 --m2 n2--&gt; 1;    
+    3 --p3 n4--&gt; 4((4));
+    3 --m3 n3--&gt; 1;
+    4 --m4 n4--&gt; 1;</code></pre>
+</center>
+
+<p>Because of this, the projection matrix is simpler in the sense that it contains more zeros and has non-zero entries in very specific places</p>
+<div class="arithmatex">\[
+\mathbf{L} = 
+\begin{pmatrix}  
+m_1 &amp; m_2 &amp; m_3 &amp; \cdots &amp; m_d \\
+p_1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; p_2 &amp; 0 &amp; \cdots &amp; 0 \\
+\vdots &amp;  &amp; \vdots &amp;  &amp; \vdots \\  
+0 &amp; \cdots &amp; 0 &amp; p_{d-1} &amp; 0\\
+\end{pmatrix}
+\]</div>
+<p>We call it a <strong>Leslie matrix</strong> and often denote it with <span class="arithmatex">\(\mathbf{L}\)</span>. The first row contains the fecundities of each age group, <span class="arithmatex">\(m_i\)</span>, while the entries immediately below the diagonal give the fraction of individuals that survive each age group, <span class="arithmatex">\(p_i\)</span>.</p>
+<p>Because of the structure of the Leslie matrix, many expressions are now simpler.</p>
+<p>For example, the characteristic polynomial, <span class="arithmatex">\(\mathrm{Det}(\mathbf{L}-\mathbf{I}\lambda)=0\)</span>, can be calculated using the first row. After rearranging we get what is known as the <strong>Euler-Lotka equation</strong></p>
+<div class="arithmatex">\[
+1 = \sum_{i=1}^{d} \frac{l_i m_i}{\lambda^i}
+\]</div>
+<p>where <span class="arithmatex">\(l_1 = 1\)</span>, <span class="arithmatex">\(l_i = p_1 p_2 \cdots p_{i-1}\)</span> is the fraction of individuals that survive from birth to age <span class="arithmatex">\(i\)</span> and <span class="arithmatex">\(d\)</span> is the number of ages (ie, <span class="arithmatex">\(\mathbf{L}\)</span> is a <span class="arithmatex">\(d\times d\)</span> matrix).</p>
+<p>Given the <span class="arithmatex">\(l_i\)</span> and <span class="arithmatex">\(m_i\)</span> we can use this equation to find the long-term population growth rate, <span class="arithmatex">\(\lambda_1\)</span>.</p>
+<h3 id="example-stickleback">Example: stickleback</h3>
+<p>For example, let's look at a model of <a href="https://en.wikipedia.org/wiki/Stickleback">stickleback</a>, a small fish (see section 10.6 of the text).</p>
+<p>We assume stickleback do not live more than 4 years and estimate the Leslie matrix as</p>
+<div class="arithmatex">\[
+\mathbf{L} = 
+\begin{pmatrix}
+2 &amp; 3 &amp; 4 &amp; 4\\
+0.6 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0.3 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0.1 &amp; 0
+\end{pmatrix}
+\]</div>
+<p>The Euler-Lotka equation is then</p>
+<div class="arithmatex">\[
+\begin{aligned}
+1 &amp;= \sum_{i=1}^{4} \frac{l_i m_i}{\lambda^i}\\
+1 &amp;= \frac{l_1 m_1}{\lambda} + \frac{l_2 m_2}{\lambda^2} + \frac{l_3 m_3}{\lambda^3} + \frac{l_4 m_4}{\lambda^4}\\
+1 &amp;= \frac{2}{\lambda} + \frac{1.8}{\lambda^2} + \frac{0.72}{\lambda^3} + \frac{0.072}{\lambda^4}\\    
+\end{aligned}
+\]</div>
+<p>This can be numerically solved to give our four eigenvalues: <span class="arithmatex">\(\lambda\approx2.75, -0.3 \pm 0.3i, -0.14\)</span>.</p>
+<p>The long-term growth rate is the eigenvalue with the largest absolute value, <span class="arithmatex">\(\lambda_1=2.75\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We won't spend the time on it in class, but with age-structure we can also write the stable age distribution, reproductive values, and sensitivities as functions of survival, fecundity, and rate of population growth.</p>
+<p>The proportion of individuals that are age <span class="arithmatex">\(x\)</span> (in the long-run) is</p>
+<div class="arithmatex">\[
+v_x = \frac{l_x \lambda_1^{-(x-1)}}{\sum_{i=1}^{d}l_i \lambda_1^{-(i-1)}}
+\]</div>
+<p>The reproductive value of individuals that are age <span class="arithmatex">\(x\)</span>, relative to age <span class="arithmatex">\(1\)</span>, is</p>
+<div class="arithmatex">\[
+\frac{u_x}{u_1} = \frac{\lambda_1^{x-1}}{l_x}\sum_{i=x}^{d}\frac{l_i m_i}{\lambda_1^{i}}
+\]</div>
+<p>The sensitivities of the long-term growth rate to survival and reproduction at age <span class="arithmatex">\(x\)</span> are</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}p_x} = \frac{v_x u_{x+1}}{\vec{u}_1 \vec{v}_1}
+\]</div>
+<div class="arithmatex">\[
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}m_x} = \frac{v_x u_1}{\vec{u}_1 \vec{v}_1}
+\]</div>
+<p>For example, in our stickleback model the proportion of the population that is age <span class="arithmatex">\(x=2\)</span>, in the long-run, is</p>
+<div class="arithmatex">\[
+\begin{aligned}
+v_x &amp;= \frac{l_x \lambda_1^{-(x-1)}}{\sum_{i=1}^{d}l_i \lambda_1^{-(i-1)}}\\
+v_2 &amp;= \frac{l_2 \lambda_1^{-1}}{\sum_{i=1}^{4}l_i \lambda_1^{-(i-1)}}\\
+&amp;\approx \frac{0.6 (2.75)^{-1}}{1 (2.75)^{0} + 0.6 (2.75)^{-1} + 0.18 (2.75)^{-2} + 0.018 (2.75)^{-3}}\\
+&amp;\approx 0.18
+\end{aligned}
+\]</div>
+<p>and the relative reproductive value of age <span class="arithmatex">\(x=2\)</span> individuals is </p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{v_x}{v_1} &amp;= \frac{\lambda_1^{x-1}}{l_x}\sum_{i=x}^{d}\frac{l_i m_i}{\lambda_1^{i}}\\
+\frac{v_2}{v_1} &amp;= \frac{\lambda_1^{2-1}}{l_2}\sum_{i=2}^{4}\frac{l_i m_i}{\lambda_1^{i}}\\
+&amp;= \frac{\lambda_1}{l_2} \left(\frac{l_2 m_2}{\lambda_1^{2}} + \frac{l_3 m_3}{\lambda_1^{3}} + \frac{l_4 m_4}{\lambda_1^{i}} \right)\\
+&amp;\approx \frac{2.75}{0.6} \left(\frac{(0.6) (3)}{2.75^{2}} + \frac{(0.18) (4)}{2.75^{3}} + \frac{(0.018) (4)}{2.75^{4}} \right)\\
+&amp;\approx 1.25
+\end{aligned}
+\]</div>
+<p>Repeating these for the other ages we get the stable-age distribution</p>
+<div class="arithmatex">\[
+\vec{v}_1 \approx \begin{pmatrix} 0.80 \\ 0.18 \\ 0.02 \\ 0.0007 \end{pmatrix}
+\]</div>
+<p>and the reproductive values</p>
+<div class="arithmatex">\[
+\vec{u}_1 \approx \begin{pmatrix} 1 &amp; 1.25 &amp; 1.51 &amp; 1.45 \end{pmatrix}
+\]</div>
+<p>From these we see that the majority of the population is expected to be age 1 (from <span class="arithmatex">\(\vec{v}_1\)</span>) and age 3 has the highest reproductive value (from <span class="arithmatex">\(\vec{u}_1\)</span>).</p>
+<p>We can now use these vectors to calculate the sensitivities of population growth rate to survival</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}p_x} &amp;= \frac{v_x u_{x+1}}{\vec{u}_1 \vec{v}_1}\\
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}p_1} &amp;\approx 0.95\\
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}p_2} &amp;\approx 0.25\\ 
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}p_3} &amp;\approx 0.03
+\end{aligned}
+\]</div>
+<p>and to fecundity</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}m_x} &amp;= \frac{v_x u_1}{\vec{u}_1 \vec{v}_1}\\
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}m_1} &amp;\approx 0.76\\
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}m_2} &amp;\approx 0.17\\ 
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}m_3} &amp;\approx 0.02\\ 
+\frac{\mathrm{d}\lambda_1}{\mathrm{d}m_4} &amp;\approx 0.0007
+\end{aligned}
+\]</div>
+<p>And so we see that, because such a large proportion of the population is expected to be age 1, increasing the survival and fecundity of that age has the largest effect.</p>
+</div>
+<p>Finally, we can plot the predicted dynamics as we did for the whales above. In this case the population grows very quickly (clearly there is a need to also model density-dependence via competition, otherwise our model predicts that the universe will soon be stuffed-full with sticklback!), so we plot the number of fish of each age on a log scale. Again, we compare the full general solution (solid) to the long-term approximation (dashed) and see quick convergence.</p>
+<pre data-executable="true" data-language="python">
+m1,m2,m3,m4,p1,p2,p3 = 2,3,4,4,0.6,0.3,0.1 #parameter values
+
+import numpy as np
+
+M = np.array([[m1,m2,m3,m4], #projection matrix
+              [p1,0,0,0],
+              [0,p2,0,0],
+              [0,0,p3,0]])
+
+# calculate
+eigs = np.linalg.eig(M) #eigenvalues and right eigenvectors
+ix = np.argmax(np.abs(eigs[0])) #which is leading eigenvalue
+l1 = eigs[0][ix] #leading eigenvalue
+v1 = eigs[1][:,ix] #leading right eigenvector
+v1 = v1/np.sum(v1) #normalized to sum to 1
+us = np.linalg.inv(eigs[1]) #left eigenvectors
+u1 = us[ix] #leading left eigenvalue
+u1 = u1/np.dot(u1,v1) #normalized so u1*v1=1
+
+n0 = np.array([25,25,25,25]) #initial state
+
+def ntfull(t):
+    '''full projection'''
+    return np.dot(np.linalg.matrix_power(M,t), n0)
+
+def ntapp(t):
+    '''long term approximation'''
+    return l1**t * v1 * np.dot(u1, n0)
+
+# plot
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots()
+
+labels = ['age 1','age 2','age 3','age 4']
+colors = plt.get_cmap('tab10')
+for i,j in enumerate(range(len(M))): #for each stage
+    ax.plot([ntfull(t)[j] for t in range(10)], color=colors(i), label=labels[i])
+    ax.plot([ntapp(t)[j] for t in range(10)], color=colors(i), linestyle='--') #long-term approx
+
+ax.legend()
+ax.set_xlabel('years')
+ax.set_ylabel('number of stickleback')
+ax.set_yscale('log')
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-14_files/lecture-14_6_0.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

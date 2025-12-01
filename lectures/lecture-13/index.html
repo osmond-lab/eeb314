@@ -1,0 +1,2092 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lecture-12/">
+      
+      
+        <link rel="next" href="../lecture-15/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Lecture 13 - Mathematical modelling in ecology and evolution (EEB314)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+  
+  
+    
+      
+      
+      
+    
+  
+  
+  <style>:root{.md-tag{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M5.5%207A1.5%201.5%200%200%201%204%205.5%201.5%201.5%200%200%201%205.5%204%201.5%201.5%200%200%201%207%205.5%201.5%201.5%200%200%201%205.5%207m15.91%204.58-9-9C12.05%202.22%2011.55%202%2011%202H4c-1.11%200-2%20.89-2%202v7c0%20.55.22%201.05.59%201.41l8.99%209c.37.36.87.59%201.42.59s1.05-.23%201.41-.59l7-7c.37-.36.59-.86.59-1.41%200-.56-.23-1.06-.59-1.42%22/%3E%3C/svg%3E');}}</style>
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-13-multi-locus-population-genetics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Mathematical modelling in ecology and evolution (EEB314)" class="md-header__button md-logo" aria-label="Mathematical modelling in ecology and evolution (EEB314)" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mathematical modelling in ecology and evolution (EEB314)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 13
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../syllabus/course_structure/" class="md-tabs__link">
+          
+  
+  
+  Syllabus
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../schedule/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../labs/schedule/" class="md-tabs__link">
+          
+  
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../acknowledgements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Acknowledgements
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Mathematical modelling in ecology and evolution (EEB314)" class="md-nav__button md-logo" aria-label="Mathematical modelling in ecology and evolution (EEB314)" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    Mathematical modelling in ecology and evolution (EEB314)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syllabus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Syllabus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instructors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    When and where
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/previous_tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 13
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-multi-locus-population-genetics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-locus population genetics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 17
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 20
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acknowledgements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-multi-locus-population-genetics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-locus population genetics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
+<h1 id="lecture-13-multi-locus-population-genetics">Lecture 13: Multi-locus population genetics</h1>
+<hr style="margin-bottom: 0em;">
+<center>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+</center>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Multi-locus population genetics</a></li>
+<li><a href="#section2">Summary</a></li>
+</ol>
+<p>We now know how to find equilibria and determine their stability in nonlinear multivariate models. And we've seen continuous-time examples of disease spread and competition. Here, we'll look at a discrete-time example, extending the univariate discrete-time dipliod selection model to multiple loci. This is a relatively complex model that will give you a sense of what doing research in theoretical population genetics can be like.</p>
+<p><span id='section1'></span></p>
+<h2 id="1-multi-locus-population-genetics">1. Multi-locus population genetics</h2>
+<hr>
+
+<p>Genomes contain many loci -- what new dynamics arise when we model more than one locus? Here we look at the simplest multi-locus model, two loci each with two alleles. Let's denote the loci with letters, <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>, and the alleles at each with numbers, <span class="arithmatex">\(1\)</span> and <span class="arithmatex">\(2\)</span>. This gives a total of <span class="arithmatex">\(2^2=4\)</span> haploid genotypes, which we'll give frequencies <span class="arithmatex">\(x_1\)</span> to <span class="arithmatex">\(x_4\)</span> like so</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">genotype</th>
+<th style="text-align: center;">frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_2\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_2B_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_3\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_2B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_4\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>with the constraint that the total frequency sums to one, <span class="arithmatex">\(x_1+x_2+x_3+x_4 = 1\)</span>.</p>
+<p>To determine how these frequencies change from one generation to the next, let's first determine the order of events in a life-cycle diagram</p>
+<center>
+<pre class="mermaid"><code>graph LR;
+    A((census)) --&gt; B((gamete union));
+    B --&gt; C((selection));
+    C --&gt; D((meiosis));    
+    D --&gt; A;</code></pre>
+</center>
+
+<p>In words, we'll census the population in the gamete (haploid) phase while selection happens in the diploid phase.</p>
+<p>Next, to consider how the frequencies change through this life cyle, let's construct a life-cycle (mating) table. To do this, we need to consider what happens during meiosis when there are multiple loci. </p>
+<p>In the 1-locus models we analyzed earlier, meiosis meant Mendelian segregation: each allele is present in 1/2 of the gametes. Here, with 2 loci, things are slightly more complicated and we need to consider <strong>recombination</strong>. Every meiosis there is a chance, <span class="arithmatex">\(r\)</span>, of an odd number of crossover events between the two loci (<span class="arithmatex">\(r\)</span> will increase with the distance between the loci). When this happens the pairing of the alleles at loci A and B get swapped. This only has an effect in diploid individuals that are heterozygous at both loci ("double heterozygotes"), here <span class="arithmatex">\(A_1B_1\)</span> x <span class="arithmatex">\(A_2B_2\)</span> and <span class="arithmatex">\(A_1B_2\)</span> x <span class="arithmatex">\(A_2B_1\)</span>. Every time these individuals go through meiosis the original pairings are kept with probability <span class="arithmatex">\(1-r\)</span> and the alternative pairings are created with probability <span class="arithmatex">\(r\)</span>. </p>
+<p>We can now fill in the following table</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">union</th>
+<th style="text-align: center;">frequency</th>
+<th style="text-align: center;">frequency after selection</th>
+<th style="text-align: center;">gamete frequency after meiosis (<span class="arithmatex">\(A_1B_1\)</span>, <span class="arithmatex">\(A_1B_2\)</span>, <span class="arithmatex">\(A_2B_1\)</span>, <span class="arithmatex">\(A_2B_2\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_1\)</span> x <span class="arithmatex">\(A_1B_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_1^2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_1^2 w_{11}/\bar{w}\)</span></td>
+<td style="text-align: center;">1, 0, 0, 0</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_1\)</span> x <span class="arithmatex">\(A_1B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_1x_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_1x_2 w_{12}/\bar{w}\)</span></td>
+<td style="text-align: center;">1/2, 1/2, 0, 0</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_1\)</span> x <span class="arithmatex">\(A_2B_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_1x_3\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_1x_3 w_{13}/\bar{w}\)</span></td>
+<td style="text-align: center;">1/2, 0, 1/2, 0</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_1\)</span> x <span class="arithmatex">\(A_2B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_1x_4\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_1x_4 w_{14}/\bar{w}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\((1-r)/2\)</span>, <span class="arithmatex">\(r/2\)</span>, <span class="arithmatex">\(r/2\)</span>, <span class="arithmatex">\((1-r)/2\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_2\)</span> x <span class="arithmatex">\(A_1B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_2^2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_2^2 w_{22}/\bar{w}\)</span></td>
+<td style="text-align: center;">0, 1, 0, 0</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_2\)</span> x <span class="arithmatex">\(A_2B_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_2x_3\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_2x_3 w_{23}/\bar{w}\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(r/2\)</span>, <span class="arithmatex">\((1-r)/2\)</span>, <span class="arithmatex">\((1-r)/2\)</span>, <span class="arithmatex">\(r/2\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_2\)</span> x <span class="arithmatex">\(A_2B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_2x_4\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_2x_4 w_{24}/\bar{w}\)</span></td>
+<td style="text-align: center;">0, 1/2, 0, 1/2</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_2B_1\)</span> x <span class="arithmatex">\(A_2B_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_3^2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_3^2 w_{33}/\bar{w}\)</span></td>
+<td style="text-align: center;">0, 0, 1, 0</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_2B_1\)</span> x <span class="arithmatex">\(A_2B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_3x_4\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(2x_3x_4 w_{34}/\bar{w}\)</span></td>
+<td style="text-align: center;">0, 0, 1/2, 1/2</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_2B_2\)</span> x <span class="arithmatex">\(A_2B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_4^2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_4^2 w_{44}/\bar{w}\)</span></td>
+<td style="text-align: center;">0, 0, 0, 1</td>
+</tr>
+</tbody>
+</table>
+<p>where <span class="arithmatex">\(w_{ij}=w_{ji}\)</span> is the fitness of the diploid that is composed of haploid genotypes <span class="arithmatex">\(i\)</span> and <span class="arithmatex">\(j\)</span> and <span class="arithmatex">\(\bar{w}\)</span> is the population mean fitness, which is the sum of the frequencies after selection.</p>
+<p>We can build the recursion equations from this table by multiplying the frequency after selection by the gamete frequency after meiosis. For example, the frequency of <span class="arithmatex">\(A_1B_1\)</span> in the next generation is found by multiplying the first entry in the final column by the frequency after selection and summing this up over rows, giving</p>
+<div class="arithmatex">\[\begin{align}
+x_1(t+1) 
+&amp;= x_1(t)^2 w_{11}/\bar{w} + x_1(t)x_2(t) w_{12}/\bar{w} + x_1(t)x_3(t) w_{13}/\bar{w} + (1-r)x_1(t)x_4(t) w_{14}/\bar{w} + r x_2(t)x_3(t) w_{23}/\bar{w}\\
+&amp;= x_1(t) (x_1(t) w_{11}/\bar{w} + x_2(t) w_{12}/\bar{w} + x_3(t) w_{13}/\bar{w} + x_4(t) w_{14}/\bar{w}) - r(x_1(t)x_4(t) w_{14}/\bar{w} - x_2(t)x_3(t) w_{23}/\bar{w})\\
+&amp;= x_1(t) \sum_{i=1}^{4} x_i(t) w_{1i}/\bar{w} - r D^*,
+\end{align}\]</div>
+<p>where <span class="arithmatex">\(D^*=x_1(t)x_4(t) w_{14}/\bar{w} - x_2(t)x_3(t) w_{23}/\bar{w}\)</span> is called <strong>linkage disequilibrium</strong> (the asterisk differentiates it from the same quantity measured prior to selection, <span class="arithmatex">\(D=x_1(t)x_4(t) - x_2(t)x_3(t)\)</span>). Linkage disequilibrium is an important term in population genetics that measures the deviation of the association of alleles at two loci from that expected by chance under random assortment. For example, when <span class="arithmatex">\(A_1\)</span> pairs with <span class="arithmatex">\(B_1\)</span> more often than expected by chance then <span class="arithmatex">\(x_1(t)x_4(t) &gt; x_2(t)x_3(t)\)</span> and <span class="arithmatex">\(D&gt;0\)</span>. </p>
+<p>The remaining equations are created in the same way, giving</p>
+<div class="arithmatex">\[\begin{align}
+x_2(t+1) &amp;= x_2(t) \sum_{i=1}^{4} x_i(t) w_{2i}/\bar{w} + r D^* \\
+x_3(t+1) &amp;= x_3(t) \sum_{i=1}^{4} x_i(t) w_{3i}/\bar{w} + r D^* \\
+x_4(t+1) &amp;= x_4(t) \sum_{i=1}^{4} x_i(t) w_{4i}/\bar{w} - r D^*.
+\end{align}\]</div>
+<p>Now we have a system of recursion equations to work with. This system is nonlinear and four dimensional, which makes things relatively complex. For instance, it is impossible to find all the equilibria analytically. Here we'll not worry about that and just deal with a particularly simple equilibrium where <span class="arithmatex">\(A_1B_1\)</span> is fixed, <span class="arithmatex">\(\hat{x}_1=1\)</span> and <span class="arithmatex">\(\hat{x}_2=\hat{x}_3=\hat{x}_4=0\)</span>. This implies <span class="arithmatex">\(\bar{w}=w_{11}\)</span>.</p>
+<p>To determine the stability of this equilbrium we need to calculate the Jacobian</p>
+<div class="arithmatex">\[
+\mathbf{J} = 
+\begin{pmatrix}
+\frac{\partial x_1(t+1)}{\partial x_1(t)} &amp; \frac{\partial x_1(t+1)}{\partial x_2(t)} &amp; \frac{\partial x_1(t+1)}{\partial x_3(t)} &amp; \frac{\partial x_1(t+1)}{\partial x_4(t)}\\
+\frac{\partial x_2(t+1)}{\partial x_1(t)} &amp; \frac{\partial x_2(t+1)}{\partial x_2(t)} &amp; \frac{\partial x_2(t+1)}{\partial x_3(t)} &amp; \frac{\partial x_2(t+1)}{\partial x_4(t)}\\
+\frac{\partial x_3(t+1)}{\partial x_1(t)} &amp; \frac{\partial x_3(t+1)}{\partial x_2(t)} &amp; \frac{\partial x_3(t+1)}{\partial x_3(t)} &amp; \frac{\partial x_3(t+1)}{\partial x_4(t)}\\
+\frac{\partial x_4(t+1)}{\partial x_1(t)} &amp; \frac{\partial x_4(t+1)}{\partial x_2(t)} &amp; \frac{\partial x_4(t+1)}{\partial x_3(t)} &amp; \frac{\partial x_4(t+1)}{\partial x_4(t)}\\
+\end{pmatrix}
+\]</div>
+<p>(we omit writing out the derivatives for brevity) and then evaluate it at the focal equilibrium, <span class="arithmatex">\(\mathbf{J}_{x_1=1,x_2=x_3=x_4=0}\)</span>. Local stability of the focal equilibrium is determined by the eigenvalues of this matrix, which are</p>
+<div class="arithmatex">\[\begin{aligned}
+\lambda_1 &amp;= 0 \\
+\lambda_2 &amp;= w_{12}/w_{11} \\
+\lambda_3 &amp;= w_{13}/w_{11} \\
+\lambda_4 &amp;= (1-r)w_{14}/w_{11}. 
+\end{aligned}\]</div>
+<p>The first eigenvalue, <span class="arithmatex">\(\lambda_1 = 0\)</span>, indicates that there is an axis along which or system does not change. This is due to the fact that the frequencies always sum to one, <span class="arithmatex">\(x_1+x_2+x_3+x_4=1\)</span>. We therefore effectively have a three dimensional model, e.g., we could just track <span class="arithmatex">\(x_1\)</span>, <span class="arithmatex">\(x_2\)</span>, and <span class="arithmatex">\(x_3\)</span> because we know that <span class="arithmatex">\(x_4 = 1 - x_1-x_2-x_3\)</span>.</p>
+<p>The second and third eigenvalues, <span class="arithmatex">\(\lambda_2 = w_{12}/w_{11}\)</span> and <span class="arithmatex">\(\lambda_3 = w_{13}/w_{11}\)</span>, are analogous to what we found in the 1 locus (univariate) case. Remembering that stability in discrete time requires that the eigenvalues are less than 1 in absolute value, we can interpret these eigenvalues as saying that the <span class="arithmatex">\(B_2\)</span> allele can invade when it has higher fitness than the <span class="arithmatex">\(B_1\)</span> allele (<span class="arithmatex">\(w_{12}&gt;w_{11}\)</span>) and the <span class="arithmatex">\(A_2\)</span> can invade when it has higher fitness than the <span class="arithmatex">\(A_1\)</span> allele (<span class="arithmatex">\(w_{13}&gt;w_{11}\)</span>). If either allele can invade our equilibrium is unstable. </p>
+<p>The fourth eigenvalue, <span class="arithmatex">\(\lambda_4 = (1-r)w_{14}/w_{11}\)</span>, is the new part, which depends on recombination. Interestingly, here, even if <span class="arithmatex">\(A_2B_2\)</span> has higher fitness than <span class="arithmatex">\(A_1B_1\)</span>, meaning <span class="arithmatex">\(w_{14}&gt;w_{11}\)</span>, it is possible that the <span class="arithmatex">\(A_2B_2\)</span> genotype cannot invade. This is because, for a rare <span class="arithmatex">\(A_2B_2\)</span> genotype, every generation it pairs with the common <span class="arithmatex">\(A_1B_1\)</span> genotype and therefore gets broken apart into <span class="arithmatex">\(A_1B_2\)</span> and <span class="arithmatex">\(A_2B_1\)</span> by recombination with probability <span class="arithmatex">\(r\)</span>. In other words, recombination can hinder the spread of an adaptive combination of alleles. This is epitiomized by the scenario where having a single "2" allele is deleterious <span class="arithmatex">\(w_{12}&lt;w_{11}\)</span> and <span class="arithmatex">\(w_{13}&lt;w_{11}\)</span> (making <span class="arithmatex">\(\lambda_2&lt;1\)</span> and <span class="arithmatex">\(\lambda_3&lt;1\)</span>) but having two "2" alleles is beneficial, <span class="arithmatex">\(w_{14}&gt;w_{11}\)</span>. Such a scenario is called a <strong>fitness valley</strong> because of the shape of the plot below.</p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt
+
+w11=1
+w12=0.9
+w13=0.8
+w14=1.1
+
+fig,ax=plt.subplots()
+
+ax.plot([0,1,2],[w11,w12,w14],marker='o')
+ax.plot([0,1,2],[w11,w13,w14],marker='o')
+ax.text(0,w11,r'$A_1B_1$',va='bottom')
+ax.text(1,w12,r'$A_1B_2$',va='top')
+ax.text(1,w13,r'$A_2B_1$',va='top')
+ax.text(2,w14,r'$A_2B_2$',va='bottom',ha='right')
+
+ax.set_ylabel('fitness')
+ax.set_xlabel('number of "2" alleles')
+ax.set_xticks([0,1,2])
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-13_files/lecture-13_2_0.png" /></p>
+<p>Here we've seen how recombination can slow the spread of the optimal genotype, <span class="arithmatex">\(A_2B_2\)</span>, potentially preventing fitness-valley crossing. There is also, however, a constructive aspect of recombination, not explored in this simple model: when the deleterious genotypes <span class="arithmatex">\(A_1B_2\)</span> and <span class="arithmatex">\(A_2B_1\)</span> are both present, there is a chance that they pair and recombine, giving rise to the optimal genotype <span class="arithmatex">\(A_2B_2\)</span>. The role of recombination in fitness-valley crossing is therefore a relatively interesting and complex problem (see, for example, <a href="https://academic.oup.com/genetics/article/186/4/1389/6063653">Weissman et al. 2010, Genetics</a>).</p>
+<p><span id='section2'></span></p>
+<h2 id="2-summary">2. Summary</h2>
+<hr>
+
+<p>We've used what we know about equilibria and stability in non-linear multivariate models to investigate the effect of natural selection on evolution when there are mulitple loci. This is a relatively complex discrete-time example.</p>
+<p>Although we cannot solve for all equilibria, we can find one (<span class="arithmatex">\(A_1B_1\)</span> fixed) and we evaluated its stability. This equilibrium is stable if neither <span class="arithmatex">\(A_2\)</span> or <span class="arithmatex">\(B_2\)</span> can invade on their own (as in the one locus case) and <span class="arithmatex">\(A_2\)</span> and <span class="arithmatex">\(B_2\)</span> cannot invade together. This last invasion depends on both the fitness of <span class="arithmatex">\(A_2B_2\)</span> as well as the rate it is broken up by recombination between the loci.</p>
+<p>See section 8.3 of the textbook for more information.</p>
+<pre data-executable="true" data-language="python">
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

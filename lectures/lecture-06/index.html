@@ -1,0 +1,2496 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lecture-05/">
+      
+      
+        <link rel="next" href="../lecture-07/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Lecture 6 - Mathematical modelling in ecology and evolution (EEB314)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+  
+  
+    
+      
+      
+      
+    
+  
+  
+  <style>:root{.md-tag{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M5.5%207A1.5%201.5%200%200%201%204%205.5%201.5%201.5%200%200%201%205.5%204%201.5%201.5%200%200%201%207%205.5%201.5%201.5%200%200%201%205.5%207m15.91%204.58-9-9C12.05%202.22%2011.55%202%2011%202H4c-1.11%200-2%20.89-2%202v7c0%20.55.22%201.05.59%201.41l8.99%209c.37.36.87.59%201.42.59s1.05-.23%201.41-.59l7-7c.37-.36.59-.86.59-1.41%200-.56-.23-1.06-.59-1.42%22/%3E%3C/svg%3E');}}</style>
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-6-representing-linear-multivariate-models-with-vectors-and-matrices" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Mathematical modelling in ecology and evolution (EEB314)" class="md-header__button md-logo" aria-label="Mathematical modelling in ecology and evolution (EEB314)" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mathematical modelling in ecology and evolution (EEB314)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 6
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../syllabus/course_structure/" class="md-tabs__link">
+          
+  
+  
+  Syllabus
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../schedule/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../labs/schedule/" class="md-tabs__link">
+          
+  
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../acknowledgements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Acknowledgements
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Mathematical modelling in ecology and evolution (EEB314)" class="md-nav__button md-logo" aria-label="Mathematical modelling in ecology and evolution (EEB314)" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    Mathematical modelling in ecology and evolution (EEB314)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syllabus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Syllabus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instructors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    When and where
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/previous_tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 6
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Motivation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.Vectors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Matrices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Addition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Multiplication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 17
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 20
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acknowledgements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Motivation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.Vectors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Matrices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Addition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Multiplication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
+<h1 id="lecture-6-representing-linear-multivariate-models-with-vectors-and-matrices">Lecture 6: Representing linear multivariate models with vectors and matrices</h1>
+<hr style="margin-bottom: 0em;">
+<center>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+</center>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Motivation</a></li>
+<li><a href="#section2">Vectors</a></li>
+<li><a href="#section3">Matrices</a></li>
+<li><a href="#section4">Addition</a></li>
+<li><a href="#section5">Multiplication</a></li>
+<li><a href="#section6">Summary</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-motivation">1. Motivation</h2>
+<hr>
+
+<p>Until now, we have been dealing with problems in a single variable changing over time.</p>
+<p>Often, dynamical systems involve more than one variable (ie, they are <strong>multivariate</strong>). For instance, we may be interested in how the numbers of two species change as they interact (e.g., compete) with one another.</p>
+<p>As an introductory example with more than one variable, consider a model tracking the number of birds on two islands. Let the number of birds on island 1 be <span class="arithmatex">\(n_1\)</span> and let the number of birds on island 2 be <span class="arithmatex">\(n_2\)</span>. We assume the birds migrate from island <span class="arithmatex">\(j\)</span> to island <span class="arithmatex">\(i\)</span> at per capita rate <span class="arithmatex">\(m_{ij}\)</span>, the birds on each island give birth at per capita rates <span class="arithmatex">\(b_1\)</span> and <span class="arithmatex">\(b_2\)</span>, the birds on each island die at per capita rates <span class="arithmatex">\(d_1\)</span> and <span class="arithmatex">\(d_2\)</span>, and new birds arrive on each island at rates <span class="arithmatex">\(m_1\)</span> and <span class="arithmatex">\(m_2\)</span>. This is captured in the following flow diagram</p>
+<center>
+<pre class="mermaid"><code>graph LR;
+    A1((n1)) --b1 n1--&gt; A1;
+    B1[ ] --m1--&gt; A1;
+    A1 --d1 n1--&gt; C1[ ];
+    A2((n2)) --b2 n2--&gt; A2;
+    B2[ ] --m2--&gt; A2;
+    A2 --d2 n2--&gt; C2[ ];
+    A1 --m21 n1--&gt; A2;
+    A2 --m12 n2--&gt; A1;
+    style B1 height:0px;
+    style C1 height:0px;
+    style B2 height:0px;
+    style C2 height:0px;</code></pre>
+</center>
+
+<p>The rate of change in <span class="arithmatex">\(n_1\)</span> and <span class="arithmatex">\(n_2\)</span> are then described by the following system of differential equations</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}n_1}{\mathrm{d}t} &amp;= (b_1 - d_1 - m_{21})n_1 + m_{12} n_2 + m_1 \\
+\frac{\mathrm{d}n_2}{\mathrm{d}t} &amp;= m_{21} n_1 + (b_2 - d_2 - m_{12})n_2 + m_2
+\end{aligned}
+\]</div>
+<p>These equations are linear functions of the variables (i.e., they contain only constant multiples of <span class="arithmatex">\(n_1\)</span> and <span class="arithmatex">\(n_2\)</span> and nothing more complicated such as <span class="arithmatex">\(n_1^2\)</span> or <span class="arithmatex">\(e^{n_2}\)</span>).</p>
+<p>Linear systems of equations like these can also be written in <strong>matrix form</strong></p>
+<div class="arithmatex">\[
+\begin{aligned}
+\begin{pmatrix} \frac{\mathrm{d}n_1}{\mathrm{d}t} \\ \frac{\mathrm{d}n_2}{\mathrm{d}t} \end{pmatrix} 
+&amp;= \begin{pmatrix} b_1 - d_1 - m_{21} &amp; m_{12} \\ m_{21} &amp; b_2 - d_2 - m_{12} \end{pmatrix}
+\begin{pmatrix} n_1 \\ n_2 \end{pmatrix} 
++ \begin{pmatrix} m_1 \\ m_2 \end{pmatrix}\\
+\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} &amp;= \mathbf{M}\vec{n} + \vec{m}
+\end{aligned}
+\]</div>
+<p>Not only is this a nice compact expression, there are rules of linear algebra that can help us conveniently solve this (and any other) set of linear equations.</p>
+<p>Let's get to know these rules.</p>
+<p><span id='section2'></span></p>
+<h2 id="2vectors">2.Vectors</h2>
+<hr>
+
+<p><strong>Vectors</strong> are lists of elements (elements being numbers, parameters, functions, or variables).</p>
+<p>A <strong>column vector</strong> has elements arranged from top to bottom</p>
+<div class="arithmatex">\[
+\begin{equation*}
+\begin{pmatrix}
+  5 \\
+  2
+\end{pmatrix},
+\begin{pmatrix}
+  1 \\
+  5 \\
+  9 \\
+  7
+\end{pmatrix},
+\begin{pmatrix}
+  x \\
+  y
+\end{pmatrix},
+\begin{pmatrix}
+  x \\
+  y \\
+  z
+\end{pmatrix},
+\begin{pmatrix}
+  x_1 \\
+  x_2 \\
+  \vdots \\
+  x_n
+\end{pmatrix}
+\end{equation*}
+\]</div>
+<p>A <strong>row vector</strong> has elements arranged from left to right</p>
+<div class="arithmatex">\[
+\begin{pmatrix}5 &amp; 2\end{pmatrix}, \begin{pmatrix} 1 &amp; 5 &amp; 9 &amp; 7\end{pmatrix}, \begin{pmatrix} x &amp; y \end{pmatrix}, \begin{pmatrix} x &amp; y &amp; z\end{pmatrix}, \begin{pmatrix} x_1 &amp; x_2 &amp; \cdots &amp; x_n \end{pmatrix}
+\]</div>
+<p><strong>Transposing</strong> a vector switches it from a row vector to a column vector or vice-versa,</p>
+<div class="arithmatex">\[
+\begin{equation*}
+\begin{pmatrix}
+  a \\
+  b \\
+  c
+\end{pmatrix}^\intercal
+= 
+\begin{pmatrix}
+  a &amp; b &amp; c
+\end{pmatrix}
+\end{equation*}
+\]</div>
+<div class="arithmatex">\[
+\begin{equation*}
+\begin{pmatrix}
+  a &amp; b &amp; c
+\end{pmatrix}
+\end{equation*}^\intercal
+= 
+\begin{pmatrix}
+  a \\
+  b \\
+  c
+\end{pmatrix}
+\]</div>
+<p>We will indicate vectors by placing an arrow on top of the symbol</p>
+<div class="arithmatex">\[
+\vec{x} = \begin{pmatrix} x_1 &amp; x_2 &amp; \cdots &amp; x_n \end{pmatrix}
+\]</div>
+<p>The number of elements in the vector indicates its <strong>dimension</strong>, <span class="arithmatex">\(n\)</span>.</p>
+<p>For example, the row vector <span class="arithmatex">\(\begin{pmatrix}x &amp; y\end{pmatrix}\)</span> has dimension <span class="arithmatex">\(n=2\)</span>.</p>
+<p>You can represent a vector of dimension <span class="arithmatex">\(n\)</span> as an arrow in <span class="arithmatex">\(n\)</span> dimensions, connecting the origin with a point whose coordinates are given by elements in the vector. For example, the vector <span class="arithmatex">\(\vec{v} = \begin{pmatrix} 1\\2\end{pmatrix}\)</span> can be depicted as below.</p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt #import plotting library
+
+plt.arrow(0, 0, #starting x and y values of arrow
+          1, 2, #change in x and y 
+          head_width=0.1, color='black', length_includes_head=True) #aesthetics
+plt.xlim(0,2.5) #set bounds on x axis
+plt.ylim(0,2.5) #set bounds on y axis
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-06_files/lecture-06_3_0.png" /></p>
+<p><span id='section3'></span></p>
+<h2 id="3-matrices">3. Matrices</h2>
+<hr>
+
+<p>An <span class="arithmatex">\(m \times n\)</span> <strong>matrix</strong> has <span class="arithmatex">\(m\)</span> rows and <span class="arithmatex">\(n\)</span> columns (a vector can be seen as a special case, where either <span class="arithmatex">\(m\)</span> or <span class="arithmatex">\(n\)</span> is 1)</p>
+<div class="arithmatex">\[
+\begin{equation*}
+\begin{pmatrix}
+  x_{11}  &amp; x_{12} &amp; \cdots &amp; x_{1n}\\
+  x_{21}  &amp; x_{22} &amp; \cdots &amp; x_{2n}\\
+  \vdots &amp; \vdots &amp;        &amp; \vdots\\
+  x_{m1}  &amp; x_{m2} &amp; \cdots &amp; x_{mn}\\
+\end{pmatrix},
+\begin{pmatrix}
+  a &amp; b \\
+  c &amp; d
+\end{pmatrix},
+\begin{pmatrix}
+  75 &amp; 67 \\
+  66 &amp; 34 \\
+  12 &amp; 14
+\end{pmatrix},
+\begin{pmatrix}
+  1 &amp; 0 &amp; 0 \\
+  0 &amp; 1 &amp; 0 \\
+  0 &amp; 0 &amp; 1
+\end{pmatrix}
+\end{equation*}
+\]</div>
+<p>We will indicate matrices by bolding the symbol (and using capital letters)</p>
+<div class="arithmatex">\[
+\mathbf{X} = \begin{pmatrix}
+  x_{11}  &amp; x_{12} &amp; \cdots &amp; x_{1n}\\
+  x_{21}  &amp; x_{22} &amp; \cdots &amp; x_{2n}\\
+  \vdots &amp; \vdots &amp;        &amp; \vdots\\
+  x_{m1}  &amp; x_{m2} &amp; \cdots &amp; x_{mn}\\
+\end{pmatrix}
+\]</div>
+<p>A matrix with an equal number of rows and columns, <span class="arithmatex">\(m=n\)</span>, is a <strong>square matrix</strong></p>
+<div class="arithmatex">\[
+\begin{pmatrix}
+  a &amp; b &amp; c \\
+  d &amp; e &amp; f \\
+  g &amp; h &amp; i
+\end{pmatrix}
+\]</div>
+<p>A matrix with zeros everywhere except along the diagonal is called a <strong>diagonal matrix</strong></p>
+<div class="arithmatex">\[
+\begin{pmatrix}
+  a &amp; 0 &amp; 0 \\
+  0 &amp; b &amp; 0 \\
+  0 &amp; 0 &amp; c
+\end{pmatrix}
+\]</div>
+<p>And a special case of this with 1s along the diagonal is called the <strong>identity matrix</strong></p>
+<div class="arithmatex">\[
+\begin{pmatrix}
+  1 &amp; 0 &amp; 0 \\
+  0 &amp; 1 &amp; 0 \\
+  0 &amp; 0 &amp; 1
+\end{pmatrix}
+\]</div>
+<p>A matrix with all zeros below the diagonal is called an <strong>upper triangular matrix</strong></p>
+<div class="arithmatex">\[
+\begin{pmatrix}
+  a &amp; b &amp; c \\
+  0 &amp; d &amp; e \\
+  0 &amp; 0 &amp; f
+\end{pmatrix}
+\]</div>
+<p>A matrix with all zeros above the diagonal is called an <strong>lower triangular matrix</strong></p>
+<div class="arithmatex">\[
+\begin{pmatrix}
+  a &amp; 0 &amp; 0 \\
+  b &amp; d &amp; 0 \\
+  c &amp; e &amp; f
+\end{pmatrix}
+\]</div>
+<p>It is sometimes useful to chop a matrix up into multiple blocks, creating a <strong>block matrix</strong></p>
+<div class="arithmatex">\[
+\begin{pmatrix}
+  a &amp; b &amp; c \\
+  d &amp; e &amp; f \\
+  g &amp; h &amp; i
+\end{pmatrix}
+= 
+\begin{pmatrix}
+  \mathbf{A} &amp; \mathbf{B} \\
+  \mathbf{C} &amp; \mathbf{D}
+\end{pmatrix}
+\]</div>
+<p>where <span class="arithmatex">\(\mathbf{A}=\begin{pmatrix} a &amp; b \\ d &amp; e\end{pmatrix}\)</span>, <span class="arithmatex">\(\mathbf{B}=\begin{pmatrix} c\\ f\end{pmatrix}\)</span>, <span class="arithmatex">\(\mathbf{C}=\begin{pmatrix} g &amp; h \end{pmatrix}\)</span>, and <span class="arithmatex">\(\mathbf{D}=\begin{pmatrix} i\end{pmatrix}\)</span>. </p>
+<p>This is especially helpful when the block form has off-diagonal submatrices consisting of all zeros. For instance, when <span class="arithmatex">\(\mathbf{B}=\begin{pmatrix} 0\\0\end{pmatrix}\)</span> or <span class="arithmatex">\(\mathbf{C}=\begin{pmatrix} 0 &amp; 0 \end{pmatrix}\)</span>, we have a <strong>block triangular matrix</strong>. And when <span class="arithmatex">\(\mathbf{B}=\begin{pmatrix} 0\\0\end{pmatrix}\)</span> and <span class="arithmatex">\(\mathbf{C}=\begin{pmatrix} 0 &amp; 0 \end{pmatrix}\)</span>, 
+we have a <strong>block diagonal matrix</strong>.</p>
+<p>Finally, it is sometimes useful to <strong>transpose</strong> a matrix, which exchanges the rows and columns (an element in row <span class="arithmatex">\(i\)</span> column <span class="arithmatex">\(j\)</span> moves to row <span class="arithmatex">\(j\)</span> column <span class="arithmatex">\(i\)</span>)</p>
+<div class="arithmatex">\[
+\begin{pmatrix}
+  a_1 &amp; a_2 &amp; a_3 \\
+  b_1 &amp; b_2 &amp; b_3
+\end{pmatrix}^\intercal
+= 
+\begin{pmatrix}
+  a_1 &amp; b_1  \\
+  a_2 &amp; b_2  \\
+  a_3 &amp; b_3
+\end{pmatrix}
+\]</div>
+<p>Like vectors, matrices have a graphical/geometrical interpretation: they stretch and rotate vectors (as we will see shortly).</p>
+<p><span id='section4'></span></p>
+<h2 id="4-addition">4. Addition</h2>
+<hr>
+
+<p>Vector and matrix <strong>addition</strong> (and subtraction) is straightforward, entry-by-entry:</p>
+<div class="arithmatex">\[
+\begin{equation*}
+\begin{pmatrix}
+  a \\
+  b
+\end{pmatrix}
++
+\begin{pmatrix}
+  c \\
+  d
+\end{pmatrix}
+=
+\begin{pmatrix}
+  a+c \\
+  b+d
+\end{pmatrix}
+\end{equation*}
+\]</div>
+<div class="arithmatex">\[
+\begin{equation*}
+\begin{pmatrix}
+  a &amp; b \\
+  c &amp; d
+\end{pmatrix}
++
+\begin{pmatrix}
+  e &amp; f \\
+  g &amp; h
+\end{pmatrix}
+=
+\begin{pmatrix}
+  a+e &amp; b+f \\
+  c+g &amp; d+h
+\end{pmatrix}
+\end{equation*}
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The vectors or matrices added together must have the same dimension!</p>
+</div>
+<p>Geometrically, adding vectors is like placing the second vector at the end of the first. Below we add the black and red vectors together to get the blue vector.</p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt #import plotting library
+
+v1 = [1,2] #vector 1
+v2 = [1,0] #vector 2
+v12 = [i+j for i,j in zip(v1,v2)] #sum of the two vectors
+
+#first vector
+plt.arrow(0, 0, #starting x and y values of arrow
+          v1[0], v1[1], #change in x and y 
+          head_width=0.1, color='black', length_includes_head=True) #aesthetics
+
+#second vector placed at the end of first vector
+plt.arrow(v1[0], v1[1], #starting x and y values of arrow
+          v2[0], v2[1], #change in x and y 
+          head_width=0.1, color='red', length_includes_head=True) #aesthetics
+
+#sum of the vectors
+plt.arrow(0, 0, #starting x and y values of arrow
+          v12[0], v12[1], #change in x and y 
+          head_width=0.1, color='blue', length_includes_head=True) #aesthetics
+
+plt.xlim(0,2.5) #set bounds on x axis
+plt.ylim(0,2.5) #set bounds on y axis
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-06_files/lecture-06_6_0.png" /></p>
+<p><span id='section5'></span></p>
+<h2 id="5-multiplication">5. Multiplication</h2>
+<hr>
+
+<p>Vector and matrix <strong>multiplication</strong> by a scalar (which may be a constant, a variable, or a function, but not a matrix or a vector) is also straightforward, we just multiply every element by the scalar:</p>
+<div class="arithmatex">\[
+\begin{equation*}
+\alpha 
+\begin{pmatrix}
+  a \\
+  b
+\end{pmatrix}
+=
+\begin{pmatrix}
+  \alpha a \\
+  \alpha b
+\end{pmatrix}
+\end{equation*}
+\]</div>
+<div class="arithmatex">\[
+\begin{equation*}
+\alpha 
+\begin{pmatrix}
+  a &amp; b\\
+  c &amp; d
+\end{pmatrix}
+=
+\begin{pmatrix}
+  \alpha a &amp; \alpha b\\
+  \alpha c &amp; \alpha d
+\end{pmatrix}
+\end{equation*}
+\]</div>
+<p>Geometrically, multiplying by a scalar stretches (if <span class="arithmatex">\(\alpha&gt;1\)</span>) or compresses (if <span class="arithmatex">\(\alpha&lt;1\)</span>) a vector. Below we multiply the black vector by <span class="arithmatex">\(1/2\)</span> to get the red vector.</p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt #import plotting library
+
+v1 = [1,2] #vector 1
+alpha = 1/2 #scalar
+v2 = [i*alpha for i in v1] #multiplication by a scalar
+
+#original vector
+plt.arrow(0, 0, #starting x and y values of arrow
+          v1[0], v1[1], #change in x and y 
+          head_width=0.1, color='black', length_includes_head=True) #aesthetics
+
+#stretched vector
+plt.arrow(0, 0, #starting x and y values of arrow
+          v2[0], v2[1], #change in x and y 
+          head_width=0.1, color='red', length_includes_head=True) #aesthetics
+
+plt.xlim(0,2.5) #set bounds on x axis
+plt.ylim(0,2.5) #set bounds on y axis
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-06_files/lecture-06_8_0.png" /></p>
+<p>Multiplying vectors and matrices together is a bit trickier, but is based on the fact that a row vector times a column vector is equal to the sum of the products of their respective entries</p>
+<div class="arithmatex">\[
+\begin{equation*}
+\begin{pmatrix} a &amp; b &amp; c \end{pmatrix}
+\begin{pmatrix}
+  x \\
+  y \\
+  z
+\end{pmatrix}
+= ax + by + cz
+\end{equation*}
+\]</div>
+<p>This is referred to as the <strong>dot product</strong>. (There are other types of products for vectors and matrices, which we won't cover in this class.)</p>
+<p>To multiply a matrix by a vector, this procedure is repeated: first for the first row of the matrix, then for the second row of the matrix, etc, and stacking the sums in the resulting vector,</p>
+<div class="arithmatex">\[
+\begin{equation*}
+\begin{pmatrix}
+  a &amp; b &amp; c \\
+  d &amp; e &amp; f \\
+  g &amp; h &amp; i
+\end{pmatrix}
+\begin{pmatrix}
+  x \\
+  y \\
+  z
+\end{pmatrix}
+=
+\begin{pmatrix}
+  ax + by + cz \\
+  dx + ey + fz \\
+  gx + hy + iz \\
+\end{pmatrix}
+\end{equation*}
+\]</div>
+<p>Geometrically, multiplying a vector by a matrix stretches <em>and</em> rotates a vector. Below we multiply the black vector by a matrix to get the red vector.</p>
+<pre data-executable="true" data-language="python">
+import matplotlib.pyplot as plt #import plotting library
+from sympy import *
+
+v = Matrix([[2],[1]]) #column vector
+M = Matrix([[1,-1],[1,1/4]]) #matrix
+u = M*v
+
+#original vector
+plt.arrow(0, 0, #starting x and y values of arrow
+          float(v[0]), float(v[1]), #change in x and y 
+          head_width=0.1, color='black', length_includes_head=True) #aesthetics
+
+#stretched and rotated vector
+plt.arrow(0, 0, #starting x and y values of arrow
+          float(u[0]), float(u[1]), #change in x and y 
+          head_width=0.1, color='red', length_includes_head=True) #aesthetics
+
+plt.xlim(0,2.5) #set bounds on x axis
+plt.ylim(0,2.5) #set bounds on y axis
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-06_files/lecture-06_10_0.png" /></p>
+<p>To multiply a matrix by a matrix, the same procedure is then also repeated acros the columns of the second matrix: first for the first column of the second matrix, then for the second column of the second matrix, etc, and placing the sums in their respective rows and columns of the resulting matrix,</p>
+<div class="arithmatex">\[
+\begin{equation*}
+\begin{pmatrix}
+  a &amp; b \\
+  c &amp; d
+\end{pmatrix}
+\begin{pmatrix}
+  e &amp; f \\
+  g &amp; h
+\end{pmatrix}
+=
+\begin{pmatrix}
+  ae + bg &amp; af + bh \\
+  ce + dg &amp; cf + dh
+\end{pmatrix}
+\end{equation*}
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>An <span class="arithmatex">\(m \times n\)</span> matrix (or vector) <span class="arithmatex">\(\mathbf{A}\)</span> can be multiplied on the right by <span class="arithmatex">\(\mathbf{B}\)</span> <em>only</em> if <span class="arithmatex">\(\mathbf{B}\)</span> is an <span class="arithmatex">\(n \times p\)</span> matrix (or vector). The resulting matrix (or vector) will then be <span class="arithmatex">\(m \times p\)</span>. </p>
+</div>
+<p>As opposed to basic algebra, matrix multiplication is <em>not</em> commutative. That is, <span class="arithmatex">\(\mathbf{AB}\)</span> does not generally equal <span class="arithmatex">\(\mathbf{BA}\)</span>.</p>
+<p>This means that if we want to multiply both sides of an equation, e.g., <span class="arithmatex">\(\mathbf{AB} = \mathbf{C}\)</span>, by <span class="arithmatex">\(\mathbf{D}\)</span>, we need to do so on the same side, either multiplying by <span class="arithmatex">\(\mathbf{D}\)</span> on the right <span class="arithmatex">\(\mathbf{ABD} = \mathbf{CD}\)</span> or on the left <span class="arithmatex">\(\mathbf{DAB} = \mathbf{DC}\)</span>. </p>
+<p>On the other hand, matrix multiplication does satisfy the other basic algebra rules:</p>
+<ul>
+<li><span class="arithmatex">\((\mathbf{AB})\mathbf{C} = \mathbf{A}(\mathbf{BC})\)</span> (associative law)</li>
+<li><span class="arithmatex">\(\mathbf{A}(\mathbf{B+C}) = \mathbf{AB}+\mathbf{AC}\)</span> (distributive law)</li>
+<li><span class="arithmatex">\((\mathbf{A}+\mathbf{B})\mathbf{C} = \mathbf{AC}+\mathbf{BC}\)</span> (distributive law)</li>
+<li><span class="arithmatex">\(\alpha(\mathbf{AB}) = (\alpha\mathbf{A})\mathbf{B} = \mathbf{A}(\alpha\mathbf{B}) = (\mathbf{A}\mathbf{B})\alpha\)</span> (commutative law for scalars)</li>
+</ul>
+<p>Multiplication between the identity matrix and any vector, <span class="arithmatex">\(\vec{v}\)</span>, or square matrix, <span class="arithmatex">\(\mathbf{M}\)</span>, has no effect (the identity matrix is like a "1" in basic algebra),</p>
+<div class="arithmatex">\[
+\mathbf{I}\vec{v}=\vec{v}
+\]</div>
+<div class="arithmatex">\[
+\mathbf{I}\mathbf{M}=\mathbf{M}\mathbf{I}=\mathbf{M}
+\]</div>
+<p><span id='section6'></span></p>
+<h2 id="6-summary">6. Summary</h2>
+<hr>
+
+<p>We can represent linear multivariate models in terms of matrices and vectors that are added and multiplied together.</p>
+<p>You can now check for yourself that the matrix version of the bird model</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n} + \vec{m},
+\]</div>
+<p>with </p>
+<div class="arithmatex">\[
+\begin{aligned}
+\vec{n} &amp;= \begin{pmatrix} n_1 \\ n_2 \end{pmatrix}\\
+\mathbf{M} &amp;= \begin{pmatrix} b_1 - d_1 - m_{21} &amp; m_{12} \\ m_{21} &amp; b_2 - d_2 - m_{12} \end{pmatrix}\\
+\vec{m} &amp;= \begin{pmatrix} m_1 \\ m_2 \end{pmatrix},
+\end{aligned}
+\]</div>
+<p>is equivalent to the coupled differential equation version,</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d}n_1}{\mathrm{d}t} &amp;= (b_1 - d_1 - m_{21})n_1 + m_{12} n_2 + m_1 \\
+\frac{\mathrm{d}n_2}{\mathrm{d}t} &amp;= m_{21} n_1 + (b_2 - d_2 - m_{12})n_2 + m_2,
+\end{aligned}
+\]</div>
+<p>by evaluating <span class="arithmatex">\(\mathbf{M}\vec{n} + \vec{m}\)</span>.</p>
+<p>We would also like to be comfortable creating the matrices and vectors for a given set of linear differential or recursion equations. For example, given</p>
+<div class="arithmatex">\[
+\begin{aligned}
+x_1(t+1) &amp;= b + a x_1(t) \\
+x_2(t+1) &amp;= - d x_2(t) + c x_1(t) ,
+\end{aligned}
+\]</div>
+<p>what are <span class="arithmatex">\(\mathbf{A}\)</span> and <span class="arithmatex">\(\vec{v}\)</span> such that <span class="arithmatex">\(\vec{x}(t+1) = \mathbf{A}\vec{x}(t) + \vec{v}\)</span>?</p>
+<p>Practice questions from the textbook: Exercises P2.1-P2.5.</p>
+<pre data-executable="true" data-language="python">
+
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

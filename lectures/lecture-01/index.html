@@ -1,0 +1,2430 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../schedule/">
+      
+      
+        <link rel="next" href="../lecture-02/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Lecture 1 - Mathematical modelling in ecology and evolution (EEB314)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+  
+  
+    
+      
+      
+      
+    
+  
+  
+  <style>:root{.md-tag{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M5.5%207A1.5%201.5%200%200%201%204%205.5%201.5%201.5%200%200%201%205.5%204%201.5%201.5%200%200%201%207%205.5%201.5%201.5%200%200%201%205.5%207m15.91%204.58-9-9C12.05%202.22%2011.55%202%2011%202H4c-1.11%200-2%20.89-2%202v7c0%20.55.22%201.05.59%201.41l8.99%209c.37.36.87.59%201.42.59s1.05-.23%201.41-.59l7-7c.37-.36.59-.86.59-1.41%200-.56-.23-1.06-.59-1.42%22/%3E%3C/svg%3E');}}</style>
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-1-why-and-how-to-build-a-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Mathematical modelling in ecology and evolution (EEB314)" class="md-header__button md-logo" aria-label="Mathematical modelling in ecology and evolution (EEB314)" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mathematical modelling in ecology and evolution (EEB314)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../syllabus/course_structure/" class="md-tabs__link">
+          
+  
+  
+  Syllabus
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../schedule/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../labs/schedule/" class="md-tabs__link">
+          
+  
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../acknowledgements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Acknowledgements
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Mathematical modelling in ecology and evolution (EEB314)" class="md-nav__button md-logo" aria-label="Mathematical modelling in ecology and evolution (EEB314)" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    Mathematical modelling in ecology and evolution (EEB314)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syllabus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Syllabus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instructors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    When and where
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/previous_tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-to-build-a-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why to build a model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Why to build a model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motivating-model-evolution-during-extreme-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motivating model: evolution during extreme events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-to-build-a-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How to build a model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. How to build a model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-formulate-the-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i. Formulate the question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ii-determine-the-basic-ingredients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ii. Determine the basic ingredients
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iii-qualitatively-describe-the-biological-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iii. Qualitatively describe the biological system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iv-quantitatively-describe-the-biological-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iv. Quantitatively describe the biological system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v-analyze-the-equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v. Analyze the equations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi-checks-and-balances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vi. Checks and balances
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vii-relate-the-results-back-to-the-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vii. Relate the results back to the question
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 17
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 20
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acknowledgements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-to-build-a-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why to build a model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Why to build a model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#motivating-model-evolution-during-extreme-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motivating model: evolution during extreme events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-to-build-a-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How to build a model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. How to build a model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i-formulate-the-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i. Formulate the question
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ii-determine-the-basic-ingredients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ii. Determine the basic ingredients
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iii-qualitatively-describe-the-biological-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iii. Qualitatively describe the biological system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iv-quantitatively-describe-the-biological-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iv. Quantitatively describe the biological system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v-analyze-the-equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v. Analyze the equations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi-checks-and-balances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vi. Checks and balances
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vii-relate-the-results-back-to-the-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vii. Relate the results back to the question
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
+<h1 id="lecture-1-why-and-how-to-build-a-model">Lecture 1: Why and how to build a model</h1>
+<hr style="margin-bottom: 0em;">
+<center>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+</center>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Why to build a model</a></li>
+<li><a href="#section2">How to build a model</a></li>
+<li><a href="#section3">Summary</a></li>
+</ol>
+<p><span id='section1'></span></p>
+<h2 id="1-why-to-build-a-model">1. Why to build a model</h2>
+<hr>
+
+<p>Mathematics permeates ecology and evolution, from simple back-of-the-envelope calculations to the development of sophisticated mathematical models. This is because mathematics is a unique tool that can take what we already know (or assume to be true) and rigorously lead us to the logical conclusions.</p>
+<p>To see this (while also introducing you to the kind of models I work with), let's look at an example. See sections 1.2-1.4 of the text for another motivating example (within-patient HIV dynamics).</p>
+<h3 id="motivating-model-evolution-during-extreme-events">Motivating model: evolution during extreme events</h3>
+<p>This is a model that I helped Dr. Kelsey Lyberger (then a PhD student at UC Davis) with in our paper, <a href="https://www.biorxiv.org/content/10.1101/2020.04.02.014951v2">Lyberger et al 2021</a>.</p>
+<center>
+
+<img alt="kelsey" src="../lecture-01-img/kelsey.png" width=50%>
+
+</center>
+
+<center><sup>Kelsey Lyberger, doing <i>Daphnia</i> fieldwork I suppose.</sup></center>
+
+<p>Kelsey was interested in how populations respond to extreme climatic events, like lizards to hurricanes. It has long been clear that such events can impact the size of a population, e.g., by causing extra mortality, and may in fact put populations at risk of extinction. More recently it has become apparent that extreme events can also impose strong natural selection, and that populations can quickly adapt to the new environment. Some examples include:</p>
+<ul>
+<li><a href="https://www.pnas.org/doi/10.1073/pnas.2000801117">Hurricanes select on lizard limbs and toe pads</a></li>
+<li><a href="https://www.jstor.org/stable/2406980">Ice-storms select on sparrow body size</a></li>
+<li><a href="https://www.science.org/doi/10.1126/science.aad8786">Droughts select on Darwin finch beaks</a></li>
+<li><a href="https://nph.onlinelibrary.wiley.com/doi/10.1111/j.1469-8137.2010.03603.x">Droughts select on flowering time in <em>Brassica</em></a></li>
+</ul>
+<center>
+<img alt="lizards" src="../lecture-01-img/lizard.png">
+</center>
+
+<center><sup>Lizard being blown off perch by a leaf blower. Source: colindonihue.com</sup></center>
+
+<p>Now, how should such rapid adaptive evolution impact population size? This is the question Kelsey set out to answer with a mathematical model.</p>
+<details class="note">
+<summary>Details of Kelsey's model</summary>
+<p>Kelsey assumed each individual has a quantitative genetic trait, such as lizard limb length, that is determined by many alleles of small effect plus some environmental noise. Fitness is assumed to be a bell-shaped function of the difference between the optimum trait value, <span class="arithmatex">\(\theta\)</span>, and an individual's trait value, <span class="arithmatex">\(z\)</span>, which we write as <span class="arithmatex">\(W(\theta - z)\)</span>. </p>
+<p>The change in population size, <span class="arithmatex">\(N\)</span>, from one generation to rate the next is the current population size times mean fitness, <span class="arithmatex">\(\overline{W}(\theta - \bar{z})\)</span>, the latter depending on the population mean trait value, <span class="arithmatex">\(\bar{z}\)</span>. This gives</p>
+<p><span class="arithmatex">\(\Delta N = N \overline{W}(\theta - \bar{z}).\)</span></p>
+<p>The change in the mean trait value from one generation to the next is roughly the product of genetic variance in the trait, <span class="arithmatex">\(V_g\)</span>, and the strength of selection. The strength of selection is defined as the derivative of the natural logarithm of population mean fitness with respect to the mean trait value, <span class="arithmatex">\(\mathrm{d}\ln\overline{W}(\theta - \bar{z})/\mathrm{d}\bar{z}\)</span>. This gives</p>
+<p><span class="arithmatex">\(\Delta \bar{z} = V_g \frac{\mathrm{d}}{\mathrm{d}\bar{z}}\ln\overline{W}(\theta - \bar{z}).\)</span></p>
+<p>Together, these coupled recursion equations, <span class="arithmatex">\(\Delta N\)</span> and <span class="arithmatex">\(\Delta \bar{z}\)</span>, can be used to describe how evolution affects population size under an extreme event, which is modeled as a sudden but temporary change in the optimum phenotype, <span class="arithmatex">\(\theta\)</span>.</p>
+</details>
+<p>Below we numerically iterate the two equations above (dashed lines) and compare with stochastic simulations (solid lines) to recreate Figure 1 from Lyberger et al. With an activated kernel, you can tinker and run the code below to adjust the plot (the simulations take a few seconds). </p>
+<pre data-executable="true" data-language="python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+# choose parameter values
+Vo, Ve, event_duration, seed = 0.75, 0, 1, 0
+generations, K, w, lmbda, event_time, initial_theta_t, dtheta_t, event_duration = 110, 500, 1, 2, 100, 0, 2.5, 1
+nreps = 10
+
+# recursions
+def recursions(t0,n0,z0,lmbda,w,K,event_time,event_duration,initial_theta_t,dtheta_t,Vo,Ve,tmax=np.inf):
+
+    # initialize
+    t,nt,zt=t0,n0,z0
+
+    Vs = w**2 + Ve
+    Vg = (2*Vo - Vs + np.sqrt(4*Vo**2 + 12*Vo*Vs + Vs**2))/4
+    Vt = Vg + Vs
+
+    # yield and update
+    while t<tmax:
+        yield t, nt, zt
+        if t in np.arange(event_time, event_time + event_duration):
+            theta_t = initial_theta_t + dtheta_t #extreme event
+        else:
+            theta_t = initial_theta_t #normal
+        t += 1
+        nt = min(nt*lmbda*np.exp(-( (theta_t - zt)**2 + Vg + Ve)/ (2*Vt)), K)
+        zt += Vg*(theta_t - zt) / Vt
+
+# stochastic simulation
+def lyberger_model(Vo, Ve, event_duration, seed, generations, K, w, lmbda, event_time, initial_theta_t, dtheta_t):
+
+    # initialize population
+    members = np.random.normal(initial_theta_t, Vo**0.5, K) #K individuals with trait values distributed around the optimum
+
+    # run simulations
+    np.random.seed(seed)
+    population_size, mean_breeding_value = [], []
+    for g in range(generations):
+
+        # optimum trait value
+        if g in np.arange(event_time, event_time + event_duration):
+            theta_t = initial_theta_t + dtheta_t #extreme event
+        else:
+            theta_t = initial_theta_t #normal
+
+        # viability selection
+        prob_survival = np.array([np.exp(-(theta_t - z + np.random.normal(0, Ve))**2 / (2*w**2)) for z in members])
+        survived = np.array([True if p > np.random.uniform(0,1) else False for p in prob_survival])
+        if len(survived) == 0:
+            break
+        members = members[survived]
+
+        # random mating
+        offspring = []
+        for m in np.random.choice(members, len(members)):
+            if len(offspring) > K: #if more than K offspring already then choose K and stop matings
+                offspring = np.random.choice(offspring, K)
+                break
+            else:
+                n_off = np.random.poisson(lmbda)
+                mate = np.random.choice(members)
+                offspring += [(m + mate)/2 for _ in range(n_off)] #give offspring mean parental value
+
+        # sample new trait values for offspring
+        offspring = np.array(offspring)
+        offspring = np.random.normal(offspring, Vo) #add segregation variance
+
+        # record statistics
+        population_size.append(len(offspring))
+        mean_breeding_value.append(np.mean(offspring))
+
+        # update for next generation
+        members = offspring
+
+    return (
+        np.arange(0, generations-event_time+1), #times
+        np.array(population_size[event_time-1:]), #population size
+        np.array(mean_breeding_value[event_time-1:]) #mean trait value
+    )
+
+# initialize plot
+fig, ax = plt.subplots(2, sharex=True)
+fig.set_size_inches(8,6)
+
+# for each segregation (Vo) and environment variance (Ve) parameter combination
+for Vo, Ve, c, lab in [[0.75, 0, 'black', 'with evolution'], [0, 1, 'red', 'without evolution']]:
+
+    # plot recursions
+    tnz = recursions(0,K,initial_theta_t,lmbda,w,K,event_time,event_duration,initial_theta_t,dtheta_t,Vo/2,Ve,generations)
+    tnzs = np.array([vals for vals in tnz])
+    ax[0].plot(tnzs[event_time:,0]-event_time,tnzs[event_time:,1], color=c, linestyle='--')
+    ax[1].plot(tnzs[event_time:,0]-event_time,tnzs[event_time:,2], color=c, linestyle='--')
+
+    # plot stochastic simulations
+    simulations = np.array([lyberger_model(Vo, Ve, event_duration, s, generations, K, w, lmbda, event_time, initial_theta_t, dtheta_t) for s in range(nreps)])
+    ax[0].plot(simulations[:,0].T, simulations[:,1].T, color=c, alpha=0.3);
+    ax[1].plot(simulations[:,0].T, simulations[:,2].T, color=c, alpha=0.3);
+
+    # hack together only one instance of the legend
+    ax[0].plot([np.min(simulations[:,0].T)], [np.min(simulations[:,1].T)], alpha=1,
+                  label = lab, color=c)
+    ax[1].plot([np.min(simulations[:,0].T)], [np.min(simulations[:,2].T)], alpha=1,
+                  label = lab, color=c)
+
+# add environmental event duration
+ax[0].fill_between([0,event_duration], y1=K, alpha=0.2)
+ax[1].fill_between([0,event_duration], y1=-0.2, y2=2, alpha=0.2)
+
+# add labels
+ax[0].set_ylabel('Population size', fontsize=12)
+ax[1].set_ylabel('Mean trait value', fontsize=12)
+ax[1].set_xlabel('Generation', fontsize=14)
+
+# add legend
+plt.legend(frameon=False)
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-01_files/lecture-01_7_0.png" /></p>
+<p>The key result, that you can see in the plot above, is that when extreme events are short, adaptive evolution (black lines) can paradoxically <em>reduce</em> population size (relative to the red lines, where there is no evolution). The reason for this is that, while during the extreme event (shaded section) evolution is adaptive, once the extreme event ends the population finds itself maladapted to the original environment. Adaptive evolution can therefore hamper population persistence, and this is an important thing to keep in mind when documenting rapid adaptive evolution in response to extreme events -- it is not necessarily a good thing for the species (or our conservation goals).</p>
+<p><span id='section2'></span></p>
+<h2 id="2-how-to-build-a-model">2. How to build a model</h2>
+<hr>
+
+<p>Although many problems require specific formulations and assumptions, there are a few general principles to constructing a model.</p>
+<h3 id="i-formulate-the-question">i. Formulate the question</h3>
+<ul>
+<li>What do you want to know?</li>
+<li>Describe the model in the form of a question.</li>
+<li>Simplify, Simplify!</li>
+<li>Start with the simplest, biologically reasonable description of the problem.</li>
+</ul>
+<p>For example, we might ask: how does immigration affect population size?</p>
+<h3 id="ii-determine-the-basic-ingredients">ii. Determine the basic ingredients</h3>
+<ul>
+<li>Define the <strong>variables</strong> in the model.</li>
+<li>Describe any constraints on the variables.</li>
+<li>Describe any interactions between variables.</li>
+<li>Decide whether you will treat time as continuous or discrete.</li>
+<li>Choose a time scale (i.e., decide what a time step equals in discrete time and specify whether rates will be measured per second, minute, day, year, generation, etc.).</li>
+<li>Define the <strong>parameters</strong> in the model.</li>
+<li>Describe any constraints on the parameters.</li>
+</ul>
+<p>In our example, there is a single variable, <span class="arithmatex">\(n(t)\)</span>, denoting population size at time <span class="arithmatex">\(t\)</span>. This must be non-negative, <span class="arithmatex">\(n(t)\geq0\)</span>, to be biologically valid. </p>
+<p>We'll look at both continuous and discrete time, with an arbitrary time scale (if we wanted to plug in some numerical parameter values we'd have to specify this, but here we won't).</p>
+<p>In continuous time our parameters will be immigration rate (<span class="arithmatex">\(m\)</span>), per capita birth rate (<span class="arithmatex">\(b\)</span>), and per capita death rate (<span class="arithmatex">\(d\)</span>). These must all be non-negative under our interpretation. The units of <span class="arithmatex">\(m\)</span> are individuals/time while the units of <span class="arithmatex">\(b\)</span> and <span class="arithmatex">\(d\)</span> are simply 1/time (e.g., for birth we have the number of individuals produced per individual per time, so that individuals cancels out and we are left with 1/time).</p>
+<p>In discrete time the parameters will be the average number of immigrants per time step (<span class="arithmatex">\(M\)</span>), the average number of offspring per individual per time step (<span class="arithmatex">\(B\)</span>), and the fraction of individuals that die each time step (<span class="arithmatex">\(D\)</span>). These must all be non-negative and <span class="arithmatex">\(D\)</span> must also be less than or equal to 1 as it is a fraction. </p>
+<h3 id="iii-qualitatively-describe-the-biological-system">iii. Qualitatively describe the biological system</h3>
+<ul>
+<li>For continuous-time models, draw a <strong>flow diagram</strong> to describe changes to the variables over time.</li>
+<li>For discrete-time models, draw a <strong>life-cycle diagram</strong> with all the events that occur each time unit.</li>
+<li>For discrete time models with multiple variables and events, construct a table listing the outcome of every event.</li>
+</ul>
+<p>For our continuous-time example we could draw the following:</p>
+<center>
+<pre class="mermaid"><code>graph LR;
+    A((n)) --birth--&gt; A;
+    B[ ] --migration--&gt; A;
+    A --death--&gt; C[ ];
+    style B height:0px;
+    style C height:0px;</code></pre>
+</center>
+
+<p>For our discrete-time example, if we assume migration, then birth, then death each time step, we could draw the following:</p>
+<center>
+<pre class="mermaid"><code>graph LR;
+    A((n)) --migration--&gt; B((n'));
+    B --birth--&gt; C((n''));
+    C --death--&gt; A;</code></pre>
+</center>
+
+<p>We'll see an example of a table of events later in the course.</p>
+<h3 id="iv-quantitatively-describe-the-biological-system">iv. Quantitatively describe the biological system</h3>
+<ul>
+<li>Using the diagrams and tables as a guide, write down the equations. Perform checks. Are the constraints on the variables still met as time passes? Make sure that the units of the right-hand side equal those on the left-hand side.</li>
+<li>For continuous-time models, add rates for arrows coming in to the flow diagram and subtract rates for arrows coming out of the flow diagram. </li>
+</ul>
+<p>For example, in the model shown above the rate of change in the number of individuals, <span class="arithmatex">\(\frac{\mathrm{d} n}{\mathrm{d} t}\)</span>, is</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{\mathrm{d} n}{\mathrm{d} t} &amp;= m + b n(t) - d n(t)\\
+&amp;= m + (b - d) n(t)
+\end{aligned}
+\]</div>
+<p>This is a <strong>differential equation</strong>.</p>
+<p>In discrete time, you must take into account the order of events when constructing equations. To build an equation for the population size in the next generation, <span class="arithmatex">\(n(t+1)\)</span>, based on the life-cycle diagram above, first construct an equation for each event </p>
+<div class="arithmatex">\[n' = n(t) + M\]</div>
+<div class="arithmatex">\[n'' = n' + Bn'\]</div>
+<div class="arithmatex">\[n(t+1) = n'' - Dn''\]</div>
+<p>Next, substitute <span class="arithmatex">\(n''\)</span> and then <span class="arithmatex">\(n'\)</span> into the equation for <span class="arithmatex">\(n(t+1)\)</span> to write <span class="arithmatex">\(n(t+1)\)</span> in terms of <span class="arithmatex">\(n(t)\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+n(t+1) &amp;= n'' − Dn'' \\
+&amp;= (n' + Bn') − D(n' + Bn') \\
+&amp;= n'(1 + B − D − DB) \\
+&amp;= (n(t) + M)(1 + B − D − DB) \\
+\end{aligned}
+\]</div>
+<p>We now have a <strong>recursion equation</strong> that correctly takes into account the order of the life cycle (migration, birth, death) and the point at which the census is taken (immediately after death).</p>
+<h3 id="v-analyze-the-equations">v. Analyze the equations</h3>
+<ul>
+<li>Start by using the equations to simulate and graph the changes to the system over time. </li>
+<li>Choose and perform appropriate analyses.</li>
+<li>Make sure that the analyses can address the problem.</li>
+</ul>
+<p>We'll save the mathematical analyses for later in the course, but let's try simulating the recursion equations here to get a sense of the dynamics (we'll learn more about how to do this in the next lecture).</p>
+<pre data-executable="true" data-language="python">
+import numpy as np
+import matplotlib.pyplot as plt
+
+# define a genarator to efficiently run the recursion
+def recursion(n0, b, d, m, tmax):
+    t,n=0,n0 #initial conditions
+    while t < tmax:
+        yield t,n #output current state
+        t += 1 #update time
+        n = (n + m) * (1 + b - d - b*d) #update population size using the recursion equation we derived above
+
+# simulate and plot
+fig, ax = plt.subplots()
+
+n0, b, d, tmax, dt = 1, 0.05, 0.1, 100, 0.1 #parameter values
+for m in [0,1]:
+    tn = recursion(n0, b, d, m, tmax) #define recursion
+    tns = np.array([vals for vals in tn]) #get output
+    ax.scatter(tns[:,0], tns[:,1], label='M=%s'%m) #plot population size at each time
+
+ax.set_xlabel('time, $t$')
+ax.set_ylabel('population size, $n(t)$')
+plt.legend()
+plt.show()
+</pre>
+
+<p><img alt="png" src="../lecture-01_files/lecture-01_10_0.png" /></p>
+<p>How does migration affect population size?</p>
+<h3 id="vi-checks-and-balances">vi. Checks and balances</h3>
+<ul>
+<li>Check the results against data or any known special cases.</li>
+<li>Determine how general the results are.</li>
+<li>Consider alternatives to the simplest model.</li>
+<li>Extend or simplify the model, as appropriate, and repeat steps 2-5.</li>
+</ul>
+<p>If <span class="arithmatex">\(b&gt;d\)</span> (or <span class="arithmatex">\(B&gt;D\)</span>) the population grows without bound (try this in the code above). But competition should prevent unbounded population growth. We could therefore extend the model to include competition.</p>
+<h3 id="vii-relate-the-results-back-to-the-question">vii. Relate the results back to the question</h3>
+<ul>
+<li>Do the results answer the biological question?</li>
+<li>Are the results counter-intuitive? Why?</li>
+<li>Interpret the results verbally, and describe conceptually any new insights into the biological process.</li>
+<li>Describe potential experiments.</li>
+</ul>
+<p>Immigration appears to increase the population size (compare <span class="arithmatex">\(M=0\)</span> and <span class="arithmatex">\(M=1\)</span> in the plot above), though we'd need to do the mathematical analysis to be more confident in this statement. </p>
+<p>There is some counter-intuitiveness in the discrete model: try creating the recursion equation for a different order of events in the lifecycle. The recursion equation depends on the order and will therefore lead to different dynamics.</p>
+<p>Potential experiments incude manipulating immigration in lab populations (e.g., bacteria) or comparing population sizes on islands that are different distances from the mainland.</p>
+<p><span id='section3'></span></p>
+<h2 id="3-summary">3. Summary</h2>
+<hr>
+
+<ul>
+<li>Mathematical models take us from assumptions to conclusions</li>
+<li>There is a recipe to build them</li>
+</ul>
+<p>Practice questions from the textbook: 2.1 - 2.8</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

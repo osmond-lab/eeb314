@@ -1,0 +1,2091 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lecture-18/">
+      
+      
+        <link rel="next" href="../lecture-20/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../images/favicon_non_transparent.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Lecture 19 - Mathematical modelling in ecology and evolution (EEB314)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+  
+  
+    
+      
+      
+      
+    
+  
+  
+  <style>:root{.md-tag{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M5.5%207A1.5%201.5%200%200%201%204%205.5%201.5%201.5%200%200%201%205.5%204%201.5%201.5%200%200%201%207%205.5%201.5%201.5%200%200%201%205.5%207m15.91%204.58-9-9C12.05%202.22%2011.55%202%2011%202H4c-1.11%200-2%20.89-2%202v7c0%20.55.22%201.05.59%201.41l8.99%209c.37.36.87.59%201.42.59s1.05-.23%201.41-.59l7-7c.37-.36.59-.86.59-1.41%200-.56-.23-1.06-.59-1.42%22/%3E%3C/svg%3E');}}</style>
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-19-the-evolution-of-dominance" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Mathematical modelling in ecology and evolution (EEB314)" class="md-header__button md-logo" aria-label="Mathematical modelling in ecology and evolution (EEB314)" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mathematical modelling in ecology and evolution (EEB314)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 19
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../syllabus/course_structure/" class="md-tabs__link">
+          
+  
+  
+  Syllabus
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../schedule/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../labs/schedule/" class="md-tabs__link">
+          
+  
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../acknowledgements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Acknowledgements
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Mathematical modelling in ecology and evolution (EEB314)" class="md-nav__button md-logo" aria-label="Mathematical modelling in ecology and evolution (EEB314)" data-md-component="logo">
+      
+  <img src="../../images/favicon_non_transparent.svg" alt="logo">
+
+    </a>
+    Mathematical modelling in ecology and evolution (EEB314)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syllabus
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Syllabus
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/course_structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/instructors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instructors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/when_and_where/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    When and where
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/textbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/final_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/previous_tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/general_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../syllabus/resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 17
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 19
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-resident-equilibrium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Resident equilibrium
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mutant-invasion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Mutant invasion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture-20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 20
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/tutorial-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Acknowledgements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecture overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-resident-equilibrium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Resident equilibrium
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mutant-invasion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Mutant invasion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<script type="text/x-thebe-config">
+  {
+      requestKernel: true,
+      mountActivateWidget: true,
+      mountStatusWidget: true,
+      binderOptions: {
+      repo: "mmosmond/executable-cells",
+      ref: "main",
+      },
+  }
+</script>
+<script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+<p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
+<h1 id="lecture-19-the-evolution-of-dominance">Lecture 19: The evolution of dominance</h1>
+<hr style="margin-bottom: 0em;">
+<center>
+<div class="inrow">
+    Run notes interactively?
+    <div style="float: left;" class="thebe-activate"></div>
+    <div class="thebe-status"></div>
+</div>
+</center>
+<hr style="margin-top: 0em;">
+
+<h2 id="lecture-overview">Lecture overview</h2>
+<ol>
+<li><a href="#section1">Model</a></li>
+<li><a href="#section2">Resident equilibrium</a></li>
+<li><a href="#section3">Mutant invasion</a></li>
+<li><a href="#section4">Summary</a></li>
+</ol>
+<p>So far we've considered the invasion of a mutant whose dynamics is described by a single equation (e.g., <span class="arithmatex">\(\mathrm{d}I_m/\mathrm{d}t\)</span> in the previous lecture). We can extend this analysis to consider structured populations of mutants, e.g., age- or spatial-structure. The general approach is the same: find a stable resident equilibria and evaluate the Jacobian at that equilibrium to determine the mutant's invasion fitness. The only difference is that the submatrix describing the mutant's invasion is no longer 1x1, meaning the invasion fitness (eigenvalues) can be a little more complicated.</p>
+<p>Below we will demonstrate the general method with a specific example: the evolution of dominance. The motivating observation is that many deleterious alleles are recessive, meaning the wild-type allele partially shields a heterozygote individual from selection. There are many examples in humans, such as sickle cell anemia and cystic fibrosis. In these examples the fitness of heterozygous individuals is indistinguishable from those without any deleterious mutations. Could the dominance of a wild-type allele over a deleterious allele be the result of adaptive evolution? To ask this question we perform an evolutionary invasion analysis on a population with genetic structure. This type of model is often referred to as a <strong>modifier model</strong> within the field of population genetics.</p>
+<p><span id='section1'></span></p>
+<h2 id="1-model">1. Model</h2>
+<hr>
+
+<p>The model is an extension of the 2-locus model we developed in lecture 13 to include mutation (see also lecture 15). We consider two loci each with two alleles. At one locus we have alleles <span class="arithmatex">\(A_1\)</span> and <span class="arithmatex">\(A_2\)</span>. We'll treat <span class="arithmatex">\(A_1\)</span> as the wild-type allele and <span class="arithmatex">\(A_2\)</span> as the deleterious allele and refer to this <span class="arithmatex">\(A\)</span> locus as the selected locus. At the other locus we have alleles <span class="arithmatex">\(B_1\)</span> and <span class="arithmatex">\(B_2\)</span>. We'll treat <span class="arithmatex">\(B_1\)</span> as the resident allele and <span class="arithmatex">\(B_2\)</span> as the mutant (modifier) and refer to this <span class="arithmatex">\(B\)</span> locus as the modifier locus. The analysis will determine when <span class="arithmatex">\(B_2\)</span> can invade. </p>
+<p>We consider diploid selection. Let the relative fitness of any individual with <span class="arithmatex">\(A_1 A_1\)</span> be 1 and the relative fitness of any individual with <span class="arithmatex">\(A_2 A_2\)</span> be <span class="arithmatex">\(1-s\)</span>, with <span class="arithmatex">\(0&lt;s&lt;1\)</span>. The relative fitnesses of the <span class="arithmatex">\(A_1 A_2\)</span> heterozygotes are affected by their genotype at the <span class="arithmatex">\(B\)</span> locus:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">diploid genotype</th>
+<th style="text-align: center;">relative fitness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1A_2\)</span> <span class="arithmatex">\(B_1B_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1 - h_{11}s\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1A_2\)</span> <span class="arithmatex">\(B_1B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1 - h_{12}s\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1A_2\)</span> <span class="arithmatex">\(B_2B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(1 - h_{22}s\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>We census the population in the haploid phase and keep track of the 4 haploid genotype frequencies:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">genotype</th>
+<th style="text-align: center;">frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_1\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_1B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_2\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_2B_1\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_3\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(A_2B_2\)</span></td>
+<td style="text-align: center;"><span class="arithmatex">\(x_4\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>with the constraint that the total frequency sums to one, <span class="arithmatex">\(x_1+x_2+x_3+x_4 = 1\)</span>.</p>
+<p>We treat time as discrete and assume the following life-cycle:</p>
+<p><center>
+<pre class="mermaid"><code>graph LR;
+    A((census)) --&gt; B((gamete union));
+    B --&gt; C((selection));
+    C --&gt; D((meiosis/recombination));    
+    D --&gt; E((mutation));
+    E --&gt; A</code></pre>
+</center></p>
+<p>After selection but before mutation the frequencies are as they were in lecture 13,</p>
+<div class="arithmatex">\[\begin{align}
+x_1' &amp;= x_1(t) \sum_{i=1}^{4} x_i(t) w_{1i}/\bar{w} - r D^* \\
+x_2' &amp;= x_2(t) \sum_{i=1}^{4} x_i(t) w_{2i}/\bar{w} + r D^* \\
+x_3' &amp;= x_3(t) \sum_{i=1}^{4} x_i(t) w_{3i}/\bar{w} + r D^* \\
+x_4' &amp;= x_4(t) \sum_{i=1}^{4} x_i(t) w_{4i}/\bar{w} - r D^*,
+\end{align}\]</div>
+<p>where <span class="arithmatex">\(w_{ij}=w_{ji}\)</span> is the fitness of the diploid that is composed of haploid genotypes <span class="arithmatex">\(i\)</span> and <span class="arithmatex">\(j\)</span>, <span class="arithmatex">\(\bar{w}\)</span> is the population mean fitness, and <span class="arithmatex">\(D^*=x_1(t)x_4(t) w_{14}/\bar{w} - x_2(t)x_3(t) w_{23}/\bar{w}\)</span> is linkage disequilibrium after selection.</p>
+<p>We assume <span class="arithmatex">\(A_1\)</span> mutates to <span class="arithmatex">\(A_2\)</span> with probability <span class="arithmatex">\(\mu\)</span> and ignore back mutations (a relatively safe assumption given that the deleterious <span class="arithmatex">\(A_2\)</span> allele will be rare and therefore will create few mutants). The recursion equations are then</p>
+<div class="arithmatex">\[\begin{align}
+x_1(t+1) &amp;= (1-\mu)x_1'\\
+x_2(t+1) &amp;= (1-\mu)x_2'\\
+x_3(t+1) &amp;= x3' + \mu x_1'\\
+x_4(t+1) &amp;= x4' + \mu x_2'.
+\end{align}\]</div>
+<p><span id='section2'></span></p>
+<h2 id="2-resident-equilibrium">2. Resident equilibrium</h2>
+<hr>
+
+<p>We cannot find all equilibria of this system of nonlinear equations, but we can find some. Here we are most interested in the "resident" equilibrium where there are no <span class="arithmatex">\(B_2\)</span> alleles, <span class="arithmatex">\(\hat{x}_2=\hat{x}_4=0\)</span>, which reduces us back to a one locus (A) model. We'll also take <span class="arithmatex">\(h_{11}=1/2\)</span> for simplicity, meaning that the resident <span class="arithmatex">\(B_1\)</span> allele makes the <span class="arithmatex">\(A\)</span> locus additive. Then there is a relatively simple resident equilibrium, </p>
+<div class="arithmatex">\[
+\begin{align}
+\hat{x}_1 = 1 - \frac{\mu}{(1+\mu)s/2} \\
+\hat{x}_3 = \frac{\mu}{(1+\mu)s/2},
+\end{align}
+\]</div>
+<p>which says that the deleterious <span class="arithmatex">\(A_2\)</span> allele is maintained at a balance between its removal by selection and its generation by mutation. This equilibrium is valid as long as <span class="arithmatex">\(\mu&lt;(1+\mu)s/2\)</span>, which means mutation is weak relative to selection.</p>
+<p><span id='section3'></span></p>
+<h2 id="3-mutant-invasion">3. Mutant invasion</h2>
+<hr>
+
+<p>To evaluate the stability of this equilibrium we use the Jacobian evaluated at the resident equilibrium. Because we have 4 equations this is a 4x4 matrix. But if we arrange the equations in the following order, <span class="arithmatex">\(x_1(t+1), x_3(t+1), x_2(t+1), x_4(t+1)\)</span>, then the Jacobian at the resident equilibrium can be written as an upper triangular block matrix, </p>
+<div class="arithmatex">\[
+\mathbf{J}|_{x_1=\hat{x}_1,x_3=\hat{x}_3,x_2=x_4=0} = \begin{bmatrix} \mathbf{J}_\mathrm{res} &amp; \mathbf{V} \\ \mathbf{0} &amp; \mathbf{J}_\mathrm{mut}\end{bmatrix}.
+\]</div>
+<p>Here <span class="arithmatex">\(\mathbf{J}_\mathrm{res}\)</span> describes the stability of the resident equilibrium in the absence of any <span class="arithmatex">\(B_2\)</span> alleles and <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span> describes the stability of the resident equilibrium in the face of rare <span class="arithmatex">\(B_2\)</span> alleles. One can show that the eigenvalues of <span class="arithmatex">\(\mathbf{J}_\mathrm{res}\)</span> are always less than 1 when the resident equilibrium is valid, guaranteeing stability. </p>
+<p>We want to know whether <span class="arithmatex">\(B_2\)</span> alleles can invade the resident equilibrium. In this case of a structured mutant population, invasion fitness is the leading eigenvalue of <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span>. Unfortunately the eigenvalues are a little complicated, but we can make some progress with a little trick. The equation for the eigenvalues of <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span> is </p>
+<div class="arithmatex">\[
+\lambda^2 - \mathrm{Tr}(\mathbf{J}_\mathrm{mut}) \lambda + \mathrm{Det}(\mathbf{J}_\mathrm{mut}) = 0.
+\]</div>
+<p>Now, given that <span class="arithmatex">\(\lambda\)</span> is the invasion fitness of a mutant with dominance coefficient <span class="arithmatex">\(h_{12}\)</span> in a resident population with dominance coefficient <span class="arithmatex">\(h_{11}=1/2\)</span>, the selection gradient is <span class="arithmatex">\(\frac{\partial\lambda}{\partial h_{12}}|_{h_{12}=1/2}\)</span>. The trick is that we can get the selection gradient directly from the equation above without solving for invasion fitness. To make the dependence on <span class="arithmatex">\(h_{12}\)</span> clear and simplify the notation, write <span class="arithmatex">\(\lambda=\lambda(h_{12})\)</span>, <span class="arithmatex">\(-\mathrm{Tr}(\mathbf{J}_\mathrm{mut})=a(h_{12})\)</span>, and <span class="arithmatex">\(\mathrm{Det}(\mathbf{J}_\mathrm{mut})=b(h_{12})\)</span>. We can then differentiate the equation above with respect to <span class="arithmatex">\(h_{12}\)</span> and rearrange for the selection gradient,</p>
+<div class="arithmatex">\[
+\begin{align}
+\frac{\partial}{\partial h_{12}} \left( \lambda(h_{12})^2 + a(h_{12}) \lambda(h_{12}) + b(h_{12}) \right) &amp;= 0 \\
+2\lambda(h_{12})\frac{\partial \lambda}{\partial h_{12}} + \frac{\partial a}{\partial h_{12}} \lambda(h_{12}) + a(h_{12}) \frac{\partial \lambda}{\partial h_{12}} + \frac{\partial b}{\partial h_{12}} &amp;= 0 \\
+\frac{\partial \lambda}{\partial h_{12}}(2\lambda(h_{12}) + a(h_{12})) &amp;= - \frac{\partial a}{\partial h_{12}} \lambda(h_{12}) - \frac{\partial b}{\partial h_{12}} \\
+\frac{\partial \lambda}{\partial h_{12}} &amp;= - \frac{\frac{\partial a}{\partial h_{12}} \lambda(h_{12}) + \frac{\partial b}{\partial h_{12}}}{2\lambda(h_{12}) + a(h_{12})}
+\end{align}
+\]</div>
+<p>We then evaluate at <span class="arithmatex">\(h_{12}=1/2\)</span>, which is where the mutant is equivalent to the resident, i.e., <span class="arithmatex">\(\lambda(1/2)=1\)</span>,</p>
+<div class="arithmatex">\[
+\begin{align}
+\left.\frac{\partial \lambda}{\partial h_{12}}\right|_{h_{12}=1/2} &amp;= - \left(\frac{\frac{\partial a}{\partial h_{12}}\lambda(h_{12}) + \frac{\partial b}{\partial h_{12}}}{2\lambda(h_{12})+a(h_{12})}\right)_{h_{12}=1/2} \\
+ &amp;= - \left(\frac{\left.\frac{\partial a}{\partial h_{12}}\right|_{h_{12}=1/2}\lambda(1/2) + \left.\frac{\partial b}{\partial h_{12}}\right|_{h_{12}=1/2}}{2\lambda(1/2)+a(1/2)}\right) \\
+ &amp;= - \left(\frac{\left.\frac{\partial a}{\partial h_{12}}\right|_{h_{12}=1/2} + \left.\frac{\partial b}{\partial h_{12}}\right|_{h_{12}=1/2}}{2+a(1/2)}\right) \\
+ &amp;= - \frac{2(4r + s(1-2r))(s(1+\mu)-2\mu)\mu}{s(s(1+\mu) - 2\mu + r(2-s)(1-\mu^2))}.
+\end{align}
+\]</div>
+<p>Given biological validity, <span class="arithmatex">\(\mu&lt;(1+\mu)s/2\)</span>, this is always negative (recall that <span class="arithmatex">\(r\leq 1/2\)</span>). Therefore there is always selection to reduce the dominance coefficient, <span class="arithmatex">\(h\)</span>. This means that selection could be responsible for making deleterious mutations recessive! However, there is a massive caveat. While the selection gradient is negative it is also proportional to <span class="arithmatex">\(\mu\)</span>, which is tiny. This means that selection for recessive deleterious mutations is exceptionaly weak and so is easily overwhelmed by other forces (eg, genetic drift, migration, etc). The biological reason for such weak selection is that selection only acts on the variation that is present, and deleterious mutations are very rare at mutation-selection balance, <span class="arithmatex">\(\mu/((1+\mu)s/2)\)</span>.  </p>
+<p><span id='section4'></span></p>
+<h2 id="4-summary">4. Summary</h2>
+<hr>
+
+<ul>
+<li>
+<p>We can perform evolutionary invasion analysis in structured populations, e.g., here the mutant (modifier) allele can be paired with the advantageous or deleterious allele, meaing we have multiple equations describing the mutant's invasion. In this case the invasion fitness is determined by the eigenvalues of the mutant portion of the Jacobian, <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span></p>
+</li>
+<li>
+<p>We can find the selection gradient without first solving for the invasion fitness by differentiating the characteristic polynomial of <span class="arithmatex">\(\mathbf{J}_\mathrm{mut}\)</span></p>
+</li>
+<li>
+<p>Selection favours masking deleterious mutations, but this selection is extremely weak</p>
+</li>
+</ul>
+<p>Practice questions from the textbook: 12.11, 12.13, 12.15a-c, 12.17</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.annotate", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
