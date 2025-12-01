@@ -25,4 +25,4 @@
 | 17 | [Evolutionary invasion analysis II](lecture-17.md) | 12.3.4-12.3.5, Box 12.4 (7p.) |
 | 18 | [The evolution of virulence](lecture-18.md) | 12.4 (6p.) |
 | 19 | [The evolution of dominance](lecture-19.md) | 12.5 (17p.) |
-| 20 | Review session | | 
+| 20 | [The evolution of anisogamy](lecture-20.md) | - | 
