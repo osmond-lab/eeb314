@@ -7,22 +7,22 @@ In this project you will use the tools you've learned in class and apply them to
 You'll do the final project in two parts.
 
 - [x] Part 1
-	- Describe your biological question and why this interests you 
-	- Describe your model in words (ie, the main assumptions) and explain the main structure with a diagram (eg, flow or life cycle diagram) 
-	- Write down the equations that you will analyze
-	- Describe what your analysis might reveal (ie, your hypothesis) 
-	- Max 500 words (not counting diagrams and equations) 
+	- Describe your biological question
+	- Describe your model in words (ie, the main assumptions) and, optionally, with a diagram (eg, flow diagram or life cycle) 
+	- Write down the equations that you plan to analyze
+	- Describe what analysis you plan to do
+	- Max 500 words
 	- [Example](final_project/partI_example.md)
 
 - [x] Part 2 
-	- Re-iterate your biological question and why this interests you
+	- Re-iterate your biological question
 	- Describe your model assumptions in detail, defining all parameters and variables 
 	- Write down the equations for your model 
 	- Analyze your model 
 	- Explain how the results address your original question
 	- Suggest how the model could be improved or extended
     - Diagrams and supplementary Jupyter notebooks welcome but not required
-	- Max 2000 words (not counting equations, diagrams, and supplementary Jupyter notebooks)
+	- Max 2000 words
 	- [Example](final_project/partII_example.md)
 
 !!! tip 

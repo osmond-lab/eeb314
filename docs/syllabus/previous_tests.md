@@ -22,6 +22,8 @@ Covers lectures 11-15 and tutorials 7-8 (nonlinear multivariate).
 
 Covers lectures 16-20 and tutorials 9-10 (evolutionary invasion analysis).
 
+- [2025](exam_files/test4_2025.pdf), [solutions](exam_files/test4_2025_solns.pdf)
+
 ## Previous midterms
 
 Roughly covers univariate lectures and labs.

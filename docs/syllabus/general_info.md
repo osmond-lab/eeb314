@@ -15,4 +15,14 @@ The University provides reasonable accommodation of the needs of students who ob
 ## Family care responsibilities
 The University of Toronto strives to provide a family-friendly environment. You may wish to inform me if you are a student with family responsibilities. If you are a student parent or have family responsibilities, you also may wish to visit the [Family Care Office website](https://familycare.utoronto.ca).
 
+## Resources
+
+There are many resources available at the University of Toronto to help you succeed in this course. Below are a few:
+
+- [Writing Center](https://writing.utoronto.ca/)
+- [Academic integrity](https://www.academicintegrity.utoronto.ca/)
+- [More on academic integrity](https://studentlife.utoronto.ca/wp-content/uploads/SLC8581_7-Grandfathers-in-Academic-Integrity-AODA.pdf)
+- [CTSI list of supports](https://teaching.utoronto.ca/teaching-support/u-of-t-resources/teaching/students/)
+- [Academic success module](https://q.utoronto.ca/enroll/ALEYMP)
+- [Get help with Quercus](https://q.utoronto.ca/courses/46670/pages/student-guide)
 
