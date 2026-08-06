@@ -8,7 +8,7 @@ Matthew Osmond (he/him)
 - website: [osmond-lab.github.io](https://osmond-lab.github.io/)
 
 ## Teaching assistant
-Erik Curtis (he/him)
+Mete Yukel (they/he)
 
-- email: erik.curtis@mail.utoronto.ca
+- email: mete.yuksel@mail.utoronto.ca
 

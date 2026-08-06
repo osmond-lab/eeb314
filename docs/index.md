@@ -15,7 +15,7 @@ Mathematics is central to science because it provides a rigorous way to go from 
 
 Please see the [University of Toronto Academic Calendar](https://artsci.calendar.utoronto.ca/course/eeb314h1) for more details on the course prerequisites and additional information on the distribution/breadth requirements this course satisfies.
 
-Next taught: TBA 
+Next taught: Fall 2026
 
 Previously taught: Fall 2025, Fall 2024, Fall 2022 (EEB430), Fall 2021 (EEB430)
 

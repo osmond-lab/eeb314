@@ -6,11 +6,11 @@
 - [x] interpret a model: translate mathematical expressions back into biological meaning
 
 ## Weekly tasks
-- [x] attend two lectures
-- [x] attend one lab
-- [x] do (some) practice problems listed at end of lectures
-- [x] read assigned portions of the text when needed
+- [x] attend two lectures (2h)
+- [x] attend one lab (2h)
+- [x] do practice problems (listed at end of each lecture)
+- [x] read assigned portions of the text (when more info needed)
 
 ## Grading scheme
-- in-class tests: 4 x 20%
-- final project: 20%
+- in-class tests: 4 x 20% (4 x 15% for grad students)
+- final project: 20% (40% for grad students)
