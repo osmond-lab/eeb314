@@ -6,7 +6,7 @@ In this project you will use the tools you've learned in class and apply them to
 
 You'll do the final project in two parts.
 
-- [x] Part 1
+- [x] Part 1 (25%)
 	- State your biological question
 	- Describe your model in words (ie, the main assumptions) and, optionally, with a diagram (eg, flow diagram or life cycle) 
 	- Write down the equations that you plan to analyze
@@ -14,7 +14,7 @@ You'll do the final project in two parts.
 	- Max 500 words
 	- [Example](final_project/partI_example.md)
 
-- [x] Part 2 
+- [x] Part 2 (75%)
 	- Motivate and state your biological question
 	- Describe your model assumptions in detail, defining all parameters and variables 
 	- Write down the equations for your model 
@@ -25,9 +25,9 @@ You'll do the final project in two parts.
 	- Max 2000 words (4000 for grad students)
 	- [Example](final_project/partII_example.md)
 
-!!! info
+!!! info "Class presentations"
 
-    Grad students will also present their final project in class. 
+    Grad students will also present their final project in class. Everyone may be asked to give a 2m lightning presentation on part 1.
 
 !!! tip 
 

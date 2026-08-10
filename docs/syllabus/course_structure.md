@@ -7,7 +7,7 @@
 
 ## Weekly tasks
 - [x] attend two lectures (2h)
-- [x] attend one lab (2h)
+- [x] participate in one lab (2h)
 - [x] do practice problems (listed at end of each lecture)
 - [x] read assigned portions of the text (when more info needed)
 
