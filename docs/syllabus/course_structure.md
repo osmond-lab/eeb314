@@ -14,3 +14,9 @@
 ## Grading scheme
 - in-class tests: 4 x 20% (4 x 15% for grad students)
 - final project: 20% (40% for grad students)
+
+Test dates for 2026: Sept 28, Oct 21, Nov 18, Dec 8.
+
+If we deem a test has been missed for a valid reason the marks will be redistributed to the other tests.
+
+For the final project, we will deduct 5% of the total grade for each day late. 

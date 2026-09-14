@@ -4,6 +4,7 @@ inkscape "$(readlink -f ../images/favicon.svg)" --export-type=pdf --export-filen
 pandoc -s \
   --lua-filter=filters/cover.lua \
   --lua-filter=filters/strip_examples.lua \
+  --lua-filter=filters/strip_textbook_links.lua \
   --lua-filter=filters/admonitions.lua \
   --lua-filter=filters/back_cover.lua \
   --include-in-header=filters/admonition_preamble.tex \
