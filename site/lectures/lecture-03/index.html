@@ -1898,9 +1898,9 @@
 <p>For example, those values of allele frequency <span class="arithmatex">\(p(t)\)</span> where</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\Delta p &amp;= 0\\
+p(t+1) &amp;= p(t)\\
 p(t+1) - p(t) &amp;= 0\\
-p(t+1) &amp;= p(t)
+\Delta p &amp;= 0
 \end{aligned}
 \]</div>
 <p>Similarly, for <em>continuous-time</em> models, the equilibria are defined as those values of the variables for which the rate of change in the variables equals zero. </p>
@@ -1944,7 +1944,7 @@ p(t)
 <li><span class="arithmatex">\(W_{aa} =\)</span> reproductive factor of individuals with the <span class="arithmatex">\(aa\)</span> genotype</li>
 </ul>
 <p>These reproductive factors are again referred to as the absolute fitnesses as they determine the (absolute) numbers of individuals after selection, <span class="arithmatex">\(n_i' = W_i n_i(t)\)</span> for <span class="arithmatex">\(i=AA\)</span>, <span class="arithmatex">\(i=Aa\)</span>, and <span class="arithmatex">\(i=aa\)</span>.</p>
-<p>After selection these genotypes segregate into haploids via meiosis, go through the haploid phase of the life cycle, and then randomly pair to create diploids again. Random union and segregation shuffle alleles between genotypes but don't affect allele frequency. The frequency of <span class="arithmatex">\(A\)</span> in the next generation is therefore</p>
+<p>After selection these genotypes segregate into haploids via meiosis, go through the haploid phase of the life cycle, and then randomly pair to create diploids again. Random union and segregation shuffle alleles between genotypes but don't affect allele frequency, meaning that <span class="arithmatex">\(p(t+1)=p''=p'\)</span>. The frequency of <span class="arithmatex">\(A\)</span> in the next generation is therefore</p>
 <div class="arithmatex">\[
 \begin{aligned}
 p(t+1) 
@@ -2021,10 +2021,9 @@ W_{aa} - W_{Aa} &amp;= \hat p(W_{AA} -2W_{Aa} + W_{aa})\\
 <div class="arithmatex">\[
 \begin{aligned}
 \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&lt; 1\\
-\frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} - 1 &amp;&lt; 0\\
-\frac{W_{Aa} - W_{aa} - (2 W_{Aa} -W_{AA} - W_{aa})}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&lt; 0\\
-\frac{W_{AA} - W_{Aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&lt; 0\\
-\frac{W_{Aa} - W_{AA}}{2 W_{Aa} -W_{AA} - W_{aa}} &amp;&gt; 0.
+0 &amp;&lt; 1 - \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}}\\
+0 &amp;&lt; \frac{(2 W_{Aa} -W_{AA} - W_{aa}) - (W_{Aa} - W_{aa})}{2 W_{Aa} -W_{AA} - W_{aa}} \\
+0 &amp;&lt; \frac{W_{Aa} - W_{AA}}{2 W_{Aa} -W_{AA} - W_{aa}}
 \end{aligned}
 \]</div>
 <p>Again, we need the numerator and denominator to have the same sign for this inequality to hold. In case A, where we've said that denominator is positive, this means we also need the numerator to be positive, <span class="arithmatex">\(W_{Aa} &gt; W_{AA}\)</span>. While in case B we said that the denominator is negative, so we also need the numerator to be negative, <span class="arithmatex">\(W_{Aa} &lt; W_{AA}\)</span>.</p>

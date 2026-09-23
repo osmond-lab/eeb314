@@ -42,9 +42,9 @@ For example, those values of allele frequency $p(t)$ where
 
 $$
 \begin{aligned}
-\Delta p &= 0\\
+p(t+1) &= p(t)\\
 p(t+1) - p(t) &= 0\\
-p(t+1) &= p(t)
+\Delta p &= 0
 \end{aligned}
 $$
 
@@ -102,7 +102,7 @@ Now, let’s assume that during selection each diploid individual has reproducti
 
 These reproductive factors are again referred to as the absolute fitnesses as they determine the (absolute) numbers of individuals after selection, $n_i' = W_i n_i(t)$ for $i=AA$, $i=Aa$, and $i=aa$.
 
-After selection these genotypes segregate into haploids via meiosis, go through the haploid phase of the life cycle, and then randomly pair to create diploids again. Random union and segregation shuffle alleles between genotypes but don't affect allele frequency. The frequency of $A$ in the next generation is therefore
+After selection these genotypes segregate into haploids via meiosis, go through the haploid phase of the life cycle, and then randomly pair to create diploids again. Random union and segregation shuffle alleles between genotypes but don't affect allele frequency, meaning that $p(t+1)=p''=p'$. The frequency of $A$ in the next generation is therefore
 
 $$
 \begin{aligned}
@@ -201,10 +201,9 @@ Now we can rearrange the equilibrium to show that it is less than 1 when
 $$
 \begin{aligned}
 \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &< 1\\
-\frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}} - 1 &< 0\\
-\frac{W_{Aa} - W_{aa} - (2 W_{Aa} -W_{AA} - W_{aa})}{2 W_{Aa} -W_{AA} - W_{aa}} &< 0\\
-\frac{W_{AA} - W_{Aa}}{2 W_{Aa} -W_{AA} - W_{aa}} &< 0\\
-\frac{W_{Aa} - W_{AA}}{2 W_{Aa} -W_{AA} - W_{aa}} &> 0.
+0 &< 1 - \frac{W_{Aa} - W_{aa}}{2 W_{Aa} -W_{AA} - W_{aa}}\\
+0 &< \frac{(2 W_{Aa} -W_{AA} - W_{aa}) - (W_{Aa} - W_{aa})}{2 W_{Aa} -W_{AA} - W_{aa}} \\
+0 &< \frac{W_{Aa} - W_{AA}}{2 W_{Aa} -W_{AA} - W_{aa}}
 \end{aligned}
 $$
   

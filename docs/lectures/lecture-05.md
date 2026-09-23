@@ -131,7 +131,7 @@ $$
 
 where we've allowed the right-hand side to depend on time explicitly (eg, time lags, environmental change).
 
-We will try to get the general solution for $x(t)$ using a method called **separation of variables**. This will only work if we can write the right hand side as $f(x)=g(x)h(t)$, ie, if we can separate the variables, $x$ and $t$. If we can then
+We will try to get the general solution for $x(t)$ using a method called **separation of variables**. This will only work if we can write the right hand side as $f(x,t)=g(x)h(t)$, ie, if we can separate the variables, $x$ and $t$. If we can then
 
 $$
 \begin{aligned}

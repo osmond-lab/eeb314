@@ -201,33 +201,39 @@ What are the stable equilibria in the two panels above?
 
 We can do something very similar for difference and differential equations. Now we plot the rate of change in the variable as a function of the current value of the variable, e.g., plot $\Delta n = n(t+1)-n(t)$ or $dn/dt$ as a function of $n(t)$.
 
-Let's consider haploid selection in continuous time. To derive the differential equation let's first return to exponential growth and turn this into a difference equation,
+Let's consider haploid selection in continuous time. To derive the differential equation let's first return to exponential growth and turn this into a difference equation.
 
-$$
-\begin{aligned}
-n(t+1) &= R n(t)\\
-n(t+1) - n(t) &= R n(t) - n(t)\\
-\Delta n &= (R-1)n(t).
-\end{aligned}
-$$
+!!! note "Converting recursions into differential equations"
 
-Now recall that $R=1+B-D-BD$ so that $R-1=B-D-BD$. And let's consider a small timestep $\Delta t$ during which there are $B\Delta t$ births and $D\Delta t$ deaths per individual. Then the difference equation over this timestep, $\Delta n = n(t+\Delta t)-n(t)$, is
+    We first write the discrete-time exponential growth model with reproductive factor $R$ as a difference equation,
 
-$$
-\Delta n = (B\Delta t - D\Delta t - BD(\Delta t)^2)n(t).
-$$
+    $$
+    \begin{aligned}
+    n(t+1) &= R n(t)\\
+    n(t+1) - n(t) &= R n(t) - n(t)\\
+    \Delta n &= (R-1)n(t).
+    \end{aligned}
+    $$
 
-We then divide both sides by $\Delta t$ and take the limit as $\Delta t\rightarrow 0$ to get the differential equation
-
-$$
-\begin{aligned}
-\frac{\Delta n}{\Delta t} &= (B - D - BD\Delta t)n(t)\\
-\lim_{\Delta t\rightarrow0}\frac{\Delta n}{\Delta t} &= (B - D)n(t)\\
-\frac{\mathrm{d}n}{\mathrm{d}t} &= rn(t).
-\end{aligned}
-$$
-
-This is exponential growth in continuous time where $r$ is the per capita growth rate.
+    Recall that with birth before death, $R=1+B-D-BD$, where $B$ is the number of offspring per adult and $D$ is the fraction of individuals that die. Then $R-1=B-D-BD$. 
+    
+    Now consider a small timestep $\Delta t$ during which there are $B\Delta t$ births and $D\Delta t$ deaths per individual. Then the difference equation over this timestep, $\Delta n = n(t+\Delta t)-n(t)$, is
+    
+    $$
+    \Delta n = (B\Delta t - D\Delta t - BD(\Delta t)^2)n(t).
+    $$
+    
+    We then divide both sides by $\Delta t$ and take the limit as $\Delta t\rightarrow 0$ to get the differential equation
+    
+    $$
+    \begin{aligned}
+    \frac{\Delta n}{\Delta t} &= (B - D - BD\Delta t)n(t)\\
+    \lim_{\Delta t\rightarrow0}\frac{\Delta n}{\Delta t} &= (B - D)n(t)\\
+    \frac{\mathrm{d}n}{\mathrm{d}t} &= rn(t).
+    \end{aligned}
+    $$
+    
+    This is exponential growth in continuous time where $r$ is the per capita growth rate.
 
 Now, returning to haploid selection, consider that allele $A$ has growth rate $r_A$ and allele $a$ has growth rate $r_a$, this gives two differential equations for the respective population sizes
 
