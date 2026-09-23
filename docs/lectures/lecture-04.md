@@ -243,7 +243,10 @@ In case A we have overdominance, $W_{AA} < W_{Aa} > W_{aa}$. This means that bot
 $$
 \begin{aligned}
 W_{AA}W_{Aa}-2W_{AA}W_{aa}+W_{Aa}W_{aa} &< W_{Aa}^2-W_{AA}W_{aa}\\
-W_{AA}W_{Aa}-W_{AA}W_{aa}+W_{Aa}W_{aa} - W_{Aa}^2 &< 0,
+0 &< W_{Aa}^2-W_{AA}W_{aa} - (W_{AA}W_{Aa}-2W_{AA}W_{aa}+W_{Aa}W_{aa})\\
+0 &< W_{Aa}^2  - W_{AA}W_{Aa} + W_{AA}W_{aa} - W_{Aa}W_{aa}\\
+0 &< W_{Aa} (W_{Aa}  - W_{AA}) + W_{aa}(W_{AA} - W_{Aa})\\
+0 &< (W_{Aa} - W_{aa})(W_{Aa}  - W_{AA})\\
 \end{aligned}
 $$
 

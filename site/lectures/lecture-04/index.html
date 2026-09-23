@@ -2041,7 +2041,10 @@ plt.show()
 <div class="arithmatex">\[
 \begin{aligned}
 W_{AA}W_{Aa}-2W_{AA}W_{aa}+W_{Aa}W_{aa} &amp;&lt; W_{Aa}^2-W_{AA}W_{aa}\\
-W_{AA}W_{Aa}-W_{AA}W_{aa}+W_{Aa}W_{aa} - W_{Aa}^2 &amp;&lt; 0,
+0 &amp;&lt; W_{Aa}^2-W_{AA}W_{aa} - (W_{AA}W_{Aa}-2W_{AA}W_{aa}+W_{Aa}W_{aa})\\
+0 &amp;&lt; W_{Aa}^2  - W_{AA}W_{Aa} + W_{AA}W_{aa} - W_{Aa}W_{aa}\\
+0 &amp;&lt; W_{Aa} (W_{Aa}  - W_{AA}) + W_{aa}(W_{AA} - W_{Aa})\\
+0 &amp;&lt; (W_{Aa} - W_{aa})(W_{Aa}  - W_{AA})\\
 \end{aligned}
 \]</div>
 <p>which is always true with <span class="arithmatex">\(W_{AA} &lt; W_{Aa} &gt; W_{aa}\)</span>, implying stability with overdominance.</p>
