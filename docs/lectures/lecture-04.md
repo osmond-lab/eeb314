@@ -232,7 +232,7 @@ Now for the internal equilibrium. It's stability is determined the same way, but
 
 $$
 \begin{aligned}
-\left.\frac{\mathrm{d}p(t+1)}{\mathrm{d}p(t)}\right|_{p(t)=\frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}}} &= \frac{W_{AA}W_{Aa}-2W_{AA}W_{aa}+W_{Aa}W_{aa}}{W_{Aa}^2-W_{AA}W_{aa}}.
+\left.\frac{\mathrm{d}p(t+1)}{\mathrm{d}p(t)}\right|_{p(t)=\frac{W_{Aa} - W_{aa}}{2W_{Aa} - W_{AA} - W_{aa}}} &= \frac{W_{AA}(W_{Aa}-W_{aa})+W_{aa}(W_{Aa}-W_{AA})}{W_{Aa}^2-W_{AA}W_{aa}}.
 \end{aligned}
 $$
 
@@ -242,8 +242,8 @@ In case A we have overdominance, $W_{AA} < W_{Aa} > W_{aa}$. This means that bot
 
 $$
 \begin{aligned}
-W_{AA}W_{Aa}-2W_{AA}W_{aa}+W_{Aa}W_{aa} &< W_{Aa}^2-W_{AA}W_{aa}\\
-0 &< W_{Aa}^2-W_{AA}W_{aa} - (W_{AA}W_{Aa}-2W_{AA}W_{aa}+W_{Aa}W_{aa})\\
+W_{AA}(W_{Aa}-W_{aa})+W_{aa}(W_{Aa}-W_{AA}) &< W_{Aa}^2-W_{AA}W_{aa}\\
+0 &< W_{Aa}^2-W_{AA}W_{aa} - (W_{AA}(W_{Aa}-W_{aa})+W_{aa}(W_{Aa}-W_{AA}))\\
 0 &< W_{Aa}^2  - W_{AA}W_{Aa} + W_{AA}W_{aa} - W_{Aa}W_{aa}\\
 0 &< W_{Aa} (W_{Aa}  - W_{AA}) + W_{aa}(W_{AA} - W_{Aa})\\
 0 &< (W_{Aa} - W_{aa})(W_{Aa}  - W_{AA})\\
@@ -252,7 +252,7 @@ $$
 
 which is always true with $W_{AA} < W_{Aa} > W_{aa}$, implying stability with overdominance.
 
-In case B we have underdominance, $W_{AA} > W_{Aa} < W_{aa}$. This means that both numerator and denominator are negative. Since the derivative is positive it is always greater than -1 and all that is left for stability is for the derivative to be less than 1, which is the condition we just derived in the equation above. In case B however, the condition never holds, implying instability with underdominance.
+In case B we have underdominance, $W_{AA} > W_{Aa} < W_{aa}$. This means that both numerator and denominator are negative. Since the derivative is positive it is always greater than -1 and all that is left for stability is for the derivative to be less than 1. Because the numerator and denominator are negative, this implies we need the numerator to be greater than the denominator, leading to $0 &< (W_{aa} - W_{Aa})(W_{Aa}  - W_{AA})$. In case B, this condition never holds, implying instability with underdominance.
 
 In sum, the internal equilibrium is biologically valid and locally stable only if there is overdominance, $W_{AA} < W_{Aa} > W_{aa}$. This makes good intuitive sense since there are more heterozygotes at a more intermediate frequency ($2p(1-p)$ has a max at $p=1/2$). It also implies that the internal equilibrium is stable when the boundary equilibria are unstable, and vice versa. When the internal equilibrium is unstable it therefore acts as a replellor between two locally stable equilibria, pushing allele frequency towards the boundary that is on the same side of the repellor. Check that this all makes sense with the plots above.
 
