@@ -12,5 +12,5 @@ Matthew Osmond (he/him)
 Mete Yukel (they/he)
 
 - email: mete.yuksel@mail.utoronto.ca
-- office: Earth Sciences (ES) room 3047
+- office: Earth Sciences (ES) room 3044
 - office hour: Thursday 1pm
