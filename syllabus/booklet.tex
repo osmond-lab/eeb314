@@ -1,0 +1,14 @@
+% Imposes syllabus.pdf (4 pages) onto a single letter sheet, printed
+% double-sided and folded in half, to make a 4-page booklet.
+%
+% Sheet 1 side A (outside): page 4, page 1
+% Sheet 1 side B (inside):  page 2, page 3
+%
+% Print double-sided flipping on the SHORT edge, then fold in half.
+\documentclass{article}
+\usepackage[paperwidth=11in,paperheight=8.5in,margin=0pt]{geometry}
+\usepackage{pdfpages}
+\begin{document}
+\includepdf[pages={4,1},nup=2x1,noautoscale=false,pagecommand={}]{syllabus.pdf}
+\includepdf[pages={2,3},nup=2x1,noautoscale=false,pagecommand={}]{syllabus.pdf}
+\end{document}
