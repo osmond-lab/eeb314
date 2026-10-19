@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Tutorial 6: Stability in multivariate linear models
+# Tutorial 6: Stability (linear multivariate)
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -82,3 +82,8 @@ Calculate the eigenvalues of $\mathbf{M}$.
 Determine what needs to be true about the parameters for there to be oscillations/cycles. Interpret the condition biologically. 
 
 Given there are cycles, determine when the equilibrium is stable.
+
+
+<pre data-executable="true" data-language="python">
+
+</pre>

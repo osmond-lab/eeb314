@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 8: General solutions for linear multivariate models
+# Lecture 8: General solutions (linear multivariate)
 
 <hr style="margin-bottom: 0em;">
 <center>

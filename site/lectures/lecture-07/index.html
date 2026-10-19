@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lecture-7-finding-equilibria-in-linear-multivariate-models" class="md-skip">
+        <a href="#lecture-7-equilibria-linear-multivariate" class="md-skip">
           Skip to content
         </a>
       
@@ -1916,7 +1916,7 @@
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
-<h1 id="lecture-7-finding-equilibria-in-linear-multivariate-models">Lecture 7: Finding equilibria in linear multivariate models</h1>
+<h1 id="lecture-7-equilibria-linear-multivariate">Lecture 7: Equilibria (linear multivariate)</h1>
 <hr style="margin-bottom: 0em;">
 <center>
 <div class="inrow">
@@ -1952,10 +1952,10 @@
 \end{aligned}
 \]</div>
 <p>with <span class="arithmatex">\(n_i\)</span> the number of birds on island <span class="arithmatex">\(i\)</span> at time <span class="arithmatex">\(t\)</span>, <span class="arithmatex">\(b_i\)</span> the birth rate on island <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(d_i\)</span> the death rate on island <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(m_{ij}\)</span> the rate at which birds on island <span class="arithmatex">\(j\)</span> migrate to island <span class="arithmatex">\(i\)</span>, and <span class="arithmatex">\(m_i\)</span> the rate at which birds arrive to island <span class="arithmatex">\(i\)</span> from elsewhere.</p>
-<p>Next we would like to solve for the equilibria. We can start by setting the differential equation to 0 and subtracting <span class="arithmatex">\(\vec{m}\)</span> from both sides,</p>
+<p>Next we would like to solve for the equilibria. We can start by setting the vector of differential equations to a vector of zeroes, <span class="arithmatex">\(\vec{0}\)</span>, and subtracting <span class="arithmatex">\(\vec{m}\)</span> from both sides,</p>
 <div class="arithmatex">\[
 \begin{align*}
-0 &amp;= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
+\vec{0} &amp;= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
 -\vec{m} &amp;= \mathbf{M}\hat{\vec{n}}.
 \end{align*}
 \]</div>
@@ -2121,10 +2121,10 @@ plt.show()
 \frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n} + \vec{m},
 \]</div>
 <p>and solve for the equilibria, <span class="arithmatex">\(\hat{\vec{n}}\)</span>. </p>
-<p>We do this by setting the rate of change to zero <span class="arithmatex">\(\frac{\mathrm{d}\vec{n}}{\mathrm{d}t}=0\)</span>, subtracting <span class="arithmatex">\(\vec{m}\)</span> from both sides, and multiplying by the inverse matrix <span class="arithmatex">\(\mathbf{M}^{-1}\)</span> on the left:</p>
+<p>We do this by setting the rate of change to zero <span class="arithmatex">\(\frac{\mathrm{d}\vec{n}}{\mathrm{d}t}=\vec{0}\)</span>, subtracting <span class="arithmatex">\(\vec{m}\)</span> from both sides, and multiplying by the inverse matrix <span class="arithmatex">\(\mathbf{M}^{-1}\)</span> on the left:</p>
 <div class="arithmatex">\[
 \begin{align*}
-0 &amp;= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
+\vec{0} &amp;= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
 -\vec{m} &amp;= \mathbf{M}\hat{\vec{n}}\\
 -\mathbf{M}^{-1}\vec{m} &amp;= \mathbf{M}^{-1}\mathbf{M}\hat{\vec{n}}\\
 -\mathbf{M}^{-1}\vec{m} &amp;= \mathbf{I}\hat{\vec{n}}\\

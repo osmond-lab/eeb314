@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Lecture 7: Finding equilibria in linear multivariate models 
+# Lecture 7: Equilibria (linear multivariate)
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -54,11 +54,11 @@ $$
 
 with $n_i$ the number of birds on island $i$ at time $t$, $b_i$ the birth rate on island $i$, $d_i$ the death rate on island $i$, $m_{ij}$ the rate at which birds on island $j$ migrate to island $i$, and $m_i$ the rate at which birds arrive to island $i$ from elsewhere.
 
-Next we would like to solve for the equilibria. We can start by setting the differential equation to 0 and subtracting $\vec{m}$ from both sides,
+Next we would like to solve for the equilibria. We can start by setting the vector of differential equations to a vector of zeroes, $\vec{0}$, and subtracting $\vec{m}$ from both sides,
 
 $$
 \begin{align*}
-0 &= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
+\vec{0} &= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
 -\vec{m} &= \mathbf{M}\hat{\vec{n}}.
 \end{align*}
 $$
@@ -260,11 +260,11 @@ $$
 
 and solve for the equilibria, $\hat{\vec{n}}$. 
 
-We do this by setting the rate of change to zero $\frac{\mathrm{d}\vec{n}}{\mathrm{d}t}=0$, subtracting $\vec{m}$ from both sides, and multiplying by the inverse matrix $\mathbf{M}^{-1}$ on the left:
+We do this by setting the rate of change to zero $\frac{\mathrm{d}\vec{n}}{\mathrm{d}t}=\vec{0}$, subtracting $\vec{m}$ from both sides, and multiplying by the inverse matrix $\mathbf{M}^{-1}$ on the left:
 
 $$
 \begin{align*}
-0 &= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
+\vec{0} &= \mathbf{M}\hat{\vec{n}} + \vec{m}\\
 -\vec{m} &= \mathbf{M}\hat{\vec{n}}\\
 -\mathbf{M}^{-1}\vec{m} &= \mathbf{M}^{-1}\mathbf{M}\hat{\vec{n}}\\
 -\mathbf{M}^{-1}\vec{m} &= \mathbf{I}\hat{\vec{n}}\\
