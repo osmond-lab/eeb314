@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorial-6-linear-multivariate-practice" class="md-skip">
+        <a href="#tutorial-6-stability-in-multivariate-linear-models" class="md-skip">
           Skip to content
         </a>
       
@@ -1772,7 +1772,7 @@
 </script>
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <p><link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css"></p>
-<h1 id="tutorial-6-linear-multivariate-practice">Tutorial 6: Linear multivariate practice</h1>
+<h1 id="tutorial-6-stability-in-multivariate-linear-models">Tutorial 6: Stability in multivariate linear models</h1>
 <hr style="margin-bottom: 0em;">
 <center>
 <div class="inrow">
@@ -1784,18 +1784,48 @@
 <hr style="margin-top: 0em;">
 
 <h2 id="model">Model</h2>
-<p>Metastasis is a process by which cancer cells spread throughout the body. Sometimes cancer cells move via the bloodstream and become lodged in the capillaries of different organs. Some of these new cells then move across the capillary wall, where they initiate new tumours. We will construct a model for the dynamics of cancer cells lodged in the capillaries of an organ, <span class="arithmatex">\(C\)</span>, and the number of cancer cells that have actually invaded that organ, <span class="arithmatex">\(I\)</span>. Suppose that cells are lost from the capillaries by dislodgement or death at per capita rate <span class="arithmatex">\(\delta_1\)</span> and that they invade the organ from the capillaries at a per capita rate <span class="arithmatex">\(\beta\)</span>. Once cells are in the organ they die at rate <span class="arithmatex">\(\delta_2\)</span>, and the cancer cells replicate at a per capita rate <span class="arithmatex">\(\rho\)</span>. This gives the differential equations</p>
+<p>Records from the Hudson's Bay Company famously show ~10-year population size cycles in hare and lynx. Moran (1953) built a model to fit to the lynx data collected from the Mackenzie River district from 1821 to 1934. </p>
+<p>Let <span class="arithmatex">\(Y(t)\)</span> be the number of lynx caught in year <span class="arithmatex">\(t\)</span>. Following Moran, we will work with the logarithm, <span class="arithmatex">\(X(t) = \log_{10} Y(t)\)</span>. The expected deviation from the mean, <span class="arithmatex">\(X(t) - m\)</span> (where <span class="arithmatex">\(m\)</span> is the mean value of <span class="arithmatex">\(X\)</span> over years) is predicted to change over time like </p>
 <div class="arithmatex">\[
-\begin{aligned}
-\frac{\mathrm{d}C}{\mathrm{d}t} &amp;= -\delta_1 C - \beta C\\
-\frac{\mathrm{d}I}{\mathrm{d}t} &amp;= \beta C -\delta_2 I + \rho I.
-\end{aligned}
+x(t+1) = a x(t) + b x(t-1).
+\]</div>
+<p>Here, <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span> are constants that Moran estimated from data but we'll consider more generally: <span class="arithmatex">\(a\)</span> describes how much next year's population size is determined by the current year and <span class="arithmatex">\(b\)</span> describes how much next year's population size is determined by the previous year (a time-lag). These parameters could be negative (eg, big population sizes in the past mean less resources for the future). Linear models with such time-lags are often called autoregressive. </p>
+<p>Consider <span class="arithmatex">\(x(t+1)\)</span> and <span class="arithmatex">\(x(t)\)</span> as our two variables, with equations</p>
+<div class="arithmatex">\[
+\begin{align}
+x(t+1) = a x(t) + b x_(t-1)\\
+x(t) = x(t).
+\end{align}
+\]</div>
+<p>This can be written in matrix form,</p>
+<div class="arithmatex">\[
+\begin{pmatrix}
+x(t+1)\\
+x(t)
+\end{pmatrix}
+= \begin{pmatrix}
+a &amp; b\\
+1 &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+x(t)\\
+x(t-1)
+\end{pmatrix}.
+\]</div>
+<p>If we define <span class="arithmatex">\(\vec{x}(t)= 
+\begin{pmatrix}
+x(t)\\
+x(t-1)
+\end{pmatrix}\)</span>,
+this matrix equation is simply</p>
+<div class="arithmatex">\[
+\vec{x}(t+1) = \mathbf{M} \vec{x}(t).
 \]</div>
 <h2 id="questions">Questions</h2>
-<p>Write this in matrix form, <span class="arithmatex">\(\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n}\)</span>, specifying what <span class="arithmatex">\(\mathbf{M}\)</span> and <span class="arithmatex">\(\vec{n}\)</span> are.</p>
-<p>What is the equilibrium of this model?</p>
-<p>Calculate the eigenvalues of <span class="arithmatex">\(\mathbf{M}\)</span>. When is the equilibrium stable? (Based on the description of the model we can assume all parameters are positive.) Explain what this means biologically.</p>
-<p>Assuming the system is unstable, calculate the right eigenvector associated with the leading of <span class="arithmatex">\(\mathbf{M}\)</span>. Where are most of the cells in the long term?</p>
+<p>Determine the equilibrium.</p>
+<p>Calculate the eigenvalues of <span class="arithmatex">\(\mathbf{M}\)</span>. </p>
+<p>Determine what needs to be true about the parameters for there to be oscillations/cycles. Interpret the condition biologically. </p>
+<p>Given there are cycles, determine when the equilibrium is stable.</p>
 
 
 

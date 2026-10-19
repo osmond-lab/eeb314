@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Tutorial 5: long-term dynamics of linear multivariate models
+# Tutorial 5: Long-term dynamics of linear multivariate models
 
 <hr style="margin-bottom: 0em;">
 <center>

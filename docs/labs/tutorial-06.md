@@ -12,7 +12,7 @@
 <script src="https://unpkg.com/thebe@latest/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/thebe@latest/lib/thebe.css">
 
-# Tutorial 6: Linear multivariate practice
+# Tutorial 6: Stability in multivariate linear models
 
 <hr style="margin-bottom: 0em;">
 <center>
@@ -26,21 +26,59 @@
 
 ## Model
 
-Metastasis is a process by which cancer cells spread throughout the body. Sometimes cancer cells move via the bloodstream and become lodged in the capillaries of different organs. Some of these new cells then move across the capillary wall, where they initiate new tumours. We will construct a model for the dynamics of cancer cells lodged in the capillaries of an organ, $C$, and the number of cancer cells that have actually invaded that organ, $I$. Suppose that cells are lost from the capillaries by dislodgement or death at per capita rate $\delta_1$ and that they invade the organ from the capillaries at a per capita rate $\beta$. Once cells are in the organ they die at rate $\delta_2$, and the cancer cells replicate at a per capita rate $\rho$. This gives the differential equations
+Records from the Hudson's Bay Company famously show ~10-year population size cycles in hare and lynx. Moran (1953) built a model to fit to the lynx data collected from the Mackenzie River district from 1821 to 1934. 
+
+Let $Y(t)$ be the number of lynx caught in year $t$. Following Moran, we will work with the logarithm, $X(t) = \log_{10} Y(t)$. The expected deviation from the mean, $X(t) - m$ (where $m$ is the mean value of $X$ over years) is predicted to change over time like 
 
 $$
-\begin{aligned}
-\frac{\mathrm{d}C}{\mathrm{d}t} &= -\delta_1 C - \beta C\\
-\frac{\mathrm{d}I}{\mathrm{d}t} &= \beta C -\delta_2 I + \rho I.
-\end{aligned}
+x(t+1) = a x(t) + b x(t-1).
+$$
+
+Here, $a$ and $b$ are constants that Moran estimated from data but we'll consider more generally: $a$ describes how much next year's population size is determined by the current year and $b$ describes how much next year's population size is determined by the previous year (a time-lag). These parameters could be negative (eg, big population sizes in the past mean less resources for the future). Linear models with such time-lags are often called autoregressive. 
+
+Consider $x(t+1)$ and $x(t)$ as our two variables, with equations
+
+$$
+\begin{align}
+x(t+1) = a x(t) + b x_(t-1)\\
+x(t) = x(t).
+\end{align}
+$$
+
+This can be written in matrix form,
+
+$$
+\begin{pmatrix}
+x(t+1)\\
+x(t)
+\end{pmatrix}
+= \begin{pmatrix}
+a & b\\
+1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+x(t)\\
+x(t-1)
+\end{pmatrix}.
+$$
+
+If we define $\vec{x}(t)= 
+\begin{pmatrix}
+x(t)\\
+x(t-1)
+\end{pmatrix}$,
+this matrix equation is simply
+
+$$
+\vec{x}(t+1) = \mathbf{M} \vec{x}(t).
 $$
 
 ## Questions
 
-Write this in matrix form, $\frac{\mathrm{d}\vec{n}}{\mathrm{d}t} = \mathbf{M}\vec{n}$, specifying what $\mathbf{M}$ and $\vec{n}$ are.
+Determine the equilibrium.
 
-What is the equilibrium of this model?
+Calculate the eigenvalues of $\mathbf{M}$. 
 
-Calculate the eigenvalues of $\mathbf{M}$. When is the equilibrium stable? (Based on the description of the model we can assume all parameters are positive.) Explain what this means biologically.
+Determine what needs to be true about the parameters for there to be oscillations/cycles. Interpret the condition biologically. 
 
-Assuming the system is unstable, calculate the right eigenvector associated with the leading of $\mathbf{M}$. Where are most of the cells in the long term?
+Given there are cycles, determine when the equilibrium is stable.

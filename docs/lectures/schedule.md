@@ -10,9 +10,9 @@
 | 5 | [General solutions (univariate)](lecture-05.md) | 6.1-6.3, 6.5-6.7 (16p.) |
 |   | **Section 2: linear multivariate models** |
 | 6 | [Representing linear multivariate models with vectors and matrices](lecture-06.md) | P2.1-P2.4 (14p.) |
-| 7 | [Finding equilibria in linear multivariate models](lecture-07.md) | P2.5-P2.7 (9p.) |
-| 8 | [General solutions for linear multivariate models](lecture-08.md) | P2.8-P2.9 (13p.), 9.1-9.2 (18p.) |
-| 9 | [Complex eigenvalues](lecture-09.md) | 7.3.3 (11p.), Box 8.2, Box 9.1, Box 9.2 |
+| 7 | [Equilibria (linear multivariate)](lecture-07.md) | P2.5-P2.7 (9p.) |
+| 8 | [General solutions (linear multivariate)](lecture-08.md) | P2.8-P2.9 (13p.), 9.1-9.2 (18p.) |
+| 9 | [Stability (linear multivariate)](lecture-09.md) | 7.3.3 (11p.), Box 8.2, Box 9.1, Box 9.2 |
 | 10 | [Demography](lecture-10.md) | Chapter 10 (37p.) |
 |    | **Section 3: nonlinear multivariate models** |
 | 11 | [Equilibria (nonlinear multivariate)](lecture-11.md) | 8.1-8.3 (37p.) |

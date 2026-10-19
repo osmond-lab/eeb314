@@ -1924,7 +1924,7 @@
 \end{align}
 \]</div>
 <p>where <span class="arithmatex">\(\sqrt{4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2}\)</span> is a <strong>real</strong> number (i.e., not complex). Letting <span class="arithmatex">\(\mathrm{Tr}(\mathbf{M})/2=A\)</span> and <span class="arithmatex">\(\sqrt{4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2}/2=B\)</span>, the two eigenvalues can then be written as <span class="arithmatex">\(\lambda=A\pm Bi\)</span>. Two numbers that take this form are called <strong>complex conjugates</strong>.</p>
-<p>We can think of a complex number as a vector on the <strong>complex plane</strong>, a two-dimensional space with the real part, <span class="arithmatex">\(A\)</span>, on the x-axis and the imaginary part, <span class="arithmatex">\(B\)</span>, on the y-axis. The length of our vector is <span class="arithmatex">\(R=\sqrt{A^2+B^2}\)</span> and the angle of our vector (from the vector that points directly right along the x-axis) is <span class="arithmatex">\(\theta = \arctan(B/A)\)</span>. Using basic geometric rules we then have <span class="arithmatex">\(A=R\cos(\theta)\)</span> and <span class="arithmatex">\(B=R\sin(\theta)\)</span>. We can therefore write our complex eigenvalue as <span class="arithmatex">\(\lambda = R(\cos(\theta) + \sin(\theta)i) = R\exp(\theta i)\)</span>, where the last step we used a fascinating identity known as Euler's equation.</p>
+<p>In general, we can think of a complex number as a vector on the <strong>complex plane</strong>, a two-dimensional space with the real part, <span class="arithmatex">\(A\)</span>, on the x-axis and the imaginary part, <span class="arithmatex">\(B\)</span>, on the y-axis. The length of our vector is <span class="arithmatex">\(R=\sqrt{A^2+B^2}\)</span> and the angle of our vector (from the vector that points directly right along the x-axis) is <span class="arithmatex">\(\theta = \arctan(B/A)\)</span>. Using basic geometric rules we then have <span class="arithmatex">\(A=R\cos(\theta)\)</span> and <span class="arithmatex">\(B=R\sin(\theta)\)</span>. We can therefore write our complex eigenvalue as <span class="arithmatex">\(\lambda = R(\cos(\theta) + \sin(\theta)i) = R\exp(\theta i)\)</span>, where the last step we used a fascinating identity known as Euler's equation.</p>
 <pre data-executable="true" data-language="python">
 import matplotlib.pyplot as plt
 import math
@@ -1970,11 +1970,19 @@ plt.show()
 &amp;= R^t(\cos(\theta t) + \sin(\theta t)i).
 \end{aligned}
 \]</div>
-<p>Two key implications emerge: </p>
+<p>Two key implications of complex eigenvalues emerge: </p>
 <ul>
 <li><span class="arithmatex">\(\cos(\theta t) + \sin(\theta t)i\)</span> implies oscillatory dynamics (cycles)</li>
 <li><span class="arithmatex">\(\lambda^t\)</span> will shrink with time when <span class="arithmatex">\(R&lt;1\)</span> and therefore stability in discrete time requires <span class="arithmatex">\(A^2 + B^2&lt;1\)</span>, i.e., the imaginary part, <span class="arithmatex">\(B\)</span>, influences stability</li>
 </ul>
+<p>Note that in two-dimensions, when there are oscillations stability neatly reduces to</p>
+<div class="arithmatex">\[
+\begin{aligned}
+A^2 + B^2 &amp;&lt; 1\\
+\frac{\mathrm{Tr}(\mathbf{M})^2}{4} + \frac{\mathrm{Det}(\mathbf{M}) - \mathrm{Tr}(\mathbf{M})^2}{4} &amp;&lt; 1\\
+\mathrm{Det}(\mathbf{M}) &lt; 1.
+\end{aligned}
+\]</div>
 <h3 id="continuous-time">Continuous time</h3>
 <p>In continuous time we need to consider <span class="arithmatex">\(\exp(\lambda t)\)</span> rather than <span class="arithmatex">\(\lambda^t\)</span>,</p>
 <div class="arithmatex">\[

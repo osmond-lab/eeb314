@@ -77,7 +77,7 @@ $$
 
 where $\sqrt{4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2}$ is a **real** number (i.e., not complex). Letting $\mathrm{Tr}(\mathbf{M})/2=A$ and $\sqrt{4\mathrm{Det}(\mathbf{M})- \mathrm{Tr}(\mathbf{M})^2}/2=B$, the two eigenvalues can then be written as $\lambda=A\pm Bi$. Two numbers that take this form are called **complex conjugates**.
 
-We can think of a complex number as a vector on the **complex plane**, a two-dimensional space with the real part, $A$, on the x-axis and the imaginary part, $B$, on the y-axis. The length of our vector is $R=\sqrt{A^2+B^2}$ and the angle of our vector (from the vector that points directly right along the x-axis) is $\theta = \arctan(B/A)$. Using basic geometric rules we then have $A=R\cos(\theta)$ and $B=R\sin(\theta)$. We can therefore write our complex eigenvalue as $\lambda = R(\cos(\theta) + \sin(\theta)i) = R\exp(\theta i)$, where the last step we used a fascinating identity known as Euler's equation.
+In general, we can think of a complex number as a vector on the **complex plane**, a two-dimensional space with the real part, $A$, on the x-axis and the imaginary part, $B$, on the y-axis. The length of our vector is $R=\sqrt{A^2+B^2}$ and the angle of our vector (from the vector that points directly right along the x-axis) is $\theta = \arctan(B/A)$. Using basic geometric rules we then have $A=R\cos(\theta)$ and $B=R\sin(\theta)$. We can therefore write our complex eigenvalue as $\lambda = R(\cos(\theta) + \sin(\theta)i) = R\exp(\theta i)$, where the last step we used a fascinating identity known as Euler's equation.
 
 
 <pre data-executable="true" data-language="python">
@@ -132,10 +132,20 @@ $$
 \end{aligned}
 $$
 
-Two key implications emerge: 
+Two key implications of complex eigenvalues emerge: 
 
 - $\cos(\theta t) + \sin(\theta t)i$ implies oscillatory dynamics (cycles)
 - $\lambda^t$ will shrink with time when $R<1$ and therefore stability in discrete time requires $A^2 + B^2<1$, i.e., the imaginary part, $B$, influences stability
+
+Note that in two-dimensions, when there are oscillations stability neatly reduces to
+
+$$
+\begin{aligned}
+A^2 + B^2 &< 1\\
+\frac{\mathrm{Tr}(\mathbf{M})^2}{4} + \frac{\mathrm{Det}(\mathbf{M}) - \mathrm{Tr}(\mathbf{M})^2}{4} &< 1\\
+\mathrm{Det}(\mathbf{M}) < 1.
+\end{aligned}
+$$
 
 ### Continuous time
 
