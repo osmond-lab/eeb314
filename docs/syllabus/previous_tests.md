@@ -11,6 +11,7 @@ Covers lectures 1-5 and tutorials 1-3 (univariate).
 
 Covers lectures 6-10 and tutorials 4-6 (linear multivariate).
 
+- [2026](exam_files/test2_2026.pdf), [solutions](exam_files/test2_2026_solns.pdf)
 - [2025](exam_files/test2_2025.pdf), [solutions](exam_files/test2_2025_solns.pdf)
 
 ## Test 3
