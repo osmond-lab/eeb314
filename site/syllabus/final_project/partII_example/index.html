@@ -1652,15 +1652,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#model" class="md-nav__link">
+  <a href="#model-description" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Model
+        Model description
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Model">
+    <nav class="md-nav" aria-label="Model description">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1923,8 +1923,7 @@
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<div class="highlight"><pre><span></span><code>This is a made-up example inspired by the research of Sydney Ackermann, an MSc student in the Osmond lab, who was in turn inspired by the models of [Roze &amp; Michod](https://doi.org/10.1086/323590) and [Pichugin et al.](https://doi.org/10.1371/journal.pcbi.1005860).
-</code></pre></div>
+<p>This is a made-up example inspired by the research of Sydney Ackermann, an MSc student in the Osmond lab, who was in turn inspired by the models of <a href="https://doi.org/10.1086/323590">Roze &amp; Michod</a> and <a href="https://doi.org/10.1371/journal.pcbi.1005860">Pichugin et al.</a>.</p>
 </div>
 <h2 id="biological-question">Biological question</h2>
 <div class="admonition note">
@@ -1932,14 +1931,14 @@
 <p>In this case, this is just repeated from part I, so that part II tells the whole story from question to answer. Update and refine as needed.</p>
 </div>
 <p>I am interested in the origin of multicellularity and the reason why particular life-cycles predominate. For instance, many bacterial species exist as single cells which reproduce via binary fission while many multicellular organisms grow to large sizes and reproduce via single-celled offspring. However, there are many more options and it is not clear if or why these strategies are evolutionarily optimal or how multicellularity evolved from a binary fission ancestor. Here I ask the question, which multicellular life-cycles can invade a unicellular population producing via binary fission?</p>
-<h2 id="model">Model</h2>
+<h2 id="model-description">Model description</h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This is an improved, expanded version of the model description from part I, with more detail and now including the equations to be analyzed.</p>
 </div>
 <h3 id="unicellular-resident">Unicellular resident</h3>
 <p>Here I first model a unicellular population where individuals divide, die, and compete in continuous time. The variable in this model is the number of individuals, <span class="arithmatex">\(n\)</span>. The parameters are the birth rate (<span class="arithmatex">\(b_1\)</span>), death rate (<span class="arithmatex">\(d_1\)</span>), and amount of competition. To describe competition I will assume there are a total of <span class="arithmatex">\(k\)</span> places for individuals to exist. When a cell divides, each of the two resulting offspring randomly choose one of these <span class="arithmatex">\(k\)</span> locations. If an offspring lands on an empty spot it survives. If an offspring lands on an occupied spot it "wins" that spot with probability 1/2, killing the resident, and otherwise dies. The amount of competition is therefore controlled by parameter <span class="arithmatex">\(k\)</span>.</p>
-<p>This model can be described by the following flow diagram</p>
+<p>This model can be described by the following flow diagram.</p>
 <pre class="mermaid"><code>graph LR;
     A((n)) --"b1 n (1 - n/k)" --&gt; A;
     A --d1 n--&gt; B[ ];
@@ -1947,7 +1946,7 @@
     style B height:0px;</code></pre>
 <p>The corresponding differential equation is </p>
 <div class="arithmatex">\[
-\frac{\mathrm{d}n}{\mathrm{d}t} = b_1 n \left(1-\frac{n}{k}\right) - d_1 n
+\frac{\mathrm{d}n}{\mathrm{d}t} = b_1 n \left(1-\frac{n}{k}\right) - d_1 n,
 \]</div>
 <p>which can be solved for equilibrium, <span class="arithmatex">\(\hat{n}\)</span>.</p>
 <h3 id="multicellular-invader">Multicellular invader</h3>
@@ -1955,7 +1954,7 @@
 <h4 id="111">1+1+1</h4>
 <p>For instance, imagine a life-cycle where offspring are unicellular, they divide to form an individual with two cells, and then divide again to produce three single-celled offspring. We call this strategy 1+1+1 because those are the sizes of the offspring produced.</p>
 <p>In this case we need to track the number of individuals with one, <span class="arithmatex">\(n_1\)</span>, and two, <span class="arithmatex">\(n_2\)</span>, cells (i.e., this is a structured population). I assume that each cell in an individual with <span class="arithmatex">\(i\)</span> cells divides at rate <span class="arithmatex">\(b_i\)</span> and that individuals with <span class="arithmatex">\(i\)</span> cells die at rate <span class="arithmatex">\(d_i\)</span>. I also assume that this invading population is so rare (and <span class="arithmatex">\(k\)</span> so large) that offspring produced by this life-history strategy never land on other individuals with this same strategy. The offspring may, however, land on an individual from the unicellular population, which will reduce the growth rate of the invader.</p>
-<p>The dynamics of this invading multicellular population can be described by the following flow diagram</p>
+<p>The dynamics of this invading multicellular population can be described by the following flow diagram.</p>
 <pre class="mermaid"><code>graph LR;
     A((n1)) --b1 n1--&gt; B((n2));
     A --d1 n1--&gt; C1[ ];
@@ -1974,7 +1973,7 @@
 \begin{pmatrix} 
 -b_1-d_1 &amp; 6b_2(1-\hat{n}/(2k)) \\ 
 b_1 &amp; -2b_2-d_2 
-\end{pmatrix}
+\end{pmatrix}.
 \]</div>
 <h4 id="1-2">1 + 2</h4>
 <p>The other multicellular strategy that has offspring sizes summing to 3 is 1+2. In this case the transition matrix is</p>
@@ -1983,7 +1982,7 @@ b_1 &amp; -2b_2-d_2
 \begin{pmatrix} 
 -b_1-d_1 &amp; 2b_2(1-\hat{n}/(2k)) \\ 
 b_1 &amp; -2b_2-d_2+2b_2(1-\hat{n}/(2k)) 
-\end{pmatrix}
+\end{pmatrix}.
 \]</div>
 <h4 id="1-1-1-1">1 + 1 + 1 + 1</h4>
 <p>We can also consider larger multicellular strategies, like 1+1+1+1. In this case we need to keep track of the number of groups of size 1, 2, and 3. This gives a 3x3 projection matrix</p>
@@ -1993,7 +1992,7 @@ b_1 &amp; -2b_2-d_2+2b_2(1-\hat{n}/(2k))
 -b_1-d_1 &amp; 0 &amp; 12b_3(1-\hat{n}/(2k)) \\ 
 b_1 &amp; -2b_2-d_2 &amp; 0 \\
 0 &amp; 2b_2 &amp; -3b_3-d_3
-\end{pmatrix}
+\end{pmatrix}.
 \]</div>
 <h4 id="1-1-2">1 + 1 + 2</h4>
 <p>For the 1+1+2 strategy we have </p>
@@ -2003,7 +2002,7 @@ b_1 &amp; -2b_2-d_2 &amp; 0 \\
 -b_1-d_1 &amp; 0 &amp; 6b_3(1-\hat{n}/(2k)) \\ 
 b_1 &amp; -2b_2-d_2 &amp; 3b_3(1-\hat{n}/(2k)) \\
 0 &amp; 2b_2 &amp; -3b_3-d_3
-\end{pmatrix}
+\end{pmatrix}.
 \]</div>
 <h4 id="1-3">1 + 3</h4>
 <p>For the 1+3 strategy we have </p>
@@ -2013,7 +2012,7 @@ b_1 &amp; -2b_2-d_2 &amp; 3b_3(1-\hat{n}/(2k)) \\
 -b_1-d_1 &amp; 0 &amp; 3b_3(1-\hat{n}/(2k)) \\ 
 b_1 &amp; -2b_2-d_2 &amp; 0 \\
 0 &amp; 2b_2 &amp; -3b_3-d_3+3b_3(1-\hat{n}/(2k))
-\end{pmatrix}
+\end{pmatrix}.
 \]</div>
 <h4 id="2-2">2 + 2</h4>
 <p>For the 2+2 strategy we have </p>
@@ -2023,7 +2022,7 @@ b_1 &amp; -2b_2-d_2 &amp; 0 \\
 -b_1-d_1 &amp; 0 &amp; 0 \\ 
 b_1 &amp; -2b_2-d_2 &amp; 6b_3(1-\hat{n}/(2k)) \\
 0 &amp; 2b_2 &amp; -3b_3-d_3
-\end{pmatrix}
+\end{pmatrix}.
 \]</div>
 <h2 id="results">Results</h2>
 <h3 id="unicellular-resident_1">Unicellular resident</h3>
@@ -2032,7 +2031,7 @@ b_1 &amp; -2b_2-d_2 &amp; 6b_3(1-\hat{n}/(2k)) \\
 \begin{aligned}
 \frac{\mathrm{d}n}{\mathrm{d}t} &amp;= b_1 n \left(1-\frac{n}{k}\right) - d_1 n \\
 0 &amp;= b_1 \hat{n} \left(1-\frac{\hat{n}}{k}\right) - d_1 \hat{n} \\
-0 &amp;= \hat{n} \left(b_1 \left(1-\frac{\hat{n}}{k}\right) - d_1\right) \\
+0 &amp;= \hat{n} \left(b_1 \left(1-\frac{\hat{n}}{k}\right) - d_1\right).
 \end{aligned}
 \]</div>
 <p>This implies that <span class="arithmatex">\(\hat{n}=0\)</span> or</p>
@@ -2041,7 +2040,7 @@ b_1 &amp; -2b_2-d_2 &amp; 6b_3(1-\hat{n}/(2k)) \\
 0 &amp;= b_1 \left(1-\frac{\hat{n}}{k}\right) - d_1 \\
 d_1/b_1 &amp;= 1-\frac{\hat{n}}{k} \\
 1 - d_1/b_1 &amp;= \frac{\hat{n}}{k} \\
-k(1 - d_1/b_1) &amp;= \hat{n} \\
+k(1 - d_1/b_1) &amp;= \hat{n}.
 \end{aligned}
 \]</div>
 <p>This non-zero equilibrium is biologically valid whenever <span class="arithmatex">\(0\leq\hat{n}\implies d_1\leq b_1\)</span>. This non-zero equilibrium is stable when </p>
@@ -2051,10 +2050,10 @@ k(1 - d_1/b_1) &amp;= \hat{n} \\
 b_1 \left(1-\frac{\hat{n}}{k}\right) - b_1 \hat{n}/k - d_1 &amp;&lt; 0\\
 - b_1 (1-d_1/b_1) &amp;&lt; 0\\
 - (b_1 - d_1) &amp;&lt; 0\\
-b_1 &amp;&gt; d_1\\
+b_1 &amp;&gt; d_1.
 \end{aligned}
 \]</div>
-<p>We will assume <span class="arithmatex">\(b_1&gt;d_1\)</span> such that this non-zero equilibrium is both biologically valid and stable.</p>
+<p>We will therefore assume <span class="arithmatex">\(b_1&gt;d_1\)</span> below, such that this non-zero equilibrium is both biologically valid and stable.</p>
 <pre data-executable="true" data-language="python">
 # check our calculations
 
@@ -2076,7 +2075,7 @@ diff(dndt,n).subs(n,eq[1]).simplify() #stability condition
 \]</div>
 <p>giving </p>
 <div class="arithmatex">\[
-\lambda = \frac{\mathrm{Tr}(\mathbf{M}) \pm \sqrt{\mathrm{Tr}(\mathbf{M})^2 - 4|\mathbf{M}|}}{2}
+\lambda = \frac{\mathrm{Tr}(\mathbf{M}) \pm \sqrt{\mathrm{Tr}(\mathbf{M})^2 - 4|\mathbf{M}|}}{2}.
 \]</div>
 <p>For stability (ie, the multicellular strategy does not invade) we need <span class="arithmatex">\(|\mathbf{M}|&gt;0\)</span> and <span class="arithmatex">\(\mathrm{Tr}(\mathbf{M})&lt;0\)</span> (these are the Routh-Hurwitz conditions). The first requires</p>
 <div class="arithmatex">\[
@@ -2086,19 +2085,19 @@ diff(dndt,n).subs(n,eq[1]).simplify() #stability condition
 (-b_1-d_1)(-2b_2-d_2) - 6b_2(1-(1 - d_1/b_1)/2)b_1 &amp;&gt; 0\\
 (-b_1-d_1)(-2b_2-d_2) - 3b_2(1+d_1/b_1)b_1 &amp;&gt; 0\\
 (-b_1-d_1)(-2b_2-d_2) - 3b_2(b_1+d_1) &amp;&gt; 0\\
-(b_1+d_1)(d_2 - b_2) &amp;&gt; 0\\
+(b_1+d_1)(d_2 - b_2) &amp;&gt; 0.
 \end{aligned}
 \]</div>
-<p>Since all <span class="arithmatex">\(b_i\)</span> and <span class="arithmatex">\(d_i\)</span> are non-negative (since they are rates) this implies stability when <span class="arithmatex">\(d_2&gt;b_2\)</span>.</p>
+<p>Since all <span class="arithmatex">\(b_i\)</span> and <span class="arithmatex">\(d_i\)</span> are non-negative (they are rates) this implies stability when <span class="arithmatex">\(d_2&gt;b_2\)</span>.</p>
 <p>The second condition requires </p>
 <div class="arithmatex">\[
 \begin{aligned}
 \mathrm{Tr}(\mathbf{M}) &amp;&lt; 0 \\
 (-b_1-d_1-2b_2-d_2) &amp;&lt; 0 \\
-b_1+d_1+2b_2+d_2 &amp;&gt; 0 \\
+b_1+d_1+2b_2+d_2 &amp;&gt; 0,
 \end{aligned}
 \]</div>
-<p>which is true as long as at least one of these rates is non-zero, which we already assumed to be the case for resident stability (<span class="arithmatex">\(b_1&gt;d_1\)</span>). </p>
+<p>which is true as long as at least one of these rates is non-zero, which we already assumed to be the case for resident stability (<span class="arithmatex">\(b_1&gt;d_1\geq0\)</span>). </p>
 <p>To conclude, this 1+1+1 strategy will invade the unicellular strategy whenever <span class="arithmatex">\(b_2&gt; d_2\)</span>.</p>
 <pre data-executable="true" data-language="python">
 # check our calculations
@@ -2129,7 +2128,7 @@ print(tr)
 \begin{aligned}
 \mathrm{Tr}(\mathbf{M}) &amp;&lt; 0 \\
 (-b_1-d_1-d_2+2b_2(1-\hat{n}/(2k))) &amp;&lt; 0 \\
--b_1-d_1-d_2-b_2(1-d_1/b_1) &amp;&lt; 0 \\
+-b_1-d_1-d_2-b_2(1-d_1/b_1) &amp;&lt; 0.
 \end{aligned}
 \]</div>
 <p>The latter is always true, so the critical condition for invasion comes from the former, which can be rearranged as <span class="arithmatex">\(b_2/b_1 &gt; d_2/d_1\)</span>.</p>
@@ -2220,13 +2219,13 @@ plt.show()
 </pre>
 
 <p><img alt="png" src="../partII_example_files/partII_example_12_0.png" /></p>
-<p>Figure 1. The invasion growth rate (real part of leading eigenvalue) versus the rate of cell division in groups of size 2, <span class="arithmatex">\(b_2\)</span>, for 6 multicellular strategies (see legend) invading a unicellular strategy, 1+1. Parameter values: <span class="arithmatex">\(b_1=b_3=1\)</span>, <span class="arithmatex">\(d_i=0.1\)</span>, and <span class="arithmatex">\(k=100\)</span>.</p>
+<p><b>Figure 1.</b> The invasion growth rate (real part of leading eigenvalue) versus the rate of cell division in groups of size 2, <span class="arithmatex">\(b_2\)</span>, for 6 multicellular strategies (see legend) invading the unicellular strategy, 1+1. Parameter values: <span class="arithmatex">\(b_1=b_3=1\)</span>, <span class="arithmatex">\(d_i=0.1\)</span>, and <span class="arithmatex">\(k=100\)</span>.</p>
 <h2 id="discussion">Discussion</h2>
 <h3 id="answering-the-question">Answering the question</h3>
-<p>Above we have shown that any of the 6 chosen multicellular strategies can invade a unicellular strategy given certain conditions. For the smaller multicellular strategies (1+1+1 and 1+2) we were able to show these conditions analytically, in general. For the larger multicellular strategies (1+1+1+1, 1+1+2, 1+3, and 2+2), where the eigenvalues are more complicated, we turned to a numerical example. </p>
+<p>Above we have shown that any of the 6 chosen multicellular strategies can invade a unicellular strategy given certain conditions. For the smaller multicellular strategies (1+1+1 and 1+2) we were able to show these conditions analytically, in general. For the larger multicellular strategies (1+1+1+1, 1+1+2, 1+3, and 2+2), where the eigenvalues are more complicated, we turned to a numerical example (Figure 1). </p>
 <p>For 1+1+1, invasion requires cell division to be faster than death in groups of size 2, <span class="arithmatex">\(b_2&gt;d_2\)</span>. Essentially, the benefit a cell receives from being in a group (<span class="arithmatex">\(b_2\)</span>) needs to outweigh the costs (<span class="arithmatex">\(d_2\)</span>). It is interesting that this does not depend on the cell division and death rates in groups of size 1, <span class="arithmatex">\(b_1\)</span> and <span class="arithmatex">\(d_1\)</span>. This is likely because all offspring of both the unicellular and multicellular strategy are size 1, so both strategies are affected equally by changes in <span class="arithmatex">\(b_1\)</span> and <span class="arithmatex">\(d_1\)</span>.</p>
 <p>For 1+2, invasion requires the cell division rate in groups of size 2 relative to that in groups of size 1 to be greater than the death rate in groups of size 2 relative to that in groups of size 1, <span class="arithmatex">\(b_2/b_1&gt;d_2/d_1\)</span>. This may be the case if groups of cells cooperate by sharing resources or protecting each other from the environment, which would increase <span class="arithmatex">\(b_2/b_1\)</span> or decrease <span class="arithmatex">\(d_2/d_1\)</span>.</p>
-<p>For larger multicellular strategies, our numerical example indicates that the invasion rate increases with the number of offspring.  Those strategies with 2 offspring (1+3 and 2+2) behave much like 1+2 while the strategy with 3 offspring behaves much like 1+1+1. It is the strategy with 4 offspring (1+1+1+1) that has the highest invasion growth rate and thus appears most like to invade a unicellular ancestor under this model. As shown in the figure below, this is despite the fact that the 1+1+1+1 strategy does not have the highest growth rate in the absence of competitors. Instead, it appears that having more (and hence smaller) offspring at the time of fragmenting makes a strategy more competitive, presumably because this increases the chances of winning a spot. </p>
+<p>For larger multicellular strategies, our numerical example (Figure 1) indicates that the invasion rate increases with the number of offspring.  Those strategies with 2 offspring (1+3 and 2+2) behave much like 1+2 while the strategy with 3 offspring behaves much like 1+1+1. It is the strategy with 4 offspring (1+1+1+1) that has the highest invasion growth rate and thus appears most like to invade a unicellular ancestor under this model. This is despite the fact that the 1+1+1+1 strategy does not have the highest growth rate in the absence of competitors (Figure 2). Instead, it appears that having more (and hence smaller) offspring at the time of fragmenting makes a strategy more competitive, presumably because this increases the chances of winning a spot. </p>
 <pre data-executable="true" data-language="python">
 # chose parameter values
 pvals = {'b1':1.0,'d1':0.1,'d2':0.1,'d3':0.1,'k':100,'b3':1.0}
@@ -2252,9 +2251,9 @@ plt.show()
 </pre>
 
 <p><img alt="png" src="../partII_example_files/partII_example_17_0.png" /></p>
-<p>Figure 2. The growth rate (real part of leading eigenvalue) versus the rate of cell division in groups of size 2, <span class="arithmatex">\(b_2\)</span>, for 6 multicellular strategies (see legend) growing from rare in the absence of competition. Parameter values: <span class="arithmatex">\(b_1=b_3=1\)</span>, <span class="arithmatex">\(d_i=0.1\)</span>, and <span class="arithmatex">\(k=100\)</span>.</p>
+<p><b>Figure 2.</b> The growth rate (real part of leading eigenvalue) versus the rate of cell division in groups of size 2, <span class="arithmatex">\(b_2\)</span>, for 6 multicellular strategies (see legend) growing from rare in the absence of competition. Parameter values: <span class="arithmatex">\(b_1=b_3=1\)</span>, <span class="arithmatex">\(d_i=0.1\)</span>, and <span class="arithmatex">\(k=100\)</span>.</p>
 <h3 id="limitations-and-extensions">Limitations and extensions</h3>
-<p>There are a number of ways this analysis and model could be improved. For one, I have only looked at the invasion of a multicellular strategy into the unicellular resident. It therefore remains unclear if an invading multicellular strategy will completely displace the unicellular strategy or the both will coexist. Looking at the reverse situation, where the unicellular strategy invades a multicellular strategy would help answer this. Further, it is unclear how the multicellular strategies compete with each other. Exploring this would help us understand how and why complex multicellular organisms, like ourselves, have evolved. Another interesting direction is to allow competition to depend on the size of a group, for instance by making larger groups more likely to win spots resided by smaller groups. And finally, it would be interesting to include different cell types, like cooperators and cheaters, as multicellularity opens the door to within-group conflict, which may affect which strategies invade best.</p>
+<p>There are a number of ways this analysis and model could be improved. For one, I have only looked at the invasion of a multicellular strategy into the unicellular resident. It therefore remains unclear if an invading multicellular strategy will completely displace the unicellular strategy or the both will coexist. Looking at the reverse situation, where the unicellular strategy invades a multicellular strategy would help answer this. Further, it is unclear how the multicellular strategies compete with each other. Exploring this would help us understand how and why complex multicellular organisms, like ourselves, have evolved. Another interesting direction is to allow competition to depend on the size of a group, for instance by making larger groups more likely to win spots resided by smaller groups. And finally, it would be interesting to include different cell types, like cooperators and cheaters, as multicellularity opens the door to within-group conflict, which may affect which strategies can invade which.</p>
 
 
 

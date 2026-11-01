@@ -12,7 +12,7 @@ I am interested in the origin of multicellularity and the reason why particular 
 
 I will start by modeling a unicellular population where individuals divide, die, and compete in continuous time. The variable in this model is the number of individuals, $n$. The parameters are the birth rate ($b_1$), death rate ($d_1$), and amount of competition. To describe competition I will assume there are a total of $k$ places for individuals to exist. When a cell divides, each of the two resulting offspring randomly choose one of these $k$ locations. If an offspring lands on an empty spot it survives. If an offspring lands on an occupied spot it "wins" that spot with probability 1/2, killing the resident, and otherwise dies. The amount of competition is therefore controlled by parameter $k$.
 
-This model can be described by the following flow diagram
+This model can be described by the following flow diagram.
 
 ```mermaid
 graph LR;
@@ -22,11 +22,9 @@ graph LR;
     style B height:0px;
 ```
 
-From the resulting differential equation I will determine the equilibrium number of unicellular individuals, $\hat{n}$.
-
 Next I will model the dynamics of an invading multicellular population. For instance, imagine a life-cycle where offspring are unicellular, they divide to form an individual with two cells, and then divide again to produce three single-celled offspring. In this case we need to track the number of individuals with one, $n_1$, and two, $n_2$, cells (i.e., this is a structured population). I assume that each cell in an individual with $i$ cells divides at rate $b_i$ and that individuals with $i$ cells die at rate $d_i$. I also assume that this invading population is so rare (and $k$ so large) that offspring produced by this life-history strategy never land on other individuals with this same strategy. The offspring may, however, land on an individual from the unicellular population, which will reduce the growth rate of the invader.
 
-The dynamics of this invading multicellular population can be described by the following flow diagram
+The dynamics of this invading multicellular population can be described by the following flow diagram.
 
 ```mermaid
 graph LR;
@@ -39,8 +37,6 @@ graph LR;
     style C2 height:0px;
 ```
 
-The goal is then to see if the growth rate of this invading multicellular population is positive (i.e., it can invade) or negative (i.e., it cannot invade). This will require calculating the leading eigenvalue from the system of (linear) differential equations describing the rate of change in $n_i$.
-
 ## Equations
 
 The equation for the unicellular population size is
@@ -51,8 +47,14 @@ and the equations for the invading multicellular population described above are
 
 $$\begin{aligned}
 \frac{\mathrm{d}n_1}{\mathrm{d}t} &= -(b_1 + d_1) n_1 + 6 b_2 n_2 \left(1 - \frac{n}{2k}\right)\\
-\frac{\mathrm{d}n_2}{\mathrm{d}t} &= b_1 n_1 - (2b_2 + d_2) n_2
+\frac{\mathrm{d}n_2}{\mathrm{d}t} &= b_1 n_1 - (2b_2 + d_2) n_2.
 \end{aligned}$$
+
+## Analysis plan
+
+I will first determine the equilibrium number of unicellular individuals, $\hat{n}$. 
+I will then calculate the leading eigenvalue from the system of (linear) differential equations describing the rate of change in the $n_i$ for an invading multicellular population.
+The sign of the leading eigenvalue will determine if the multicellular life-cycle invades.
 
 ## Hypothesis
 

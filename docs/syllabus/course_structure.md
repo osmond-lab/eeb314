@@ -19,4 +19,6 @@ Test dates for 2026: Sept 28, Oct 21, Nov 18, Dec 8.
 
 If we deem a test has been missed for a valid reason the marks will be redistributed to the other tests.
 
-For the final project, we will deduct 5% of the total grade for each day late. 
+Those who write all 4 tests will have their lowest mark dropped.
+
+For the final project, we will deduct 5% of the total grade for each day late. See [here](final_project.md) for more info on the final project grade breakdown.  

@@ -1674,6 +1674,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#analysis-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analysis plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hypothesis" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1710,15 +1721,14 @@
 <p>I am interested in the origin of multicellularity and the reason why particular life-cycles predominate. For instance, many bacterial species exist as single cells which reproduce via binary fission while many multicellular organisms grow to large sizes and reproduce via single-celled offspring. However, there are many more options and it is not clear if or why these strategies are evolutionarily optimal or how multicellularity evolved from a binary fission ancestor. Here I ask the question, which multicellular life-cycles can invade a unicellular population producing via binary fission?</p>
 <h2 id="model-description">Model description</h2>
 <p>I will start by modeling a unicellular population where individuals divide, die, and compete in continuous time. The variable in this model is the number of individuals, <span class="arithmatex">\(n\)</span>. The parameters are the birth rate (<span class="arithmatex">\(b_1\)</span>), death rate (<span class="arithmatex">\(d_1\)</span>), and amount of competition. To describe competition I will assume there are a total of <span class="arithmatex">\(k\)</span> places for individuals to exist. When a cell divides, each of the two resulting offspring randomly choose one of these <span class="arithmatex">\(k\)</span> locations. If an offspring lands on an empty spot it survives. If an offspring lands on an occupied spot it "wins" that spot with probability 1/2, killing the resident, and otherwise dies. The amount of competition is therefore controlled by parameter <span class="arithmatex">\(k\)</span>.</p>
-<p>This model can be described by the following flow diagram</p>
+<p>This model can be described by the following flow diagram.</p>
 <pre class="mermaid"><code>graph LR;
     A((n)) --"b1 n (1 - n/k)" --&gt; A;
     A --d1 n--&gt; B[ ];
 
     style B height:0px;</code></pre>
-<p>From the resulting differential equation I will determine the equilibrium number of unicellular individuals, <span class="arithmatex">\(\hat{n}\)</span>.</p>
 <p>Next I will model the dynamics of an invading multicellular population. For instance, imagine a life-cycle where offspring are unicellular, they divide to form an individual with two cells, and then divide again to produce three single-celled offspring. In this case we need to track the number of individuals with one, <span class="arithmatex">\(n_1\)</span>, and two, <span class="arithmatex">\(n_2\)</span>, cells (i.e., this is a structured population). I assume that each cell in an individual with <span class="arithmatex">\(i\)</span> cells divides at rate <span class="arithmatex">\(b_i\)</span> and that individuals with <span class="arithmatex">\(i\)</span> cells die at rate <span class="arithmatex">\(d_i\)</span>. I also assume that this invading population is so rare (and <span class="arithmatex">\(k\)</span> so large) that offspring produced by this life-history strategy never land on other individuals with this same strategy. The offspring may, however, land on an individual from the unicellular population, which will reduce the growth rate of the invader.</p>
-<p>The dynamics of this invading multicellular population can be described by the following flow diagram</p>
+<p>The dynamics of this invading multicellular population can be described by the following flow diagram.</p>
 <pre class="mermaid"><code>graph LR;
     A((n1)) --b1 n1--&gt; B((n2));
     A --d1 n1--&gt; C1[ ];
@@ -1727,15 +1737,18 @@
 
     style C1 height:0px;
     style C2 height:0px;</code></pre>
-<p>The goal is then to see if the growth rate of this invading multicellular population is positive (i.e., it can invade) or negative (i.e., it cannot invade). This will require calculating the leading eigenvalue from the system of (linear) differential equations describing the rate of change in <span class="arithmatex">\(n_i\)</span>.</p>
 <h2 id="equations">Equations</h2>
 <p>The equation for the unicellular population size is</p>
 <div class="arithmatex">\[\frac{\mathrm{d}n}{\mathrm{d}t} = b_1 n \left(1 - \frac{n}{k}\right) - d_1 n\]</div>
 <p>and the equations for the invading multicellular population described above are</p>
 <div class="arithmatex">\[\begin{aligned}
 \frac{\mathrm{d}n_1}{\mathrm{d}t} &amp;= -(b_1 + d_1) n_1 + 6 b_2 n_2 \left(1 - \frac{n}{2k}\right)\\
-\frac{\mathrm{d}n_2}{\mathrm{d}t} &amp;= b_1 n_1 - (2b_2 + d_2) n_2
+\frac{\mathrm{d}n_2}{\mathrm{d}t} &amp;= b_1 n_1 - (2b_2 + d_2) n_2.
 \end{aligned}\]</div>
+<h2 id="analysis-plan">Analysis plan</h2>
+<p>I will first determine the equilibrium number of unicellular individuals, <span class="arithmatex">\(\hat{n}\)</span>. 
+I will then calculate the leading eigenvalue from the system of (linear) differential equations describing the rate of change in the <span class="arithmatex">\(n_i\)</span> for an invading multicellular population.
+The sign of the leading eigenvalue will determine if the multicellular life-cycle invades.</p>
 <h2 id="hypothesis">Hypothesis</h2>
 <p>I hypothesize that, provided the <span class="arithmatex">\(b_2\)</span>, <span class="arithmatex">\(b_3\)</span>, ... are large enough relative to <span class="arithmatex">\(b_1\)</span> (ie, that cells divide fast enough in multicellular organisms) and the <span class="arithmatex">\(d_2\)</span>, <span class="arithmatex">\(d_3\)</span>, ... are small enough relative to <span class="arithmatex">\(d_1\)</span> (ie, that multicellular individuals don't die too quickly), there will be multicellular life-cycles that can invade a unicellular population. </p>
 
