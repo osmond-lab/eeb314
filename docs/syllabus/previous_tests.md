@@ -18,6 +18,7 @@ Covers lectures 6-10 and tutorials 4-6 (linear multivariate).
 
 Covers lectures 11-15 and tutorials 7-8 (nonlinear multivariate).
 
+- [2026](exam_files/test3_2026.pdf), [solutions](exam_files/test3_2026_solns.pdf)
 - [2025](exam_files/test3_2025.pdf), [solutions](exam_files/test3_2025_solns.pdf)
 
 ## Test 4
@@ -26,7 +27,7 @@ Covers lectures 16-20 and tutorials 9-10 (evolutionary invasion analysis).
 
 - [2025](exam_files/test4_2025.pdf), [solutions](exam_files/test4_2025_solns.pdf)
 
-## Previous midterms
+# Previous midterms
 
 Roughly covers univariate lectures and labs.
 
@@ -34,7 +35,7 @@ Roughly covers univariate lectures and labs.
 - [2022](exam_files/midterm2022.pdf), [solutions](exam_files/midterm2022_solns.pdf) 
 - [2021](exam_files/midterm2021.pdf), [solutions](exam_files/midterm2021_solns.pdf) 
 
-## Previous finals
+# Previous finals
 
 Covers all material, with a focus on multivariate (and any stochastic) lectures and labs.
 
